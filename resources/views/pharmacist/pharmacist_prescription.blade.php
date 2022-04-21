@@ -1,7 +1,11 @@
-@extends('layouts.vertical-menu.master')
+@extends('layouts.vertical-menu1.master')
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('page-header')
                         <!-- PAGE-HEADER -->
@@ -57,7 +61,7 @@
                                                    
                                                 </tbody>
                                             </table>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                                                 View
                                               </button>
                                         </div>
@@ -70,15 +74,23 @@
 
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+ 
+
+  {{-- xl --}}
+   
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
+      
+        <!-- Modal Header -->
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">View Prescription</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+        
+        <!-- Modal body -->
         <div class="modal-body">
             <div class="form-group">
                 <label class="form-label"></label>
@@ -127,15 +139,20 @@
                 <label class="form-label"></label>
                 <input type="text" class="form-control" name="pharmicist" id="pharmacy_name"placeholder="pharmicist" >
             </div>
-
         </div>
+        
+        <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Ok</button>
         </div>
+        
       </div>
     </div>
   </div>
+  {{-- xl --}}
+
+
+  
                         </div>
                         <!-- ROW-1 CLOSED -->				
 @endsection

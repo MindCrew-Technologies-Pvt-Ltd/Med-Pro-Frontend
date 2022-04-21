@@ -1,10 +1,10 @@
-@extends('layouts.vertical-menu.master2')
+@extends('layouts.vertical-menu1.master2')
 @section('css')
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
 <script src="{{ URL::asset('assets/js/formapi.js')}}"></script>
-<!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
  <style>
 	
 .error{
@@ -54,8 +54,8 @@
 </svg>
 
 
-							<form class="login100-form validate-form" enctype="multipart/form-data"  id="pharmaticssignupform" method="post">
-								<!-- @csrf -->
+							<form class="login100-form validate-form" enctype="multipart/form-data"  id="pharma_signup" method="post">
+								@csrf
 							
 								
 								<span class="login100-form-title">
@@ -66,20 +66,26 @@
                                  </div>
 								<div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pharmacy_name" id="pharmacy_name"placeholder="*Pharmacy Name" >
+									<input type="text" class="form-control" name="pham_name" id="pham_name"placeholder="*Pharmacy Name" >
 									
 									
 								</div>
 								
-                                {{-- <div class="form-group">
+                                 <div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="phy_last_name" id="last_name"placeholder="*Last Name" >
+									<input type="text" class="form-control" name="pham_first_name" id="pham_first_name" placeholder="*Pharmacist First Name" >
 									
-								</div> --}}
+								</div> 
 
                                 <div class="form-group">
 									<label class="form-label"></label>
-									<input type="email" class="form-control" name="pharmacist_email" id="email" placeholder="*Email" >
+									<input type="text" class="form-control" name="pham_last_name" id="pham_last_name" placeholder="*Pharmacist Last Name" >
+									
+								</div> 
+
+                                <div class="form-group">
+									<label class="form-label"></label>
+									<input type="email" class="form-control" name="pham_email" id="pham_email" placeholder="*Email" >
 									
 								</div>
                                <!--  <div class="row">
@@ -109,7 +115,7 @@
                                    
 								</div> -->
 								<div class="form-group"style="position:relative">
-                                 <input class="form-control" type="password" name="phy_password" id="password" placeholder="*Password" autocomplete="off">
+                                 <input class="form-control" type="password" name="pham_password" id="pham_password" placeholder="*Password" autocomplete="off">
                                  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye" style="position: absolute;float:right;right: 1rem;top: 0.5rem;" onclick="toggleVisibiltypass()" ></i>
 								</div>
 
@@ -126,24 +132,33 @@
 										    </div>
 								</div> -->
                                   <div class="form-group">
-                                      <textarea class="form-control" id="address" rows="3" placeholder="Address"></textarea>
+                                      <textarea class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address"></textarea>
                                   </div>
-                                  <div class="row">
-                                      <div class="col">
+
+                                   <div class="form-group">
+                                        <label class="form-label"></label>
+                                       <input class="form-control" name="pham_lat"  type="hidden" value="43.3444" id="pham_lat" placeholder="*Latitude" autocomplete="off">
+                                    </div>
+                                     <div class="form-group">
+                                                <label class="form-label"></label>
+                                        <input class="form-control" name="pham_long" type="hidden" value="43.3444" id="pham_long" placeholder="*Longitude" autocomplete="off">
+                                    </div>
+                                <!--   <div class="row"> -->
+                                      <!-- <div class="col"> -->
                                           <div class="form-group">
                                               <label class="form-label"></label>
-                                             <input type="text" class="form-control" name="phy_licnse" id="licence_no"placeholder="*Registration Number" >
+                                             <input type="text" class="form-control" name="pham_registration_num" id="pham_registration_num"placeholder="*Registration Number" >
                                          </div>
-                                      </div>
-                                      <div class="col">
+                                     <!--  </div> -->
+                                     <!--  <div class="col"> -->
                                           <div class="form-group mt-2">
 											  <div class="custom-file">
-											    	<input type="file"  class="custom-file-input mt-3" name="file" id="lic_doc" placeholder="* Registration Number" >
+											    	<input type="file"  class="custom-file-input mt-3" name="file" id="reg_doc" placeholder="* Registration Number" >
 											    	<label class="custom-file-label">Upload reg.</label>
 											 </div>
-							            </div>
+							          <!--   </div> -->
                                       </div>
-                                  </div>
+                                 <!--  </div> -->
                                     
                                     
 
@@ -154,7 +169,7 @@
 
 
 								<div class="container-login100-form-btn">
-									<input class="login100-form-btn btn-primary" type="submit" id="submit" value="Submit"></input>
+									<input class="login100-form-btn btn-primary" type="submit" id="submit" value="Submit">
 								</div>
 								<div class="text-center pt-3">
 									<p class="text-dark mb-0">Already have an account?<a href="{{url('/pharmacist_Login')}}" class="text-primary ml-1">Login Here</a></p>
@@ -187,7 +202,7 @@
 function toggleVisibiltypass(){
 	// alert('clicked1');
 let togglePassword3 = document.querySelector("#togglePassword3");
-        let password = document.querySelector("#password");
+        let password = document.querySelector("#pham_password");
    
      
             let type = password.getAttribute("type") === "password" ? "text" : "password";
@@ -214,6 +229,156 @@ let confpassword = document.querySelector("#confpassword");
  
 </script>
 @section('js')
+<script>
+$(document).ready(function(){
+	var api_url="http://3.220.132.29:3000/api/";
+	var base_path = "http://3.220.132.29/medpro/";
+$("#pharma_signup").validate({
+    // $('.eye1 i').css({'display':'none'});       
+    errorClass: "error fail-alert",
+    validClass: "valid success-alert",
+    rules: {
+      pham_name: {
+        required: true,
+        lettersonly: true,
+        // minlength: 3
+      },
+       pham_first_name: {
+        required: true,
+        lettersonly: true,
+        // minlength: 3
+      },
+       pham_last_name: {
+        required: true,
+        lettersonly: true,
+        // minlength: 3
+      },
+      pham_email: {
+         required: true,
+        email: true
+      },
+      pham_registration_num:{
+        required:true,
+        minlength:8
+      },
+     file:{
+      required:true,
+     },
+     pham_password: {
+      required:true,
+      minlength:8
+     },
+      confpass: {
+        required: true,
+        minlength: 8,
+        equalTo: "#pham_password",
+      },
+      terms:{
+           required: true
+      }
+    },
+    messages : {
+
+      pham_name: {
+        required: "Name field is Required",
+        lettersonly: "Only Alphabetical Characters are allowed",
+        // minlength: 3
+      },
+      phy_first_name: {
+         required: "First Name field is Required",
+         lettersonly:"Only Alphabetical Characters are allowed",
+        // minlength: "First Name should be at least 3 characters"
+      },
+      phy_last_name: {
+          required: "Last Name field is Required",
+           lettersonly:"Only Alphabetical Characters are allowed",
+        // minlength: "Last Name should be at least 3 characters"
+      },
+      phy_email: {
+        required: "Email field is Required",
+        email: "The email should be in the format: abc@domain.tld"
+      },
+
+     pham_registration_num:{
+        required:"License Number field is Required",
+        minlength: "Licence Number should be at least 8 characters"
+      },
+      file:{
+        required:"License doc is Required",
+     },
+      pham_password: {
+      required:"Password field is Required",
+      minlength:"Password should be of atleast 8 characters"
+     },
+     confpass: {
+        required: "Confirm Password field is Required",
+        minlength: "Password and Confirm password should be same",
+        // equalTo: "Password and Confirm password should be same"
+      },
+      terms:{
+        required:"<p>Please Agree The Terms and Policy<p>"
+      }
+
+
+    }
+  });
+
+
+       $('#pharma_signup').submit(function (event) {
+    event.preventDefault();
+
+ alert('here')
+
+    /*formvalidation for signup form*/
+    var pham_name =$('pham_name').val();
+    var pham_first_name = $('#pham_first_name').val();
+    var pham_last_name = $('#pham_last_name').val();
+    var email = $('#pham_email').val();
+    var pham_regn =$('#pham_registration_num').val();
+    var regdoc =$('regdoc').val();
+    var password = $('#pham_password').val();
+    var confpassword =$('#confpassword').val();
+   
+      
+
+    // }
+    //  formData.append('phy_licnse_file', $('input[type=file]')[0].files[0]);  
+    // console.log(formData);
+    // return false;
+    
+    if(pham_name!="" && pham_first_name!="" && pham_last_name !=="" && email!="" && pham_regn!="" && regdoc!="" && password!="" ){
+    $.ajax({
+      type: "POST",
+      url: api_url+"phamsistRegister",
+      data: new FormData(this),
+      contentType:false,
+      cache:false,
+      processData:false,
+    }).done(function (res) {
+     //    alert('done');
+  
+      // console.log(res);
+      // return false;
+        if(res.status == true){
+          $('#message').html(res.message).addClass('alert alert-success');
+          window.location.href =base_path+"pharmacist_Login";
+        }else{
+           $('#message').html(res.message).addClass('alert alert-danger');
+        }
+    });
+   }else{
+     // $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
+   }
+
+  });
+
+
+
+
+
+})
+  
+</script>
 <!-- <script type="text/javascript">
     $(function () {
         $("#submit").click(function () {
