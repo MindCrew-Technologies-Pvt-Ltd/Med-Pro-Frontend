@@ -10,6 +10,8 @@
 
 		<!-- SPARKLINE JS-->
 		<script src="{{ URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+         <!-- sweet alert -->
+		 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
 
 		<!-- CHART-CIRCLE JS -->
 		<script src="{{ URL::asset('assets/plugins/circle-progress/circle-progress.min.js') }}"></script>
@@ -35,6 +37,7 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <script src="{{ URL::asset('assets/js/formapi.js') }}"></script>
 <script src="{{ URL::asset('assets/js/medprocustom.js') }}"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 
 

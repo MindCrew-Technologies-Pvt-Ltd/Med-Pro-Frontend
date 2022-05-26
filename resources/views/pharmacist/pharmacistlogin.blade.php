@@ -8,13 +8,108 @@
 	
 }
 .valid{
-	color: green;
+	color: black;
+	
 	
 }
 .zmdi{
 	color: #4ec1ec;
 	
 }
+.wrap-login100{
+
+width: 456px;
+ height:550px;
+}
+.login100-form-title{
+	margin-bottom: -20px;
+	margin-top: -26px;
+    margin-left: 20px;
+
+}
+input[type=text] {
+    border-radius: 6px;
+    height: 50px;
+    width: 361px;
+	color: black;
+} 
+input[type=password] {
+    border-radius: 6px;
+    height: 50px;
+    width: 361px;
+	color: black;
+	color: black;
+	
+}
+#loginbtn{
+	width: 361px;
+	margin-left: -34px;
+}
+.container-login100-form-btn{
+	margin-left: 38px;
+	margin-top:10px;
+}
+.forgot{
+	margin-right: -41px;
+	margin-top: -8px;
+}
+.dont{
+	margin-left:35px;
+}
+.login100-form{
+	margin-left:15px;
+}
+.zmdi-eye-off{
+	position: absolute;
+	float:right;
+	right: -1rem;
+	top: 1.1rem;
+
+}
+.mhide{
+	display: none;
+}
+@media only screen and (max-width: 480px) {
+	.wrap-login100{
+
+		width: 330px;
+        height:500px;
+}
+input[type=text] {
+    border-radius: 6px;
+    height: 44px;
+    width: 243px;
+} 
+input[type=password] {
+    border-radius: 6px;
+    height: 44px;
+    width: 243px;
+}
+.forgot{
+	margin-right: 20px;
+}
+.login100-form-title{
+	margin-left: -16px;
+	margin-top: -30px;
+	letter-spacing: 1px;
+}
+.container-login100-form-btn{
+	margin-left: 38px;
+	margin-top:10px;
+	width:220px;
+}
+.dont{
+	margin-right:50px;
+}
+.zmdi-eye-off{
+	position: absolute;
+	float:right;
+	right: 2.2rem;
+	top: 1.1rem;
+
+}
+}
+
 </style>
 @endsection
 @section('content')
@@ -50,20 +145,22 @@
 							<form class="login100-form validate-form" id="pharma_login" method="post">
 								@csrf
 								<span class="login100-form-title">
-									Pharmacist Login
+									Pharmacy Login
 								</span>
 								<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 									<input class="input100" type="text" name="pham_email" id="pham_email" placeholder="Email">
 									<span class="focus-input100"></span>
-									<span class="symbol-input100">
-										<i class="zmdi zmdi-email" aria-hidden="true"></i>
-									</span>
+									<!-- <span class="symbol-input100"> -->
+										<i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 0.9rem;"></i>
+									<!-- </span> -->
+                                                                        <span></span>
+
 								</div>
 								<div class="wrap-input100 validate-input" data-validate = "Password is required" style="position:relative; ">
 
 									
-                                 <input class="input100" type="password" name="pham_password" id="pham_password" placeholder="Password" autocomplete="off">
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye" style="position: absolute;float:right;right: 1rem;top: 0.9rem;"  onclick="toggleVisibilty()"  ></i>
+                                 <input class="input100 mt-5" type="password" name="pham_password" id="pham_password" placeholder="Password" autocomplete="off">
+                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty()"  ></i>
 								
 
 								<!-- 	<input class="input100" type="password" name="pass" id="password" placeholder="Password">
@@ -73,22 +170,25 @@
 									
 									<span class="focus-input100">
 										</span>
-									<span class="symbol-input100">
-										<i class="zmdi zmdi-lock" aria-hidden="true"></i>
-									</span>
+									<!-- <span class="symbol-input100"> -->
+										<i class="zmdi zmdi-lock" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 0.9rem;"></i>
+									<!-- </span> -->
+                                                                        <span></span>
+
 									
 									
 								</div>
+								<p class="text-red mhide" id="hidemm">Email or Password not correct</p>
 								<div class="text-right pt-1">
-									<p class="mb-0"><a href="{{url('/pharmacist_forgot_password')}}" class="text-primary ml-1">Forgot Password?</a></p>
+									<p class="mb-0"><a href="{{url('/pharmacist_forgot_password')}}" class="text-primary ml-1 forgot">Forgot Password?</a></p>
 								</div>
 								<div class="container-login100-form-btn">
-									<button  class="login100-form-btn btn-primary" type="submit" name="submit">
+									<button  class="login100-form-btn btn-primary" id="loginbtn" type="submit" name="submit">
 										Login
 									</button>
 								</div>
 								<div class="text-center pt-3">
-									<p class="text-dark mb-0">Don't have an account?<a href="{{url('pharmacist_register')}}" class="text-primary ml-1">Sign up</a></p>
+									<p class="text-dark mb-0 dont">Don't have an account?<a href="{{url('pharmacist_register')}}" class="text-primary ml-1">Sign up</a></p>
 								</div>
 								<!-- <div class=" flex-c-m text-center mt-3">
 								    <p>Or</p>
@@ -162,6 +262,8 @@ var base_path = "http://3.220.132.29/medpro/";
       required:"Password field is Required",
       
      },
+    errorElement: "span",
+
     
 
 
@@ -195,10 +297,12 @@ $("#pharma_login").submit(function (event) {
       localStorage.setItem('pharm_det', JSON.stringify(res.data));
       // return false;
         if(res.status == true){
-        	// $('#message').html(res.message).addClass('alert alert-success');
-        	window.location.href=base_path+"pharmacist_dashboard";
+        	$('#message').html(res.message).addClass('alert alert-success');
+        	window.location.href=base_path+"pharmacist_prescription";
         }else{
-           $('#message').html(res.message).addClass('alert alert-danger');
+        //    $('#message').html(res.message).addClass('alert alert-danger');
+		$('#hidemm').html(res.message).removeClass('mhide');
+
         }
 
   });

@@ -3,6 +3,40 @@
 @endsection
 @section('page-header')
 <!-- <script src="https://kit.fontawesome.com/8ebca7c608.js" crossorigin="anonymous"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- map api script called here -->
+<script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
+  <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
+  <script>
+   var searchInput = 'pham_address';
+
+$(document).ready(function () {
+    // var autocomplete;
+    // autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+    //     types: ['geocode'],
+    // });
+    var autocomplete;
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+        types: ['geocode'],
+    });
+    
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var near_place = autocomplete.getPlace();
+        document.getElementById('pham_lat').value = near_place.geometry.location.lat();
+        document.getElementById('pham_long').value = near_place.geometry.location.lng();
+        
+        document.getElementById('pham_lat').innerHTML = near_place.geometry.location.lat();
+        document.getElementById('pham_long').innerHTML = near_place.geometry.location.lng();
+    });
+});
+$(document).on('change', '#'+searchInput, function () {
+     document.getElementById('latitude_input').value = '';
+     document.getElementById('longitude_input').value = '';
+    
+    document.getElementById('pham_lat').innerHTML = '';
+    document.getElementById('pham_long').innerHTML = '';
+});
+  </script>
 <style>
     .proimg{
          height: 80px;
@@ -10,11 +44,13 @@
          margin-right: 330px;
      }
      .connewpas {
-    padding-right: 82%;
+    padding-right: 57%;
     }
-     
+    #phamname{
+          padding-right: 86%;
+        }
      .newpass {
-    padding-right: 88%;
+    padding-right: 72%;
     }
      
      input[type=text]{
@@ -28,6 +64,21 @@
       #license_number{
         width: 100%;
       }
+      .changepass{
+          box-sizing: border-box;
+          width: 200px;
+          height: 45px;
+          background: #7EC1EC;
+          box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 15px;
+          border: none;
+          color: #fff;
+          font-size: 15px;
+          margin-top: 30px;
+          margin-bottom: 30px;
+          margin-left: 900px;
+
+     }
      
      .btninput{
          width: 100%;
@@ -187,23 +238,30 @@
        @csrf 
          
             <div class="form-group ">
-               <label for="pham_name">pharmacy Name:</label>
-               <input type="text" class="form-control" id="pham_name" >
+               <label for="pham_name" id="phamname">pharmacy Name:</label>
+               <input type="text" class="form-control" id="n" name="pharm_name">
             </div>
             <div class="form-group ">
                <label for="pham_first_name">pharmacist First Name:</label>
-               <input type="text" class="form-control" id="pham_first_name" >
+               <input type="text" class="form-control" id="pham_first_name" name="pharm_first">
             </div>
 
             <div class="form-group">
                <label for="pham_last_name">pharmacist Last Name:</label>
-               <input type="text" class="form-control" id="pham_last_name" >
+               <input type="text" class="form-control" id="pham_last_name" name="pharm_last">
             </div>
             <div class="form-group">
                <label for="pham_address">pharmacist Address:</label>
-               <input type="text" class="form-control" id="pham_address" >
+               <input type="text" class="form-control" id="pham_address" name="pharm_add" >
             </div>
-
+            <div class="form-group">
+                <label class="form-label"></label>
+                <input class="form-control" name="pham_lat"  type="hidden" value="" id="pham_lat" placeholder="*Latitude" autocomplete="off">
+            </div>
+              <div class="form-group">
+                        <label class="form-label"></label>
+                <input class="form-control" name="pham_long" type="hidden" value="" id="pham_long" placeholder="*Longitude" autocomplete="off">
+            </div>
             <div class="form-group">
                <label for="email" class="emaill">Email:</label>
                <input type="text" class="form-control" id="email" disabled>
@@ -213,20 +271,10 @@
             Registration Number <i class="fa-solid fa-greater-than" id="arrow"></i>
             </button>
 
-            <div class="form-group">
-               <label for="password" class="pass">Password:</label>
-               <input type="text" class="form-control" id="password" >
-            </div>
-
-            <div class="form-group">
-               <label for="newpassword" class="newpass">New Password:</label>
-               <input type="text" class="form-control" id="newpassword" >
-            </div>
-            <div class="form-group">
-               <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
-               <input type="text" class="form-control" id="confnewpassword" >
-            </div>
-
+           
+            <button type="button" class="btn changepass" data-toggle="modal" data-target="#exampleModalCenter">
+              Change Password
+            </button>
 
 
 
@@ -237,6 +285,43 @@
 
                       
            
+<!-- Modal for password -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+
+      <div class="form-group">
+               <label for="password" class="pass">Password:</label>
+               <input type="text" class="form-control w-100" id="password" >
+            </div>
+
+            <div class="form-group">
+               <label for="newpassword" class="newpass">New Password:</label>
+               <input type="text" class="form-control w-100" id="newpassword" >
+            </div>
+            <div class="form-group">
+               <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
+               <input type="text" class="form-control w-100" id="confnewpassword" >
+            </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">Close</button>
+        <button type="button" class="btn btn-primary" style="border: none;" data-dismiss="modal">Save Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+                      
+     <!-- end modal for password-->      
+
 
 
 
@@ -255,7 +340,7 @@
         
                    <div class="form-group">
                        <label for="registration_number" style="padding-right: 70%;">Registration number:</label>
-                       <input type="text" class="form-control lnum" id="registration_number">
+                       <input type="text" class="form-control lnum" id="registration_number" name="regino">
                    </div>
 
                    <div class="form-group licenseimg">
@@ -361,7 +446,7 @@ file.addEventListener('change', (e) => {
           console.log("respons",res);
 
       //     return false;
-              $("#pham_name").val(res.data.pham_name) ;   
+              $("#n").val(res.data.pham_name) ;   
               $("#pham_first_name").val(res.data.pham_first_name) ;   
               $("#pham_last_name").val(res.data.pham_last_name) ;   
               $('#email').val(res.data.pham_email);
@@ -376,6 +461,62 @@ file.addEventListener('change', (e) => {
 
 </script>
 <script>
+    $("#phamsavechanges").validate({
+      errorElement: "span",
+    // $('.eye1 i').css({'display':'none'});       
+    errorClass: "error fail-alert",
+    validClass: "valid success-alert",
+    rules: {
+      pharm_name:{
+        required: true
+
+      },
+      pharm_first: {
+        required: true,
+        lettersonly: true,
+        // minlength: 3
+      },
+      pharm_last: {
+        required: true,
+        lettersonly: true,
+        // minlength: 3
+      },
+      pharm_add: {
+         required: true,
+      },
+      regino:{
+        required:true,
+        minlength:8
+      },
+ 
+    },
+    messages : {
+      pharm_name:{
+        required: "First Name field is Required"
+
+      },
+      
+      pharm_first: {
+         required: "First Name field is Required",
+         lettersonly:"Only Alphabetical Characters are allowed"
+      },
+      pharm_last: {
+          required: "Last Name field is Required",
+           lettersonly:"Only Alphabetical Characters are allowed"
+
+      },
+      pharm_add: {
+        required: "Address field is Required"
+        
+      },
+
+      regino:{
+        required:"Registration  Number field is Required",
+        minlength: "Registration Number should be at least 8 characters"
+      },
+
+    }
+  });
  $('#phamsavechanges').on('submit',function (event) {
     event.preventDefault();
     
@@ -394,6 +535,8 @@ file.addEventListener('change', (e) => {
     var password= $('#password').val();
     var newpassword= $('#newpassword').val();
     var confnewpassword =$('#confnewpassword').val();
+    var pham_lat =$('#pham_lat').val();
+    var pham_long =$('#pham_long').val();
 
 
 
@@ -417,6 +560,8 @@ file.addEventListener('change', (e) => {
             pham_new_password:newpassword,
             pham_confrim_new_password:confnewpassword,
             file:file,
+            pham_lat:pham_lat,
+            pham_long:pham_long
         }
 
 
@@ -434,15 +579,18 @@ file.addEventListener('change', (e) => {
   
       // console.log("resposne",res);
       // return false;
-      localStorage.setItem('pharm_det', JSON.stringify(res.data));
      
+
+      if (res.data) {
         if(res.status == true){
+          localStorage.setItem('pharm_det', JSON.stringify(res.data));
+
           $('#message').html(res.message).addClass('alert alert-success');
           window.location.href =base_path +"pharmacist_profile/"+pharmacist_id;
-          // window.location.href =base_path +"physician_edit_profile/"+physician_id5;
         }else{
            $('#message').html(res.message).addClass('alert alert-danger');
         }
+      }
     });
    }else{
     //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');

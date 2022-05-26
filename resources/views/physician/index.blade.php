@@ -1,6 +1,33 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
+<style>
+	@media only screen and (max-width: 1180px){
+		.page-header {
+            padding: 15px;
+            width: 870px;
+		}
+	}
+	@media only screen and (max-width: 480px){
+    .dashboard{
+       font-size: 20px;
+       font-weight: 400;
+     }
+	 .page-header {
+             width:310px;
+        }
+	}
+	@media only screen and (max-width: 360px){
+		.avatar{
+			margin-left: 237px;
+			position: absolute;
+           top: -1.6rem;
+           left: 17rem;
+    	}
 
+	}
+	
+	
+</style>
 @endsection
 @section('page-header')
                         <!-- PAGE-HEADER -->
@@ -14,6 +41,7 @@
                         <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
+
 	<!-- ROW-1 OPEN -->
 						<div class="row">
 							<div class="col-xl-4 col-md-12">

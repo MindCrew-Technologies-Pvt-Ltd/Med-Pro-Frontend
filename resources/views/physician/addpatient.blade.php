@@ -1,32 +1,433 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- map api script called here -->
+ <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
+  <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
+  <script>
+   var searchInput = 'psnt_address';
+
+$(document).ready(function () {
+    
+    var autocomplete;
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+        types: ['geocode'],
+    });
+    
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var near_place = autocomplete.getPlace();
+        document.getElementById('psnt_lat').value = near_place.geometry.location.lat();
+        document.getElementById('psnt_long').value = near_place.geometry.location.lng();
+        
+        document.getElementById('psnt_lat').innerHTML = near_place.geometry.location.lat();
+        document.getElementById('psnt_long').innerHTML = near_place.geometry.location.lng();
+    });
+});
+$(document).on('change', '#'+searchInput, function () {
+    document.getElementById('psnt_lat').innerHTML = '';
+    document.getElementById('psnt_long').innerHTML = '';
+    
+    document.getElementById('psnt_lat').innerHTML = '';
+    document.getElementById('psnt_long').innerHTML = '';
+});
+  </script>
+
+
 <style>
+    .error{
+        margin-right: 350px;
+        
+    }
+
+    /* .custom-file{
+        margin-left: 11px;
+    } */
 .btn-lg{
     min-width:16.75rem!important;
 }
+.dashboard{
+    font-size: 25px;
+    font-weight: 400;
+}
+.viewp{
+    color: #7d7a7a;
+    font-size: 20px;
+    margin-left: -71px;
+    margin-top: -18px;
+    
+}
+
+.zmdi-eye{
+   position: absolute;
+float:right;
+right: 18rem;
+top: 0.8rem; 
+color:#7ec1ec;
+ 
+}
+.zmdi-eye-off{
+  position: absolute;
+float:right;
+right: 18rem;
+top: 0.8rem; 
+color:#7ec1ec; 
+}
+
+input[type=text]{
+    width: 850px;
+    height: 50px;
+}
+input[type=email]{
+    width: 850px;
+    height: 50px;
+}
+input[type=password]{
+    width: 850px;
+    height: 50px;
+}
+
+#ins_doc{
+    width: 850px;
+    
+
+}
+
+textarea.form-control {
+    
+    width: 850px;
+    height: 85px;
+    margin-right: 10px;
+}
+.insurance{
+    margin-right: 20px;
+    margin-top: -9px;
+}
+.sbmt{
+    width: 415px;
+    margin-right: 20px;
+    margin-top: 10px;
+    float: left;
+    border: none;
+    border-radius: 10px;
+}
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.5rem;
+  margin: 0;
+  position: relative;
+  margin-top: -35px;
+  margin-left: -74px;
+}
+#submit{
+    background-color: #008000!important;
+}
+/* .zmdi-eye:before {
+    font-size: 20px;  
+} */
+.card-title{
+    margin-top: -15px;
+    margin-bottom: -15px;
+    font-size: 20px;
+    
+}
+
+
+
+.file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: relative;
+}
+.file-input label {
+   display: block; 
+   position: relative; 
+  width: 850px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #E2E6EB;
+  background: #F1F1F9;
+  /* box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4); */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  color: #797785;
+  /* font-weight: bold; */
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform .2s ease-out;
+  /*margin-left: -377px;*/
+  margin-top: -47px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+  padding-top: 7px;
+  
+}
+.file-name {
+  /* position: absolute; */
+  bottom: -35px;
+  left: 10px;
+  font-size: 0.85rem;
+  color: #555;
+  margin-right: 900px;
+}
+
+
+
+#file-error{
+    margin-top: 20px;    
+}
+#imgfile{
+    padding-left: 620px; 
+    padding-top:5px; 
+    height:25px
+}
+@media only screen and (max-width: 1440px){
+       .card-body{
+         margin-left: 10px;
+       }
+       .card-title{
+        margin-left: 10px;
+       }
+       .zmdi-eye{
+             right: 13rem;
+          }
+          .page-header{
+            width: 100%;
+          }
+
+}
+
+@media only screen and (max-width: 1280px){
+  .zmdi-eye{
+             right: 6rem;
+          }
+}
+
+
+@media only screen and (max-width: 1180px){
+   
+         input[type=text] {
+           width: 750px;
+          }
+         input[type=email] {
+           width: 750px;
+          }
+         input[type=password] {
+           width: 750px;
+          }
+          textarea.form-control {
+           width: 750px;
+          }
+          .file-input label{
+            width: 750px;
+          }
+          #imgfile {
+             padding-left: 500px;
+             padding-top: 5px;
+             height: 25px;
+           }
+           .sbmt {
+              width: 367px;
+           }
+           .error {
+              margin-right: 72px;
+            }
+}
+
+
+@media only screen and (max-width: 1080px){
+          input[type=text] {
+                width: 700px;
+          }
+          input[type=email] {
+                width: 700px;
+          }
+          input[type=password] {
+                width: 700px;
+          }
+          textarea.form-control {
+                width: 700px;
+          }
+          .file-input label{
+            width: 700px;
+          }
+          .sbmt {
+            width:340px;
+          }
+          #imgfile {
+             padding-left: 474px;
+          }
+          .zmdi-eye{
+             right: 3rem;
+          }
+}
+
+@media only screen and (max-width: 820px) {
+    
+        input[type=text] {
+          width: 401px;
+          height: 50px;
+          margin-left: 25px;
+        }
+        input[type=email] {
+          width: 401px;
+          height: 50px;
+          margin-left: 25px;
+        }
+        input[type=password] {
+          width: 401px;
+          height: 50px;
+          margin-left: 25px;
+        }
+      
+        .card-title{
+          margin-top: 10px;
+          margin-left: 30px;
+        }
+        textarea.form-control {
+          width: 401px;
+          height: 85px;
+          margin-left: 25px;
+        }
+        .zmdi-eye{
+             position: absolute;
+             float:right;
+             right: 3rem;
+             top: 0.8rem; 
+             color:#7ec1ec; 
+          }
+          .file-input label{
+              width: 401px;
+              margin-left: 25px;
+          }
+          .sbmt {
+              width: 401px;
+              margin-left: 25px;
+              display:flow-root
+          }
+          .error {
+               margin-right: 4px;
+           }
+          #imgfile {
+               padding-left: 178px;
+           }
+        
+      }
+
+@media only screen and (max-width: 480px){
+    .dashboard{
+    font-size: 20px;
+    font-weight: 400;
+}
+    input[type=text]{
+    width: 240px;
+    height: 50px;
+    margin-left: 70px;
+    }
+    input[type=email]{
+    width: 240px;
+    margin-left: 70px;
+    height: 50px;
+    }
+input[type=password]{
+    width: 240px;
+    height: 50px;
+    margin-left: 70px;
+    }
+
+    .viewp{
+    color: #7d7a7a;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top:10px;
+    }
+    
+    textarea.form-control {
+    
+    width: 240px;
+    height: 85px;
+    margin-left:70px;
+}
+   .file-input label{
+        display: block; 
+        position: relative; 
+        width: 240px;
+        height: 80px;
+        border-radius: 5px;
+        border: 1px solid #E2E6EB;
+        background: #F1F1F9;
+        /* box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4); */
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        color: #797785;
+        /* font-weight: bold; */
+        cursor: pointer;
+        font-size: 14px;
+        transition: transform .2s ease-out;
+        /*margin-left: -377px;*/
+        margin-top: -47px;
+        padding-bottom: 10px;
+        padding-left: 12px;
+        padding-top: 7px;
+       margin-left:70px;
+    }
+    .file {
+      opacity: 0;
+      width: 0.1px;
+      height: 0.1px;
+      position: relative;
+    }
+    .zmdi-eye{
+       position: absolute;
+       float:right;
+       right: 1rem;
+       top: 0.8rem; 
+       color:#7ec1ec; 
+   }
+   .sbmt{
+    width: 80px;
+    margin-left:60px;
+    }
+    #imgfile{
+    padding-left: 20px; 
+    padding-top:5px; 
+    height:25px
+   }
+   .page-header {
+       width:310px;
+   }
+}
+
 </style>
 @endsection
 @section('page-header')
                         <!-- PAGE-HEADER -->
+                       
                             <div>
                                 <h1 class="dashboard page-title">Patient Management</h1>
-                                <!-- <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
+                                <!-- <ol class="breadcrumb"> -->
+                                    <!-- <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li> -->
+                                    <!-- <li class="breadcrumb-item active" aria-current="page"><a href="{{url('add_patient')}}">Add Patient</a></li> -->
+                                    <!-- <li class="breadcrumb-item active" aria-current="page">Add Patient</li>
                                 </ol> -->
                             </div>
+                           
 
                          
                         <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-
-             <div class="container">
                           
-                            <div class="col-md-12 col-lg-12">
+             <div class="container">
+                 
+                          
+                    <div class="col-md-12 col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Add Patient</h3>
+                                   
+                                        <h3 class="card-title viewp">Add Patient</h3>
                                         
                                    <div class="ml-auto pageheader-btn">
                                            <!--  <a href="{{ url('add_patient') }}" class="btn btn-primary btn-icon text-white mr-2">
@@ -47,9 +448,9 @@
                                                
                                              </div>
 
-                                             <div class="form-group">
+                                             <div class="form-group ">
                                                 <label class="form-label"></label>
-                                                <input type="hidden" class="form-control" name="physician_id" id="physician_id" value="">
+                                                <input type="hidden" class="form-control w-75" name="physician_id" id="physician_id" value="">
                                                 
                                             </div>
                                             <div class="form-group">
@@ -68,14 +469,18 @@
                                                 <input type="email" class="form-control" name="psnt_email" id="psnt_email" placeholder="*Email">
                                                 
                                             </div>
-                                             <div class="form-group">
+                                             <div class="form-group" style="position:relative">
                                                         <label class="form-label"></label>
                                                 <input class="form-control" type="password" name="psnt_password" id="psnt_password" placeholder="*Password" autocomplete="off">
+                                                <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
+
                                                 
                                               </div>
-                                                <div class="form-group">
+                                                <div class="form-group"  style="position:relative">
                                                             <label class="form-label"></label>
                                                 <input class="form-control" type="password" name="psnt_confpassword" id="psnt_confpassword" placeholder="*Confirm Password" autocomplete="off">
+                                                <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()" ></i>
+
                                                 </div>
 
                                                 <!--  <div class="form-group">
@@ -85,45 +490,51 @@
 
                                                  <div class="form-group">
                                                             <label class="form-label"></label>
-                                                <input class="form-control" name="psnt_lat"  type="hidden" value="43.3444" id="psnt_lat" placeholder="*Latitude" autocomplete="off">
+                                                <input class="form-control" name="psnt_lat"  type="hidden" value="" id="psnt_lat" placeholder="*Latitude" autocomplete="off">
                                                 </div>
                                                  <div class="form-group">
                                                             <label class="form-label"></label>
-                                                <input class="form-control" name="psnt_long" type="hidden" value="43.3444" id="psnt_long" placeholder="*Longitude" autocomplete="off">
+                                                <input class="form-control" name="psnt_long" type="hidden" value="" id="psnt_long" placeholder="*Longitude" autocomplete="off">
                                                 </div>
                                                 
                                                 <div class="form-group">
                                                             <label class="form-label"></label>
                                                 <textarea class="form-control" name="psnt_address" id="psnt_address" placeholder="*Patient Address" autocomplete="off"></textarea>
                                                 </div>
-                                                 <div class="row col-md-12 col-lg-12">
-                                                <div class="form-group col-lg-6 col-md-6">
-                                                    <label class="form-label"></label>
-                                                <input class="form-control" type="text" name="psnt_insrnce_num" id="psnt_insrnce_num" placeholder="*Patient Insurance" autocomplete="off">
-                                                </div>
-
-                                                 <div class="form-group col-lg-6 col-md-6">
-                                                    <!-- <div class="custom-file"> -->
-                                                        <label class="custom-file-label">Upload file</label>
-                                                        <input type="file"  class="custom-file-input" name="file" id="ins_doc" placeholder="*Upload Insurance Image">
-                                                          
-                                                    <!-- </div> -->
-                                                </div>
-                                                </div>
+                                               
                                                 <div class="form-group">
-                                                 <a href="{{ url('patient_management') }}"  class="btn btn-danger btn-lg" data-dismiss="modal">
+                                                    <label class="form-label"></label>
+                                                      <input class="form-control" type="text" name="psnt_insrnce_num" id="psnt_insrnce_num" placeholder="Patient Insurance" autocomplete="off">
+                                                </div>
+                                                 <div class="file-input">
+                                                      <input type="file" id="file" class="file" name="file">
+                                                      <label for="file">Upload Insurance Image <img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt=""></label>
+                                                      <p class="file-name"></p>
+                                                </div>
+                                                   
+                                                 
+
+
+                                                <div class="form-group btndiv">
+                                                 <a href="{{ url('patient_management') }}"  class="btn btn-danger btn-lg sbmt " data-dismiss="modal">
                                                  Cancel
                                                 </a>    
                                            <!--  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button> -->
-                                              <input type="submit" class="btn btn-primary btn-lg" name="submit" value="Submit">
-                                             </div>
+                                              <input type="submit" class="btn btn-primary btn-lg sbmt clrbtn" id="submit" name="submit" value="Submit" >
+                                                </div>
                                             </form>
+                                         </div>
+                                     
+                                                </div>
+                                                  
+
+<!--                                                
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- TABLE WRAPPER -->
-                                </div>
+                    </div>
                                 <!-- SECTION WRAPPER -->
-                            </div>
+            </div>
                       
                         <!-- ROW-1 CLOSED -->   
 		   
@@ -138,105 +549,141 @@
 <script src="{{ URL::asset('assets/plugins/peitychart/peitychart.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/index1.js') }}"></script>
 <script>
+function toggleVisibiltypass(){
+	// alert('clicked1');
+let togglePassword3 = document.querySelector("#togglePassword3");
+        let password = document.querySelector("#psnt_password");
+   
+     
+            let type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            togglePassword3.classList.toggle("zmdi-eye");
+      
+}
+
+const file = document.querySelector('#file');
+file.addEventListener('change', (e) => {
+  // Get the selected file
+  const [file] = e.target.files;
+  // Get the file name and size
+  const { name: fileName, size } = file;
+  // Convert size in bytes to kilo bytes
+  const fileSize = (size / 1000).toFixed(2);
+  // Set the text content
+  const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+  document.querySelector('.file-name').textContent = fileNameAndSize;
+});
+</script>
+<script>
+function toggleVisibilty2(){
+	// alert('clicked2');
+let togglePassword2 = document.querySelector("#togglePassword2");
+let confpassword = document.querySelector("#psnt_confpassword");
+  let type = confpassword.getAttribute("type") === "password" ? "text" : "password";
+            confpassword.setAttribute("type", type);
+            // toggle the icon
+            togglePassword2.classList.toggle("zmdi-eye");
+      
+}
+
+ 
+ 
+</script>
+<script>
     var base_path="http://3.220.132.29/medpro/"
     var api_url="http://3.220.132.29:3000/api/";
+
+    
+    $("#pat_signup").validate({
+      errorElement: "span",
+    // $('.eye1 i').css({'display':'none'});       
+    errorClass: "error fail-alert",
+    validClass: "valid success-alert",
+    rules: {
+        psnt_first_name: {
+        required: true,
+        lettersonly: true,
+        // minlength: 3
+      },
+      psnt_last_name: {
+        required: true,
+        lettersonly: true,
+        // minlength: 3
+      },
+      psnt_address: {
+        required: true,
+        
+        // minlength: 3
+      },
+      psnt_email: {
+         required: true,
+        email: true
+      },
+    //   psnt_insrnce_num:{
+    //     required:true,
+    //     minlength:8
+    //   },
+    //  file:{
+    //   required:true,
+    //  },
+     psnt_password: {
+      required:true,
+      minlength:8
+     },
+     psnt_confpassword: {
+        required: true,
+        minlength: 8,
+        equalTo: "#psnt_password",
+      },
+    
+    },
+    messages : {
+        psnt_first_name: {
+         required: "First Name field is Required",
+         lettersonly:"Only Alphabetical Characters are allowed",
+        // minlength: "First Name should be at least 3 characters"
+      },
+      psnt_last_name: {
+          required: "Last Name field is Required",
+           lettersonly:"Only Alphabetical Characters are allowed",
+        // minlength: "Last Name should be at least 3 characters"
+      },
+      psnt_address: {
+          required: "Address field is Required",
+        // minlength: "Last Name should be at least 3 characters"
+      },
+      psnt_email: {
+        required: "Email field is Required",
+        email: "The email should be in the format: abc@domain.tld"
+      },
+
+    //   psnt_insrnce_num:{
+    //     required:"Insurance Number is Required",
+    //     minlength: "Insurance Number should be at least 8 characters"
+    //   },
+    //   file:{
+    //     required:"Insurance document is Required",
+    //  },
+     psnt_password: {
+      required:"Password field is Required",
+      minlength:"Password should be of atleast 8 characters"
+     },
+     psnt_confpassword: {
+        required: "Confirm Password field is Required",
+        minlength: "Password and Confirm password should be same",
+        // equalTo: "Password and Confirm password should be same"
+      },
+     
+    }
+  });
+
+
  $('#pat_signup').on('submit',function (event) {
     event.preventDefault();
-  
-  //   $("#pat_signup").validate({
-  //   // $('.eye1 i').css({'display':'none'});       
-  //   errorClass: "error fail-alert",
-  //   validClass: "valid success-alert",
 
-  //   rules: {
-  //     psnt_first_name: {
-  //       required: true,
-  //       lettersonly: true,
-  //       // minlength: 3
-  //     },
-  //      psnt_last_name: {
-  //       required: true,
-  //       lettersonly: true,
-  //       // minlength: 3
-  //     },
-  //     psnt_email: {
-  //        required: true,
-  //       email: true
-  //     },
-  //     psnt_insrnce_num:{
-  //       required:true,
-  //       minlength:8
-  //     },
-  //     psnt_address:{
-  //      required:true,
-  //     },
-  //    file:{
-  //     required:true,
-  //    },
-  //    psnt_password: {
-  //     required:true,
-  //     minlength:8
-  //    },
-  //     psnt_confpassword: {
-  //       required: true,
-  //       minlength: 8,
-  //       equalTo: "#psnt_password",
-  //     }
-  //   },
-  //   messages : {
-  //     psnt_first_name: {
-  //        required: "First Name field is Required",
-  //        lettersonly:"Only Alphabetical Characters are allowed",
-  //       // minlength: "First Name should be at least 3 characters"
-  //     },
-  //     psnt_last_name: {
-  //         required: "Last Name field is Required",
-  //          lettersonly:"Only Alphabetical Characters are allowed",
-  //       // minlength: "Last Name should be at least 3 characters"
-  //     },
-  //     psnt_email: {
-  //       required: "Email field is Required",
-  //       email: "The email should be in the format: abc@domain.tld"
-  //     },
-
-  //    psnt_insrnce_num:{
-  //       required:"License Number field is Required",
-  //       minlength: "Licence Number should be at least 8 characters"
-  //     },
-  //     psnt_address:{
-  //      required:'Address Field is Required',
-  //     },
-  //     file:{
-  //       required:"License doc is Required",
-  //    },
-  //     psnt_password: {
-  //     required:"Password field is Required",
-  //     minlength:"Password should be of atleast 8 characters"
-  //    },
-  //    psnt_confpassword: {
-  //       required: "Confirm Password field is Required",
-  //       minlength: "Password and Confirm password should be same"
-       
-  //     },
-
-
-https://maps.googleapis.com/maps/api/geocode/json?address='New Palasisa,Indore'&key='AIzaSyAOK58ALCIivy-NRIRcCtRbUbEC22H0MTI'
-  //   }
-  // });
- 
-
-    var API_KEY='AIzaSyAOK58ALCIivy-NRIRcCtRbUbEC22H0MTI';
-      var address =$('#psnt_address').val();
-
-    //  function getCoordinates(address){
-    //  fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+address+'&key='+API_KEY)
-    // .then(response => response.json())
-    // .then(data => {
-    //   const latitude = data.results.geometry.location.lat;
-    //   const longitude = data.results.geometry.location.lng;
-    //   console.log({latitude, longitude})
-    //   })
-    // }
+   
     /*formvalidation for signup form*/
     var _token =document.querySelector('[name="_token"]').value;
 
@@ -244,7 +691,7 @@ https://maps.googleapis.com/maps/api/geocode/json?address='New Palasisa,Indore'&
     var last_name = $('#psnt_last_name').val();
     var email = $('#psnt_email').val();
      var insurance_no =$('#psnt_insrnce_num').val();
-    var ins_doc =$('#ins_doc')[0].files[0];
+    var file =$('#file')[0].files[0];
     var psnt_lat=$('#psnt_lat').val();
     var psnt_long=$('#psnt_long').val(); 
     var password = $('#psnt_password').val();
@@ -252,12 +699,14 @@ https://maps.googleapis.com/maps/api/geocode/json?address='New Palasisa,Indore'&
     var user_details=localStorage.getItem('user_det');
     var details =JSON.parse(user_details);
     var physician_id=  details._id;
+    var address=$('#psnt_address').val();
     $('#physician_id').val(physician_id);
     console.log(physician_id);
     // var address1{}=getCoordinates(address);
    
-    if(first_name!="" && last_name !=="" && email!="" && insurance_no!="" && ins_doc!="" && address!="" && password!="" ){
-
+    // if(first_name!="" && last_name !=="" && email!="" && insurance_no!="" && file!="" && address!="" && password!="" ){
+    if(first_name!="" && last_name !=="" && email!="" && address!="" && password!="" ){
+    
         var formData = {
             physician_id:physician_id,
             psnt_first_name:first_name,
@@ -268,7 +717,7 @@ https://maps.googleapis.com/maps/api/geocode/json?address='New Palasisa,Indore'&
             psnt_address: address,
             psnt_lat: psnt_lat,
             psnt_long:psnt_long,
-            file:ins_doc,
+            file:file,
         }
 
 
@@ -285,15 +734,18 @@ https://maps.googleapis.com/maps/api/geocode/json?address='New Palasisa,Indore'&
   
       // console.log(res);
       // return false;
+      
         if(res.status == true){
+          $(':input[type="submit"]').prop('disabled', true);
+
           $('#message').html(res.message).addClass('alert alert-success');
           window.location.href =base_path +"patient_management";
         }else{
-           $('#message').html(res.message).addClass('alert alert-danger');
+          //  $('#message').html(res.message).addClass('alert alert-danger');
         }
     });
    }else{
-     $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
+    //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
    }
 
   });

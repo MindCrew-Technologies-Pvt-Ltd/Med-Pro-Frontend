@@ -1,3 +1,8 @@
+<style>
+		.dropdown-icon {
+          color: #495057!important;
+		   }
+</style>
 <!-- /Notification -->
 							<div class="d-flex  ml-auto header-right-icons header-search-icon">
 								<div class="dropdown d-sm-flex">
@@ -14,12 +19,18 @@
 											</div>
 										</div>
 									</div> -->
-								</div><!-- SEARCH -->
-								<div class="dropdown d-md-flex">
+								</div>
+								
+								<!-- SEARCH -->
+
+
+								<!-- <div class="dropdown d-md-flex">
 									<a class="nav-link icon full-screen-link nav-link-bg">
 										<i class="fe fe-maximize fullscreen-button"></i>
 									</a>
-								</div><!-- FULL-SCREEN -->
+								</div> -->
+								
+								<!-- FULL-SCREEN -->
 								<div class="dropdown d-md-flex notifications">
 									<!-- <a class="nav-link icon" data-toggle="dropdown">
 										<i class="fe fe-bell"></i>
@@ -55,12 +66,13 @@
 										<div class="dropdown-divider"></div>
 										<a href="#" class="dropdown-item text-center">View all Notification</a>
 									</div> -->
-								</div><!-- NOTIFICATIONS -->
-								 	<div class="dropdown d-md-flex message">
-									<a class="nav-link icon text-center" data-toggle="dropdown">
+								</div>
+								<!-- NOTIFICATIONS -->
+								 	<!-- <div class="dropdown d-md-flex message"> -->
+									<!-- <a class="nav-link icon text-center" data-toggle="dropdown"> -->
 										<!-- <i class="fe fe-mail"></i>
 										<span class="nav-unread badge badge-danger badge-pill">3</span> -->
-									</a>
+									<!-- </a> -->
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<div class="message-menu">
 											<a class="dropdown-item d-flex pb-3" href="#">
@@ -113,14 +125,15 @@
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<div class="drop-heading">
 											<div class="text-center">
-												<h5 class="text-dark mb-0">Elizabeth Dyer</h5>
+												<h5 class="text-dark mb-0" id="adminn1"></h5>
 												<small class="text-muted">Administrator</small>
 											</div>
 										</div>
 										<div class="dropdown-divider m-0"></div>
-										<a class="dropdown-item" href="#">
+										<div id="profilev1">    </div>
+										<!-- <a class="dropdown-item" href="{{url('pharmacist_profile')}}">
 											<i class="dropdown-icon mdi mdi-account-outline"></i> Profile
-										</a>
+										</a> -->
 										<!-- <a class="dropdown-item" href="#">
 											<i class="dropdown-icon  mdi mdi-settings"></i> Settings
 										</a>
@@ -135,7 +148,7 @@
 										<a class="dropdown-item" href="#">
 											<i class="dropdown-icon mdi mdi-compass-outline"></i> Need help?
 										</a> -->
-										<a class="dropdown-item"  id="logout">
+										<a class="dropdown-item" onclick="logoutt()">
 											<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
 										</a>
 									</div>
@@ -147,3 +160,83 @@
 								</div><!-- SIDE-MENU -->
 							</div>
 <!-- /Notification Ends -->
+<script type="text/javascript">
+
+
+		 let pharm_data=localStorage.getItem('pharm_det');
+         var obj = JSON.parse(pharm_data);
+         var username2=obj.pham_first_name +' '+ obj.pham_last_name;
+        //   console.log("use@2",username2)
+          console.log("use@obj",obj)
+		  var pham_id=obj._id;
+		//   alert(pham_id)
+
+          document.getElementById("adminn1").style.fontSize = "large";
+          document.querySelector("#adminn1").style.color="#000000";
+        //    document.getElementById("admin1").innerText=username2;
+           document.getElementById("adminn1").innerHTML += username2;
+           console.log(document.getElementById("adminn1")) 
+		   
+		   
+		   var url = '{{ route("pharmprofile", ":id") }}';
+          url = url.replace(':id',pham_id );
+		//   alert(url)
+		//   console(url)
+        //   var symbol= "Profile";
+        //   document.getElementById('profilev').innerHTML('<li><a href="'+url+'">' + symbol + ' </a></li>');
+	    //  code for href link
+		var mydiv = document.getElementById("profilev1");
+		var aTag = document.createElement('a');
+		aTag.setAttribute('href',url);
+		aTag.setAttribute('class','dropdown-item');
+		aTag.innerText = "Profile";
+		aTag.innerHTML='<i class="dropdown-icon mdi mdi-account-outline">&nbsp &nbsp'+ aTag.innerText +'</i>';
+		
+		mydiv.appendChild(aTag);
+  
+</script>
+<script>
+
+
+		function logout(){
+ 
+          var api_url="http://3.220.132.29:3000/api/";
+          var base_path = "http://3.220.132.29/medpro/"; 
+          var pham_details=localStorage.getItem('pharm_det');
+          var details =JSON.parse(pham_details);
+          var pharmacist_id=details._id;
+        // alert(pharmacist_id);
+        var formData = {
+          phamaciest_id:pharmacist_id,
+        };
+        console.log("pharmacist ID",pharmacist_id)
+        console.log("Form Data",formData)
+        // alert(pharmacist_id);
+        
+        
+        $.ajax({
+        	 url: api_url+"PhamLogout",
+        	 type: "POST",
+        	 dataType: 'json', 
+        	 data:{
+        	 prescription_id:id,
+        	 }
+        }).done(function (res) {
+        console("response for logout successfully",res);
+        return false;
+        
+        if(res.status == true){
+        $('#message').html(res.message).addClass('alert alert-success');
+        window.location.href= base_path + "pharmacist_Login";
+        
+        }else{
+        $('#message').html(res.message).addClass('alert alert-danger');
+        }
+        });
+// });
+		}
+	
+// });
+
+
+</script>

@@ -11,7 +11,7 @@
         <meta name="keywords" content="dashboard, admin, ">
        <!--  dashboard template, admin template, laravel, php laravel, laravel bootstrap, laravel admin template, bootstrap laravel, bootstrap in laravel, laravel dashboard template, laravel admin, laravel dashboard, laravel blade template, php admin
  -->
-        @include('layouts.vertical-menu1.head')
+        @include('layouts.vertical-menu.head')
 
     </head>
 
@@ -27,27 +27,27 @@
          <div class="page">
             <div class="page-main">
 
-                @include('layouts.vertical-menu1.app-sidebar')
+                @include('layouts.vertical-menu.app-sidebar')
 
-                @include('layouts.vertical-menu1.mobile-header')
+                @include('layouts.vertical-menu.mobile-header')
 
                 <div class="app-content">
                     <div class="side-app">
 
                         <div class="page-header">
                         @yield('page-header')
-                        @include('layouts.vertical-menu1.notification')
+                        @include('layouts.vertical-menu.notification')
                         </div>
 
                         @yield('content')
 
-            @include('layouts.vertical-menu1.sidebar')
+            @include('layouts.vertical-menu.sidebar')
 
-            @include('layouts.vertical-menu1.footer')
+            @include('layouts.vertical-menu.footer')
 
         </div>
 
-            @include('layouts.vertical-menu1.footer-scripts')
+            @include('layouts.vertical-menu.footer-scripts')
 
     </body>
 </html>

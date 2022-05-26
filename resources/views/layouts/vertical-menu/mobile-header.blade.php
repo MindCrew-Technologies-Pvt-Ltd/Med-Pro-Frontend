@@ -2,12 +2,13 @@
                 <div class="mobile-header">
                     <div class="container-fluid">
                         <div class="d-flex">
-                            <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a><!-- sidebar-toggle-->
-                            <a class="header-brand" href="{{ url('/' . $page='index') }}">
+                            <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
+                            <!-- sidebar-toggle -->
+                            <!-- <a class="header-brand" href="{{ url('/' . $page='index') }}">
                                 <img src="{{URL::asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo" alt="logo">
                                 <img src="{{URL::asset('assets/images/pngs/logo.png')}}" class="header-brand-img desktop-logo mobile-light" alt="logo">
-                            </a>
-                            <div class="d-flex order-lg-2 ml-auto header-right-icons">
+                            </a> -->
+                            <!-- <div class="d-flex order-lg-2 ml-auto header-right-icons">
                                 <button class="navbar-toggler navresponsive-toggler d-md-none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
                                     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon fe fe-more-vertical text-white"></span>
@@ -21,7 +22,7 @@
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <div class="drop-heading">
                                             <div class="text-center">
-                                                <h5 class="text-dark mb-0">Elizabeth Dyer</h5>
+                                                <h5 class="text-dark mb-0" id="admin1"></h5>
                                                 <small class="text-muted">Administrator</small>
                                             </div>
                                         </div>
@@ -47,21 +48,22 @@
                                             <i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
                                         </a>
                                     </div>
-                                </div>
-                                <div class="dropdown d-md-flex header-settings">
+                                </div> -->
+                                <!-- <div class="dropdown d-md-flex header-settings">
                                     <a href="#" class="nav-link icon " data-toggle="sidebar-right" data-target=".sidebar-right">
                                         <i class="fe fe-align-right"></i>
                                     </a>
-                                </div><!-- SIDE-MENU -->
+                                </div> -->
+                                <!-- SIDE-MENU -->
                             </div>
                         </div>
                     </div>
-                </div>
+                <!-- </div> -->
 
-                <div class="mb-1 navbar navbar-expand-lg  responsive-navbar navbar-dark d-md-none bg-white">
+                <!-- <div class="mb-1 navbar navbar-expand-lg  responsive-navbar navbar-dark d-md-none bg-white">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-                        <div class="d-flex order-lg-2 ml-auto">
-                            <div class="dropdown d-sm-flex">
+                        <div class="d-flex order-lg-2 ml-auto"> -->
+                            <!-- <div class="dropdown d-sm-flex">
                                 <a href="#" class="nav-link icon" data-toggle="dropdown">
                                     <i class="fe fe-search"></i>
                                 </a>
@@ -75,13 +77,17 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- SEARCH -->
-                            <div class="dropdown d-md-flex">
+                            </div> -->
+                            <!-- SEARCH -->
+
+
+                            <!-- <div class="dropdown d-md-flex">
                                 <a class="nav-link icon full-screen-link nav-link-bg">
                                     <i class="fe fe-maximize fullscreen-button"></i>
                                 </a>
-                            </div><!-- FULL-SCREEN -->
-                            <div class="dropdown d-md-flex notifications">
+                            </div> -->
+                            <!-- FULL-SCREEN -->
+                            <!-- <div class="dropdown d-md-flex notifications">
                                 <a class="nav-link icon" data-toggle="dropdown">
                                     <i class="fe fe-bell"></i>
                                 </a>
@@ -115,8 +121,10 @@
                                     <div class="dropdown-divider"></div>
                                     <a href="#" class="dropdown-item text-center">View all Notification</a>
                                 </div>
-                            </div><!-- NOTIFICATIONS -->
-                            <div class="dropdown d-md-flex message">
+                            </div> -->
+                            
+                            <!-- NOTIFICATIONS -->
+                            <!-- <div class="dropdown d-md-flex message">
                                 <a class="nav-link icon text-center" data-toggle="dropdown">
                                     <i class="fe fe-mail"></i>
                                 </a>
@@ -162,8 +170,28 @@
                                     <div class="dropdown-divider"></div>
                                     <a href="#" class="dropdown-item text-center">See all Messages</a>
                                 </div>
-                            </div><!-- MESSAGE-BOX -->
-                        </div>
+                            </div> -->
+                            
+                            <!-- MESSAGE-BOX -->
+                        <!-- </div>
                     </div>
-                </div>
+                </div> -->
 <!-- /Mobile Header -->
+<script type="text/javascript">
+
+  
+        let user_data2=localStorage.getItem('user_det');
+         var obj = JSON.parse(user_data2);
+         var username2=obj.phy_first_name +' '+ obj.phy_last_name;
+          console.log(username2)
+          document.getElementById("admin1").style.fontSize = "inherit";
+          document.querySelector("#admin1").style.color="black";
+           document.getElementById("admin1").innerText=username2;
+           console.log(document.getElementById("admin1"))
+         // let user=document.querySelector('#usr_name');
+         
+
+
+           
+  
+</script>

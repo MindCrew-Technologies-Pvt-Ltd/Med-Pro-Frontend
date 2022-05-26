@@ -9,7 +9,7 @@
         <meta name="author" content="Mindcrew Technologies">
         <meta name="keywords" content="dashboard, admin">
 
-        @include('layouts.vertical-menu1.head')
+        @include('layouts.vertical-menu.head')
 
     </head>
 
@@ -17,7 +17,7 @@
 
         @yield('content')
 
-        @include('layouts.vertical-menu1.footer-scripts')
+        @include('layouts.vertical-menu.footer-scripts')
 
     </body>
 </html>

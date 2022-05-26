@@ -301,7 +301,7 @@
 
 
 
-         <button class="changepass">Change Password </button>
+         <!-- <button class="changepass">Change Password </button> -->
 
       </form>
      <!-- form start  -->

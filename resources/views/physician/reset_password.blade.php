@@ -7,7 +7,60 @@
 @endsection
 @section('content')
 <style>
+	.wrap-login100{
+			width:450px;
+			height:550px;
+		}
+		input[type=password]{
+			
+			height: 50px;
+            width: 364px;
+           margin-left: 2px;
+
+		}
+		.login100-form-title{
+			margin-top: -32px;
+            margin-bottom: -15px;
+            margin-left: 35px;
+		}
+		.container-login100-form-btn{
+			width:364px;
+			margin-left:1px;
+		}
+		.zmdi-eye-off{
+	       position: absolute;
+	       float:right;
+	       right: -0.5rem;
+	       top: 1.1rem;
+		   color:#7EC1EC;
+       
+        }
+
 	
+	@media only screen and (max-width: 480px){
+		.wrap-login100{
+			width:330px;
+			
+		}
+		
+        input[type=password] {
+           border-radius: 6px;
+           height: 44px;
+           width: 270px;
+        } 
+		.login100-form-title{
+			margin-top:-20px;
+			margin-bottom:-20px;
+			margin-left:0px;
+		}
+		.container-login100-form-btn{
+			width:270px;
+			margin-left:5px;
+		}
+
+		
+
+	}
 </style>
 		<!-- BACKGROUND-IMAGE -->
 		<div class="login-img">
@@ -55,6 +108,8 @@
 								<div class="wrap-input100 validate-input" data-validate = "Password is required">
 
 									<input class="input100" type="password" name="pass" id="password" placeholder="Password">
+									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
+
                                     <div class="symbol-input100 eye" onclick="toggleVisibilty()">
 									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye "></i>
                                      </div>
@@ -72,6 +127,8 @@
 								<div class="wrap-input100 validate-input" data-validate = "Password is required">
 
 									<input class="input100" type="password" name="confpass" id="password1" placeholder="Confirm Password">
+									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()" ></i>
+
                                     <div class="symbol-input100 eye" onclick="toggleVisibilty1()">
 									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye "></i>
                                      </div>
@@ -112,33 +169,34 @@
 		<!-- BACKGROUND-IMAGE CLOSED -->
 @endsection
 <script>
- function toggleVisibilty(){
-let togglePassword = document.querySelector("#togglePassword");
-        let password = document.querySelector("#password");
+function toggleVisibiltypass(){
+	// alert('clicked1');
+let togglePassword3 = document.querySelector("#togglePassword3");
+        let password = document.querySelector("#psnt_password");
    
-        // togglePassword.addEventListener("click", function () {
-            // toggle the type attribute
+     
             let type = password.getAttribute("type") === "password" ? "text" : "password";
             password.setAttribute("type", type);
             
             // toggle the icon
-            togglePassword.classList.toggle("zmdi-eye");
-        // });
+            togglePassword3.classList.toggle("zmdi-eye");
+      
 }
+</script>
+<script>
+function toggleVisibilty2(){
+	// alert('clicked2');
+let togglePassword2 = document.querySelector("#togglePassword2");
+let confpassword = document.querySelector("#psnt_confpassword");
+  let type = confpassword.getAttribute("type") === "password" ? "text" : "password";
+            confpassword.setAttribute("type", type);
+            // toggle the icon
+            togglePassword2.classList.toggle("zmdi-eye");
+      
+}
+
  
- function toggleVisibilty1(){
-let togglePassword1 = document.querySelector("#togglePassword1");
-        let password = document.querySelector("#password1");
-   
-        // togglePassword.addEventListener("click", function () {
-            // toggle the type attribute
-            let type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-            
-            // toggle the icon
-            togglePassword1.classList.toggle("zmdi-eye");
-        // });
-}
+ 
 </script>
 @section('js')
 @endsection

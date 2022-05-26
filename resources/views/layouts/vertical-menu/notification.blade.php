@@ -1,4 +1,20 @@
+
 <!-- /Notification -->
+<style>
+	.protext{
+		color: black!important;
+		font-size: 17px;
+		font-weight: bold;
+
+	}
+	#profilev  {
+		color: red!important;
+	}
+	.dropdown-icon {
+    color: #495057!important;
+
+    }
+</style>
 							<div class="d-flex  ml-auto header-right-icons header-search-icon">
 								<div class="dropdown d-sm-flex">
 									<!-- <a href="#" class="nav-link icon" data-toggle="dropdown">
@@ -14,12 +30,18 @@
 											</div>
 										</div>
 									</div> -->
-								</div><!-- SEARCH -->
-								<div class="dropdown d-md-flex">
+								</div>
+								
+								<!-- SEARCH -->
+
+
+								<!-- <div class="dropdown d-md-flex">
 									<a class="nav-link icon full-screen-link nav-link-bg">
 										<i class="fe fe-maximize fullscreen-button"></i>
 									</a>
-								</div><!-- FULL-SCREEN -->
+								</div> -->
+								
+								<!-- FULL-SCREEN -->
 								<div class="dropdown d-md-flex notifications">
 									<!-- <a class="nav-link icon" data-toggle="dropdown">
 										<i class="fe fe-bell"></i>
@@ -55,13 +77,14 @@
 										<div class="dropdown-divider"></div>
 										<a href="#" class="dropdown-item text-center">View all Notification</a>
 									</div> -->
-								</div><!-- NOTIFICATIONS -->
-								 	<div class="dropdown d-md-flex message">
-									<a class="nav-link icon text-center" data-toggle="dropdown">
+								</div>
+								<!-- NOTIFICATIONS -->
+								 	<!-- <div class="dropdown d-md-flex message"> -->
+									<!-- <a class="nav-link icon text-center" data-toggle="dropdown"> -->
 										<!-- <i class="fe fe-mail"></i>
 										<span class="nav-unread badge badge-danger badge-pill">3</span> -->
-									</a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+									<!-- </a> -->
+								<!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<div class="message-menu">
 											<a class="dropdown-item d-flex pb-3" href="#">
 												<span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="{{URL::asset('assets/images/users/1.jpg')}}"></span>
@@ -102,7 +125,7 @@
 										</div>
 										<div class="dropdown-divider"></div>
 										<a href="#" class="dropdown-item text-center">See all Messages</a>
-									</div>
+									</div> -->
 								</div> <!-- MESSAGE-BOX -->
 								<div class="dropdown profile-1">
 									<a href="#" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex">
@@ -113,18 +136,19 @@
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<div class="drop-heading">
 											<div class="text-center">
-												<h5 class="text-dark mb-0">Elizabeth Dyer</h5>
+												<h5 class="text-dark mb-0" id="admin"></h5>
 												<small class="text-muted">Administrator</small>
 											</div>
 										</div>
 										<div class="dropdown-divider m-0"></div>
-										<a class="dropdown-item" href="#">
+										<div id="profilev">    </div>
+										<!-- <a class="dropdown-item">
 											<i class="dropdown-icon mdi mdi-account-outline"></i> Profile
-										</a>
-										<!-- <a class="dropdown-item" href="#">
+										</a> -->
+										 <!-- <div class="dropdown-item" id="newprofile" href="#">
 											<i class="dropdown-icon  mdi mdi-settings"></i> Settings
-										</a>
-										<a class="dropdown-item" href="#">
+										</div> -->
+										<!--<a class="dropdown-item" href="#">
 											<span class="float-right"></span>
 											<i class="dropdown-icon mdi  mdi-message-outline"></i> Inbox
 										</a>
@@ -135,7 +159,7 @@
 										<a class="dropdown-item" href="#">
 											<i class="dropdown-icon mdi mdi-compass-outline"></i> Need help?
 										</a> -->
-										<a class="dropdown-item"  id="logout">
+										<a class="dropdown-item"  onclick="signout1()">
 											<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
 										</a>
 									</div>
@@ -147,3 +171,42 @@
 								</div><!-- SIDE-MENU -->
 							</div>
 <!-- /Notification Ends -->
+<script type="text/javascript">
+
+  
+        let user_data1=localStorage.getItem('user_det');
+         var obj = JSON.parse(user_data1);
+		 var phy_id=obj._id;
+		//  alert(phy_id)
+         var username1=obj.phy_first_name +' '+ obj.phy_last_name;
+          console.log(username1)
+          document.getElementById("admin").style.fontSize = "large";
+          document.querySelector("#admin").style.color="#ffffff";
+           document.getElementById("admin").innerText=username1;
+           console.log(document.getElementById("admin"))
+         // let user=document.querySelector('#usr_name');
+         
+
+
+		//  document.getElementById('profilev').appendChild('<a class="dropdown-item" href=""><i class="dropdown-icon mdi mdi-account-outline"></i> Profile</a>');         
+
+          var url = '{{ route("profile", ":id") }}';
+          url = url.replace(':id',phy_id );
+		//   alert(url)
+		//   console(url)
+        //   var symbol= "Profile";
+        //   document.getElementById('profilev').innerHTML('<li><a href="'+url+'">' + symbol + ' </a></li>');
+	    //  code for href link
+		var mydiv = document.getElementById("profilev");
+		var aTag = document.createElement('a');
+		aTag.setAttribute('href',url);
+		aTag.setAttribute('class','dropdown-item protext');
+		aTag.innerText = "Profile";
+		aTag.innerHTML='<i class="dropdown-icon mdi mdi-account-outline">&nbsp &nbsp'+ aTag.innerText +'</i>';
+		
+		mydiv.appendChild(aTag);
+
+		
+
+</script>
+

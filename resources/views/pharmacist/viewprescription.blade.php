@@ -4,9 +4,31 @@
 @section('page-header')
 <style>
     #physician{
-        padding-left: 50px;
+        padding-left: 10px;
         border: none;
     }
+    .date {
+    width: 149px!important;
+    height: 50px;
+    padding-left: 22px!important;
+    background-color: #F1F1F9;
+    border-radius: 10px;
+    margin-left: 922px;
+    border: none;
+    margin-top: -20px;
+    margin-bottom: -35px;
+    font-size: 19px;
+}
+#pname{
+  padding-right: 88%;
+}
+.icon{
+ color: #7D7C94;
+  position: absolute;
+  top: 34.4rem;
+  right: 61rem;
+}
+
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
@@ -39,12 +61,12 @@
                                <form action="" method="post" id="denyallow">
                                    @csrf 
                                    <div class="form-group ">
-                                      <label for="phy_full_name">Physician name:</label>
+                                      <label for="phy_full_name" >Physician name:</label>
                                       <input type="text" class="form-control" id="phy_full_name" disabled>
                                    </div>
 
                                    <div class="form-group ">
-                                      <label for="psnt_full_name">Patient name:</label>
+                                      <label for="psnt_full_name" id="pname">Patient name:</label>
                                       <input type="text" class="form-control" id="psnt_full_name" disabled>
                                    </div>
 
@@ -77,19 +99,21 @@
                                       <label for="physician">Physician Note:</label>
                                       <input type="text" class="form-control" id="physician" disabled>
                                    </div> -->
+                                   <label for="physician">Physician Notes</label>
 									<input class="input100" type="text" name="physician" id="physician" value="" placeholder="Physician" disabled>
+                  <!-- <h5 class="icon"><span class="fa fa-user-md text-red"></span> Phycisian: </h5> -->
 									<!-- <i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 3rem;top: 28.7rem;"></i> -->
-									
+                  </form>
                                     <div class="buttons" id="addbuttons">
-                                         <button class="btn danger" id="req_type0" onclick="denny($this)" value="0">Deny</button>
+                                         <button class="btn danger" id="req_type0"  value="0">Deny</button>
                                          <!-- <a href="" class="btn danger" id="req_type0" onclick="denny()">Deny</a> -->
                                          <!-- <a href="{{url('accept_prescription')}}/" class="btn success" onclick="location.href=this.href+scrt_var;return false;">Accept</a> -->
                                          <!-- <a href="" class="btn success" id="req_type1" value="1">Accept</a> -->
-                                         <button class="btn success" value="1" id="req_type1" onclick="allow($this)">Accept</button>
+                                         <button class="btn success ml-5" value="1" id="req_type1" onclick="allow($this)">Accept</button>
                                     </div>
                                      
                                    
-                               </form>
+                            
 
 
 							</div>
@@ -150,13 +174,15 @@
               $("#psnt_full_name").val(res.data.psnt_full_name) ;   
               $("#psnt_address").val(res.data.psnt_address) ;   
               $("#createdAt").val(res.data.createdAt) ;   
-              
+              var rows = '';
               res.data.prs_details.map((e,i) => {
         //    console.log("prescription ID",e.presciption_id)
             i++;
-              $("#prestable").html('<tr><td>'+i+'</td><td>'+e.prs_med_name+'</td><td>'+e.prs_quantity+'</td><td> '+e.prs_information+'</td></tr>');         
+            rows=rows+'<tr><td>'+i+'</td><td>'+e.prs_med_name+'</td><td>'+e.prs_quantity+'</td><td> '+e.prs_information+'</td></tr>'
+                      
             //   $("#myTable").append('<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>Are you sure you <br> want to delete the prescription?</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">Cancel</button><button id="'+e.presciption_id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">Yes Delete It!</button></div></div></div></div>');         
     });
+    $("#prestable").html(rows)
     });
 
 
@@ -203,82 +229,45 @@
           
     
 </script>
-<script>
-//     function adding()
-// {
-//         num1 = document.getElementById("firstNumber").value;
-//         num2 = document.getElementById("secondNumber").value;
-           //result input
-//         document.getElementById("result").innerHTML = num1 + num2;
-// }
-</script>
-<script>
-//      var arrrrrr =[];
-//      arrrrrr =window.location.href.split("/");
-   
-    
 
-//     var arrr =[];
-//       arrr =window.location.href.split("/");
-
-//     $('.success').each(function(){
-//     $(this).wrapInner('<a href="{{url("accept_prescription")}}/'+arr[5]+'" />');
-// });​
-</script>
 
 <script>
-  $('#denyallow').on("click",function(e){
-    e.preventDefault();
-
-
-     
-            var base_path = "http://3.220.132.29/medpro/";
+  $('#req_type0').on('click',function(){
+    // alert('clicked0')
+    var base_path = "http://3.220.132.29/medpro/";
             var api_url="http://3.220.132.29:3000/api/";
-            // let pharm_dataa=localStorage.getItem('patientList');
 
-            let pharm_datta=localStorage.getItem('pharm_det');
-            var pharm_obj = JSON.parse(pharm_datta);
-            console.log("[pharm]",pharm_obj)
-            var pharm_id=pharm_obj._id;
-            alert("phamid",pharm_id)
-
-
-            let prescriid=localStorage.getItem('pres_id');
-            var pres_ibj = JSON.parse(prescriid);
-             var presid=pres_ibj._id;
-             alert("presid",presid)
+            var pham_det=localStorage.getItem('pharm_det');
+            var deta =JSON.parse(pham_det);
+            console.log("deta",deta)
+            var id=deta._id;
+          // alert(id)
+          var arrp =[];
+            arrp =window.location.href.split("/");
             
-            var arry =[];
-             arry =window.location.href.split("/");
-            //  alert("pres",arry[5])
-            // var objj = JSON.parse(pharm_dataa);
-            // console.log("objj",objj)
-  
-            // var req_type=$('#req_type0').val();
-            // phamaciest_id=objj.phamaciest_id;
-            // presciption_id=objj.presciption_id;
-            // alert("phamaciest_id",phamaciest_id)
-            // alert("presciption_id",presciption_id)
-            
-
-     
-          var formData = {
-              req_type:req_type,
-              presciption_id:arry[5],
-              phamaciest_id:pharm_id,
+       
+           
+            // alert(arrp[5])
+          var formdata1 = {
+              presciption_id:arrp[5],
+              phamaciest_id:id,
+              req_type:0,
               }
 
 
-    console.log(formData);
-   alert(formData)
+    console.log("formdata",formdata1);
+    // return false;
+  //  alert(formData)
         $.ajax({
           type: "POST",
           url: api_url+"presRequestType",
-          data: formData,
+          // data: JSON.stringify(formdata1),
+          data:formdata1,
+         
         
         }).done(function (res) {
          //    alert('done');
-        
+       
           console.log("deny Response",res);
           // return false;
             if(res.status == true){
@@ -289,12 +278,59 @@
             }
         });
        
-
-   
-
-
-
   });
+  
+
+  $('#req_type1').on('click',function(){
+    // alert('clicked1')
+
+    var base_path = "http://3.220.132.29/medpro/";
+            var api_url="http://3.220.132.29:3000/api/";
+
+            var pham_det1=localStorage.getItem('pharm_det');
+            var deta1 =JSON.parse(pham_det1);
+            console.log("deta",deta1)
+            var id=deta1._id;
+          // alert(id)
+          var arrp1 =[];
+            arrp1 =window.location.href.split("/");
+            
+       
+           
+            // alert(arrp[5])
+          var formdata1 = {
+              presciption_id:arrp1[5],
+              phamaciest_id:id,
+              req_type:1,
+              }
+
+
+    console.log("formdata",formdata1);
+    // return false;
+  //  alert(formData)
+        $.ajax({
+          type: "POST",
+          url: api_url+"presRequestType",
+          // data: JSON.stringify(formdata1),
+          data:formdata1,
+         
+        
+        }).done(function (res) {
+         //    alert('done');
+       
+          console.log("deny Response",res);
+          // return false;
+            if(res.status == true){
+              $('#message').html(res.message).addClass('alert alert-success');
+              window.location.href =base_path +"accept_prescription/"+arrp1[5];
+            }else{
+               $('#message').html(res.message).addClass('alert alert-danger');
+            }
+        });
+       
+  });
+  
+  
 </script>
 @endsection
 

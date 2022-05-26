@@ -1,3 +1,13 @@
+<script>
+		 
+		  let user_data9 = localStorage.getItem('user_det');
+		  var obj9 = JSON.parse(user_data9);
+		  if (!obj9) {
+		    var base_path = "http://3.220.132.29/medpro/";
+		    window.location.href = base_path + 'login';
+           }
+</script>
+
 <!--APP-SIDEBAR-->
                 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
                 <aside class="app-sidebar">
@@ -61,11 +71,15 @@
                             <a class="side-menu__item" data-toggle="slide" href="{{ url('prescription_management') }}"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">Prescription Management</span></a>
                         </li>
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a>
+                            <!-- <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a> -->
                         </li>
                          <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="{{ url('patient_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Patient Management</span></a>
-                        </li>
+                       </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('Pharmacy_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Pharmacy Management</span></a>
+                        </li> 
+                        
                         <!-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-layout-accordion-separated"></i><span class="side-menu__label">Layouts</span><i class="angle fa fa-angle-right"></i></a>
                             <ul class="slide-menu">
@@ -263,15 +277,18 @@
 <!--/APP-SIDEBAR-->
 <script type="text/javascript">
 
-    // $(document).ready(function(){
-    //     let user_data=localStorage.getItem('user_det');
-    //      var obj = JSON.parse(user_data);
-    //      var username=obj.phy_first_name;
+  
+        let user_data=localStorage.getItem('user_det');
+         var obj = JSON.parse(user_data);
+         var username=obj.phy_first_name +' '+ obj.phy_last_name;
+          console.log(username)
+          document.getElementById("usr_name").style.fontSize = "large";
+          document.querySelector(".user-info").style.color="#ffffff";
+           document.getElementById("usr_name").innerText=username;
+         // let user=document.querySelector('#usr_name');
+         
 
-    //      $('#user_name').text(username)
-    //      alert("username");
-       
-    // })
+
            
   
 </script>

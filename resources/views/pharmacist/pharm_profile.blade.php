@@ -99,6 +99,9 @@
            opacity: 1;
            width: 100%;
         } 
+        #phamname{
+          padding-right: 86%;
+        }
 
 
      @media (min-width: 992px){
@@ -137,8 +140,9 @@
        @csrf 
          
             <div class="form-group ">
-               <label for="pham_name">pharmacy Name:</label>
-               <input type="text" class="form-control" value="" id="pham_name" disabled>
+               <label for="pham_name" id="phamname">pharmacy Name:</label>
+               <input type="text" class="form-control" value="" id="n" disabled>
+              
             </div>
 
             <div class="form-group ">
@@ -173,7 +177,7 @@
 
 
 
-         <button class="changepass">Change Password</button>
+         <!-- <button class="changepass">Change Password</button> -->
 
       </form>
      <!-- form start  -->
@@ -264,7 +268,8 @@
           console.log("respons",res);
 
       //     return false;
-              $("#pham_name").val(res.data.pham_name) ;   
+              $("#n").val(res.data.pham_name) ;   
+              // $("#n").val(res.data.pham_name) ;   
               $("#pham_first_name").val(res.data.pham_first_name) ;   
               $("#pham_last_name").val(res.data.pham_last_name) ;   
               $('#email').val(res.data.pham_email);

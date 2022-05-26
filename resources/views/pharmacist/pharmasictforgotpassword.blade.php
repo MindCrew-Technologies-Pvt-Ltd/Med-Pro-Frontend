@@ -2,6 +2,97 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
+<style>
+
+.wrap-login100{
+		width: 456px;
+        height: 550px;
+
+	}
+	.fotgottext{
+		margin-top:-28px;
+		color:#616161;
+		margin-left:30px;
+	}
+	.logofor{
+		margin-top:-10px;
+		margin-top: -32px;
+		margin-bottom:-30px;
+	}
+	input[type=text] {
+    height: 50px;
+    width: 360px;
+	color: black;
+	
+    } 
+	.loginbtn{
+       margin-left:50px;
+	}
+	.container-login100-form-btn {
+	width: 358px;
+}
+.login100-form-title{
+	font-size: 22px;
+    font-weight: 600;
+	margin-left:27px;
+}
+.login100-form{
+	align-items: center;
+	text-align: center;
+	margin-left:15px;
+}
+.fotgottext{
+		margin-top:-28px;
+		color:#616161;
+		margin-left:30px;
+	}
+	.mhide{
+	display: none;
+}
+
+	@media only screen and (max-width: 820px){
+	.container-login100-form-btn {
+	     width: 340px;
+	     margin-left:-40px;
+   }
+   
+   .fotgottext{
+		margin-top:-28px;
+		color:#616161;
+		margin-left:-18px;
+
+	}
+	.wrap-login100{
+		width: 330px; 
+		height:550px;
+
+	}
+	.container-login100-form-btn {
+	width: 330px;
+	margin-left:-35px;
+   }
+   
+   .fotgottext{
+		margin-top:-28px;
+		color:#616161;
+		margin-left:-18px;
+
+	}
+	input[type=text] {
+    border-radius: 6px;
+    height: 50px;
+    width: 243px;
+
+	
+    } 
+	.login100-form-btn{
+		height: 50px;
+        width: 243px;
+		margin-left:-12px;
+	}
+
+}
+</style>
 @endsection
 @section('content')
 		<!-- BACKGROUND-IMAGE -->
@@ -25,7 +116,7 @@
 					<div class="container-login100">
 
 						<div class="wrap-login100 p-6">
-							<div class="text-center" id="message">
+							<div class="text-center" id="messagee">
 							
 						    </div>
 						    <svg width="53" height="137" viewBox="0 0 83 137" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,10 +126,10 @@
 
 							<form class="login100-form validate-form" method="post" id="ph_forgot_pass" action="">
 								@csrf
-								<span class="login100-form-title">
+								<span class="login100-form-title fotgottext">
 								Forgot Password
 								</span>
-								<div class="text-center">
+								<div class="text-center fotgottext">
 							     <p>Enter Email Address by which you<br>have registered</p>
 						        </div> 
 								<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -48,7 +139,8 @@
 										<i class="zmdi zmdi-email" aria-hidden="true"></i>
 									</span>
 								</div>
-								
+								<p class="text-red mhide" id="hidemm">Email or Password not correct</p>
+
 								<div class="container-login100-form-btn">
 									<input class="login100-form-btn btn-primary" name="submit" type="submit" value="Continue">
 										
@@ -82,6 +174,29 @@
 <script>
 
 $(document).ready(function(){
+	$("#ph_forgot_pass").validate({
+     errorElement: "span",
+    // $('.eye1 i').css({'display':'none'});       
+    errorClass: "error fail-alert",
+    validClass: "valid success-alert",
+    rules: {
+      
+		pham_email: {
+        //  required: true,
+        // email: true
+      },
+      
+    },
+    messages : {
+
+      pham_name: {
+        required: "Email field is Required",
+		email: "Please enter valid email"
+      },
+
+
+    }
+  });
 	/*api call for forgot password*/
 var api_url="http://3.220.132.29:3000/api/";
 var base_path = "http://3.220.132.29/medpro/"; 
@@ -91,8 +206,8 @@ var base_path = "http://3.220.132.29/medpro/";
       var formData = {
         pham_email : $('#pham_email').val(),
       };
-
-    $.ajax({
+if(pham_email!=""){
+	$.ajax({
       type: "POST",
       url: api_url+"phamForgetPassword",
       data: formData,
@@ -103,10 +218,16 @@ var base_path = "http://3.220.132.29/medpro/";
           // $('#message').html(res.message).addClass('alert alert-success');
           window.location.href=base_path+"pharmacist_forgot_password02";
         }else{
-           $('#message').html(res.message).addClass('alert alert-danger');
+        //    $('#messagee').html(res.message).addClass('alert alert-danger');
+		   $('#hidemm').html(res.message).removeClass('mhide');
+
         }
 
     });
+}else{
+
+}
+    
 
   });
   

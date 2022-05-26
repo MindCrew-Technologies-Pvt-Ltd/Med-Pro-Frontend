@@ -8,13 +8,149 @@
 	
 }
 .valid{
-	color: green;
+	color: black;
 	
 }
 .zmdi{
 	color: #4ec1ec;
 	
 }
+ input:focus {
+    color: black;
+}
+input{
+    color: #ff0000;
+}
+.wrap-login100{
+
+	width: 456px;
+	 height:550px;
+}
+.zmdi-eye-off{
+	position: absolute;
+	float:right;
+	right: -1rem;
+	top: 1.1rem;
+
+}
+.login100-form-title{
+	margin-bottom: -20px;
+	margin-top: -26px;
+    margin-left: 20px;
+
+}
+input[type=text] {
+    border-radius: 6px;
+    height: 50px;
+    width: 361px;
+} 
+input[type=password] {
+    border-radius: 6px;
+    height: 50px;
+    width: 361px;
+	
+}
+.forgot{
+	margin-right: -41px;
+	margin-top: -8px;
+}
+#loginbtn{
+	width: 361px;
+	margin-left: -34px;
+}
+.container-login100-form-btn{
+	margin-left: 38px;
+	margin-top:10px;
+}
+.dont{
+	margin-left:35px;
+}
+.hidep{
+	display: none;
+	
+}
+#hidepp{
+	font-size: 15px;
+	text-align: center;
+	align-items: center;
+	margin-left: 50px;
+}
+
+
+@media only screen and (max-width: 820px){
+        	#loginbtn {
+               width: 354px;
+               margin-left: -103px;
+               }
+           	.forgot {
+               margin-right: 32px;
+            }
+			.zmdi-eye-off{
+	             right: 4rem;
+				}
+				.dont{
+					margin-right: -27px;
+				}
+
+}
+
+
+@media only screen and (max-width: 480px) {
+	#loginbtn {
+                       width: 354px;
+                       margin-left: -37px;
+                       }
+        	
+        	.wrap-login100{
+        
+        width: 330px;
+         height:500px;
+        }
+        form{
+        	align-items: center;
+        }
+        input[type=text] {
+            border-radius: 6px;
+            height: 44px;
+            width: 243px;
+        } 
+        input[type=password] {
+            border-radius: 6px;
+            height: 44px;
+            width: 243px;
+        }
+        .forgot{
+        	margin-right: 20px;
+        }
+        .btn-primary{
+        	width: 234px;
+        	margin-right: 15px;
+        }
+        .zmdi-eye-off{
+        	position: absolute;
+        	float:right;
+        	right: 2.3rem;
+        	top: 0.9rem;
+        
+        }
+        .login100-form-title{
+        	margin-left: -16px;
+        	margin-top: -30px;
+        	letter-spacing: 1px;
+        }
+        .container-login100-form-btn{
+        	margin-left: 38px;
+        	margin-top:10px;
+        	width:220px;
+        }
+        .dont{
+        	margin-right:50px;
+        }
+        
+        }
+        
+        
+        
 </style>
 @endsection
 @section('content')
@@ -38,7 +174,7 @@
 					</div>
 					<div class="container-login100">
 
-						<div class="wrap-login100 p-6">
+						<div class="wrap-login100 p-6" >
 							<div class="text-center" id="message">
 							
 						    </div>
@@ -47,22 +183,24 @@
 </svg>
 
 
-							<form class="login100-form validate-form" id="loginform">
+							<form class="login100-form validate-form ml-4 form-group" id="loginform">
 								<span class="login100-form-title">
 									Login
 								</span>
 								<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 									<input class="input100" type="text" name="email" id="email" placeholder="Email">
 									<span class="focus-input100"></span>
-									<span class="symbol-input100">
-										<i class="zmdi zmdi-email" aria-hidden="true"></i>
-									</span>
+									<!-- <span class="symbol-input100" > -->
+										<i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 0.9rem;"></i>
+									<!-- </span> -->
+									<span></span>
+
 								</div>
-								<div class="wrap-input100 validate-input" data-validate = "Password is required" style="position:relative; ">
+								<div class="wrap-input100 validate-input mt-5" data-validate = "Password is required" style="position:relative; ">
 
 									
                                  <input class="input100" type="password" name="pass" id="password" placeholder="Password" autocomplete="off">
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye" style="position: absolute;float:right;right: 1rem;top: 0.9rem;"  onclick="toggleVisibilty()"  ></i>
+                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty()"  ></i>
 								
 
 								<!-- 	<input class="input100" type="password" name="pass" id="password" placeholder="Password">
@@ -72,21 +210,25 @@
 									
 									<span class="focus-input100">
 										</span>
-									<span class="symbol-input100">
-										<i class="zmdi zmdi-lock" aria-hidden="true"></i>
-									</span>
+									<!-- <span class="symbol-input100"> -->
+										<i class="zmdi zmdi-lock" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 0.9rem;"></i>
+									<!-- </span> -->
+									<span></span>
+
 									
 									
 								</div>
+								<p class="text-red hidep" id="hidepp">Email or Password is not correct</p>
+
 								<div class="text-right pt-1">
-									<p class="mb-0"><a href="{{url('/forgot_password')}}" class="text-primary ml-1">Forgot Password?</a></p>
+									<p class="mb-0"><a href="{{url('/forgot_password')}}" class="text-primary ml-1 forgot">Forgot Password?</a></p>
 								</div>
 								<div class="container-login100-form-btn">
-									<button  class="login100-form-btn btn-primary" type="submit" name="submit">
+									<button  class="login100-form-btn btn-primary" id="loginbtn" type="submit" name="submit">
 										Login
 									</button>
 								</div>
-								<div class="text-center pt-3">
+								<div class="text-center pt-3 dont">
 									<p class="text-dark mb-0">Don't have an account?<a href="{{url('register')}}" class="text-primary ml-1">Sign up</a></p>
 								</div>
 								<!-- <div class=" flex-c-m text-center mt-3">
@@ -128,5 +270,6 @@ let togglePassword = document.querySelector("#togglePassword");
  
  
 </script>
+
 @section('js')
 @endsection

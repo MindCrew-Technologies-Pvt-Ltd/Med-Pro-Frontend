@@ -12,62 +12,38 @@
 
 <script>
 
-//    var searchInput = 'pac-input';
-
-// $(document).ready(function () {
-
-//     var lat,lng;
-//     // var autocomplete;
-//     // autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-//     //     types: ['geocode'],
-//     // });
-//     var autocomplete;
-//     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-//         types: ['geocode'],
-//     });
+   var searchInput = 'pac-input';
+$(document).ready(function () {
     
-//     google.maps.event.addListener(autocomplete, 'place_changed', function () {
-//         var near_place = autocomplete.getPlace();
+    var autocomplete;
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+        types: ['geocode'],
+    });
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var near_place = autocomplete.getPlace();
+        document.getElementById('psnt_lat').value = near_place.geometry.location.lat();
+        document.getElementById('psnt_long').value = near_place.geometry.location.lng();
         
-//         document.getElementById('psnt_lat').value = near_place.geometry.location.lat();
-//         document.getElementById('psnt_long').value = near_place.geometry.location.lng();
-        
-//         document.getElementById('psnt_lat').innerHTML = near_place.geometry.location.lat();
-//         document.getElementById('psnt_long').innerHTML = near_place.geometry.location.lng();
-//     });
-// });
-// $(document).on('change', '#'+searchInput, function () {
-//     document.getElementById('psnt_lat').innerHTML = '';
-//     document.getElementById('psnt_long').innerHTML = '';
-    
-//     document.getElementById('psnt_lat').innerHTML = '';
-//     document.getElementById('psnt_long').innerHTML = '';
-// });
- 
+        document.getElementById('psnt_lat').innerHTML = near_place.geometry.location.lat();
+        document.getElementById('psnt_long').innerHTML = near_place.geometry.location.lng();
+              var lat=document.getElementById('psnt_lat').value 
+              var long=document.getElementById('psnt_long').value
+                // lat= 0|lat;
+                // long=0|long;
+              let map;
+              map = new google.maps.Map(document.getElementById("map"), {
+                center: new google.maps.LatLng(lat,long),
+                zoom: 16,
+                });
 
-
-
-/*code for search ends here*/
-
-let map;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(-33.91722, 151.23064),
-    zoom: 16,
-  });
-
-  
-  const features = [
+                const features = [
     {
-      position: new google.maps.LatLng(-33.91721, 151.2263),
+      position: new google.maps.LatLng(22.71, 75.85),
       // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91539, 151.2282),
+    },    {
+      position: new google.maps.LatLng(22.67, 75.88),
       // type: "info",
-    },
-    {
+    },    {
       position: new google.maps.LatLng(-33.91747, 151.22912),
       // type: "info",
     },
@@ -80,11 +56,11 @@ function initMap() {
       // type: "info",
     },
     {
-      position: new google.maps.LatLng(-33.91872, 151.23089),
+      position: new google.maps.LatLng(22.754, 75.866),
       // type: "info",
     },
     {
-      position: new google.maps.LatLng(-33.91784, 151.23094),
+      position: new google.maps.LatLng(22.756, 75.867),
       // type: "info",
     },
     {
@@ -136,22 +112,143 @@ function initMap() {
       // type: "library",
     },
   ];
-
-  // Create markers.
-//http://www.googlemapsmarkers.com/v1/FF0000/
- var pinImage = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/red-dot.png");
+                var pinImage = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/red-dot.png");
   for (let i = 0; i < features.length; i++) {
     const marker = new google.maps.Marker({
       position: features[i].position,
       // icon: icons[features[i].type].icon,
       icon:pinImage,
+      radius:200,
       map: map,
     draggable: true,
     animation: google.maps.Animation.DROP,
     });
     marker.addListener("click", toggleBounce);
   }
-}
+  // alert(lat)
+  // alert(long)
+    });
+    $(document).on('change', '#'+searchInput, function () {
+    document.getElementById('psnt_lat').innerHTML = '';
+    document.getElementById('psnt_long').innerHTML = '';
+    
+    document.getElementById('psnt_lat').innerHTML = '';
+    document.getElementById('psnt_long').innerHTML = '';
+});
+
+
+});
+
+
+
+
+/*code for search ends here*/
+
+ 
+
+// function initMap() {
+  
+//   map = new google.maps.Map(document.getElementById("map"), {
+
+//     center: new google.maps.LatLng(lat,long),
+//     zoom: 16,
+//   });
+
+  
+//   const features = [
+//     {
+//       position: new google.maps.LatLng(-33.91721, 151.2263),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91539, 151.2282),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91747, 151.22912),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.9191, 151.22907),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91725, 151.23011),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91872, 151.23089),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91784, 151.23094),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91682, 151.23149),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.9179, 151.23463),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91666, 151.23468),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.916988, 151.23364),
+//       // type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
+//       // type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
+//       // type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
+//       // type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
+//       // type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
+//       // type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
+//       // type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
+//       // type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
+//       // type: "library",
+//     },
+//   ];
+
+//   // Create markers.
+// //http://www.googlemapsmarkers.com/v1/FF0000/
+//  var pinImage = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/red-dot.png");
+//   for (let i = 0; i < features.length; i++) {
+//     const marker = new google.maps.Marker({
+//       position: features[i].position,
+//       // icon: icons[features[i].type].icon,
+//       icon:pinImage,
+//       map: map,
+//     draggable: true,
+//     animation: google.maps.Animation.DROP,
+//     });
+//     marker.addListener("click", toggleBounce);
+//   }
+// }
 
 function toggleBounce() {
   if (marker.getAnimation() !== null) {
@@ -160,7 +257,7 @@ function toggleBounce() {
     marker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }
-window.initMap = initMap;
+// window.initMap = initMap;
 </script>
 <style>
 #map {
@@ -202,7 +299,9 @@ body {
                      <div class="row mb-3">
                     <div class="col">
                         <div class="input-group mr-9">
-                            <input class="form-control py-2 border-right-0 border" type="search" value="Search" id="pac-input">
+                            <input class="form-control py-2 border-right-0 border" type="text" value="" id="pac-input" placeholder="Enter a Search Location">
+                            <input class="form-control" name="psnt_lat"  type="hidden" value="" id="psnt_lat" placeholder="*Latitude" autocomplete="off">
+                            <input class="form-control" name="psnt_long"  type="hidden" value="" id="psnt_long" placeholder="*Longitude" autocomplete="off">
                         <span class="input-group-append">
                             <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
                         </span>
@@ -220,10 +319,7 @@ body {
 
 
 
-<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8&callback=initMap&v=weekly"
-      defer
-    >			
+
 @endsection
 @section('js')
 <script src="{{ URL::asset('assets/plugins/chart/Chart.bundle.js') }}"></script>

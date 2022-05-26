@@ -5,10 +5,48 @@
 <script src="{{ URL::asset('assets/js/formapi.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- map api script called here -->
+ <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
+  <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
+  <script>
+   var searchInput = 'pham_address';
+
+$(document).ready(function () {
+    // var autocomplete;
+    // autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+    //     types: ['geocode'],
+    // });
+    var autocomplete;
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+        types: ['geocode'],
+    });
+    
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var near_place = autocomplete.getPlace();
+        document.getElementById('pham_lat').value = near_place.geometry.location.lat();
+        document.getElementById('pham_long').value = near_place.geometry.location.lng();
+        
+        document.getElementById('pham_lat').innerHTML = near_place.geometry.location.lat();
+        document.getElementById('pham_long').innerHTML = near_place.geometry.location.lng();
+    });
+});
+$(document).on('change', '#'+searchInput, function () {
+     document.getElementById('latitude_input').value = '';
+     document.getElementById('longitude_input').value = '';
+    
+    document.getElementById('pham_lat').innerHTML = '';
+    document.getElementById('pham_long').innerHTML = '';
+});
+  </script>
+
+
+<!-- till here -->
  <style>
 	
 .error{
 	color: red;
+  /* margin-right: -57px; */
 	
 }
 .valid{
@@ -21,6 +59,193 @@
 	color: #4ec1ec;
 	
 }
+      .wrap-login100{
+      width: 456px;
+	    }
+      .login100-form-title{
+        margin-top:-40px;
+        margin-bottom:-30px;
+        margin-left:35px;
+        
+      }
+      input[type=text] {
+         border-radius: 6px;
+         height: 50px;
+         width: 371px;
+      } 
+      input[type=email] {
+         border-radius: 6px;
+         height: 50px;
+         width: 371px;
+      } 
+   input[type=password] {
+        border-radius: 6px;
+        height: 50px;
+        width: 371px;
+	
+      }
+      textarea.form-control {
+          height: auto;
+          width: 370px;
+      }
+      .custom-file, .custom-file-input {
+          position: relative;
+          width: 373px;
+          height: 2.375rem;
+      }
+      .form-group {
+          margin-left: 9px;
+     }
+     .container-login100-form-btn{
+           height: 50px;
+           width: 371px;
+           margin-left:10px;
+     }
+     .logintext{
+       margin-left:60px;
+     }
+     .zmdi-eye-off{
+           position: absolute;
+           float:right;
+           right: -2rem;
+           top: 1rem;
+
+     }
+
+     .file {
+        opacity: 0;
+        width: 0.1px;
+        height: 0.1px;
+     position: absolute;
+}
+
+.file-input label {
+       display: block;
+       /* position: relative; */
+       width: 371px;
+       height: 50px;
+       border-radius: 5px;
+       border: 1px solid #E2E6EB;
+       background: #F1F1F9;
+       /* box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4); */
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       color: #797785;
+       /* font-weight: bold; */
+       cursor: pointer;
+       transition: transform .2s ease-out;
+}
+
+.file-name {
+  position: absolute;
+  bottom: -35px;
+  left: 10px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+
+#imgfile{
+    padding-left: 110px; 
+    padding-top:5px; 
+    height:25px
+}
+
+.agreeDiv{
+	margin-top: -40px;
+	margin-bottom: -30px;
+}
+
+label {
+    padding-right: 0px!important;
+    font-size: 17px;
+    color: #7d7a7a;
+}
+.hidem{
+  display: none;
+}
+
+/* @media only screen and (max-width: 1080px){
+  .error {
+    color: red;
+    margin-right: -60px;
+}
+
+} */
+@media only screen and (max-width: 820px){
+        
+       .error {
+           color: red;
+           margin-right: 20px;
+       }
+}
+     @media only screen and (max-width: 480px){
+
+      .file-input label{
+        width: 243px;
+      }
+      #imgfile{
+        padding-left: 80px;
+      }
+      .wrap-login100{
+          width: 330px;
+	    }
+      .login100-form-title{
+        margin-top:-40px;
+        margin-bottom:-30px;
+        margin-left:5px;
+        
+      }
+      input[type=text] {
+         border-radius: 6px;
+         height: 50px;
+         width: 243px;
+
+      } 
+      input[type=email] {
+         border-radius: 6px;
+         height: 50px;
+         width: 243px;
+      } 
+   input[type=password] {
+        border-radius: 6px;
+        height: 50px;
+        width: 243px;
+	
+      }
+      textarea.form-control {
+          height: auto;
+          width: 243px;
+      }
+      .custom-file, .custom-file-input {
+          position: relative;
+          width: 243px;
+          height: 50px;
+          margin-left:-9px;
+      }
+      .form-group {
+          margin-left: 9px;
+     }
+     .container-login100-form-btn{
+           height: 50px;
+           width: 243px;
+           margin-left:10px;
+     }
+     .logintext{
+       margin-left:10px;
+     }
+     .zmdi-eye-off{
+           position: absolute;
+           float:right;
+           right: 2rem;
+           top: 1rem;
+
+     }
+     .error {
+    margin-right: 9px;
+     }
+     }
 </style>
 
 @endsection
@@ -59,14 +284,14 @@
 							
 								
 								<span class="login100-form-title">
-									Pharmacist Registration
+									Pharmacy Registration
 								</span>
                                  <div class="text-center" id="message">
                                    
                                  </div>
 								<div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_name" id="pham_name"placeholder="*Pharmacy Name" >
+									<input type="text" class="form-control" name="pham_name" id="pham_name" placeholder="*Pharmacy Name" >
 									
 									
 								</div>
@@ -116,12 +341,12 @@
 								</div> -->
 								<div class="form-group"style="position:relative">
                                  <input class="form-control" type="password" name="pham_password" id="pham_password" placeholder="*Password" autocomplete="off">
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye" style="position: absolute;float:right;right: 1rem;top: 0.5rem;" onclick="toggleVisibiltypass()" ></i>
+                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibiltypass()" ></i>
 								</div>
 
 								<div class="form-group"style="position:relative">
                                  <input class="form-control" type="password" name="confpass" id="confpassword" placeholder="*Confirm Password" autocomplete="off" > 
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "style=";position: absolute;float:right;right: 1rem;top: 0.5rem;" onclick="toggleVisibilty2()" ></i>
+                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye " onclick="toggleVisibilty2()" ></i>
                                 <!-- <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "style="margin-left: 7.5rem ;position: absolute;bottom:0.5rem;cursor: pointer;color:'#4ec1ec'" onclick="toggleVisibilty2()" ></i> -->
 								</div>
 								<!-- <div class="form-group">
@@ -132,16 +357,17 @@
 										    </div>
 								</div> -->
                                   <div class="form-group">
-                                      <textarea class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address"></textarea>
+                                      <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address"></textarea>
                                   </div>
-
+                                        <!-- <input type="hidden" id="loc_lat" />
+                                        <input type="hidden" id="loc_long" /> -->
                                    <div class="form-group">
                                         <label class="form-label"></label>
-                                       <input class="form-control" name="pham_lat"  type="hidden" value="43.3444" id="pham_lat" placeholder="*Latitude" autocomplete="off">
+                                       <input class="form-control" name="pham_lat"  type="hidden" value="" id="pham_lat" placeholder="*Latitude" autocomplete="off">
                                     </div>
                                      <div class="form-group">
                                                 <label class="form-label"></label>
-                                        <input class="form-control" name="pham_long" type="hidden" value="43.3444" id="pham_long" placeholder="*Longitude" autocomplete="off">
+                                        <input class="form-control" name="pham_long" type="hidden" value="" id="pham_long" placeholder="*Longitude" autocomplete="off">
                                     </div>
                                 <!--   <div class="row"> -->
                                       <!-- <div class="col"> -->
@@ -152,27 +378,40 @@
                                      <!--  </div> -->
                                      <!--  <div class="col"> -->
                                           <div class="form-group mt-2">
-											  <div class="custom-file">
+											  <!-- <div class="custom-file">
 											    	<input type="file"  class="custom-file-input mt-3" name="file" id="reg_doc" placeholder="* Registration Number" >
-											    	<label class="custom-file-label">Upload reg.</label>
-											 </div>
+											    	<label class="custom-file-label">Upload registration</label>
+											 </div> -->
+
+                       <!-- file -->
+                       <div class="file-input mt-4">
+                                           <input type="file" id="file"  name="file" class="file">
+                                           <label for="file">
+                                             Upload License Doc<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt="">
+                                             <p class="file-name"></p>
+                                           </label>
+                                   </div>
+                       <!-- file -->
 							          <!--   </div> -->
                                       </div>
                                  <!--  </div> -->
                                     
                                     
+                                 <div class="text-center float-left agreeDiv" >
+								                   	<label class="text-dark mt-2">
+								                   		<input id="terms" name="terms" type="checkbox">&nbsp; I agree to the<a href="#" class="text-primary ml-1">Terms & conditions</a>
+								                   	</label>
 
-                                 <div class="text-center pt-3">
-									<p class="text-dark mb-0"><input id="terms" name="terms" type="checkbox"> Agree the<a href="#" class="text-primary ml-1">Terms and policy</a></p>
-								</div>
-
+							                	</div>
+                                   
+                                <p class="text-red hidem" id="emhide">Email already registered</p>
 
 
 								<div class="container-login100-form-btn">
 									<input class="login100-form-btn btn-primary" type="submit" id="submit" value="Submit">
 								</div>
 								<div class="text-center pt-3">
-									<p class="text-dark mb-0">Already have an account?<a href="{{url('/pharmacist_Login')}}" class="text-primary ml-1">Login Here</a></p>
+									<p class="text-dark mb-0 logintext" >Already have an account?<a href="{{url('/pharmacist_Login')}}" class="text-primary ml-1">Login Here</a></p>
 								</div>
 								
 								<!-- <div class=" flex-c-m text-center mt-3">
@@ -234,24 +473,25 @@ $(document).ready(function(){
 	var api_url="http://3.220.132.29:3000/api/";
 	var base_path = "http://3.220.132.29/medpro/";
 $("#pharma_signup").validate({
+ 
+     errorElement: "span",
     // $('.eye1 i').css({'display':'none'});       
     errorClass: "error fail-alert",
     validClass: "valid success-alert",
     rules: {
       pham_name: {
         required: true,
-        lettersonly: true,
-        // minlength: 3
+        lettersonly: true
+       
       },
-       pham_first_name: {
+      pham_first_name: {
         required: true,
-        lettersonly: true,
-        // minlength: 3
+        lettersonly: true
+      
       },
        pham_last_name: {
         required: true,
-        lettersonly: true,
-        // minlength: 3
+        lettersonly: true
       },
       pham_email: {
          required: true,
@@ -260,6 +500,9 @@ $("#pharma_signup").validate({
       pham_registration_num:{
         required:true,
         minlength:8
+      },
+      pham_address:{
+        required:true,
       },
      file:{
       required:true,
@@ -280,23 +523,25 @@ $("#pharma_signup").validate({
     messages : {
 
       pham_name: {
-        required: "Name field is Required",
-        lettersonly: "Only Alphabetical Characters are allowed",
-        // minlength: 3
+        required: "Pharmacy Name 62field is Required"
+     
       },
-      phy_first_name: {
+      pham_first_name: {
          required: "First Name field is Required",
-         lettersonly:"Only Alphabetical Characters are allowed",
-        // minlength: "First Name should be at least 3 characters"
+         lettersonly:"Only Alphabetical Characters are allowed"
+     
       },
-      phy_last_name: {
+      pham_last_name: {
           required: "Last Name field is Required",
-           lettersonly:"Only Alphabetical Characters are allowed",
-        // minlength: "Last Name should be at least 3 characters"
+           lettersonly:"Only Alphabetical Characters are allowed"
+       
       },
-      phy_email: {
+      pham_email: {
         required: "Email field is Required",
         email: "The email should be in the format: abc@domain.tld"
+      },
+      pham_address: {
+        required: "Address field is Required"
       },
 
      pham_registration_num:{
@@ -304,7 +549,7 @@ $("#pharma_signup").validate({
         minlength: "Licence Number should be at least 8 characters"
       },
       file:{
-        required:"License doc is Required",
+        required:"License doc is Required"
      },
       pham_password: {
       required:"Password field is Required",
@@ -312,32 +557,39 @@ $("#pharma_signup").validate({
      },
      confpass: {
         required: "Confirm Password field is Required",
-        minlength: "Password and Confirm password should be same",
+        minlength: "Password and Confirm password should be same"
         // equalTo: "Password and Confirm password should be same"
       },
       terms:{
-        required:"<p>Please Agree The Terms and Policy<p>"
+        required:"<p>I agree to the Terms & conditions<p>"
       }
 
-
+     
     }
+    
   });
 
 
        $('#pharma_signup').submit(function (event) {
     event.preventDefault();
 
- alert('here')
+        $('#terms').on('change', function(){
+      this.value = this.checked ? 1 : 0;
+      // alert(this.value);
+   }).change();
+ 
 
     /*formvalidation for signup form*/
-    var pham_name =$('pham_name').val();
+    var pham_name =$('#pham_name').val();
     var pham_first_name = $('#pham_first_name').val();
     var pham_last_name = $('#pham_last_name').val();
     var email = $('#pham_email').val();
     var pham_regn =$('#pham_registration_num').val();
-    var regdoc =$('regdoc').val();
+    var pham_address =$('#pham_address').val();
+    var file =$('file').val();
     var password = $('#pham_password').val();
     var confpassword =$('#confpassword').val();
+    var terms =$('#terms').val();
    
       
 
@@ -346,7 +598,7 @@ $("#pharma_signup").validate({
     // console.log(formData);
     // return false;
     
-    if(pham_name!="" && pham_first_name!="" && pham_last_name !=="" && email!="" && pham_regn!="" && regdoc!="" && password!="" ){
+    if(pham_name!="" && pham_first_name!="" && pham_last_name !=="" && email!="" && pham_regn!="" && file!="" && password!="" && terms=="1" && pham_address!="" ){
     $.ajax({
       type: "POST",
       url: api_url+"phamsistRegister",
@@ -363,11 +615,11 @@ $("#pharma_signup").validate({
           $('#message').html(res.message).addClass('alert alert-success');
           window.location.href =base_path+"pharmacist_Login";
         }else{
-           $('#message').html(res.message).addClass('alert alert-danger');
+          //  $('#message').html(res.message).addClass('alert alert-danger');
+          $('#emhide').html(res.message).removeClass('hidem');
         }
     });
    }else{
-     // $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
    }
 
   });
@@ -379,49 +631,6 @@ $("#pharma_signup").validate({
 })
   
 </script>
-<!-- <script type="text/javascript">
-    $(function () {
-        $("#submit").click(function () {
-            var password = $("#password").val();
-            var confirmPassword = $("#confpassword").val();
-            if (password != confirmPassword) {
-                alert("Passwords do not match. Please Confirm Your Password");
-                return false;
-            }
-            return true;
-        });
-    });
 
-	
-</script> -->
-<!-- <script>
-	$(document).ready(function() {
-$("#signupform").validate({
-rules: {
-	first_name : {
-    required: true,
-    minlength: 3
- },
- last_name: {
- required: true,
-    min: 3
-    },
-    email: {
-    required: true,
-    email: true
-    },
-    licence_no: {
-    required: true,
-    number: true
-
-    },
-    lic_doc : {
-    require: true,
-},
-
-}
-});
-});
-</script> -->
 
 @endsection

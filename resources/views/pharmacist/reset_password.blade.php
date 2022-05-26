@@ -3,6 +3,68 @@
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
 <script src="{{ URL::asset('assets/js/formapi.js')}}"></script>
+<style>
+		.wrap-login100{
+			width:450px;
+			height:550px;
+		}
+		input[type=password]{
+			
+			height: 50px;
+            width: 364px;
+           margin-left: 2px;
+
+		}
+		.login100-form-title{
+			margin-top: -32px;
+            margin-bottom: -15px;
+            margin-left: 35px;
+		}
+		.container-login100-form-btn{
+			width:364px;
+			margin-left:12px;
+		}
+		.zmdi-eye-off{
+	       position: absolute;
+	       float:right;
+	       right: -0.5rem;
+	       top: 1.1rem;
+		   color:#7EC1EC;
+       
+        }
+		.wrap-input100{
+			margin-left: 10px;
+		}
+
+	
+	@media only screen and (max-width: 480px){
+		.wrap-login100{
+			width:330px;
+			
+		}
+		
+        input[type=password] {
+           border-radius: 6px;
+           height: 44px;
+           width: 270px;
+        } 
+		.login100-form-title{
+			margin-top:-20px;
+			margin-bottom:-20px;
+			margin-left:0px;
+		}
+		.container-login100-form-btn{
+			width:270px;
+			margin-left:0px;
+		}
+		.wrap-input100{
+			margin-left: 0px;
+		}
+
+		
+
+	}
+</style>
 
 @endsection
 @section('content')

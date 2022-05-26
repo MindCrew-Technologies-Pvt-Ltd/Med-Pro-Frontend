@@ -1,8 +1,17 @@
+<script>
+		 
+		  let user_data1 = localStorage.getItem('pharm_det');
+		  var obj1 = JSON.parse(user_data1);
+		  if (!obj1) {
+		    var base_path = "http://3.220.132.29/medpro/";
+		    window.location.href = base_path + 'pharmacist_Login';
+           }
+</script>
 <!--APP-SIDEBAR-->
                 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
                 <aside class="app-sidebar">
                     <div class="side-header">
-                        <a class="header-brand1" href="{{ url('/pharmacist_dashboard')}}">
+                        <a class="header-brand1" href="{{ url('/dashboard')}}">
                             <!-- <img src="{{URL::asset('./assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-1.png')}}"  class="header-brand-img toggle-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-2.png')}}" class="header-brand-img light-logo" alt="logo"> -->
@@ -15,9 +24,9 @@
                             <div class="user-pic">
                                 <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" alt="user-img" class="avatar-xl rounded-circle">
                             </div>
-                            <div class="user-info">
+                            <div class="pham-info">
                                 <h6 class=" mb-0 text-dark"></h6>
-                                <span class="text-muted app-sidebar__user-name text-sm" id="usr_name"></span>
+                                <span class="text-muted app-sidebar__user-name text-sm" id="pham_name"></span>
                             </div>
                         </div>
                     </div>
@@ -47,19 +56,29 @@
                     </div> -->
                     <ul class="side-menu">
                       <!--   <li><h3>Main</h3></li> -->
-                        <li class="slide">
-                            <a class="side-menu__item"  data-toggle="slide" href="{{ url('/pharmacist_dashboard')}}"><i class="side-menu__icon ti-home"></i><span class="side-menu__label">Dashboard</span></i></a>
-                          
-                        </li>
+                        <!-- <li class="slide"> -->
+                            <!-- <a class="side-menu__item"  data-toggle="slide" href="{{ url('/dashboard')}}"><i class="side-menu__icon ti-home"></i><span class="side-menu__label">Dashboard</span></i></a> -->
+                           <!--  <ul class="slide-menu">
+                                <li><a class="slide-item" href="{{ url('/' . $page='index') }}"><span>Sales Dashboard</span></a></li>
+                                <li><a class="slide-item" href="{{ url('/' . $page='index2') }}"><span>Marketing Dashboard</span></a></li>
+                                <li><a class="slide-item" href="{{ url('/' . $page='index3') }}"><span>Service Dashboard</span></a></li>
+                                <li><a class="slide-item" href="{{ url('/' . $page='index4') }}"><span>Finance Dashboard</span></a></li>
+                                <li><a class="slide-item" href="{{ url('/' . $page='index5') }}"><span>IT Dashboard</span></a></li>
+                            </ul> -->
+                        <!-- </li> -->
                          <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="{{ url('pharmacist_prescription') }}"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">Prescription Management</span></a>
                         </li>
-                         <!--  <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a>
+                         <li class="slide">
+                            <!-- <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a> -->
                         </li>
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('patient_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Patient Management</span></a>
-                        </li>  -->
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('pharmacist_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Pharmacy management</span></a>
+                       <!-- </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('Pharmacy_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Pharmacy Management</span></a>
+                        </li> -->
+                        
                         <!-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-layout-accordion-separated"></i><span class="side-menu__label">Layouts</span><i class="angle fa fa-angle-right"></i></a>
                             <ul class="slide-menu">
@@ -257,15 +276,19 @@
 <!--/APP-SIDEBAR-->
 <script type="text/javascript">
 
-    // $(document).ready(function(){
-    //     let user_data=localStorage.getItem('user_det');
-    //      var obj = JSON.parse(user_data);
-    //      var username=obj.phy_first_name;
+  
+        let user_data=localStorage.getItem('pharm_det');
+         var obj = JSON.parse(user_data);
+         var username=obj.pham_first_name +' '+ obj.pham_last_name;
+          console.log("pharmacist name ===",username)
+          console.log("pharmacist ID ===",obj._id)
+          document.getElementById("pham_name").style.fontSize = "large";
+          document.querySelector(".pham-info").style.color="#ffffff";
+           document.getElementById("pham_name").innerText=username;
+         // let user=document.querySelector('#pham_name');
+         
 
-    //      $('#user_name').text(username)
-    //      alert("username");
-       
-    // })
+
            
   
 </script>
