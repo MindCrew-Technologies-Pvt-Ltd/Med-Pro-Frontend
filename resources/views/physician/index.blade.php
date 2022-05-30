@@ -1,12 +1,54 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
 <style>
+	@media only screen and (max-width: 1280px){
+        .page-header{
+            width: 959px;
+        }
+    }
 	@media only screen and (max-width: 1180px){
 		.page-header {
             padding: 15px;
             width: 870px;
 		}
 	}
+    @media only screen and (max-width: 1024px){
+        .page-header {
+            padding: 15px;
+            width: 700px;
+        }
+    }
+
+    @media only screen and (max-width: 912px){
+        .page-header {
+            padding: 15px;
+            width: 595px;
+        }
+    }
+
+    @media only screen and (max-width: 820px){
+        .page-header {
+           width: 510px;
+        }
+    }
+	@media only screen and (max-width: 768px){
+        .page-header {
+            width: 460px;
+        }
+    }
+	@media only screen and (max-width: 720px){
+        .page-header {
+            width: 649px;
+        }
+        
+    }
+
+	@media only screen and (max-width: 540px){
+              .avatar {
+          right: -8rem;
+          background: #5e2dd8 no-repeat 50%/cover;
+      }
+    }
 	@media only screen and (max-width: 480px){
     .dashboard{
        font-size: 20px;
@@ -16,17 +58,55 @@
              width:310px;
         }
 	}
+
+@media only screen and (max-width: 414px){
+	.avatar {
+    top: -1.1rem;
+    right: -3rem;
+    position: absolute;
+    }
+	.page-header {
+    width: 362px;
+    }
+
+}
+@media only screen and (max-width: 414px){
+	.avatar {
+    top: -1.4rem;
+    right: 0rem;
+    position: absolute;
+    }
+}
+
+
+
+@media only screen and (max-width: 375px){
+	.avatar {
+        top: -1.5rem;
+        right: 0rem;
+        background: #5e2dd8 no-repeat 50%/cover;
+        position: absolute;
+    }
+}
 	@media only screen and (max-width: 360px){
-		.avatar{
-			margin-left: 237px;
-			position: absolute;
-           top: -1.6rem;
-           left: 17rem;
-    	}
+		.avatar {
+          position: absolute;
+          top: -1.5rem;
+          right: 0rem;
+          background: #5e2dd8 no-repeat 50%/cover;
+      }
+	  .dashboard {
+          margin-right: 47px;
+          font-size: 20px;
+      }
 
 	}
 	
-	
+	@media only screen and (max-width: 280px){
+             .page-header {
+         width: 242px;
+        }
+    }
 </style>
 @endsection
 @section('page-header')

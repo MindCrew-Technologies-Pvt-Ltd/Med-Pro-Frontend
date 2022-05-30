@@ -8,10 +8,11 @@ hr.solid {
   background-color: #F1F1F9;
   border-radius: 10px;
   margin-left: 916px;
+  border: none;
 }
 label{
   padding-right: 86%;
-  font-size: 17px; 
+  font-size: 18px; 
   color: #7d7a7a;
   }
   input[type=text]{
@@ -30,7 +31,7 @@ label{
   background-color: #CF142B;
   color: #ffffff;
   margin-top: 30px;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 .success{
   width: 300px;
@@ -38,7 +39,7 @@ label{
   background-color: #008000;
   color: #ffffff;
   margin-top: 30px;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 .ebtn{

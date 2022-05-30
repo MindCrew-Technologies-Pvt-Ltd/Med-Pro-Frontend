@@ -1,0 +1,809 @@
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+   *{
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+    }
+    body{
+      background-color: white;
+    }
+
+    /* prescription managment ------------------------------------------------------------------*/
+      .error{
+        color: #CF142B;
+      }
+     #myTable{
+        text-transform: capitalize;
+     }
+     .bttttn{
+        width: 120px;
+        background-color: #7ec1ec;
+        border: none;
+        border-radius: 10px;
+      }
+      .ebtn{
+        background-color: #5e2dd8;
+        width: 88px;
+        height: 35px;
+        border-radius: 10px;
+        color: white;
+        margin-right: 10px;
+        border:none;
+      }
+    .dbtn{
+        background-color: #cf142b;
+        width: 88px;
+        height: 35px;
+        border-radius: 10px;
+        color: white;
+    }
+    /* .ok{
+      border: none;
+      border-radius: 10px;
+      height: 30px;
+      width: 50px;
+      padding: 2px;
+  } */
+  #notesbtn{
+    background-color: #7ec1ec!important;
+    border: none;
+    box-shadow: none;
+    border-radius: 10px;
+  }
+  label{
+    float: left;
+  }
+  .otherlabel{
+    font-size: 16px;
+    float: left;
+    color: #616161;
+  }
+
+  /* add precription -----------------------------------------------------*/
+
+  #addRow{
+    background: #7EC1EC;
+    border: none;
+    display: block;
+    width: 83%;
+    height: 45px;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    }
+    .cancelbutton{
+      display: block;
+      width: 40%;
+      height: 45px;
+      float: left;
+      border-radius: 10px;
+      border: none;
+      background-color: #CF142B;
+      color: white;
+      padding: 10px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .acceptbutton{
+      display: block;
+      width: 40%;
+      height: 45px;
+      float: right;
+      border-radius: 10px;
+      border: none;
+      background-color: #008000;
+      color: white;
+      padding: 10px 28px;
+      font-size: 16px;
+      margin-right: 167px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    #patient_name{
+      height: 50px;
+      width: 85%;
+    }
+    #prs_med_name{
+      float: left;
+      width: 49%;
+      margin-bottom: 15px;
+    }
+    .prs_quantity{
+      float: right;
+      width: 27%;
+      margin-right: 165px;
+      margin-bottom: 15px;
+    }
+    .iconn{
+      position: absolute;
+      top: 6.5rem;
+      right: 9rem;
+    }
+    .prs_information{
+      margin-top: 20px;
+    }
+
+    /* add patient ------------------------------------------------------------------------------------------------------ */
+    .zmdi-eye{
+      position: absolute;
+   float:right;
+   right: 14rem;
+   top: 0.8rem; 
+   color:#7ec1ec;
+    
+   }
+   .zmdi-eye-off{
+     position: absolute;
+   float:right;
+   right: 14rem;
+   top: 0.8rem; 
+   color:#7ec1ec; 
+   }
+   .file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: relative;
+  }
+  .file-input label {
+     display: block; 
+     position: relative; 
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #E2E6EB;
+    background: #F1F1F9;
+    /* box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4); */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    color: #797785;
+    /* font-weight: bold; */
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform .2s ease-out;
+    /*margin-left: -377px;*/
+    margin-top: -47px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-top: 7px;
+    
+  }
+  .file-name {
+    /* position: absolute; */
+    bottom: -35px;
+    left: 10px;
+    font-size: 0.85rem;
+    color: #555;
+    margin-right: 900px;
+  }
+  
+.sbmt{
+  width: 39%;
+  margin-right: 20px;
+  margin-top: 10px;
+  float: left;
+  border: none;
+  border-radius: 10px;
+}
+#submit{
+  background-color: #008000!important;
+}
+  
+  #file-error{
+      margin-top: 20px;    
+  }
+  #imgfile{
+      padding-left: 550px; 
+      padding-top:5px; 
+      height:25px
+  }
+
+  #psnt_first_name{
+    width: 80%;
+  }
+  #psnt_last_name{
+    width: 80%;
+  }
+  
+  #psnt_email{
+    width: 80%;
+  }
+  #psnt_password{
+    width: 80%;
+  }
+  #psnt_confpassword{
+    width: 80%;
+  }
+  #psnt_address{
+    width: 80%;
+  }
+  #psnt_insrnce_num{
+    width: 80%;
+  }
+  /* end patient end ------------------------------------------------------------- */
+  .wrap-login100{
+    width: 420px;
+    border-radius:10px;
+  }
+  .agreeDiv{
+    margin-top: -40px;
+    margin-bottom: 10px;
+  }
+  #imgfile1{
+    padding-left: 110px; 
+    padding-top:5px; 
+    height:25px
+} 
+
+/* view profile ----------------------------------------------------------------*/
+.proimg{
+  height: 80px;
+  width: 80px;
+  margin-left: 1px;
+}
+.btninput{
+  width: 100%;
+  background-color: #F1F1F9;
+  color: #7F7F7F;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.licenseimg {
+   width: auto;
+   background-color: #F1F1F9;
+   color: #7F7F7F;
+   height: auto;
+   margin-top: 30px;
+   margin-bottom: 30px;
+}
+.editbtn{
+  box-sizing: border-box;
+  width: 130px;
+  height: 50px;
+  background: #7EC1EC;
+  /* box-shadow: 0px -2px 4px rgb(0 0 0 / 25%); */
+  border-radius: 10px;
+  color: #fff;
+  font-size: 21px;
+  text-align: center;
+  align-items: center;
+}
+.ok{
+  box-sizing: border-box;
+  width: 90px;
+  height: 45px;
+  background: #7EC1EC;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: #fff;
+  font-size: 15px;
+  margin-left: 212px;
+  margin-bottom: 20px;
+}
+.changepass{
+  box-sizing: border-box;
+  width: 200px;
+  height: 45px;
+  background: #7EC1EC;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 900px;
+
+}
+.erroww{ 
+  margin-left: 950px;
+  color: #7EC1EC;
+  font-weight: bolder;
+
+
+}
+
+#arrow{
+  color: #7EC1EC;
+  padding-left: 950px;
+  font-weight: bolder;
+  font-size: 24px;
+}
+#physician_first_name{
+  margin-top: 50px;
+  width: 100%;
+}
+#physician_last_name{
+  width: 100%;
+}
+.eemail{
+  width: 100%!important;
+}
+.pass{
+  width: 100%!important;
+}
+.lnum{
+  width: 100%!important;
+}
+.pnamelab{
+  margin-top: 100px;
+  float: left;
+  margin-left: -79px;
+}
+.profilediv{
+  width: 100%;
+}
+/* resposive media query  ==================================================================================================*/
+@media screen and (max-device-width: 1280px){
+  #prs_med_name{
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .prs_quantity {
+    width: 32%!important;
+    margin-right: 145px;
+  }
+  .iconn{
+    top: 6.5rem;
+    right: 8.5rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton{
+    margin-right: 149px;
+  } 
+  /* add prescription  END*/
+  #imgfile {
+    padding-left: 455px;
+  }
+  #arrow{
+    padding-left: 845px;
+  }
+
+}
+
+
+
+@media screen and (max-device-width: 1180px){
+  #prs_med_name{
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .prs_quantity {
+    width: 32%!important;
+    margin-right: 131px;
+}
+  .iconn{
+    top: 6.5rem;
+    right: 7rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton{
+    margin-right: 134px;
+  } 
+
+
+    /* add prescription  END*/
+    #imgfile {
+      padding-left: 402px;
+  }
+  .zmdi-eye{
+    right: 11rem;      
+    }
+    .zmdi-eye-off{
+     right: 11rem;      
+   }
+   #arrow {
+    padding-left: 740px;
+}
+  
+
+}
+
+
+
+@media screen and (max-device-width: 1024px){
+  #prs_med_name{
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .prs_quantity {
+    width: 31%!important;
+    margin-right: 106px;
+}
+  .iconn{
+    top: 6.5rem;
+    right: 5.5rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton {
+    margin-right: 106px;
+  }
+  #imgfile {
+    padding-left: 260px;
+}
+    /* add prescription  END*/
+
+    #arrow{
+      padding-left: 590px;
+    }
+}
+
+
+@media screen and (max-device-width: 915px){
+  .prs_quantity {
+    width: 31%!important;
+    margin-right: 89px;
+   }
+   .acceptbutton {
+     margin-right: 90px;
+   }
+
+
+     /* add prescription  END*/
+     #imgfile {
+      padding-left: 195px;
+    }
+    .zmdi-eye{
+      right: 7.5rem;      
+      }
+      .zmdi-eye-off{
+       right: 7.5rem;      
+     }
+     #arrow{
+      padding-left: 470px;
+    }
+}
+
+
+
+
+@media screen and (max-device-width: 914px){
+  #prs_med_name{
+    width: 50%;
+  }
+  .prs_quantity {
+     margin-right: 91px;
+   }
+  .iconn{
+    top: 6.5rem;
+    right: 5.5rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton {
+    margin-right: 90px;
+}
+
+  /* add prescription  END*/
+  .zmdi-eye{
+    right: 8rem;      
+    }
+    .zmdi-eye-off{
+     right: 8rem;      
+   }
+   #arrow{
+    padding-left: 450px;
+  }
+}
+
+
+@media screen and (max-device-width: 912px){
+  #prs_med_name{
+    width: 50%;
+  }
+  .prs_quantity {
+     margin-right: 91px;
+   }
+  .iconn{
+    top: 6.5rem;
+    right: 5.5rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton {
+    margin-right: 90px;
+}
+  /* add prescription  END*/
+  .zmdi-eye{
+    right: 8rem;      
+    }
+    .zmdi-eye-off{
+     right: 8rem;      
+   }
+   #arrow{
+    padding-left: 450px;
+  }
+}
+
+
+
+@media screen and (max-device-width: 896px) and (max-device-width: 911px){
+  .zmdi-eye{
+    right: 7rem;      
+    }
+    .zmdi-eye-off{
+     right: 7rem;      
+   }
+   #imgfile {
+    padding-left: 191px;
+    }
+    .sbmt {
+      width: 38%;
+  }
+  #arrow {
+    padding-left: 423px;
+}
+}
+
+
+
+@media screen and (max-device-width: 844px){
+  .prs_quantity {
+    width: 31%!important;
+    margin-right: 70px;
+}
+   .acceptbutton {
+     margin-right: 68px;
+   }
+   .iconn{
+    top: 6.5rem;
+    right: 4rem;
+  }
+  .preform{
+    margin-left: 60px;
+  } 
+    /* add prescription  END*/
+    .bttttn {
+      margin-left: 86px;
+  }
+  #imgfile {
+    padding-left: 148px;
+  }
+  #arrow{
+    padding-left: 420px;
+  }
+
+}
+
+
+
+@media screen and (max-device-width: 820px){
+  #prs_med_name{
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .prs_quantity{
+    width: 27%!important;
+    margin-right: 76px;
+  }
+  .iconn{
+    top: 6.5rem;
+    right: 2rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton{
+    margin-right: 75px;
+  } 
+    /* add prescription  END*/
+    #imgfile {
+      padding-left: 157px;
+  }
+  #arrow{
+    padding-left: 400px;
+  }
+
+}
+
+
+
+@media screen and (max-device-width: 768px){
+  .iconn{
+    top: 6.5rem;
+    right: 3rem;
+  }
+  .prs_quantity {
+    width: 30%!important;
+    margin-right: 65px;
+}
+.acceptbutton {
+  margin-right: 61px;
+}
+  /* add prescription  END*/
+  #imgfile {
+    padding-left: 90px;
+}
+#arrow{
+  padding-left: 350px;
+}
+}
+
+
+
+@media screen and (max-device-width: 740px){
+  #imgfile {
+  padding-left: 110px;
+   }
+   #arrow{
+    padding-left: 350px;
+  }
+}
+@media screen and (max-device-width: 667px){
+  .zmdi-eye{
+    right: 6rem;      
+    }
+    .zmdi-eye-off{
+     right: 6rem;      
+   }
+   #imgfile {
+    padding-left: 100PX;
+   }
+   .sbmt {
+    width: 38%;
+   }
+   #arrow{
+    padding-left: 350px;
+  }
+}
+@media screen and (max-device-width: 414px){
+   .iconn{
+      top: 6.5rem;
+      right: 2rem;
+    }
+    .prs_quantity {
+      width: 29%!important;
+      margin-right: 41px;
+    }  
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton{
+    margin-right: 41px;
+  } 
+  .preform{
+    margin-left: 50px;
+  }  
+    /* add prescription  END*/
+    .bttttn {
+      margin-left: 85px;
+  }
+     #imgfile {
+       padding-left: 15px;
+     }
+     #imgfile1{
+       padding-left: 70px; 
+       padding-top:5px; 
+       height:25px
+   }
+   #arrow{
+     padding-left: 226px;
+   }
+
+}
+
+
+@media screen and (max-device-width: 390px){
+  .bttttn {
+    margin-left: 60px;
+}
+#arrow{
+  padding-left: 180px;
+}
+}
+@media screen and (max-device-width: 375px){
+      #prs_med_name{
+        width: 50%;
+        margin-bottom: 15px;
+      }
+      .prs_quantity{
+        width: 27%!important;
+        margin-right: 42px;
+      }
+      .iconn{
+        top: 6.5rem;
+        right: 2rem;
+      }
+      #addRow{
+        padding: 0px 0px
+      } 
+      .acceptbutton{
+        padding: 2px;
+        margin-right: 41px;
+      } 
+      .preform{
+        margin-left: 40px;
+      }  
+      .cancelbutton{
+        padding: 7px;
+      }
+      #arrow{
+        padding-left: 170px;
+      }
+
+        /* add prescription  END*/
+        .bttttn {
+          margin-left: 46px;
+      }
+      .zmdi-eye{
+         right: 4rem;      
+       }
+       .zmdi-eye-off{
+        right: 4rem;      
+      }
+      #imgfile {
+        padding-left: 0PX;
+      }
+
+      /* view profile */
+      #arrow{
+        padding-left: 150px;
+      }
+
+    }
+
+
+
+    @media screen and (max-device-width: 280px){
+      #prs_med_name{
+        width: 44%;
+      }
+      #addRow{
+        font-size: 13px;
+      }
+      .prs_quantity {
+        width: 35%!important;
+        margin-right: 29px;
+      }
+      .cancelbutton {
+        font-size: 13px;
+        padding: 0;
+        padding-top: 13px;
+    }
+      .acceptbutton{
+        font-size: 13px;
+        padding: 0;
+        margin-right: 27px;
+      }
+      .preform{
+        margin-left: 10px;
+      } 
+        /* add prescription  END*/
+        .bttttn {
+          margin-left: 0px;
+      }
+     
+     .card-header, .card-header .card-title {
+         margin-left: 0px;
+         font-size: 17px;
+         margin-bottom: 0;
+     }
+     .zmdi-eye{
+         right: 3rem;      
+       }
+       .zmdi-eye-off{
+        right: 3rem;      
+      }
+      #imgfile {
+        padding-left: 0PX;
+      }
+      #arrow{
+        padding-left: 100px;
+      }
+
+    }

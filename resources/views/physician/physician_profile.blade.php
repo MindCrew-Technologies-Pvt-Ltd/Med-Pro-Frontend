@@ -2,248 +2,10 @@
 @section('css')
 @endsection
 @section('page-header')
+<link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
 <script src="https://kit.fontawesome.com/8ebca7c608.js" crossorigin="anonymous"></script>
 <style>
-     .proimg{
-         height: 80px;
-         width: 80px;
-         margin-left: 1px;
-     }
-     
-     input[type=text]{
-         width: 900px;
-         height: 50px;
-         background-color: #F1F1F9;
-      }
-     
-     .btninput{
-         width: 1111px;
-         background-color: #F1F1F9;
-         color: #7F7F7F;
-         height: 50px;
-         margin-top: 20px;
-         margin-bottom: 10px;
-     }
-     .licenseimg {
-          width: auto;
-          background-color: #F1F1F9;
-          color: #7F7F7F;
-          height: auto;
-          margin-top: 30px;
-          margin-bottom: 30px;
-}
-    
-     label{
-        padding-right: 84%;
-        font-size: 17px; 
-        color: #7d7a7a;
-        }
-        .emaill{
-          margin-right: 122px;
-        }
-        .pass{
-          margin-right: 122px;
-        }
 
-     .editbtn{
-          box-sizing: border-box;
-          width: 130px;
-          height: 50px;
-          background: #7EC1EC;
-          /* box-shadow: 0px -2px 4px rgb(0 0 0 / 25%); */
-          border-radius: 10px;
-          color: #fff;
-          font-size: 21px;
-          text-align: center;
-          align-items: center;
-     }
-     .page-title {
-          font-size: 25px;
-          font-weight: 400;
-          position: relative;
-          margin: 0 0 0.2rem;
-    }
-     .ok{
-          box-sizing: border-box;
-          width: 90px;
-          height: 45px;
-          background: #7EC1EC;
-          box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
-          border-radius: 15px;
-          color: #fff;
-          font-size: 15px;
-          margin-left: 212px;
-          margin-bottom: 20px;
-     }
-     .changepass{
-          box-sizing: border-box;
-          width: 200px;
-          height: 45px;
-          background: #7EC1EC;
-          box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
-          border-radius: 15px;
-          border: none;
-          color: #fff;
-          font-size: 15px;
-          margin-top: 30px;
-          margin-bottom: 30px;
-          margin-left: 900px;
-
-     }
-
-     .form-control:disabled, .form-control[readonly] {
-           background-color: #F1F1F9;
-           opacity: 1;
-           width: 100%;
-        } 
-      .erroww{ 
-        margin-left: 950px;
-        color: #7EC1EC;
-        font-weight: bolder;
-
-
-      }
-      
-      #arrow{
-        color: #7EC1EC;
-        padding-left: 950px;
-        font-weight: bolder;
-        font-size: 24px;
-      }
-      
-
-   
-     
-      @media only screen and (max-width: 1180px){
-        .newpass{
-           padding-right: 85%;
-         }
-        
-         .connewpas{
-            padding-right: 77%;
-         }
-         input[type=text]{
-           width: 750px;
-         }
-         label {
-         padding-right: 80%;
-         }
-         .btninput {
-          margin-right: 104px;
-          width: 850px;
-              
-       }
-       #arrow{
-           padding-left:670px;
-           
-         }
-         .page-header {
-            padding: 15px;
-            width: 870px;
-        }
-        .changepass{
-          margin-left: 600px;
-         }
-         .proimg{
-           margin-left: 30px;
-         }
-         .container {
-          margin-left: 30px;
-          max-width: 960px;
-       }
-       .editbtn{
-         margin-right: 42px;
-       }
-       .form-control:disabled, .form-control[readonly] {
-           background-color: #F1F1F9;
-           opacity: 1;
-           width: 845px;
-        }
-      }
-      @media only screen and (max-width: 820px){
-           body{
-             background-color: white;
-           }
-           label {
-         padding-right: 65%;
-         }
-         .btninput {
-              width: 500px;
-              margin-top: 20px;
-              margin-bottom: 10px;
-              margin-right: 53px;
-              background-color: #F1F1F9;
-              color: #7F7F7F;
-              height: 50px;
-       }
-       #arrow{
-           padding-left:330px;
-           
-         }
-     .changepass{
-          margin-left: 250px;
-         }
-         .page-header {
-            padding: 15px;
-            width: 510px;
-        }
-        .form-control:disabled, .form-control[readonly] {
-            background-color: #F1F1F9;
-            opacity: 1;
-            width: 500px;
-         }
-       
-      }
-
-      @media only screen and (max-width: 480px){
-         body{
-           background-color: white;
-         }
-         label {
-         padding-right: 45%;
-         }
-         .changepass{
-          margin-left: 50px;
-         }
-         .btninput{
-          width: 100px;
-         }
-         #arrow{
-           padding-left: 290px;
-         }
-         .col-lg{
-           width: 28%;
-         }
-         .col-sm{
-           width: 29%;
-         }
-         
-        .page-title{
-          margin-right: 1038px;
-        }
-        .btninput {
-          width: 295px;
-          margin-top: 20px;
-          margin-bottom: 10px;
-          margin-right: 53px;
-          background-color: #F1F1F9;
-          color: #7F7F7F;
-          height: 50px;
-       }
-       #arrow{
-           padding-left: 140px;
-         }
-         .page-header {
-            padding: 15px;
-            width: 320px;
-        }
-        .form-control:disabled, .form-control[readonly] {
-            background-color: #F1F1F9;
-            opacity: 1;
-            width: 295px;
-         }
-       
-      }        
 
 </style>
                         <!-- PAGE-HEADER -->
@@ -260,10 +22,10 @@
 @section('content')
 <div class="container pb-5">
 
-     
-          <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="proimg float-left mb-4" alt="">
-          <div id="editprofile" class="float-right"></div>
-
+         <div class="profilediv">
+             <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="proimg float-left mb-4" alt="">
+             <div id="editprofile" class="float-right"></div>
+        </div>
 
      <!-- row end -->
 
@@ -271,10 +33,10 @@
      <form action="" method="post">
        @csrf 
          
-            <div class="form-group ">
-               <label for="physician_first_name">Physician First Name:</label>
-               <input type="text" class="form-control" value="" id="physician_first_name" disabled>
-            </div>
+            <!-- <div class="form-group "> -->
+               <label for="physician_first_name" class="pnamelab">Physician First Name:</label>
+               <input type="text" class="form-control mb-5" value="" id="physician_first_name" disabled>
+            <!-- </div> -->
 
             <div class="form-group">
                <label for="physician_last_name">Physician Last Name:</label>
@@ -283,7 +45,7 @@
 
             <div class="form-group">
                <label for="email" class="emaill">Email:</label>
-               <input type="text" class="form-control" value="" id="email" disabled>
+               <input type="text" class="form-control eemail" value="" id="email" disabled>
             </div>
 
             <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">
@@ -294,8 +56,8 @@
             </button>
 
             <div class="form-group">
-               <label for="password" class="pass">Password:</label>
-               <input type="text" class="form-control" value="" id="password" disabled>
+               <label for="password">Password:</label>
+               <input type="text" class="form-control pass" value="" id="password" disabled>
             </div>
 
 

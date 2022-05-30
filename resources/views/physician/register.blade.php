@@ -86,9 +86,6 @@ input:focus + label {
 	right: 1rem;top: 1rem;
 
 }
-  .headtext{
-
-  }
 @media (max-width:450px) { 
 .wrap-login100{
 		width: 350px;

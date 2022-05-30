@@ -1,236 +1,15 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
+<link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
+
 
 <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet">
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
-    *{
-       font-family: 'Poppins', sans-serif;
-       text-transform: capitalize;
-
-}
-#myTable{
-    text-transform: capitalize;
-
-}
-.form-label{
-    text-align:left!important;
-    font-size: 18px;
-    color: #7d7a7a;
-}
-.form-control:disabled, .form-control[readonly] {
-    background-color: #F1F1F9;
-    opacity: 1;
-}
-#message1{
-    background-color: #F1F1F9;
-    border-radius: 0;
-    height: 50px;
-    width: 100%;
-    color: black;
-}
-/* .modal-content {
-    width: 1000px;
-    margin-left: -240px;
-} */
-#noteslist1{
-    width: 100%;
-    height: 50px;
-    border-radius: 0;
-    background-color: #F1F1F9;
-}
-
-.bttttn{
-    width: 120px;
-    height: 35px;
-    color: white;
-    background-color: #7ec1ec;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-
-}
-.dashboard{
-    font-size: 25px;
-    font-weight: 400;
-
-
-}
-/* .card-body {
-    flex: 1 1 auto;
-    padding: 1.5rem;
-    margin: 0;
-    position: relative;
-    margin-left: 35px;
-    width: 1127px;
-} */
-
-.ebtn{
-    background-color: #5e2dd8;
-    width: 88px;
-    height: 35px;
-    border-radius: 10px;
-    color: white;
-    margin-right: 10px;
-    border:none;
-}
-.dbtn{
-    background-color: #cf142b;
-    width: 88px;
-    height: 35px;
-    border-radius: 10px;
-    color: white;
-}
-.ok{
-    border: none;
-    border-radius: 10px;
-    height: 30px;
-    width: 50px;
-    text-align: center;
-    align-items: center;
-    padding: 2px;
-}
-.btnbtn{
-    margin-right: 35px;
-}
-.card-body {
-    flex: 1 1 auto;
-    padding: 1.5rem;
-    margin: 0;
-    position: relative;
-    width: 1150px;
-    margin-left: 11px;
-}
-hr.new1 {
-    border-top: 1px solid black;
-    margin-top: -20px;
-    width: 1149px;
-    margin-left: -22px;
-}
-.card-header:first-child {
-    border-radius: 2px 2px 0 0;
-    margin-top: -13px;
-    width: 1167px;
-    font-size: 21px;
-}
-.card-title {
-    
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    color: #7D7A7A;
-    font-size: 24px;
-}
-.viewp{
-    color: #7d7a7a;
-    font-size: 25px;
-    margin-left: 10px;
-}
-.sbmt{
-    width: 203px;
-    margin-right: 20px;
-    margin-top: 10px;
-    float: left;
-    border: none;
-    border-radius: 10px;
-    box-shadow: none;
-}
-.mdbtn{
-    background-color: #008000;
-   
-}
-.footer {
-    margin-right: 242px;
-}
-@media only screen and (max-width: 1440px){
-       .page-header{
-            width: 100%;
-       }
-
-}
-
-@media only screen and (max-width: 1280px){
-    .card-header:first-child {
-        width: 100%;
-    }
-    .card-body{
-        width: auto;
-    }
-}
-
-@media only screen and (max-width: 1080px){
-       .page-header{
-            width: 100%;
-       }
-       .card-header:first-child {
-            width: auto;
-        }
-         .card-body{
-             width: auto;
-         }
-       
-       }
-@media only screen and (max-width: 820px){
-        .card-header:first-child {
-           border-radius: 2px 2px 0 0;
-           margin-top: 10px;
-           width: 100%;
-           font-size: 21px;
-         }
-
-         .card-body {
-           flex: 1 1 auto;
-           padding: 1.5rem;
-           margin-top: 10px;
-           margin-left: 0px;
-           position: relative;
-           width: 100%;
-           margin-left: 11px;
-         }
-
-}
-@media only screen and (max-width: 480px){
-    .dashboard{
-       font-size: 20px;
-       font-weight: 400;
-}
-    .card-body {
-           flex: 1 1 auto;
-           padding: 1.5rem;
-           position: relative;
-           width: auto;
-           margin-left: 11px;
-           margin: 0;
-        }
-        .card-header:first-child {
-          border-radius: 2px 2px 0 0;
-          margin-top: -13px;
-          width: 300px;
-          font-size: 21px;
-          color: #7D7A7A;
-        
-         }
-         .viewp{
-          
-            font-size: 15px;
-            padding-right:80px;
-         }
-         .sbmt{
-            width: 140px;
-            margin-left: -10px;
-        }
-        .btndiv{
-            margin-right: 20px;
-            margin-top: 10px;
-        }
-        .page-header {
-             width:310px;
-        }
-}
-</style>
 @endsection
 @section('page-header')
+<style>
+
+</style>
                         <!-- PAGE-HEADER -->
                             <div>
                                 <h1 class="dashboard page-title">Prescription Management</h1>
@@ -348,7 +127,7 @@ hr.new1 {
 
                              <form method="post" id="addnotes">
                                 @csrf 
-                              <h4 class="float-left">Physician Notes</h4><br><br>
+                              <h4 class="otherlabel">Physician Notes</h4><br><br>
 
                              <input type="text" class="form-control w-100" name="" value="" id="noteslist1" style="border-radius: 7px"disabled><br>
                               <!-- <h5 id="noteslist1"></h5> -->
@@ -365,7 +144,7 @@ hr.new1 {
                              </tbody>
                            </table> -->
                             <!-- <div id="noteslist1"></div> -->
-                             <h4 class="float-left">Pharmacist Note</h4><br><br>
+                             <h4 class="otherlabel">Pharmacist Note</h4><br><br>
 
                              <input type="text" class="form-control w-100" name="noteslist2" value="" id="noteslist2" style="border-radius: 7px" disabled>
 
@@ -378,7 +157,7 @@ hr.new1 {
                             </div>
 
                             
-                            <h4 class="float-left">Add Notes</h4><br><br>
+                            <h4 class="otherlabel">Add Notes</h4><br><br>
                             <div class="form-group">
                                <!-- <textarea class="form-control col-10 message" id="message1" rows="3" name="message" placeholder="Enter Information" value=""></textarea> -->
                                <input type="text" class="form-control w-100" style="border-radius: 7px" name="message" id="message1" placeholder="Enter Notes" value="" >
@@ -388,7 +167,7 @@ hr.new1 {
 
 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary clear ok" id="clear" data-dismiss="modal">Ok</button>
+                                    <!-- <button type="button" class="btn btn-primary clear ok" id="clear" data-dismiss="modal">Ok</button> -->
                                    <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
                                 </div>
                             </div>

@@ -1,232 +1,7 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
-<style>
-    .btn-lg {
-        min-width: 16.75rem !important;
-    }
+<link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
 
-    .form-label {
-        text-align: left !important;
-    }
-    .infodesign{
-        border: 1.5px solid grey;
-        border-radius: 10px;
-    }
-
-    .error{
-     	color: red;
-      /* margin-right: 179px; */
-    }
-    .valid{
-	    color: green;
-	
-   }
-   
-   .sbmt{
-    width: 424px;
-    margin-right: 20px;
-    float: left;
-    border-radius: 15px;
-    height: 40px;
-    border: none;
-
-}
-.medicined{
-  margin-right: 185px;
-  
-}
-#submit{
-    background-color: #008000!important;
-    border-radius: 15px;
-    border: none;
-
-
-}
-#prs_med_name{
-  width: 625px;
-}
-#prs_quantity{
-  width: 224px;
-  margin-left: -5px;
-}
-#patient_name{
-  height: 45px;
-}
-#addRow{
-  width: 866px;
-  float: left;
-  background-color: #7EC1EC;
-  border: none;
-  border-radius: 15px;
-  height: 40px;
-}
-.iconn {
-     margin-left: 731px;
-    
-} 
-
-.ti-trash:before {
-    content: "\e605";
-    position: absolute;
-    top: 7.4rem;
-    font-size: 15px;
-}
-.trashd{
-    top: -7.2rem!important;
-    position: absolute;
-    font-size: 15px!important;
-}
-.hidemm{
-  display: none;
-  
-}
-/* select.classic {
-  background-image:
-    linear-gradient(45deg, transparent 50%, blue 50%),
-    linear-gradient(135deg, blue 50%, transparent 50%),
-    linear-gradient(to right, skyblue, skyblue);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    100% 0;
-  background-size:
-    5px 5px,
-    5px 5px,
-    2.5em 2.5em;
-  background-repeat: no-repeat;
-} */
-
-select::-ms-expand {
-  display: none;
-}
-select {
-  appearance: none;
-  background-color: transparent;
-  margin: 0;
-  cursor: inherit;
-  
-}
-
-@media only screen and (max-width: 1536px){
-      .error {
-           margin-right: 179px;
-       }
-}
-@media only screen and (max-width: 1440px){
-       .page-header{
-            width: 100%;
-       }
-       .error {
-           margin-right: 179px;
-       }
- 
-
-}
-@media only screen and (max-width: 1180px){
-        #prs_med_name {
-          width: 450px;
-         }
-         #addRow {
-            width: 695px;
-         }
-         .sbmt {
-              width: 338px;
-        }
-}
-
-@media only screen and (max-width: 1080px){
-       .page-header{
-            width: 100%;
-       }
-       #prs_med_name {
-            width: 366px;
-        }
-        #addRow {
-             width: 608px;
-        }
-        .sbmt {
-             width: 295px;
-        }
-        .error {
-             margin-right: 179px;
-       }
-}
-@media only screen and (max-width: 820px){
-      #prs_med_name {
-          width: 229px;
-       }
-       #prs_quantity {
-          width: 146px;
-          margin-left: -5px;
-      }
-       #addRow {
-           width: 397px;
-       }
-       .sbmt {
-          width: 386px;
-      }
-
-}
-@media only screen and (max-width: 768px){
-     #prs_quantity {
-       width: 105px;
-       }
-       #addRow {
-        width: 352px;
-     }
-     .sbmt {
-       width: 352px;
-     }
-     .iconn {
-       margin-left: 305px;
-     }
-
-}
-
-
-@media only screen and (max-width: 480px) {
-      .dashboard{
-        font-size:20px;
-        color:white;
-        }
-        #prs_med_name{
-         width: 200px;
-         margin-bottom:18px;
-        }
-       #prs_quantity{
-         border-radius: 5px;
-          width: 200px;
-          margin-left: -3px;
-       }
-       #patient_name{
-          height: 45px;
-          width: 200px;
-          border-radius: 5px;
-
-        }
-        #prs_information{
-          border-radius: 5px;
-          width:240px;
-        }
-        #addRow{
-          width:260px;
-          margin-left:-15px;
-
-        }
-        .sbmt{
-             width: 180px;
-             margin-left:-15px;
-             margin-bottom:10px;
-             
-            }
-            .page-header {
-              width:310px;
-            }
-            textarea{
-              width:250px;
-            }
-}
-</style>
 @endsection
 @section('page-header')
 <!-- PAGE-HEADER -->
@@ -264,7 +39,7 @@ select {
             <div class="card-body">
                 <div id="message">
                 </div>
-                <form class="login100-form validate-form" enctype="multipart/form-data" id="pat_signup" method="post">
+                <form class="login100-form validate-form preform" enctype="multipart/form-data" id="pat_signup" method="post">
                     @csrf
             
                     <div class="form-group">
@@ -279,23 +54,23 @@ select {
                     
                       <i class="ti-trash iconn" id="removeRow" style="color: #4ec1ec"></i>
               
-                        <div class="row">
-                            <div class="col">
+                        <!-- <div class="row"> -->
+                            <!-- <div class="col"> -->
                                <input type="text" name="prs_med_name[]" class="form-control m-input" id="prs_med_name" placeholder="Medicine Name" autocomplete="off" />
                                
-                            </div>
-                            <div class="col">
-                                 <input type="text" name="prs_quantity[]" class="form-control m-input" id="prs_quantity"  placeholder="Quantity" autocomplete="off" />
-                            </div>
-                        </div><br>
-                        <div class="row">
+                            <!-- </div> -->
+                            <!-- <div class="col"> -->
+                                 <input type="text" name="prs_quantity[]" class="form-control m-input prs_quantity" id="prs_quantity"  placeholder="Quantity" autocomplete="off" />
+                            <!-- </div> -->
+                        <!-- </div><br> -->
+                        <!-- <div class="row"> -->
                           
-                            <div class="col">
+                            <!-- <div class="col"> -->
                                <textarea class="form-control col-10 prs_information" id="prs_information" rows="3" name="prs_information[]" placeholder="Enter Information"></textarea>
-                            </div>
+                            <!-- </div> -->
                                
                                 
-                        </div>
+                        <!-- </div> -->
                          
                        
                     </div><br>
@@ -334,15 +109,15 @@ select {
 
             <!-- <div class="box border " id="box"></div> -->
                    <h5 class="text-red hidemm" id="hidea"></h5>
-                    <button id="addRow" type="button" class="btn btn-info mb-3 mt-3 " >+ Add More Medicine Details</button>
+                    <button id="addRow" type="button">+ Add More Medicine Details</button>
 
-                    <div class="form-group">
-                       <a href="{{ url('prescription_management') }}" class="btn btn-danger btn-lg sbmt" data-dismiss="modal">
+                    <!-- <div class="form-group"> -->
+                       <a href="{{ url('prescription_management') }}" class="cancelbutton" data-dismiss="modal">
                            Cancel
                        </a>
                        <!--  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button> -->
-                       <input type="submit" class="btn btn-primary btn-lg sbmt" id="submit" name="submit" value="Submit">
-                    </div>
+                       <input type="submit" class="acceptbutton" id="submit" name="submit" value="Submit">
+                    <!-- </div> -->
             </form>
         </div>
     </div>
