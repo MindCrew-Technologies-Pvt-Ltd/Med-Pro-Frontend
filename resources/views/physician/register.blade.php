@@ -2,83 +2,13 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
+<link href="{{ URL::asset('assets/css/phy.css')}}" rel="stylesheet">
 <script src="{{ URL::asset('assets/js/formapi.js')}}"></script>
 <!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> -->
  <style>
-	
-.error{
-	color: red;
-	
-}
-.valid{
-	color: green;
-	
-}
-
-
 .zmdi {
 	color: #4ec1ec;
-	
-}
-.form-label{
-	font-size: 20px;
-}
-
-input{
-	margin-top: 20px;
-}
-.wrap-login100{
-	width: 420px;
-	border-radius:10px;
-}
-.agreeDiv{
-	margin-top: -40px;
-	margin-bottom: 10px;
-}
-
-.file {
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
-  position: absolute;
-}
-
-.file-input label {
-  display: block;
-  position: relative;
-  width: 323px;
-  height: 45px;
-  border-radius: 5px;
-  border: 1px solid #E2E6EB;
-  background: #F1F1F9;
-  /* box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4); */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #797785;
-  /* font-weight: bold; */
-  cursor: pointer;
-  transition: transform .2s ease-out;
-}
-
-.file-name {
-  position: absolute;
-  bottom: -35px;
-  left: 10px;
-  font-size: 0.85rem;
-  color: #555;
-}
-
-input:hover + label,
-input:focus + label {
-  transform: scale(1.02);
-}
-
-#imgfile{
-    padding-left: 110px; 
-    padding-top:5px; 
-    height:25px
 }
 .zmdi{
 	position: absolute;
@@ -86,7 +16,7 @@ input:focus + label {
 	right: 1rem;top: 1rem;
 
 }
-@media (max-width:450px) { 
+/*@media (max-width:450px) { 
 .wrap-login100{
 		width: 350px;
 	}
@@ -137,16 +67,12 @@ input:focus + label {
        height: 50px;
        width: 243px;
     }
-	.file-input label{
+	.file-input1 label{
 		width: 243px;
 		margin-left:10px;
 
 	}
-      .agreeDiv input[type=checkbox]{
-        margin-top: 40px;
-        margin-bottom: 20px;
-	
-      }
+    
        .agreeDiv{
         width: 100%;
 		margin-left: -10px;
@@ -165,9 +91,9 @@ input:focus + label {
 	   }
 
 		
-  }
+  }*/
 
-  @media (max-width:768px){}
+
 </style>
 
 @endsection
@@ -205,7 +131,7 @@ input:focus + label {
 								<!-- @csrf -->
 							
 								
-									  <h4 class="ml-6 mb-4 headtext">Physician Registration</h4>
+									  <h4 class="mb-4 headtext">Physician Registration</h4>
                                  <div class="text-center" id="message">
                                    
                                  </div>
@@ -282,13 +208,15 @@ input:focus + label {
 									        </div>
                                     </div> -->
                                     <!-- file -->
-									<div class="file-input mt-4">
-                                           <input type="file" id="file"  name="file" class="file">
+                                    <!-- <div class="form-group" style="position:relative;"> -->
+									<div class="file-input1">
+                                           <input type="file" id="file"  name="file" class="file_reg">
                                            <label for="file">
-                                             Upload License Doc<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt="">
-                                             <p class="file-name"></p>
+                                             Upload License Doc<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile_phy_reg" alt="">
+                                             <p class="file-name_reg"></p>
                                            </label>
                                    </div>
+                                   <!-- </div> -->
 
                                  <div class="text-center agreeDiv" >
 									<label class="text-dark mt-2">
@@ -301,8 +229,8 @@ input:focus + label {
 
 
 
-								<div class="container-login100-form-btn" style="margin-top: -25px;">
-									<input class="login100-form-btn btn-primary" type="submit" id="submit" value="Submit" style="margin-top: -20px;">
+								<div class="container-login100-form-btn" >
+									<input class="login100-form-btn btn-primary" type="submit" style="background-color: #7EC1EC!important;" id="submit" value="Submit" >
 									</input>
 								</div>
 								<div class="text-center pt-3">

@@ -8,10 +8,7 @@
     border: none;
     width:100%;
   }
-  #notelist{
-    height: 400px;
-    overflow-y:scroll;
-  }
+
   #pharmacist {
     padding-left: 10px;
     border: none;
@@ -115,7 +112,7 @@
 </style>
 <!-- PAGE-HEADER -->
 <div>
-  <h1 class="dashboard page-title">Prescription management</h1>
+  <h1 class="dashboard page-title">Prescription Details</h1>
   <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -170,13 +167,12 @@
                   <tr>
                     <th class="wd-15p">serial number</th>
                     <th class="wd-15p">Name of the medicine</th>
-                    <th class="wd-15p">Requested Qty</th>
+                    <th class="wd-15p">Quantity</th>
                     <th class="wd-20p">Availibility</th>
-                     <th class="wd-15p">Qty Of Medicine</th>
                     <th class="wd-15p">Insurance Availabilty</th>
                     <th class="wd-15p">Insurance %</th>
                     <th class="wd-10p">Unit Cost</th>
-                    <th class="wd-10p">Final Cost</th>
+                    
                   </tr>
                 </thead>
                 <tbody id="prestable">
@@ -185,52 +181,30 @@
               </table>
               <div class="shipcharge">
                 <h7 class="">Shipping charges</h7>
-                <input type="text" id="ship" name="ship" value="" onchange="addvalue()">
+                <input type="text" id="ship" name="ship" value="" disabled onchange="addvalue()">
                 <!-- <h7 class=""></h7> -->
               </div><br>
 
               <div class="totalcharges">
                 <h7>Total charges</h7>
-                <h7 class="total_amount"></h7>
+                <h7 class="total_amount" id="total_amount"></h7>
               </div>
 
             </div>
             <!-- table end -->
-            <div class="table-responsive mt-7" id="notelist">
-              <table class="table table-striped table-bordered text-nowrap w-100" id="noteslist1">
-                                <thead>
-                                   <tr>
-                                      <th scope="col">Notes</th>
-                                   </tr>
-                                </thead>
-                               <tbody id="tbodynotes">
 
-                                </tbody>
-              </table>
-            </div>
-            <!-- <h4 class="float-left ppname">Physician Note</h4><br><br>
-            <input class="input100" type="text" name="physician" id="physician" placeholder="Physician" disabled><br><br>
-            <h4 class="float-left ppname">Pharmacist Note</h4><br><br>
-            <input class="input100" type="text" name="pharmacist" id="pharmacist" placeholder="pharmacist" disabled> -->
-            <!-- <i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 3rem;top: 28.7rem;"></i> -->
+ 
+            <a class="btn  btn-primary mt-5 mb-3 float-right border-0" href="{{url('pharmacist_prescription')}}">Back</a>
 
-
-            <div class="form-group mt-6" id="Create">
-              <input type="text" class="form-control" name="message" id="message1" placeholder="Enter Notes">
-              <p class="text-red meshide" id="messagee">Please enter notes</p>
-            </div>
-            <button class="btn  btn-primary mt-5 mb-3 float-right border-0" id="save">Save</button>
-             <!--  href="{{url('pharmacist_prescription')}} -->
-            <div class="buttons mt-7">
+           <!--  <div class="buttons mt-7">
               <button class="btn btn-primary border-0" id="sendquatation">Send Quatation</button>
-               <button class="btn btn-primary border-0  hide" id="show">Add notes</button>
-            </div>
+              <button class="btn btn-primary border-0  hide" id="show">Add notes</button>
+            </div> -->
 
 
           </form>
-            <!-- <div class="buttons mt-7">
-                
-            </div> -->
+
+
         </div>
         <!-- card-body end -->
       </div>
@@ -277,10 +251,11 @@
   console.log("arrr", arr)
   var scrt_var = arr;
   //   console.log("index5",arr[5])
-
   var base_path = "http://3.220.132.29/medpro/";
   var api_url = "http://3.220.132.29:3000/api/";
 
+
+   /* view patient prescripttion details api called*/
   $.ajax({
     url: api_url + "viewPsntPhyPresDetails",
     type: "post",
@@ -291,15 +266,9 @@
 
   }).done(function(res) {
     console.log("respons", res);
-    //   console.log("respons,data",res.data);
-
     pat = res.data.patient_id;
-    // prs_details1 = [{}];
     for (var i = 0; i <= res.data.prs_details.length - 1; i++) {
-
-
       prs_details1.push({
-
         quot_med_id: res.data.prs_details[i]._id,
         quot_med_name: res.data.prs_details[i].prs_med_name,
         quot_med_quantity: res.data.prs_details[i].prs_quantity,
@@ -310,44 +279,73 @@
       })
       console.log(prs_details1, res.data.prs_details);
       for (let key of prs_details1) {
-        
         obj = {
           quot_med_id: key._id,
           quot_med_name: key.prs_med_name,
           quot_med_quantity: key.prs_quantity
-          // quot_med_availty: availibility,
-          // quot_med_inc_cover: insurance_co,
-          // quot_med_cost: tat,
         }
 
       }
       prs_det.push(obj)
       console.log(prs_det, 'prs_det');
     }
-
-
     console.log(prs_det);
     //     return false;
     $("#phy_full_name").val(res.data.phy_full_name);
     $("#psnt_full_name").val(res.data.psnt_full_name);
     $("#psnt_address").val(res.data.psnt_address);
     $("#createdAt").val(res.data.createdAt);
-    var rows = '';
+    
     res.data.prs_details.map((e, i) => {
-      //    console.log("prescription ID",e.presciption_id)
-      // <td> '+e.prs_information+'</td>
       i++;
-      rows = rows + '<tr><td>' + i + '</td><td>' + e.prs_med_name + '</td><td>' + e.prs_quantity + '</td><td><select class="form-control" onchange="selectListEvent(event , \'' + e._id + '\')"  class="availibility" name="avail"><option >Yes / No</option><option value="yes">Yes</option><option value="no">No</option><option value="partial">Partial</option></select></td><td><input type="text" value="" name="med_qty" class="cost" id="med_qty" onchange="selectListEvent(event , \'' + e._id + '\')" ></td><td><select class="form-control" class="insurance_co" onchange="selectListEvent(event , \'' + e._id + '\')" name="inso" ><option>Yes / No</option><option value="yes">Yes</option><option value="no">No</option></select></td><td><input type="text" value="" name="ins_per" class="cost" id="ins_per" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" name="cost" class="cost" id="cost" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" value="" name="final_cost" class="cost" id="final_cost"onchange="selectListEvent(event , \'' + e._id + '\')" ></td></tr>'
-      
-
     });
-    $("#prestable").html(rows);
 
+
+
+    // $("#prestable").html(rows);
   });
 
 
-  
-  function selectListEvent(e, id) {
+  $(document).ready(function(){
+     var  pharm_id2;
+     var arr1 = window.location.href.split("/");
+     var pham_det=localStorage.getItem('pharm_det');
+     var deta =JSON.parse(pham_det);
+     console.log("deta",deta)
+     var pharm_id2=deta._id;
+     var rows = '';
+  console.log("arrr", arr1)
+    $.ajax({
+        url: api_url + "QuotationDetails",
+        type: "post",
+        dataType: 'json',
+        data: {
+          phamaciest_id:pharm_id2,
+          presciption_id: arr1[5]
+        },
+
+      }).done(function(res) {
+        console.log("respons", res.data);
+
+          var ship_charge = res.data.quot_shping_chrge;
+          var total_amount = res.data.quot_total_chrge;
+           $('#ship').val(ship_charge);
+           $('#total_amount').html(total_amount)
+            res.data.quot_prs_details.map((v,i)=>{
+
+        console.log(v,i)
+        rows= rows +'<tr><td>'+(i+1)+'</td><td>'+v.quot_med_name+'</td><td>'+v.quot_med_quantity+'</td><td>'+v.quot_med_availty+'</td><td>'+v.quot_med_inc_cover+'</td><td>'+v.quot_ins_per+'</td><td>'+v.quot_med_cost+'</td></tr>'
+          })
+        
+        $("#prestable").html(rows) 
+        
+        });
+
+   
+  });
+
+
+  function selectListEvent(e,id) {
     e.preventDefault();
    var qty =0;
    var total=0;
@@ -369,34 +367,24 @@
 
        // console.dir(e.target.previousSibling)
       if(e.target.value == "yes"){
-        // alert('yes')
-         e.target.parentNode.parentNode.childNodes[4].childNodes[0].removeAttribute("disabled", "true");;
-         e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
-          e.target.parentNode.parentNode.childNodes[7].childNodes[0].removeAttribute("disabled", "true");
-         e.target.parentNode.parentNode.childNodes[8].childNodes[0].removeAttribute("disabled", "true");
-      // med_qty =prs_details1[medInd].quot_med_quantity;
+
+        console.log(prs_details1[medInd].quot_med_quantity)
+      med_qty =prs_details1[medInd].quot_med_quantity;
            
       }
       else if(e.target.value == "no"){
-         // alert('no')
-         /*4,6,7,8*/
-         e.target.parentNode.parentNode.childNodes[4].childNodes[0].setAttribute("disabled", "true");;
-         e.target.parentNode.parentNode.childNodes[6].childNodes[0].setAttribute("disabled", "true");
-          e.target.parentNode.parentNode.childNodes[7].childNodes[0].setAttribute("disabled", "true");
-         e.target.parentNode.parentNode.childNodes[8].childNodes[0].setAttribute("disabled", "true");
+         
+      med_qty=0
 
+        
       }else if(e.target.value == "partial"){
-                 
-      // med_qty=prs_details1[medInd].quot_med_quantity; 
-      e.target.parentNode.parentNode.childNodes[4].childNodes[0].removeAttribute("disabled", "true");;
-      e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
-      e.target.parentNode.parentNode.childNodes[7].childNodes[0].removeAttribute("disabled", "true");
-      e.target.parentNode.parentNode.childNodes[8].childNodes[0].removeAttribute("disabled", "true");
+ 
+      med_qty=prs_details1[medInd].quot_med_quantity; 
+         
       }
     }
     if(e.target.name ==='med_qty'){
        prs_details1[medInd].quot_med_quantity = e.target.value
-        addvalue(id)
     }
 
     if (e.target.name === 'inso') {
@@ -404,7 +392,6 @@
     }
     if(e.target.name ==='ins_per'){
        prs_details1[medInd].quot_ins_per = e.target.value
-        addvalue(id)
     }
     if (e.target.name === 'cost') {
       console.log(prs_details1[medInd]);
@@ -426,8 +413,6 @@
     var total = 0;
     var ship = 0
     var final_total=0;
-    var ins_per=0;
-    var prev_total=0;
     // $('table tr').each(function() {
     //   if ($(this).find('td').length && $(this).find('td input').length) {
     //     var quant = parseFloat($(this).find('td input').eq(0).val()),
@@ -448,51 +433,18 @@
     // var total = 0;
     prs_details1.map(m => {
       // return total = total + (parseFloat(m.quot_med_cost) * m.quot_med_quantity)
-
-      let med_cost =parseFloat(m.quot_med_cost);
-      let med_quantity =parseFloat(m.quot_med_quantity);
-
-           if (med_cost == NaN || med_cost === ''|| med_cost === undefined) {
-               med_cost =0;
-           }
-            if (med_quantity == NaN || med_quantity === '' || med_quantity === undefined) {
-               med_quantity =0;
-           }
-            if (parseFloat(total) == NaN || total === ''|| total === undefined) {
-               total =0;
-           }
-            console.log(med_cost,med_quantity,total)
-      total = total + (med_cost * med_quantity);
-
-    ins_per =parseFloat(m.quot_ins_per);
- if (ins_per == NaN || ins_per === '' || ins_per === undefined) {
-               ins_per =0;
-      }
-     // ins_per =parseFloat(m.quot_ins_per);
-    
-     if (parseFloat(final_total) == NaN || final_total === '' || final_total === undefined) {
-               final_total =0;
-           }
-           if(ins_per){
-             final_total= total-(total *((ins_per)*.01));
-             prev_total=final_total;
-           }else if(ins_per==0){
-            final_total= total-(total *((ins_per)*.01));
-             prev_total=final_total;
-           }else{
-            // final_total= total;
-            final_total=prev_total;
-           }
+      total = total + (parseFloat(m.quot_med_cost) * m.quot_med_quantity);
      
-      
-       console.log(med_cost,med_quantity,ins_per,total,final_total)
-      
+      final_total= total-(total *((parseFloat(m.quot_ins_per))*.01));
+      console.log('--total',total)
+       
+      // qty1.push(final_total)
        if(final_total == 0){
-           total=0;
+        total=0;
        }else{
         // total=final_total;
        }
-      final_total
+      // alert(qty1)
       console.log('final total',final_total)
     })
 
@@ -617,34 +569,6 @@ if(rowIndex >= 0)
   // end adding field calculator
 
   //--------------------------------------------------
-
-  /*save details to localstorage*/
-
-  $('#save').on('click',function(e){
-
-    e.preventDefault();
-    // alert('saved')
-    var phy_full_name = $('phy_full_name').val();
-    var psnt_full_name=$('psnt_full_name').val();
-    var psnt_address = $('psnt_address').val();
-
-    var presc_det ={
-      'prescription_id':arr[5],
-      'phy_full_name':phy_full_name,
-      'psnt_full_name':psnt_full_name,
-      'psnt_address':psnt_address,
-      "quot_shping_chrge": shap,
-      "quot_total_chrge": tat,
-      "quot_prs_details":JSON.stringify(prs_details1)
-    } 
-
-     localStorage.setItem('presc_det',presc_det);
-    var pres_det =localStorage.getItem('presc_det');
-    if(pres_det){
-      alert('Data saved Successfully');
-    }
-
-  })
   // send Quotation api call
   $('#sendquatation').on('click', function(evt) {
     // alert("helll")
@@ -713,92 +637,29 @@ if(rowIndex >= 0)
     dataType: 'json',
     data: {
       prescription_id: arr1[5],
+
     },
 
   }).done(function(res1) {
     console.log("res1", res1)
     let data1 = res1.data.message;
     // console.log("data1",data1);
-    // $("#physician").val(res1.data.message); 
-   var row='';
+    // $("#physician").val(res1.data.message) ; 
+
 
     res1.data.map((e, i) => {
 
 
-          if(e.sender_type =='Phamaciest'){
-         // row=row + '<tr><td><li class="float:left">'+e.message+'</li></td><tr>'
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:left;list-style-type:none;    background-color: #f1f1f9;">'+e.message+'</li></td><tr>') ;
-            } else if(e.sender_type =='physician'){
-          // row=row + '<tr><td><li class="float:right">'+e.message+'</li></td><tr>'
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:right;list-style-type:none;background-color: #e3e0ea;">'+e.message+'</li></td><tr>') ;
-            }
-      // $("#physician").val(e.message);
-      // $("#pharmacist").val(e.message);
+
+      $("#physician").val(e.message);
+      $("#pharmacist").val(e.message);
 
 
     });
 
   });
 </script>
-<script>
-  $('#Create').hide();
-  $(document).ready(function() {
 
-    $("#show").click(function() {
-      $("#Create").show();
-    });
-  });
-
-  var api_url = "http://3.220.132.29:3000/api/";
-  var base_path = "http://3.220.132.29/medpro/";
-  let phama = localStorage.getItem('pharm_det');
-  var obja = JSON.parse(phama);
-  console.log("phama", phama)
-  var pharm_id = obj._id;
-  $('#show').on('click', function(event) {
-    event.preventDefault();
-
-    var arr5 = [];
-    arr5 = window.location.href.split("/");
-    /*formvalidation for signup form*/
-    var message1 = $('#message1').val();
-    var prescription_id = $('#prescription_id').val();
-    var sender_id = $('#sender_id').val();
-    var sender_type = $('#sender_type').val();
-
-    var formdata = {
-      prescription_id: arr5[5],
-      sender_id: pharm_id,
-      message: message1,
-      sender_type: sender_type,
-    };
-    //    console.log(formdata);
-    //    return false;
-
-    if (message1 != "") {
-      $.ajax({
-        type: "POST",
-        url: api_url + "addPresNotes",
-        data: formdata,
-        dataType: "json",
-      }).done(function(res) {
-        // alert('done');
-
-        console.log(res);
-        //   return false;
-        if (res.status == true) {
-          $('#messagee').html(res.message).addClass('alert alert-success');
-          // window.location.href = base_path + "accept_prescription/" + arr5[5];
-        } else {
-          $('#messagee').html(res.message).removeClass('meshide');
-        }
-      });
-    } else {
-      // $('#messagee').html('<p style="color:red;">'+'please enter notes'+'</p>');
-    }
-
-  });
-</script>
 
 
 

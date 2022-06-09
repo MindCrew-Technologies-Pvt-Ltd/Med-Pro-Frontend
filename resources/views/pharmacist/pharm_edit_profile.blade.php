@@ -2,7 +2,8 @@
 @section('css')
 @endsection
 @section('page-header')
-<!-- <script src="https://kit.fontawesome.com/8ebca7c608.js" crossorigin="anonymous"></script> -->
+<script src="https://kit.fontawesome.com/8ebca7c608.js" crossorigin="anonymous"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- map api script called here -->
 <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
@@ -42,7 +43,15 @@ $(document).on('change', '#'+searchInput, function () {
          height: 80px;
          width: 80px;
          margin-right: 330px;
+          position: relative;
+    top: 0rem;
+    left: 1rem;
      }
+   /*  .glyphicon-pencil{
+    color: #7ec1ec;
+    top: -2.5rem;
+    right: -6rem;
+  }*/
      .connewpas {
     padding-right: 57%;
     }
@@ -104,9 +113,10 @@ $(document).on('change', '#'+searchInput, function () {
     }
     
      label{
-        padding-right: 82%;
+       /* padding-right: 82%;*/
         font-size: 17px; 
         color: #7d7a7a;
+        float:left;
         }
         .emaill{
           margin-right: 122px;
@@ -195,7 +205,18 @@ $(document).on('change', '#'+searchInput, function () {
         font-size: 0.85rem;
         color: #555;
        } */
-
+/*#img_file{
+ 
+    position: absolute;
+    float: left;
+    left: 14.2rem;
+    top: 1rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    color: #7ec1ec;
+  }*/
 
 
      @media (min-width: 992px){
@@ -225,9 +246,22 @@ $(document).on('change', '#'+searchInput, function () {
 
       <!-- row start -->
          <div class="row pb-6">
-               <div class="col-sm col-lg">
-                 <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="proimg" alt="">
-               </div>
+            <form id="jsform" method="post" enctype="multipart/form-data"style="display: flex;">
+                @csrf 
+              <div class="col-sm col-lg profile-pic">
+                 
+                 <input type="hidden" value="" name="phamaciest_id" id="phamaciest_id">
+                   <input id="img_file" name="image" type="file" class="glyphicon glyphicon-pencil" />
+                  <!--  <label for="file">
+      Choose Image<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile_phy_reg" alt="">
+      <p class="file-name_reg"></p>
+        </label> -->
+                  <img src="" class="proimg" id="output"  alt="">
+                  <input type="submit" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload"  style="border-radius:10px;display:hidden" name="submit">
+              </div>
+
+          </form>
+
         </div>
         <div id="message"></div>
 
@@ -397,7 +431,9 @@ $(document).on('change', '#'+searchInput, function () {
         $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
 })
-
+$("input[type='file']").change(function(){
+   $('.profile-pic1').show();
+})
 //file
 const file = document.querySelector('#file');
 file.addEventListener('change', (e) => {
@@ -426,6 +462,7 @@ file.addEventListener('change', (e) => {
          var obj = JSON.parse(user_data4);
          
          var pharm_id =obj._id;
+         $('#phamaciest_id').val(pharm_id);
         //  window.location.href =base_path +"physician_profile/"+phy_id;
         //     console.log("pharmCY  details",obj);
             // alert(phy_id)
@@ -454,6 +491,7 @@ file.addEventListener('change', (e) => {
               $('#password').val("********");
               $('#registration_number').val(res.data.pham_registration_num);
               $('#registration_file').attr('src',res.data.pham_registration_file);
+              $('#output').attr('src',res.data.pham_img)
     });
     
 
@@ -597,6 +635,32 @@ file.addEventListener('change', (e) => {
    }
 
   });
+
+</script>
+<script>
+  
+     $('#jsform').on('submit',function (e) {
+        e.preventDefault();
+        alert('submit')
+       $.ajax({
+        url: api_url +"phamUploadImage",
+        type: "POST",
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        
+      }).done(function(res) {
+           if(res.status == true){
+            $('#message').html(res.message).addClass('alert alert-success');
+           }else{
+             $('#message').html(res.message).addClass('alert alert-danger');
+           }
+           // console.log(res);
+           // return false;
+
+      });
+        $('.profile-pic1').hide();
+     });
 
 </script>
 @endsection

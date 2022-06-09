@@ -22,9 +22,11 @@ input{
     color: #ff0000;
 }
 .wrap-login100{
-
-	width: 456px;
-	 height:550px;
+     width: 28.5rem;
+     height:34.375rem;
+	/* width: 456px;
+	 height:550px;*/
+	 margin-top: 5%;
 }
 .zmdi-eye-off{
 	position: absolute;
@@ -75,7 +77,43 @@ input[type=password] {
 	align-items: center;
 	margin-left: 50px;
 }
+@media only screen and (max-width: 990px){
+	.zmdi-eye{
+		    position: absolute;
+            top: 1rem;
+            right: 4rem;
+	}
+	.zmdi-eye-off{
+           right: 4rem;
 
+    }
+    .forgot {
+    margin-right: 27px;
+    }
+    #loginbtn {
+    margin-left: -104px;
+    }
+
+}
+
+@media only screen and (max-width: 915px){
+	.zmdi-eye{
+		    position: absolute;
+            top: 1rem;
+            right: 4rem;
+	}
+	.zmdi-eye-off{
+           right: 4rem;
+
+    }
+    .forgot {
+    margin-right: 27px;
+    }
+    #loginbtn {
+    margin-left: -104px;
+    }
+
+}
 
 @media only screen and (max-width: 820px){
         	#loginbtn {
@@ -200,7 +238,7 @@ input[type=password] {
 
 									
                                  <input class="input100" type="password" name="pass" id="password" placeholder="Password" autocomplete="off">
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty()"  ></i>
+                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty()"></i>
 								
 
 								<!-- 	<input class="input100" type="password" name="pass" id="password" placeholder="Password">

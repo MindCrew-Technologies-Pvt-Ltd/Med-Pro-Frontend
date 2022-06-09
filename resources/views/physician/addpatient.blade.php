@@ -1,16 +1,24 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- map api script called here -->
  <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
   <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
+
+</script>
   <script>
+
    var searchInput = 'psnt_address';
 
 $(document).ready(function () {
-    
+    var map;  
+    var marker; 
     var autocomplete;
     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
         types: ['geocode'],
@@ -23,7 +31,57 @@ $(document).ready(function () {
         
         document.getElementById('psnt_lat').innerHTML = near_place.geometry.location.lat();
         document.getElementById('psnt_long').innerHTML = near_place.geometry.location.lng();
+              var lat1=document.getElementById('psnt_lat').value 
+              var long1=document.getElementById('psnt_long').value
+              let map1;
+              map1 = new google.maps.Map(document.getElementById("map-canvas"), {
+                center: new google.maps.LatLng(lat1,long1),
+                zoom: 16,
+                });
+                map1.setCenter(new google.maps.LatLng(lat1,long1));
+                var myCenter=new google.maps.LatLng(lat1,long1);
+               var marker=new google.maps.Marker({
+                position:myCenter,
+               draggable: true 
+
+               });
+              marker.setMap(map1);
+
+              var geocoder1 = new google.maps.Geocoder();
+
+              geocoder1.geocode({'latLng': myCenter }, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+    console.log(results[0])
+$('#psnt_lat,#psnt_long').show();
+$('#psnt_address').val(results[0].formatted_address);
+$('#psnt_lat').val(marker.getPosition().lat());
+$('#psnt_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+     }
+   }
+});
+google.maps.event.addListener(marker, 'dragend', function() {
+
+geocoder1.geocode({'latLng': marker.getPosition()}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+$('#psnt_address').val(results[0].formatted_address);
+$('#psnt_lat').val(marker.getPosition().lat());
+$('#psnt_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+}
+}
+});
+});
     });
+
+    
+   
+
+       
 });
 $(document).on('change', '#'+searchInput, function () {
     document.getElementById('psnt_lat').innerHTML = '';
@@ -31,13 +89,95 @@ $(document).on('change', '#'+searchInput, function () {
     
     document.getElementById('psnt_lat').innerHTML = '';
     document.getElementById('psnt_long').innerHTML = '';
+    // var address= document.getElementById(searchInput).value;
+    // console.log(address)
 });
+ 
+var lat=$('#psnt_lat').val();
+var long= $('#psnt_long').val();  
+
+var myCenter=new google.maps.LatLng(lat,long);
+var geocoder = new google.maps.Geocoder();
+var infowindow = new google.maps.InfoWindow();
+
+var marker=new google.maps.Marker({
+    position:myCenter,
+    draggable: true 
+
+});
+function initialize() {
+  var mapProp = {
+      center:myCenter,
+      zoom: 18,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+  map=new google.maps.Map(document.getElementById("map-canvas"),mapProp);
+  marker.setMap(map);
+   
+ 
+  google.maps.event.addListener(marker, 'click', function() {
+      
+    infowindow.setContent(contentString);
+    infowindow.open(map, marker);
+    
+  }); 
+  
+  
+};
+
+geocoder.geocode({'latLng': myCenter }, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+    console.log(results[0])
+$('#psnt_lat,#psnt_long').show();
+$('#psnt_address').val(results[0].formatted_address);
+$('#psnt_lat').val(marker.getPosition().lat());
+$('#psnt_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+     }
+   }
+});
+google.maps.event.addListener(marker, 'dragend', function() {
+
+geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+$('#psnt_address').val(results[0].formatted_address);
+$('#psnt_lat').val(marker.getPosition().lat());
+$('#psnt_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+}
+}
+});
+});
+google.maps.event.addDomListener(window, 'load', initialize);
+
+google.maps.event.addDomListener(window, "resize", resizingMap());
+
+
+    $('#largeModal').on('shown.bs.modal', function() {
+    resizeMap();
+  });
+
+ function resizeMap() {
+   if(typeof map =="undefined") return;
+   setTimeout( function(){resizingMap();} , 400);
+}
+
+function resizingMap() {
+   if(typeof map =="undefined") return;
+   var center = map.getCenter();
+   google.maps.event.trigger(map, "resize");
+   map.setCenter(center); 
+}
+
+
   </script>
 
 
-<style>
-  
-</style>
 @endsection
 @section('page-header')
                         <!-- PAGE-HEADER -->
@@ -134,9 +274,12 @@ $(document).on('change', '#'+searchInput, function () {
                                                 <input class="form-control" name="psnt_long" type="hidden" value="" id="psnt_long" placeholder="*Longitude" autocomplete="off">
                                                 </div>
                                                 
-                                                <div class="form-group">
+                                                <div class="form-group"style="position:relative;">
                                                             <label class="form-label"></label>
+                                                  
+                                                
                                                 <textarea class="form-control" name="psnt_address" id="psnt_address" placeholder="*Patient Address" autocomplete="off"></textarea>
+                                               <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:14rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
                                                 </div>
                                                
                                                 <div class="form-group">
@@ -174,7 +317,28 @@ $(document).on('change', '#'+searchInput, function () {
             </div>
                       
                         <!-- ROW-1 CLOSED -->   
-		   
+		<!-- LARGE MODAL -->
+<div id="largeModal" class="modal fade">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header pd-x-20">
+                <h6 class="modal-title">Map Preview</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pd-20">
+                <h5 class=" lh-3 mg-b-20"><a href="" class="font-weight-bold"></a></h5>
+                <!-- map added here -->
+                <div class="col-md-12 modal_body_map">
+                    <div id="map-canvas" class="" style="width:700px;height:480px"></div>
+               </div>
+            </div><!-- modal-body -->
+            
+        </div>
+    </div><!-- MODAL DIALOG -->
+</div>
+<!-- LARGE MODAL CLOSED -->   
 	
 @endsection
 @section('js')
@@ -228,6 +392,7 @@ let confpassword = document.querySelector("#psnt_confpassword");
  
  
 </script>
+
 <script>
     var base_path="http://3.220.132.29/medpro/"
     var api_url="http://3.220.132.29:3000/api/";
@@ -388,7 +553,59 @@ let confpassword = document.querySelector("#psnt_confpassword");
   });
 
 
-</script>
+</script><!-- 
+<script>
+$('#add_icon').onclick(function () {
+    console.log('here')
+var map;
+var marker;
+var myLatlng = new google.maps.LatLng(20.268455824834792,85.84099235520011);
+var geocoder = new google.maps.Geocoder();
+var infowindow = new google.maps.InfoWindow();
+function initialize(){
+var mapOptions = {
+zoom: 18,
+center: myLatlng,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+map = new google.maps.Map(document.getElementById("map"), mapOptions);
+marker = new google.maps.Marker({
+map: map,
+position: myLatlng,
+draggable: true 
+}); 
+
+geocoder.geocode({'latLng': myLatlng }, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+    console.log(results[0])
+$('#latitude,#longitude').show();
+$('#address').val(results[0].formatted_address);
+$('#latitude').val(marker.getPosition().lat());
+$('#longitude').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+     }
+   }
+});
+google.maps.event.addListener(marker, 'dragend', function() {
+
+geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+$('#address').val(results[0].formatted_address);
+$('#latitude').val(marker.getPosition().lat());
+$('#longitude').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+}
+}
+});
+});
+google.maps.event.addDomListener(window, 'load', initialize);
+}
+});
+</script> -->
 
 
 @endsection

@@ -1,7 +1,10 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- map api script called here -->
  <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
   <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
@@ -11,14 +14,38 @@
 
 
 <script>
-
+   const features=[];
+   const address=[];
+   var InforObj = [];
    var searchInput = 'pac-input';
-$(document).ready(function () {
-    
+   $(document).ready(function () {
+    var base_path = "http://3.220.132.29/medpro/";
+    var api_url="http://3.220.132.29:3000/api/";
+
     var autocomplete;
     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
         types: ['geocode'],
     });
+
+     $.ajax({
+          type: "POST",
+          url: api_url+"phyPhamList",
+          
+        }).done(function (res) {
+        
+           // res.data.map((v,i)=>console.log(v.location.latitude,v.location.longitude));
+           res.data.map((v,i)=>{
+              // console.log(v.location.latitude,v.location.longitude)
+             let obj={
+                      "lat":v.location.latitude,
+                      "lng":v.location.longitude
+                };
+              let add = {address : v.address} 
+                features.push(obj);
+                address.push(add);
+           }); 
+        });
+     console.log(features,address);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var near_place = autocomplete.getPlace();
         document.getElementById('psnt_lat').value = near_place.geometry.location.lat();
@@ -36,97 +63,79 @@ $(document).ready(function () {
                 zoom: 16,
                 });
 
-                const features = [
-    {
-      position: new google.maps.LatLng(22.71, 75.85),
-      // type: "info",
-    },    {
-      position: new google.maps.LatLng(22.67, 75.88),
-      // type: "info",
-    },    {
-      position: new google.maps.LatLng(-33.91747, 151.22912),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.9191, 151.22907),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91725, 151.23011),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(22.754, 75.866),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(22.756, 75.867),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91682, 151.23149),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.9179, 151.23463),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91666, 151.23468),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.916988, 151.23364),
-      // type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-      // type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-      // type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-      // type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-      // type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-      // type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-      // type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-      // type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-      // type: "library",
-    },
-  ];
-                var pinImage = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/red-dot.png");
+
+       
+
+  //               const features = [
+  //   {
+  //     position: new google.maps.LatLng(22.71, 75.85),
+     
+  //   },    {
+  //     position: new google.maps.LatLng(22.6737, 75.8800),
+    
+  //   },
+  //    {
+  //     position: new google.maps.LatLng(22.6737, 75.8804),
+     
+  //   },  
+  //   {
+  //     position: new google.maps.LatLng(22.6737, 75.885),
+     
+  //   },
+  //   {
+  //     position: new google.maps.LatLng(22.6737, 75.886),
+     
+  //   },   
+  //   {
+  //     position: new google.maps.LatLng(22.754, 75.866),
+      
+  //   },
+  //   {
+  //     position: new google.maps.LatLng(22.756, 75.867),
+     
+  //   }   
+  // ];
+        var pinImage = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/red-dot.png");
+
+                 const svgMarker = {
+    path: "M13.9 18H10.1C9.76863 18 9.5 17.7314 9.5 17.4V15.1C9.5 14.7686 9.23137 14.5 8.9 14.5H6.6C6.26863 14.5 6 14.2314 6 13.9V10.1C6 9.76863 6.26863 9.5 6.6 9.5H8.9C9.23137 9.5 9.5 9.23137 9.5 8.9V6.6C9.5 6.26863 9.76863 6 10.1 6H13.9C14.2314 6 14.5 6.26863 14.5 6.6V8.9C14.5 9.23137 14.7686 9.5 15.1 9.5H17.4C17.7314 9.5 18 9.76863 18 10.1V13.9C18 14.2314 17.7314 14.5 17.4 14.5H15.1C14.7686 14.5 14.5 14.7686 14.5 15.1V17.4C14.5 17.7314 14.2314 18 13.9 18Z",
+    fillColor: "Red",
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 3,
+    anchor: new google.maps.Point(15, 30),
+  };
+     var geocoder = new google.maps.Geocoder();
+    var infowindow = new google.maps.InfoWindow();
+
   for (let i = 0; i < features.length; i++) {
+
+    var contentString = '<div id="content">Location:<h5>' + address[i].address +
+                        '</h5></div>';
+
     const marker = new google.maps.Marker({
-      position: features[i].position,
-      // icon: icons[features[i].type].icon,
-      icon:pinImage,
-      radius:200,
+      position: features[i],//features[i].position
+       icon:svgMarker,
       map: map,
-    draggable: true,
     animation: google.maps.Animation.DROP,
     });
-    marker.addListener("click", toggleBounce);
+     
+     
+    const infowindow = new google.maps.InfoWindow({
+                        content: contentString,
+                        maxWidth: 200
+                });
+
+    marker.addListener('click', function () {
+                     
+                        infowindow.open(marker.get('map'), marker);
+                    });
+
+
+    
   }
-  // alert(lat)
-  // alert(long)
+  
     });
     $(document).on('change', '#'+searchInput, function () {
     document.getElementById('psnt_lat').innerHTML = '';
@@ -250,13 +259,6 @@ $(document).ready(function () {
 //   }
 // }
 
-function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
-}
 // window.initMap = initMap;
 </script>
 <style>

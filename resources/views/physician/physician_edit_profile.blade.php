@@ -3,16 +3,56 @@
 @endsection
 @section('page-header')
 <script src="https://kit.fontawesome.com/8ebca7c608.js" crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
+  /*css for profile pic*/
+ 
+  
+ 
+
+
+
+
+
+
+
+
+  /*css ends here for profile*/
+ /* .glyphicon-pencil{
+    color: #7ec1ec;
+    top: -2.5rem;
+    right: -6rem;
+  }*/
   .error {
     color: red;
   }
+  .zmdi {
+    color: #7ec1ec;
+  }
+ #img_file{
+ 
+    position: absolute;
+    float: left;
+    left: 14.2rem;
+    top: 1rem;
 
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    color: #7ec1ec;
+
+    
+  }
   .proimg {
     height: 80px;
     width: 80px;
     margin-right: 330px;
+    position: relative;
+    top: 0rem;
+    left: 1rem;
   }
 
   .connewpas {
@@ -52,9 +92,10 @@
   }
 
   label {
-    padding-right: 84%;
+    /*padding-right: 84%;*/
     font-size: 17px;
     color: #7d7a7a;
+    float: left;
   }
 
   .emaill {
@@ -326,7 +367,6 @@
       padding: 15px;
       width: 320px;
     }
-
   }
 </style>
 <!-- PAGE-HEADER -->
@@ -345,12 +385,24 @@
   <!-- <div id="message1"></div> -->
 
   <!-- row start -->
-  <div class="row pb-6">
-    <div class="col-sm col-lg">
-      <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="proimg" alt="">
+  <div class="row pb-6" style="position:relative;">
+    <form id="jsform" method="post" enctype="multipart/form-data"  style="display: flex;">
+      @csrf
+    <div class="col-sm col-lg profile-pic">
+    
+       
+       <input type="hidden" value="" name="physician_id" id="physician_id">
+       <input id="img_file" type="file" accept="image/*" name="image"  class="glyphicon glyphicon-pencil"/>
+        <label for="file">
+      Choose Image<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile_phy_reg" alt="">
+      <p class="file-name_reg"></p>
+        </label>
+       <img src="" class="proimg" id="output"  alt="">
+       <input type="submit" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload"  style="border-radius:10px;display:hidden" name="submit">
     </div>
+  </form>
   </div>
-
+   <div id="message"></div>
   <!-- row end -->
 
   <!-- form start  -->
@@ -417,15 +469,18 @@
             <div class="form-group">
               <label for="password" class="pass">Password:</label>
               <input type="text" class="form-control w-100" id="password" name="password">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 2rem;top: 4rem;"></i>
             </div>
 
             <div class="form-group">
               <label for="newpassword" class="newpass">New Password:</label>
               <input type="text" class="form-control w-100" id="newpassword" name="newpassword">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right: 2rem;top: 10rem;"></i>
             </div>
             <div class="form-group">
               <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
               <input type="text" class="form-control w-100" id="confnewpassword" name="confnewpassword">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right: 2rem;top: 16.5rem;"></i>
             </div>
           </div>
           <div class="modal-footer">
@@ -512,28 +567,38 @@
     $('#myModal').on('shown.bs.modal', function() {
       $('#myInput').trigger('focus')
     })
+$("input[type='file']").change(function(){
+   $('.profile-pic1').show();
+})
 
+   
     //file
-    const file = document.querySelector('#file');
-    file.addEventListener('change', (e) => {
-      // Get the selected file
-      const [file] = e.target.files;
-      // Get the file name and size
-      const {
-        name: fileName,
-        size
-      } = file;
-      // Convert size in bytes to kilo bytes
-      const fileSize = (size / 1000).toFixed(2);
-      // Set the text content
-      const fileNameAndSize = `${fileName} - ${fileSize}KB`;
-      document.querySelector('.file-name').textContent = fileNameAndSize;
-    });
+    // const file = document.querySelector('#file');
+    // file.addEventListener('change', (e) => {
+    //   // Get the selected file
+    //   const [file] = e.target.files;
+    //   // console.log(e.target.files[0]);
+    //   // return false;
+
+    //   // Get the file name and size
+    //   const {
+    //     name: fileName,
+    //     size
+    //   } = file;
+    //   // Convert size in bytes to kilo bytes
+    //   const fileSize = (size / 1000).toFixed(2);
+    //   // Set the text content
+    //   const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+    //   document.querySelector('.file-name').textContent = fileNameAndSize;
+    // });
 
 
     //end document ready 
   });
+
+
 </script>
+
 <script>
   var base_path = "http://3.220.132.29/medpro/";
   var api_url = "http://3.220.132.29:3000/api/";
@@ -543,7 +608,7 @@
   var obj = JSON.parse(user_data3);
   //  console.log("obj",obj)
   var phy_id = obj._id;
-
+   $('#physician_id').val(phy_id);
   $.ajax({
     url: api_url + "phyViewProfile",
     type: "post",
@@ -561,6 +626,7 @@
     $('#password').val(res.data.phy_password);
     $('#license_number').val(res.data.phy_licnse);
     $('#license_image').attr('src', res.data.phy_licnse_file);
+    $('#output').attr('src',res.data.phy_img);
   });
 </script>
 <script>
@@ -640,8 +706,8 @@
     if (first_name != "" && last_name !== "") {
 
       var formData = {
-        pham_lat: pham_lat,
-        pham_long: pham_long,
+        // pham_lat: pham_lat,
+        // pham_long: pham_long,
         physician_id: physician_id5,
         phy_first_name: first_name,
         phy_last_name: last_name,
@@ -654,18 +720,16 @@
 
 
       console.log("Formdata", formData);
-      // return false;
+       // return false;
       $.ajax({
         type: "POST",
         url: api_url + "phyUpdateProfile",
         data: formData,
-        // contentType:false,
-        // cache:false,
-        // processData:false,
+        
       }).done(function(res) {
-        //    alert('done');
+           alert('done');
 
-        console.log("resposne", res.data);
+        // console.log("resposne", res.data);
         // return false;
         if (res.data) {
           if (res.status == true) {
@@ -684,5 +748,83 @@
     }
 
   });
+</script>
+
+  <script>
+   
+     $('#jsform').on('submit',function (e) {
+         e.preventDefault();
+     // var file3 = $('#img_file')[0].files[0];
+     // console.log(file3)
+    // var user_det1 = localStorage.getItem('user_det');
+    // var detail1 = JSON.parse(user_det1);
+    // var physician_id = detail1._id;
+    //  // var formData = new FormData(this);
+    //  // return false;
+    var data = new FormData(this);
+
+       $.ajax({
+        type: "POST",
+        url: api_url +"phyImageUpload",
+        data: data,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+      }).done(function(res) {
+          // alert(res)
+          // return false;
+           if(res.status == true){
+            $('#message').html(res.message).addClass('alert alert-success');
+           }else{
+             $('#message').html(res.message).addClass('alert alert-danger');
+           }
+          
+      });
+        $('.profile-pic1').hide();
+     });
+        
+</script>
+
+
+  <script>
+ function toggleVisibilty1(){
+let togglePassword = document.querySelector("#togglePassword1");
+        let password = document.querySelector("#password");
+   
+     
+            let type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            togglePassword.classList.toggle("zmdi-eye");
+      
+}
+
+  function toggleVisibilty2(){
+let togglePassword = document.querySelector("#togglePassword2");
+        let password = document.querySelector("#newpassword");
+   
+     
+            let type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            togglePassword.classList.toggle("zmdi-eye");
+      
+}
+ function toggleVisibilty3(){
+let togglePassword = document.querySelector("#togglePassword3");
+        let password = document.querySelector("#confnewpassword");
+   
+     
+            let type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            togglePassword.classList.toggle("zmdi-eye");
+      
+}
+
 </script>
 @endsection

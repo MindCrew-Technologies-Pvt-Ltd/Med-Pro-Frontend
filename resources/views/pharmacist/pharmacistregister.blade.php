@@ -1,11 +1,18 @@
 @extends('layouts.vertical-menu1.master2')
 @section('css')
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
-<script src="{{ URL::asset('assets/js/formapi.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script> -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="{{ URL::asset('assets/js/formapi.js')}}"></script>
+<!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+ --><!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> -->
+
 <!-- map api script called here -->
  <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
   <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
@@ -13,10 +20,8 @@
    var searchInput = 'pham_address';
 
 $(document).ready(function () {
-    // var autocomplete;
-    // autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-    //     types: ['geocode'],
-    // });
+   var map;  
+    var marker; 
     var autocomplete;
     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
         types: ['geocode'],
@@ -29,15 +34,142 @@ $(document).ready(function () {
         
         document.getElementById('pham_lat').innerHTML = near_place.geometry.location.lat();
         document.getElementById('pham_long').innerHTML = near_place.geometry.location.lng();
-    });
+   
+               var lat1=document.getElementById('pham_lat').value 
+              var long1=document.getElementById('pham_long').value
+              let map1;
+              map1 = new google.maps.Map(document.getElementById("map-canvas1"), {
+                center: new google.maps.LatLng(lat1,long1),
+                zoom: 16,
+                });
+                map1.setCenter(new google.maps.LatLng(lat1,long1));
+                var myCenter=new google.maps.LatLng(lat1,long1);
+               var marker=new google.maps.Marker({
+                position:myCenter,
+               draggable: true 
+
+               });
+              marker.setMap(map1);
+
+              var geocoder1 = new google.maps.Geocoder();
+
+              geocoder1.geocode({'latLng': myCenter }, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+    console.log(results[0])
+$('#pham_lat,#pham_long').show();
+$('#pham_address').val(results[0].formatted_address);
+$('#pham_lat').val(marker.getPosition().lat());
+$('#pham_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+     }
+   }
+});
+google.maps.event.addListener(marker, 'dragend', function() {
+
+geocoder1.geocode({'latLng': marker.getPosition()}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+$('#pham_address').val(results[0].formatted_address);
+$('#pham_lat').val(marker.getPosition().lat());
+$('#pham_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+}
+}
+});
+});
+ });
 });
 $(document).on('change', '#'+searchInput, function () {
-     document.getElementById('latitude_input').value = '';
-     document.getElementById('longitude_input').value = '';
+     document.getElementById('pham_lat').value = '';
+     document.getElementById('pham_long').value = '';
     
     document.getElementById('pham_lat').innerHTML = '';
     document.getElementById('pham_long').innerHTML = '';
 });
+var lat=$('#pham_lat').val();
+var long= $('#pham_long').val(); 
+ // lat=22.7544;
+ // long=75.8668;
+var myCenter=new google.maps.LatLng(lat,long);
+var geocoder = new google.maps.Geocoder();
+var infowindow = new google.maps.InfoWindow();
+
+var marker=new google.maps.Marker({
+    position:myCenter,
+    draggable: true 
+
+});
+function initialize() {
+  var mapProp = {
+      center:myCenter,
+      zoom: 18,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+  map=new google.maps.Map(document.getElementById("map-canvas1"),mapProp);
+  marker.setMap(map);
+   
+ 
+  google.maps.event.addListener(marker, 'click', function() {
+      
+    infowindow.setContent(contentString);
+    infowindow.open(map, marker);
+    
+  }); 
+  
+  
+};
+
+geocoder.geocode({'latLng': myCenter }, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+    console.log(results[0])
+$('#pham_lat,#pham_long').show();
+$('#pham_address').val(results[0].formatted_address);
+$('#pham_lat').val(marker.getPosition().lat());
+$('#pham_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+     }
+   }
+});
+google.maps.event.addListener(marker, 'dragend', function() {
+
+geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+$('#pham_address').val(results[0].formatted_address);
+$('#pham_lat').val(marker.getPosition().lat());
+$('#pham_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+}
+}
+});
+});
+google.maps.event.addDomListener(window, 'load', initialize);
+
+google.maps.event.addDomListener(window, "resize", resizingMap());
+
+
+    $('#largeModal').on('shown.bs.modal', function() {
+    resizeMap();
+  });
+
+ function resizeMap() {
+   if(typeof map =="undefined") return;
+   setTimeout( function(){resizingMap();} , 400);
+}
+
+function resizingMap() {
+   if(typeof map =="undefined") return;
+   var center = map.getCenter();
+   google.maps.event.trigger(map, "resize");
+   map.setCenter(center); 
+}
   </script>
 
 
@@ -356,8 +488,9 @@ label {
 											<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "></i>
 										    </div>
 								</div> -->
-                                  <div class="form-group">
+                                  <div class="form-group" style="position:relative;">
                                       <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address"></textarea>
+                                      <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:-2rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
                                   </div>
                                         <!-- <input type="hidden" id="loc_lat" />
                                         <input type="hidden" id="loc_long" /> -->
@@ -378,11 +511,7 @@ label {
                                      <!--  </div> -->
                                      <!--  <div class="col"> -->
                                           <div class="form-group mt-2">
-											  <!-- <div class="custom-file">
-											    	<input type="file"  class="custom-file-input mt-3" name="file" id="reg_doc" placeholder="* Registration Number" >
-											    	<label class="custom-file-label">Upload registration</label>
-											 </div> -->
-
+											 
                        <!-- file -->
                        <div class="file-input mt-4">
                                            <input type="file" id="file"  name="file" class="file">
@@ -408,7 +537,7 @@ label {
 
 
 								<div class="container-login100-form-btn">
-									<input class="login100-form-btn btn-primary" type="submit" id="submit" value="Submit">
+									<input class="login100-form-btn btn-primary mt-5" type="submit" id="submit" value="Submit">
 								</div>
 								<div class="text-center pt-3">
 									<p class="text-dark mb-0 logintext" >Already have an account?<a href="{{url('/pharmacist_Login')}}" class="text-primary ml-1">Login Here</a></p>
@@ -430,7 +559,28 @@ label {
 				</div>
 			</div>
 			<!-- End PAGE -->
-
+                <!-- LARGE MODAL -->
+<div id="largeModal" class="modal fade">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header pd-x-20">
+                <h6 class="modal-title">Map Preview</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pd-20">
+                <h5 class=" lh-3 mg-b-20"><a href="" class="font-weight-bold"></a></h5>
+                <!-- map added here -->
+                <div class="col-md-12 modal_body_map">
+                    <div id="map-canvas1" class="" style="width:700px;height:480px"></div>
+               </div>
+            </div><!-- modal-body -->
+            
+        </div>
+    </div><!-- MODAL DIALOG -->
+</div>
+<!-- LARGE MODAL CLOSED -->  
 		</div>
 		<!-- BACKGROUND-IMAGE CLOSED -->
 @endsection
@@ -468,6 +618,7 @@ let confpassword = document.querySelector("#confpassword");
  
 </script>
 @section('js')
+
 <script>
 $(document).ready(function(){
 	var api_url="http://3.220.132.29:3000/api/";
@@ -631,6 +782,7 @@ $("#pharma_signup").validate({
 })
   
 </script>
+
 
 
 @endsection

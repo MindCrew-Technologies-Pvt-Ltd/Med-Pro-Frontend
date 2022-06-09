@@ -146,7 +146,10 @@
          res.data.map((e,i) => {
            console.log("-- ID",e._id)
             i++;
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_full_name+'</td><td>'+e.phy_full_name+'</td><td> '+e.psnt_address+'</td><td>'+e.message+'</td><td><a id="'+e.presciption_id+'" href="{{url("view_prescription")}}/'+e.presciption_id+'" class="btn ebtn">View</a><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">Delete</button></td></tr>');         
+            let str1='<a id="'+e.presciption_id+'" href="{{url("show_prescription")}}/'+e.presciption_id+'" class="btn ebtn">View</a>'
+            let str2='<a id="'+e.presciption_id+'" href="{{url("view_prescription")}}/'+e.presciption_id+'" class="btn ebtn">View</a>'
+
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_full_name+'</td><td>'+e.phy_full_name+'</td><td> '+e.psnt_address+'</td><td>'+e.message+'</td><td>'+(e.phpr_req_type>=2 ?str1:str2)+'<button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">Delete</button></td></tr>');         
               $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>Are you sure you <br> want to delete the prescription?</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">Cancel</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">Yes Delete It!</button></div></div></div></div>');         
     });
 

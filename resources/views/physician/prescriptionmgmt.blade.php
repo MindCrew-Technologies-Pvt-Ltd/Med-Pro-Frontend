@@ -8,7 +8,25 @@
 @endsection
 @section('page-header')
 <style>
-
+.ebtn{
+    background-color: #5e2dd8;
+    width: 88px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    margin-right: 10px;
+}
+.dbtn{
+    background-color: #cf142b;
+    width: 88px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+}
+.mdbtn{
+    background-color: #008000;
+   
+}
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
@@ -114,7 +132,9 @@
                                 <input type="text" class="form-control" name="notes" id="notes"placeholder="Notes" >
                             </div> -->
                             <div id="messagee"></div>
-                            <!-- <table class="table" id="noteslist1">
+
+                            
+                            <table class="table" id="noteslist1">
                                 <thead>
                                    <tr>
                                       <th scope="col">Notes</th>
@@ -123,30 +143,18 @@
                                <tbody id="tbodynotes">
 
                                 </tbody>
-                             </table> -->
+                             </table>
 
                              <form method="post" id="addnotes">
                                 @csrf 
-                              <h4 class="otherlabel">Physician Notes</h4><br><br>
-
+                              <!-- <h4 class="otherlabel">Physician Notes</h4><br><br>
+                              
                              <input type="text" class="form-control w-100" name="" value="" id="noteslist1" style="border-radius: 7px"disabled><br>
-                              <!-- <h5 id="noteslist1"></h5> -->
-                              <!-- <table class="table">
-                             <thead>
-                               <tr>
-                                 <th scope="col">Physician Notes</th>
-                                 
-                               </tr>
-                             </thead>
-                             <tbody id="noteslist1">
-                               
-                               
-                             </tbody>
-                           </table> -->
-                            <!-- <div id="noteslist1"></div> -->
+                              
+                            
                              <h4 class="otherlabel">Pharmacist Note</h4><br><br>
 
-                             <input type="text" class="form-control w-100" name="noteslist2" value="" id="noteslist2" style="border-radius: 7px" disabled>
+                             <input type="text" class="form-control w-100" name="noteslist2" value="" id="noteslist2" style="border-radius: 7px" disabled> -->
 
           
                              <div class="form-group">
@@ -437,19 +445,28 @@ console.log(id)
         //   console.log(res1)
          
         //   return false;
-// var row='';
+ var row='';
         res1.data.map((e,i) => {
            
-            // row=row + '<tr><td>'+e.message+'</td><tr>'
+            
+            if(e.sender_type =='Phamaciest'){
+         // row=row + '<tr><td><li class="float:left">'+e.message+'</li></td><tr>'
+               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:left;list-style-type:none;    background-color: #f1f1f9;">'+e.message+'</li></td><tr>') ;
+            } else if(e.sender_type =='physician'){
+          // row=row + '<tr><td><li class="float:right">'+e.message+'</li></td><tr>'
+               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:right;list-style-type:none;background-color: #e3e0ea;">'+e.message+'</li></td><tr>') ;
+            }
+            else{
 
-            $("#noteslist1").val(e.message) ;
-            $("#noteslist2").val(e.message) ;
+            }
+            
+            
 
             //   console.log(e.message)
             // $("#tbodynotes").append('<tr><td>'+e.message+'</td></tr>');         
-            //  $("#tbodynotes").html('<h4>'+e.message+'</h4>');         
+             // $("#tbodynotes").html('<h4>'+e.message+'</h4>');         
    });
-//    $("#noteslist1").append(row)
+   $("#noteslist1").append(row)
         
    
           
