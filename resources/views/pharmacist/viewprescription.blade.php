@@ -55,6 +55,7 @@
 				<div class="col-12">
                     <!-- card-body start -->
 						<div class="card">
+
 							<div class="card-header">
 										
                             <!-- <div class="date"> -->
@@ -63,6 +64,7 @@
 
 							</div>
 							<div class="card-body">
+                                <div id="message"></div>
                                <form action="" method="post" id="denyallow">
                                    @csrf 
                                    <div class="form-group ">
@@ -112,17 +114,34 @@
                                       </select>
                               </div>
                       
-                                   <label for="physician">Physician Notes</label>
-									<input class="input100" type="text" name="physician" id="physician" value="" placeholder="Physician" disabled>
+                                 <!--   <label for="physician">Physician Notes</label>
+									<input class="input100" type="text" name="physician" id="physician" value="" placeholder="Physician" disabled> -->
+                                
                   
                   </form>
+
+                                        
                                     <div class="buttons" id="addbuttons">
                                          <button class="btn danger" id="req_type0"  value="0">Deny</button>
                                        
                                          <button class="btn success ml-5" value="1" id="req_type1" >Accept</button>
                                     </div>
-                                     
-                                   
+                                    <div><br><br></div>
+                                    <div class="form-group">
+
+                                        <h4>Notes</h4>
+                                         <table class="table" id="noteslist2">
+                                                <thead>
+                                                   <tr>
+                                                      <th scope="col">Notes</th>
+                                                   </tr>
+                                                </thead>
+                                               <tbody id="tbodynotes">
+
+                                                </tbody>
+                                         </table>   
+                                    </div>
+                                 
                             
 
 
@@ -196,7 +215,10 @@
     });
 
 
-
+var pham_det123=localStorage.getItem('pharm_det');
+            var deta123 =JSON.parse(pham_det123);
+            console.log("deta",deta123)
+            var id123=deta123._id;
 
     //notes list
 
@@ -210,10 +232,12 @@
       dataType: 'json', 
       data:{
         prescription_id:arr1[5],
-
+         user_id:id123,
+         user_type:"Phamaciest"
       },
     
     }).done(function (res1) {
+         $("#noteslist2").html('');
        console.log("res1",res1)
        localStorage.setItem('pres_id',JSON.stringify(res1.data._id));
 
@@ -222,14 +246,28 @@
         // $("#physician").val(res1.data.message) ; 
         
         
+             if(res1.data.length > 0){
+          
+          var row='';   
         res1.data.map((e,i) => {
            
             
+            if(e.sender_type =='Phamaciest'){
+               $("#noteslist2").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:justify;text-align-last: left;list-style-type:none;background-color: #f1f1f9;"><h4>Pharmacist Note</h4>'+e.message+'</li></td><tr>') ;
+            } else if(e.sender_type =='physician'){
+               $("#noteslist2").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:justify;text-align-last: right;list-style-type:none;background-color: #e3e0ea;"><h4>Physician Notes</h4>'+e.message+'</li></td><tr>') ;
+            }
+            else{
 
-           $("#physician").val(e.message) ;
-
+            }       
+   });
+   
+         // $("#noteslist2").append(row);   
+       }else{
+        // row="";
+           $("#noteslist2").html('');
         
-  });
+     }
 
     }
     );

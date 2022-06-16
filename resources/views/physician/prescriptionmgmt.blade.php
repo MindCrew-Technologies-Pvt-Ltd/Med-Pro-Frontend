@@ -8,6 +8,7 @@
 @endsection
 @section('page-header')
 <style>
+   
 .ebtn{
     background-color: #5e2dd8;
     width: 88px;
@@ -29,13 +30,13 @@
 }
 </style>
                         <!-- PAGE-HEADER -->
-                            <div>
-                                <h1 class="dashboard page-title">Prescription Management</h1>
-                                <!-- <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
-                                </ol> -->
-                            </div>
+        <div>
+            <h1 class="dashboard page-title">Prescription Management</h1>
+            <!-- <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
+            </ol> -->
+        </div>
 
                          
                         <!-- PAGE-HEADER END -->
@@ -72,8 +73,8 @@
                                                         <th class="wd-15p">S No.</th>
                                                         <th class="wd-15p">First name</th>
                                                         <th class="wd-15p">Last name</th>
-                                                        <th class="wd-20p">Messages</th>
-                                                        <th class="wd-15p">Information</th>
+                                                        <th class="wd-20p">Notes</th>
+                                                        <!-- <th class="wd-15p">Information</th> -->
                                                         <th class="wd-10p">Action</th>
                                                         
                                                     </tr>
@@ -135,6 +136,7 @@
 
                             
                             <table class="table" id="noteslist1">
+                                <h5>Notes</h5>
                                 <thead>
                                    <tr>
                                       <th scope="col">Notes</th>
@@ -225,27 +227,10 @@
       data: {
         physician_id:physician_id,
     },
-      // contentType:false,
-      // cache:false,
-      // processData:false,
     }).done(function (res) {
         let data =res.data;
         console.log(data);
-        // return false;
-    //     $('#myTable').DataTable( {
-    //     "ordering": true,
-    //     "data":data,
-    //     "searching": true,
-    //     "columns": [
-    //     //   {'data':'i'},
-    //       {'data':'psnt_first_name'},
-    //       {'data':'psnt_last_name'},
-    //       {'data':'message'},
-    //     //   {'data':'info'},
-          
-        
-    //     ]
-    // });
+   
     //   console.log(res)
     //   return false;
 
@@ -258,15 +243,16 @@
     console.log(patientList);
     localStorage.setItem('patientList',JSON.stringify(patientList));
 
-       
-
+          
+          if(res.data.length>0){
          res.data.map((e,i) => {
            
             i++;
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.message+'</td><td>'+ " info" +'</td><td><button  id="'+e.prescription_id+'" onclick="editdata1(this)" class="btn btn-info in-btn text-white ebtn" data-toggle="modal" data-target="#exampleModal">View</button><button type="button" class="btn dbtn " data-toggle="modal" data-target="#exampleModalCenter'+e.prescription_id+'">Delete</button></td></tr>');         
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.message+'</td><td><button  id="'+e.prescription_id+'" onclick="editdata1(this)" class="btn btn-info in-btn text-white ebtn" data-toggle="modal" data-target="#exampleModal">View</button><button type="button" class="btn dbtn " data-toggle="modal" data-target="#exampleModalCenter'+e.prescription_id+'">Delete</button></td></tr>');         
               $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e.prescription_id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>Are you sure <br><br>you want to delete this prescription?</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">Cancel</button><button id="'+e.prescription_id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">Yes Delete It!</button></div></div></div></div>');         
 
             });
+     }
 
 });
 
@@ -284,6 +270,7 @@
 <!-- medicine  -->
 <script>
  $(document).ready( function () {
+
      var api_url="http://3.220.132.29:3000/api/";
    
       var user_details=localStorage.getItem('user_det');
@@ -329,10 +316,6 @@
 });
 
 // calling edit data
-
-
-
-
 
 
     });
@@ -382,6 +365,9 @@ function deletedata($this){
     var id=$this.id;
 console.log(id)
     // return false;
+
+$(document).ready(function(){
+var counter=1;
     $.ajax({
       url: api_url+"PrescriptionList",
       type: "post",
@@ -394,84 +380,66 @@ console.log(id)
       // contentType: "application/json; charset=utf-8",
      // data: JSON.stringify(data),
     }).done(function (res) {
-       
-        
-      
-          console.log(res)
-        //   return false;
-              $("#patient_name").val(res.data.patient_name) ;   
+            $("#patient_name").val(res.data.patient_name) ;   
             $('#physician_name').val(res.data.physician_name);
             $('#prescription_id').val(res.data._id);
             $('#sender_id').val(res.data.physician_id);
-           
             res.data.prs_details.map((e,i) => {
-           
            i++;
-             $("#myTable02").append('<tr><td>'+i+'</td><td>'+e.prs_med_name+'</td><td>'+e.prs_quantity+'</td>');         
-   });
-            
-            // $('#ins_no').val(res.data.psnt_insrnce_num);
-            // $('#ins_img').attr('src',res.data.psnt_insrnce_img);
+           if(counter<=1){
+            $("#myTable02").append('<tr><td>'+i+'</td><td>'+e.prs_med_name+'</td><td>'+e.prs_quantity+'</td>'); 
+            }        
+   });              
     });
 
-
+  var user_details123=localStorage.getItem('user_det');
+    var details1 =JSON.parse(user_details123);
+    var physician_id=details1._id;
     $.ajax({
       url: api_url+"notesList",
       type: "post",
       dataType: 'json', 
       data:{
         prescription_id:id,
-
+        user_id:physician_id,
+        user_type:"Physician"
       },
     
     }).done(function (res1) {
-       
+        $("#noteslist1").html('');
         let data1 =res1.data;
         console.log("data1",data1);
-        // return false;
-    //     $('#noteslist1').DataTable( 
-    //        {
-    //     "ordering": true,
-    //     "data":data1,
-    //     "searching": true,
-    //     "columns": [
-    //       {'data':'message'},
-        
-    //     ]
-    // }
-    // );
-        
-    // $("#noteslist1").val(res1.data.message) ;
-        //   console.log(res1)
-         
-        //   return false;
- var row='';
+     var counter=0;
+     var row='';
+ 
+         if(res1.data.length > 0){
+            counter++;
+            
         res1.data.map((e,i) => {
            
             
             if(e.sender_type =='Phamaciest'){
-         // row=row + '<tr><td><li class="float:left">'+e.message+'</li></td><tr>'
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:left;list-style-type:none;    background-color: #f1f1f9;">'+e.message+'</li></td><tr>') ;
+               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:justify;text-align-last: left;list-style-type:none;background-color: #f1f1f9;"><h4>Pharmacist Note</h4>'+e.message+'</li></td><tr>') ;
             } else if(e.sender_type =='physician'){
-          // row=row + '<tr><td><li class="float:right">'+e.message+'</li></td><tr>'
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:right;list-style-type:none;background-color: #e3e0ea;">'+e.message+'</li></td><tr>') ;
+               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:justify;text-align-last: right;list-style-type:none;background-color: #e3e0ea;"><h4>Physician Notes</h4>'+e.message+'</li></td><tr>') ;
             }
             else{
 
-            }
-            
-            
-
-            //   console.log(e.message)
-            // $("#tbodynotes").append('<tr><td>'+e.message+'</td></tr>');         
-             // $("#tbodynotes").html('<h4>'+e.message+'</h4>');         
+            }       
    });
-   $("#noteslist1").append(row)
-        
    
-          
-    });
-    
+         $("#noteslist1").append(row);   
+       }else{
+        row="";
+           $("#noteslist1").html('');
+        
+     }
+       
+    });  
+     
+})
+  
+   
    }
 
 
@@ -519,12 +487,7 @@ $('#addnotes').submit(function (event) {
         message: message1,
         sender_type: sender_type,
 };
-//    console.log(formdata);
-//    return false;
-    // }
-    //  formData.append('phy_licnse_file', $('input[type=file]')[0].files[0]);  
-    // console.log(formData);
-    // return false;
+
     
     if(message !="" ){
     $.ajax({
@@ -533,10 +496,7 @@ $('#addnotes').submit(function (event) {
       data: formdata,
       dataType: "json",
     }).done(function (res) {
-        // alert('done');
-  
       console.log(res);
-    //   return false;
 	      if(res.status == true){
 	      	$('#messagee').html(res.message).addClass('alert alert-success');
 	      	window.location.href =base_path+"prescription_management";
@@ -558,12 +518,7 @@ $('#addnotes').submit(function (event) {
 //     $('#myTable').DataTable();
 // } );
 </script>
-<script>
-//     $(document).ready( function () {
-//     $('#noteslist').DataTable();
-// } );
-
-    
+<script>  
 
 </script>
 

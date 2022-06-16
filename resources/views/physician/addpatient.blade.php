@@ -3,7 +3,12 @@
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  
+  <style type="text/css">
+      
+      .file-name{
+        display: none;
+      }
+  </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -543,7 +548,7 @@ let confpassword = document.querySelector("#psnt_confpassword");
           $('#message').html(res.message).addClass('alert alert-success');
           window.location.href =base_path +"patient_management";
         }else{
-          //  $('#message').html(res.message).addClass('alert alert-danger');
+           $('#message').html(res.message).addClass('alert alert-danger');
         }
     });
    }else{

@@ -5,7 +5,9 @@
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
 <script src="https://kit.fontawesome.com/8ebca7c608.js" crossorigin="anonymous"></script>
 <style>
-
+#pro_img{
+    border-radius: 50%;
+}
 
 </style>
                         <!-- PAGE-HEADER -->
@@ -23,7 +25,7 @@
 <div class="container pb-5">
 
          <div class="profilediv">
-             <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="proimg float-left mb-4" alt="">
+             <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" class="proimg float-left mb-4" id="pro_img" alt="">
              <div id="editprofile" class="float-right"></div>
         </div>
 
@@ -92,7 +94,7 @@
 
                    <div class="form-group licenseimg">
                         <label  class="form-label"style="padding-right: 70%;">License Image</label>
-                        <img src="" class="licenseimg" alt="license_image" id="license_image">
+                        <img src="" class="licenseimg" alt="license_image" id="license_image" style="height:200px;width:200px;">
                        
                   </div>
       </div>
@@ -150,15 +152,24 @@
     }).done(function (res) {
       localStorage.setItem('profile_det',res);
       
-      // alert(res);
-          // console.log("respons",res);
-      //     return false;
+      let image_name=res.data.phy_licnse_file;
+              let ext =image_name.split(".");
+              // console.log(ext[(ext.length)-1]);
+              // return false;
+              ext =ext[(ext.length)-1];
+      
               $("#physician_first_name").val(res.data.phy_first_name) ;   
               $("#physician_last_name").val(res.data.phy_last_name) ;   
               $('#email').val(res.data.phy_email);
               $('#password').val("********");
               $('#license_number').val(res.data.phy_licnse);
-              $('#license_image').attr('src',res.data.phy_licnse_file);
+              if(ext == "pdf"){
+                $('#license_image').attr('src','https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png');
+              }else{
+                 $('#license_image').attr('src',res.data.phy_licnse_file);
+              }
+             
+              $('#pro_img').attr('src',res.data.phy_img);
     });
     
    
@@ -167,13 +178,11 @@
 
     </script>
    <script>
-     let user_data4=localStorage.getItem('user_det');
-         var obj = JSON.parse(user_data4);
-         
-         var phy_id4 =obj._id;
-        //  alert(phy_id4)
+     let user_data14=localStorage.getItem('user_det');
+         var obj = JSON.parse(user_data14);
+         var phy_id14 =obj._id;
      var url = '{{ route("edit.profile", ":id") }}';
-          url = url.replace(':id',phy_id4 );
+          url = url.replace(':id',phy_id14 );
 		
 		var mydiv = document.getElementById("editprofile");
 		var aTag = document.createElement('a');

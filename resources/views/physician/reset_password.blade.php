@@ -9,28 +9,31 @@
 <style>
 	.wrap-login100{
 			width:450px;
-			height:550px;
+			height:450px;//550px
 		}
-		input[type=password]{
+		/*input[type=password]{
 			
 			height: 50px;
             width: 364px;
            margin-left: 2px;
 
+		}*/
+		.login100-form{
+			margin: 0 auto!important;
 		}
 		.login100-form-title{
 			margin-top: -32px;
             margin-bottom: -15px;
-            margin-left: 35px;
+          /*  margin-left: 35px;*/
 		}
-		.container-login100-form-btn{
+		/*.container-login100-form-btn{
 			width:364px;
 			margin-left:1px;
-		}
+		}*/
 		.zmdi-eye-off{
 	       position: absolute;
 	       float:right;
-	       right: -0.5rem;
+	       right: 1.5rem;
 	       top: 1.1rem;
 		   color:#7EC1EC;
        
@@ -105,36 +108,39 @@
 										<i class="zmdi zmdi-email" aria-hidden="true"></i>
 									</span>
 								</div> -->
-								<div class="wrap-input100 validate-input" data-validate = "Password is required">
+								<div class="wrap-input100 validate-input" data-validate = "Password is required" style="position:relative;">
 
 									<input class="input100" type="password" name="pass" id="password" placeholder="Password">
 									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
 
-                                    <div class="symbol-input100 eye" onclick="toggleVisibilty()">
-									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye "></i>
-                                     </div>
+                                    <!-- <div class="symbol-input100 eye" >
+									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibiltypass()"></i>
+                                     </div> -->
 									
 									<span class="focus-input100">
-										</span>
+									</span>
 									<span class="symbol-input100">
 										<i class="zmdi zmdi-lock" aria-hidden="true"></i>
 									</span>
 									
 									
 								</div>
+
 								
 
-								<div class="wrap-input100 validate-input" data-validate = "Password is required">
+								<div class="wrap-input100 validate-input" data-validate ="Password is required" style="position:relative;">
 
 									<input class="input100" type="password" name="confpass" id="password1" placeholder="Confirm Password">
 									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()" ></i>
-
-                                    <div class="symbol-input100 eye" onclick="toggleVisibilty1()">
-									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye "></i>
-                                     </div>
+										
 									
-									<span class="focus-input100">
-										</span>
+                                    
+                                  <!--   <div class="symbol-input100 eye">
+									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty2()"></i>
+                                     </div> -->
+									
+									<span class="focus-input100"></span>
+										
 									<span class="symbol-input100">
 										<i class="zmdi zmdi-lock" aria-hidden="true"></i>
 									</span>
@@ -172,7 +178,7 @@
 function toggleVisibiltypass(){
 	// alert('clicked1');
 let togglePassword3 = document.querySelector("#togglePassword3");
-        let password = document.querySelector("#psnt_password");
+        let password = document.querySelector("#password");
    
      
             let type = password.getAttribute("type") === "password" ? "text" : "password";
@@ -187,7 +193,7 @@ let togglePassword3 = document.querySelector("#togglePassword3");
 function toggleVisibilty2(){
 	// alert('clicked2');
 let togglePassword2 = document.querySelector("#togglePassword2");
-let confpassword = document.querySelector("#psnt_confpassword");
+let confpassword = document.querySelector("#password1");
   let type = confpassword.getAttribute("type") === "password" ? "text" : "password";
             confpassword.setAttribute("type", type);
             // toggle the icon

@@ -9,6 +9,7 @@
          height: 80px;
          width: 80px;
          margin-right: 40px;
+         border-radius:50%;
      }
      
      input[type=text]{
@@ -131,7 +132,7 @@
 
       <!-- row start -->
          
-      <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="proimg float-left mb-4" alt="">
+      <img src="" id="proimg" class="proimg float-left mb-4" alt="">
           <div id="pharmeditprofile" class="float-right"></div>
      <!-- row end -->
      
@@ -140,7 +141,7 @@
        @csrf 
          
             <div class="form-group ">
-               <label for="pham_name" id="phamname">pharmacy Name:</label>
+               <label for="pham_name" id="phamname">Pharmacy Name:</label>
                <input type="text" class="form-control" value="" id="n" disabled>
               
             </div>
@@ -156,8 +157,8 @@
             </div>
 
             <div class="form-group">
-               <label for="pham_address">pharmacist Address:</label>
-               <input type="text" class="form-control" id="pham_address" >
+               <label for="pham_address">Pharmacist Address:</label>
+               <input type="text" class="form-control" id="pham_address" disabled>
             </div>
 
             <div class="form-group">
@@ -277,6 +278,7 @@
               $('#password').val("********");
               $('#registration_number').val(res.data.pham_registration_num);
               $('#registration_file').attr('src',res.data.pham_registration_file);
+              $('#proimg').attr('src',res.data.pham_img);
     });
     
    

@@ -3,19 +3,72 @@
 @endsection
 @section('page-header')
 <script src="https://kit.fontawesome.com/8ebca7c608.js" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- map api script called here -->
-<script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
+<!-- <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script> -->
   <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
+ <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
+  <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
+
+  <script>
+    
+    var base_path = "http://3.220.132.29/medpro/";
+    var api_url="http://3.220.132.29:3000/api/";
+    // var id=$this.id;
+      
+         let user_data4=localStorage.getItem('pharm_det');
+         var obj = JSON.parse(user_data4);
+         
+         var pharm_id =obj._id;
+         $('#phamaciest_id').val(pharm_id);
+        //  window.location.href =base_path +"physician_profile/"+phy_id;
+        //     console.log("pharmCY  details",obj);
+            // alert(phy_id)
+    $.ajax({
+      url: api_url+"phamViewProfile",
+      type: "post",
+      dataType: 'json', 
+      data:{
+        phamaciest_id:pharm_id,
+      },
+    
+      // contentType: "application/json; charset=utf-8",
+     // data: JSON.stringify(data),
+    }).done(function (res) {
+      localStorage.setItem('pharm_profile_det',res);
+      
+      // alert(res);
+          console.log("respons",res);
+
+      //     return false;
+              $("#n").val(res.data.pham_name) ;   
+              $("#pham_first_name").val(res.data.pham_first_name) ;   
+              $("#pham_last_name").val(res.data.pham_last_name) ;   
+              $('#email').val(res.data.pham_email);
+              $('#pham_address').val(res.data.pham_address);
+              $('#pham_lat').val(res.data.pham_loc[0]);
+               $('#pham_long').val(res.data.pham_loc[1])
+              $('#password').val("********");
+              $('#registration_number').val(res.data.pham_registration_num);
+              $('#registration_file').attr('src',res.data.pham_registration_file);
+              $('#output').attr('src',res.data.pham_img)
+              // alert('load')
+    });
+    
+
+
+
+</script>
   <script>
    var searchInput = 'pham_address';
 
 $(document).ready(function () {
-    // var autocomplete;
-    // autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-    //     types: ['geocode'],
-    // });
+   var map;  
+    var marker; 
     var autocomplete;
     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
         types: ['geocode'],
@@ -28,30 +81,194 @@ $(document).ready(function () {
         
         document.getElementById('pham_lat').innerHTML = near_place.geometry.location.lat();
         document.getElementById('pham_long').innerHTML = near_place.geometry.location.lng();
-    });
+   
+               var lat1=document.getElementById('pham_lat').value 
+              var long1=document.getElementById('pham_long').value
+              let map1;
+              map1 = new google.maps.Map(document.getElementById("map-canvas1"), {
+                center: new google.maps.LatLng(lat1,long1),
+                zoom: 16,
+                });
+                map1.setCenter(new google.maps.LatLng(lat1,long1));
+                var myCenter=new google.maps.LatLng(lat1,long1);
+               var marker=new google.maps.Marker({
+                position:myCenter,
+               draggable: true 
+
+               });
+              marker.setMap(map1);
+
+              var geocoder1 = new google.maps.Geocoder();
+
+              geocoder1.geocode({'latLng': myCenter }, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+    console.log(results[0])
+$('#pham_lat,#pham_long').show();
+$('#pham_address').val(results[0].formatted_address);
+$('#pham_lat').val(marker.getPosition().lat());
+$('#pham_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+     }
+   }
+});
+google.maps.event.addListener(marker, 'dragend', function() {
+
+geocoder1.geocode({'latLng': marker.getPosition()}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+$('#pham_address').val(results[0].formatted_address);
+$('#pham_lat').val(marker.getPosition().lat());
+$('#pham_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+}
+}
+});
+});
+ });
+
 });
 $(document).on('change', '#'+searchInput, function () {
-     document.getElementById('latitude_input').value = '';
-     document.getElementById('longitude_input').value = '';
+     document.getElementById('pham_lat').value = '';
+     document.getElementById('pham_long').value = '';
     
     document.getElementById('pham_lat').innerHTML = '';
     document.getElementById('pham_long').innerHTML = '';
 });
+var lat=$('#pham_lat').val();
+var long= $('#pham_long').val(); 
+ lat=22.7544;
+ long=75.8668;
+ // alert(lat)
+ // alert(long)
+var myCenter=new google.maps.LatLng(lat,long);
+var geocoder = new google.maps.Geocoder();
+var infowindow = new google.maps.InfoWindow();
+
+var marker=new google.maps.Marker({
+    position:myCenter,
+    draggable: true 
+
+});
+function initialize() {
+  var mapProp = {
+      center:myCenter,
+      zoom: 18,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+  map=new google.maps.Map(document.getElementById("map-canvas1"),mapProp);
+  marker.setMap(map);
+   
+ 
+  google.maps.event.addListener(marker, 'click', function() {
+      
+    infowindow.setContent(contentString);
+    infowindow.open(map, marker);
+    
+  }); 
+  
+  
+};
+
+geocoder.geocode({'latLng': myCenter }, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+    console.log(results[0])
+$('#pham_lat,#pham_long').show();
+$('#pham_address').val(results[0].formatted_address);
+$('#pham_lat').val(marker.getPosition().lat());
+$('#pham_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+     }
+   }
+});
+google.maps.event.addListener(marker, 'dragend', function() {
+
+geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+$('#pham_address').val(results[0].formatted_address);
+$('#pham_lat').val(marker.getPosition().lat());
+$('#pham_long').val(marker.getPosition().lng());
+infowindow.setContent(results[0].formatted_address);
+infowindow.open(map, marker);
+}
+}
+});
+});
+google.maps.event.addDomListener(window, 'load', initialize);
+
+google.maps.event.addDomListener(window, "resize", resizingMap());
+
+
+    $('#largeModal').on('shown.bs.modal', function() {
+    resizeMap();
+  });
+
+ function resizeMap() {
+   if(typeof map =="undefined") return;
+   setTimeout( function(){resizingMap();} , 400);
+}
+
+function resizingMap() {
+   if(typeof map =="undefined") return;
+   var center = map.getCenter();
+   google.maps.event.trigger(map, "resize");
+   map.setCenter(center); 
+}
   </script>
+
 <style>
-    .proimg{
-         height: 80px;
-         width: 80px;
-         margin-right: 330px;
-          position: relative;
+    #img_file{
+    top: 3.5rem;
+    opacity:0;
+    z-index: 2;
+   /* position: absolute;
+    float: left;
+    left: 14.2rem;
+    top: 1rem;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    color: #7ec1ec;*/
+
+    
+  }
+
+  input[type=file]::file-selector-button:hover {
+  background-color: #7ec1ec;
+  border: 2px solid #00cec9;
+  }
+
+  .proimg {
+    height: 80px;
+    width: 80px;
+    margin-right: 330px;
+    position: relative;
     top: 0rem;
     left: 1rem;
-     }
-   /*  .glyphicon-pencil{
-    color: #7ec1ec;
-    top: -2.5rem;
-    right: -6rem;
-  }*/
+    border-radius: 50%;
+  }
+.glyphicon{
+  top: 3.5rem;
+left: -15.5rem;
+  color: #7ec1ec;
+  z-index: -1;
+ }
+  
+ #upload_btn{
+  border-radius:10px;
+  display:hidden;
+  margin-left:2.5rem;
+  left: 1.5rem;
+  }
+
      .connewpas {
     padding-right: 57%;
     }
@@ -251,13 +468,13 @@ $(document).on('change', '#'+searchInput, function () {
               <div class="col-sm col-lg profile-pic">
                  
                  <input type="hidden" value="" name="phamaciest_id" id="phamaciest_id">
-                   <input id="img_file" name="image" type="file" class="glyphicon glyphicon-pencil" />
-                  <!--  <label for="file">
-      Choose Image<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile_phy_reg" alt="">
-      <p class="file-name_reg"></p>
-        </label> -->
-                  <img src="" class="proimg" id="output"  alt="">
-                  <input type="submit" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload"  style="border-radius:10px;display:hidden" name="submit">
+                   <label for="file">
+        
+                <input id="img_file" type="file" accept="image/*" name="image" />
+                <span  class="glyphicon glyphicon-pencil"></span>
+                </label>
+                  <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" class="proimg" id="output"  alt="">
+                  <input type="submit" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload" id="upload_btn" style="border-radius:10px;display:hidden" name="submit">
               </div>
 
           </form>
@@ -284,9 +501,9 @@ $(document).on('change', '#'+searchInput, function () {
                <label for="pham_last_name">pharmacist Last Name:</label>
                <input type="text" class="form-control" id="pham_last_name" name="pharm_last">
             </div>
-            <div class="form-group">
-               <label for="pham_address">pharmacist Address:</label>
-               <input type="text" class="form-control" id="pham_address" name="pharm_add" >
+             <div class="form-group" style="position:relative;">
+              <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address" autocomplete="on"></textarea>
+               <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:2rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
             </div>
             <div class="form-group">
                 <label class="form-label"></label>
@@ -301,9 +518,8 @@ $(document).on('change', '#'+searchInput, function () {
                <input type="text" class="form-control" id="email" disabled>
             </div>
 
-            <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">
-            Registration Number <i class="fa-solid fa-greater-than" id="arrow"></i>
-            </button>
+            <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">Registration Number<i class="fa-solid fa-greater-than" id="arrow">
+            </i> </button>
 
            
             <button type="button" class="btn changepass" data-toggle="modal" data-target="#exampleModalCenter">
@@ -353,10 +569,31 @@ $(document).on('change', '#'+searchInput, function () {
     </div>
   </div>
 </div>
-                      
+</div>                     
      <!-- end modal for password-->      
 
-
+                <!-- LARGE MODAL -->
+<div id="largeModal" class="modal fade">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header pd-x-20">
+                <h6 class="modal-title">Map Preview</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pd-20">
+                <h5 class=" lh-3 mg-b-20"><a href="" class="font-weight-bold"></a></h5>
+                <!-- map added here -->
+                <div class="col-md-12 modal_body_map">
+                    <div id="map-canvas1" class="" style="width:700px;height:480px"></div>
+               </div>
+            </div><!-- modal-body -->
+            
+        </div>
+    </div><!-- MODAL DIALOG -->
+</div>
+<!-- LARGE MODAL CLOSED -->  
 
 
 
@@ -364,16 +601,11 @@ $(document).on('change', '#'+searchInput, function () {
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div> -->
+      
       <div class="modal-body">
         
                    <div class="form-group">
-                       <label for="registration_number" style="padding-right: 70%;">Registration number:</label>
+                       <label for="registration_number">Registration number:</label>
                        <input type="text" class="form-control lnum" id="registration_number" name="regino">
                    </div>
 
@@ -384,20 +616,11 @@ $(document).on('change', '#'+searchInput, function () {
                   </div>
                   
       </div>
-       <!-- file -->
-                    <!-- <div class="file-input">
-                          <input type="file" id="file" class="file">
-                          <label for="file">
-                            Upload New
-                            <p class="file-name"></p>
-                          </label>
-                    </div> -->
+       
                     <input type="file" name="file" id="file" class="file" >
 
                      
-      <!-- <div class="modal-footer"> -->
-        <!-- <button class="btn btnupload">Upload New</button> -->
-
+     
         <button type="button" class="btn ok" data-dismiss="modal">Ok</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       <!-- </div> -->
@@ -452,52 +675,7 @@ file.addEventListener('change', (e) => {
 //end document ready 
 });
 </script>
-<script>
-    
-    var base_path = "http://3.220.132.29/medpro/";
-    var api_url="http://3.220.132.29:3000/api/";
-    // var id=$this.id;
-      
-         let user_data4=localStorage.getItem('pharm_det');
-         var obj = JSON.parse(user_data4);
-         
-         var pharm_id =obj._id;
-         $('#phamaciest_id').val(pharm_id);
-        //  window.location.href =base_path +"physician_profile/"+phy_id;
-        //     console.log("pharmCY  details",obj);
-            // alert(phy_id)
-    $.ajax({
-      url: api_url+"phamViewProfile",
-      type: "post",
-      dataType: 'json', 
-      data:{
-        phamaciest_id:pharm_id,
-      },
-    
-      // contentType: "application/json; charset=utf-8",
-     // data: JSON.stringify(data),
-    }).done(function (res) {
-      localStorage.setItem('pharm_profile_det',res);
-      
-      // alert(res);
-          console.log("respons",res);
 
-      //     return false;
-              $("#n").val(res.data.pham_name) ;   
-              $("#pham_first_name").val(res.data.pham_first_name) ;   
-              $("#pham_last_name").val(res.data.pham_last_name) ;   
-              $('#email').val(res.data.pham_email);
-              $('#pham_address').val(res.data.pham_address);
-              $('#password').val("********");
-              $('#registration_number').val(res.data.pham_registration_num);
-              $('#registration_file').attr('src',res.data.pham_registration_file);
-              $('#output').attr('src',res.data.pham_img)
-    });
-    
-
-
-
-</script>
 <script>
     $("#phamsavechanges").validate({
       errorElement: "span",
@@ -608,10 +786,10 @@ file.addEventListener('change', (e) => {
     $.ajax({
       type: "POST",
       url: api_url+"phamUpdateProfile",
-      data: formData,
-      // contentType:false,
-      // cache:false,
-      // processData:false,
+      data: new FormData(this),
+      contentType:false,
+      cache:false,
+      processData:false,
     }).done(function (res) {
      //    alert('done');
   
@@ -619,7 +797,7 @@ file.addEventListener('change', (e) => {
       // return false;
      
 
-      if (res.data) {
+      // if (res.data) {
         if(res.status == true){
           localStorage.setItem('pharm_det', JSON.stringify(res.data));
 
@@ -628,7 +806,7 @@ file.addEventListener('change', (e) => {
         }else{
            $('#message').html(res.message).addClass('alert alert-danger');
         }
-      }
+      // }
     });
    }else{
     //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');

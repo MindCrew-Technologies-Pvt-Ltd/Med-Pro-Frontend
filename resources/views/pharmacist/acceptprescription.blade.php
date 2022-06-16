@@ -1,15 +1,22 @@
 @extends('layouts.vertical-menu1.master')
 @section('css')
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 @endsection
 @section('page-header')
 <style>
+  #calculate{
+    height: auto;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: scroll;
+  }
   #physician {
     padding-left: 10px;
     border: none;
     width:100%;
   }
   #notelist{
-    height: 400px;
+    height: auto;
     overflow-y:scroll;
   }
   #pharmacist {
@@ -58,6 +65,7 @@
     margin-top: -4px;
     background-color: transparent;
     border-radius: 0;
+    text-align: center;
   }
 
   .card-body {
@@ -91,6 +99,8 @@
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
+    position: absolute;
+    left: 6rem;
   }
 
   .totalcharges {
@@ -102,6 +112,9 @@
     justify-content: space-between;
     margin-bottom: 20px;
     padding-left: 10px;
+    position: absolute;
+    left: 6rem;
+    padding:1rem;
   }
 
   .meshide {
@@ -133,6 +146,7 @@
     <div class="col-12">
       <!-- card-body start -->
       <div class="card">
+        <div id="message"></div>
         <div class="card-header">
 
           <!-- <input type="text" id="createdAt" value="" class="date" disabled> -->
@@ -164,14 +178,14 @@
             </div>
 
             <!-- table start -->
-            <div class="table-responsive mt-7">
+            <div class="table-responsive mt-7" id="calculate">
               <table id="myTable" class="table table-striped table-bordered text-nowrap w-100">
                 <thead>
                   <tr>
                     <th class="wd-15p">serial number</th>
                     <th class="wd-15p">Name of the medicine</th>
                     <th class="wd-15p">Requested Qty</th>
-                    <th class="wd-20p">Availibility</th>
+                    <th class="wd-20p">Availabilty</th>
                      <th class="wd-15p">Qty Of Medicine</th>
                     <th class="wd-15p">Insurance Availabilty</th>
                     <th class="wd-15p">Insurance %</th>
@@ -184,14 +198,18 @@
                 </tbody>
               </table>
               <div class="shipcharge">
-                <h7 class="">Shipping charges</h7>
+              
+                <h7 class="ship_head" style="margin-left:44.5rem;font-weight:bold;">Shipping charges: </h7>
+           
                 <input type="text" id="ship" name="ship" value="" onchange="addvalue()">
                 <!-- <h7 class=""></h7> -->
               </div><br>
 
               <div class="totalcharges">
-                <h7>Total charges</h7>
-                <h7 class="total_amount"></h7>
+                
+                  <h7 class="tot_charge" style="margin-left:44.5rem;font-weight:bold;">Total charges: </h7>
+              
+                <h7 class="total_amount" style="margin-left:2.5rem;"></h7>
               </div>
 
             </div>
@@ -214,13 +232,16 @@
             <input class="input100" type="text" name="pharmacist" id="pharmacist" placeholder="pharmacist" disabled> -->
             <!-- <i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 3rem;top: 28.7rem;"></i> -->
 
-
+            
             <div class="form-group mt-6" id="Create">
               <input type="text" class="form-control" name="message" id="message1" placeholder="Enter Notes">
-              <p class="text-red meshide" id="messagee">Please enter notes</p>
+              
             </div>
-            <button class="btn  btn-primary mt-5 mb-3 float-right border-0" id="save">Save</button>
+           <!--  <button class="btn  btn-primary mt-5 mb-3 float-right border-0" id="save">Save</button> -->
              <!--  href="{{url('pharmacist_prescription')}} -->
+                <div>
+                 <p class="text-red meshide" id="messagee">Please enter notes</p>
+               </div>
             <div class="buttons mt-7">
               <button class="btn btn-primary border-0" id="sendquatation">Send Quatation</button>
                <button class="btn btn-primary border-0  hide" id="show">Add notes</button>
@@ -260,9 +281,13 @@
 <script src="{{ URL::asset('assets/plugins/peitychart/jquery.peity.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/peitychart/peitychart.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/index1.js') }}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
+  var f_t;
    var qty1 =[];
   var pat = 0;
   var tat = 0;
@@ -401,10 +426,22 @@
 
     if (e.target.name === 'inso') {
       prs_details1[medInd].quot_med_inc_cover = e.target.value
+
+      if(e.target.value == "yes"){
+         // e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
+      }else if(e.target.value == "no"){
+          
+          // e.target.parentNode.parentNode.childNodes[6].childNodes[0].value=0;
+          // e.target.parentNode.parentNode.childNodes[6].childNodes[0].setAttribute("disabled", "true");
+      }else{
+ // e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
+      }
     }
     if(e.target.name ==='ins_per'){
-       prs_details1[medInd].quot_ins_per = e.target.value
+       prs_details1[medInd].quot_ins_per = e.target.value || 0;
         addvalue(id)
+    }else{
+      prs_details1[medInd].quot_ins_per=0;
     }
     if (e.target.name === 'cost') {
       console.log(prs_details1[medInd]);
@@ -416,7 +453,7 @@
       prs_details1[medInd].quot_final_cost = e.target.value
     }
     console.log(medInd, prs_details1);
-
+   
   }
 
 
@@ -428,29 +465,11 @@
     var final_total=0;
     var ins_per=0;
     var prev_total=0;
-    // $('table tr').each(function() {
-    //   if ($(this).find('td').length && $(this).find('td input').length) {
-    //     var quant = parseFloat($(this).find('td input').eq(0).val()),
-    //       price = parseFloat($(this).find('td input').eq(1).val());
-    //       console.log(quant, price, '111');
-    //       if(!quant){
-    //         quant = 0
-    //       }
-    //       if(!price){
-    //         price = 0
-    //       }
-    //     $(this).find('.totalcharges').html(quant * price);
-    //     total += quant;
-    //   }
-    //   console.log(quant, '222');
-    //   // console.log(price)
-    // });
-    // var total = 0;
     prs_details1.map(m => {
       // return total = total + (parseFloat(m.quot_med_cost) * m.quot_med_quantity)
 
-      let med_cost =parseFloat(m.quot_med_cost);
-      let med_quantity =parseFloat(m.quot_med_quantity);
+      let med_cost =parseFloat(m.quot_med_cost) ||0;
+      let med_quantity =parseFloat(m.quot_med_quantity)||0;
 
            if (med_cost == NaN || med_cost === ''|| med_cost === undefined) {
                med_cost =0;
@@ -464,7 +483,7 @@
             console.log(med_cost,med_quantity,total)
       total = total + (med_cost * med_quantity);
 
-    ins_per =parseFloat(m.quot_ins_per);
+    ins_per =parseFloat(m.quot_ins_per)||0;
  if (ins_per == NaN || ins_per === '' || ins_per === undefined) {
                ins_per =0;
       }
@@ -474,25 +493,28 @@
                final_total =0;
            }
            if(ins_per){
-             final_total= total-(total *((ins_per)*.01));
-             prev_total=final_total;
+             final_total=+ total-(total *((ins_per)*.01));
+             prev_total=+final_total;
+             console.log('ins_per hai to',final_total,prev_total)
            }else if(ins_per==0){
-            final_total= total-(total *((ins_per)*.01));
-             prev_total=final_total;
+            final_total=+ total-(total *((ins_per)*.01));
+             prev_total=+final_total;
+             console.log('ins_per zero hai to',final_total,prev_total)
            }else{
             // final_total= total;
-            final_total=prev_total;
+            // final_total=prev_total;
+            console.log('kuch nahi h to',final_total)
            }
      
-      
-       console.log(med_cost,med_quantity,ins_per,total,final_total)
+           
+       console.log('sabse last main total',med_cost,med_quantity,ins_per,total,final_total)
       
        if(final_total == 0){
-           total=0;
+           // total=0;
        }else{
         // total=final_total;
        }
-      final_total
+      
       console.log('final total',final_total)
     })
 
@@ -506,7 +528,7 @@
     console.log("ship", ship, parseFloat(ship), 'asss')
 
     final_total = final_total + parseFloat(ship);
-
+    console.log('----------->',final_total)
     $('.total_amount').html('$' + final_total);
 
     tat = final_total;
@@ -526,9 +548,44 @@ if(rowIndex >= 0)
         prs_details1.map((m,i) => {
          if(rowIndex == i){
           let t=0;
-         t =  (parseFloat(m.quot_med_cost) * m.quot_med_quantity)-parseFloat(m.quot_med_cost * m.quot_med_quantity*m.quot_ins_per*.01);
-      
-          tabRow.innerText = t;
+      let med_cost1 =parseFloat(m.quot_med_cost);
+      let med_quantity1 =parseFloat(m.quot_med_quantity);
+      let med_per1 =parseFloat(m.quot_ins_per);
+      console.log(t)
+      console.log(med_cost1)
+      console.log(med_quantity1)
+      console.log(med_per1)
+        console.log(t)
+      if (med_cost1 == NaN || med_cost1 == ''|| med_cost1 == undefined) {
+               med_cost1 =0;
+           }
+      if (med_quantity1 == NaN || med_quantity1 == '' || med_quantity1 == undefined) {
+               med_quantity1 =0;
+           }
+      if (med_per1 == NaN || med_per1 == '' || med_per1 == undefined) {
+                med_per1=isNaN(med_per1)||0;
+           }
+
+         // t =  (parseFloat(m.quot_med_cost) * m.quot_med_quantity)-parseFloat(m.quot_med_cost * m.quot_med_quantity*m.quot_ins_per*.01);
+            
+         // t =  (med_cost1 * med_quantity1)-(!isNaN(med_cost1 * med_quantity1*(med_per1/100))||0);   
+         if(isNaN(med_cost1 * med_quantity1*(med_per1/100))){
+           t =  (med_cost1 * med_quantity1);
+         }else{
+          t= (med_cost1 * med_quantity1)-(med_cost1 * med_quantity1*(med_per1/100));
+         }
+         console.log('---------ttttttttttt-----',t)
+          console.log(t)
+      console.log(med_cost1)
+      console.log(med_quantity1)
+      console.log(med_per1)
+      console.log(t)
+             if(t){
+              tabRow.innerText = t;
+            }else{
+              tabRow.innerText=0;
+            }
+          
          }
       
        
@@ -584,6 +641,10 @@ if(rowIndex >= 0)
   // }
 
   $(document).ready(function() {
+
+
+   // var pr_det= localStorage.getItem('presc_det');
+   
     // $('#myTable').change(function() {
     //   let val = $("select[name=avail]").val();
     //   let myName = $("select[name=inso]").val();
@@ -635,13 +696,17 @@ if(rowIndex >= 0)
       'psnt_address':psnt_address,
       "quot_shping_chrge": shap,
       "quot_total_chrge": tat,
-      "quot_prs_details":JSON.stringify(prs_details1)
+      "quot_prs_details":prs_details1
     } 
 
      localStorage.setItem('presc_det',presc_det);
     var pres_det =localStorage.getItem('presc_det');
     if(pres_det){
       alert('Data saved Successfully');
+      for (const [key, value] of Object.entries(pres_det)) {
+  console.log('-------------------------',`${key}: ${value}`);
+     }
+
     }
 
   })
@@ -685,9 +750,16 @@ if(rowIndex >= 0)
       if (res.status == true) {
         $(':input[type="submit"]').prop('disabled', true);
             
-        $('#message').html(res.message).addClass('alert alert-success');
-           
-        window.location.href = base_path + "pharmacist_prescription";
+        // $('#message').html(res.message).addClass('alert alert-success');
+           swal({
+                  title: "You Quotation Send Successfully!",
+                  type: "success",
+                  buttons: false,
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  closeOnCancel: false,
+                });
+        window.location.href=base_path+"pharmacist_prescription";
       } else {
         $('#message').html(res.message).addClass('alert alert-danger');
       }
@@ -702,7 +774,10 @@ if(rowIndex >= 0)
 
 //--------------------------------------------------
   //notes list
-
+let phama1321 = localStorage.getItem('pharm_det');
+    var obja1321 = JSON.parse(phama1321);
+    //  console.log("phama1",phama1)
+    var pharm_id1321 = obja1321._id;
   var arr1 = [];
   arr1 = window.location.href.split("/");
   // alert(arr1[5])
@@ -713,6 +788,8 @@ if(rowIndex >= 0)
     dataType: 'json',
     data: {
       prescription_id: arr1[5],
+       user_id:pharm_id1321,
+      user_type:"Phamaciest"
     },
 
   }).done(function(res1) {
@@ -727,10 +804,10 @@ if(rowIndex >= 0)
 
           if(e.sender_type =='Phamaciest'){
          // row=row + '<tr><td><li class="float:left">'+e.message+'</li></td><tr>'
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:left;list-style-type:none;    background-color: #f1f1f9;">'+e.message+'</li></td><tr>') ;
+               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:justify;text-align-last: left;list-style-type:none;background-color: #f1f1f9;"><h4>Pharmacist Note</h4>'+e.message+'</li></td><tr>') ;
             } else if(e.sender_type =='physician'){
           // row=row + '<tr><td><li class="float:right">'+e.message+'</li></td><tr>'
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:right;list-style-type:none;background-color: #e3e0ea;">'+e.message+'</li></td><tr>') ;
+               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:justify;text-align-last: right;list-style-type:none;background-color: #e3e0ea;"><h4>Physician Notes</h4>'+e.message+'</li></td><tr>') ;
             }
       // $("#physician").val(e.message);
       // $("#pharmacist").val(e.message);
@@ -740,7 +817,7 @@ if(rowIndex >= 0)
 
   });
 </script>
-<script>
+<script type="text/javascript">
   $('#Create').hide();
   $(document).ready(function() {
 
@@ -788,14 +865,27 @@ if(rowIndex >= 0)
         //   return false;
         if (res.status == true) {
           $('#messagee').html(res.message).addClass('alert alert-success');
-          // window.location.href = base_path + "accept_prescription/" + arr5[5];
+          // alert("done")
+          swal({
+                  title: "Notes Sent Successfully!",
+                  type: "success",
+                  buttons: false,
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  closeOnCancel: false,
+                });
+          window.location.href=base_path +"accept_prescription/"+arr5[5];
+          
+            window.location.href=window.location.href;
         } else {
           $('#messagee').html(res.message).removeClass('meshide');
         }
+        // window.location.href=window.location.href;
       });
     } else {
       // $('#messagee').html('<p style="color:red;">'+'please enter notes'+'</p>');
     }
+     // window.location.reload();
 
   });
 </script>

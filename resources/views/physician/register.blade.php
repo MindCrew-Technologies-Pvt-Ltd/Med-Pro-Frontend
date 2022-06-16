@@ -227,8 +227,6 @@
 
 	
 
-
-
 								<div class="container-login100-form-btn" >
 									<input class="login100-form-btn btn-primary" type="submit" style="background-color: #7EC1EC!important;" id="submit" value="Submit" >
 									</input>
@@ -262,7 +260,7 @@
 
 <script>
 function toggleVisibiltypass(){
-	// alert('clicked1');
+	alert('clicked1');
 let togglePassword3 = document.querySelector("#togglePassword3");
         let password = document.querySelector("#password");
    
@@ -277,7 +275,7 @@ let togglePassword3 = document.querySelector("#togglePassword3");
 </script>
 <script>
 function toggleVisibilty2(){
-	// alert('clicked2');
+	alert('clicked2');
 let togglePassword2 = document.querySelector("#togglePassword2");
 let confpassword = document.querySelector("#confpassword");
   let type = confpassword.getAttribute("type") === "password" ? "text" : "password";

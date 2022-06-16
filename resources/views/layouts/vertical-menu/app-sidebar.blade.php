@@ -8,6 +8,8 @@
            }
 </script>
 
+
+
 <!--APP-SIDEBAR-->
                 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
                 <aside class="app-sidebar">
@@ -23,7 +25,7 @@
                     <div class="app-sidebar__user">
                         <div class="dropdown user-pro-body text-center">
                             <div class="user-pic">
-                                <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" alt="user-img" class="avatar-xl rounded-circle">
+                                <img id="profile_id" src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" alt="user-img" class="avatar-xl rounded-circle">
                             </div>
                             <div class="user-info">
                                 <h6 class=" mb-0 text-dark"></h6>
@@ -275,6 +277,7 @@
                     </ul>
                 </aside>
 <!--/APP-SIDEBAR-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
   
@@ -291,4 +294,37 @@
 
            
   
+</script>
+
+<script>
+
+  var base_path = "http://3.220.132.29/medpro/";
+  var api_url = "http://3.220.132.29:3000/api/";
+
+
+  let user_data4 = localStorage.getItem('user_det');
+  var obj = JSON.parse(user_data4);
+  //  console.log("obj",obj)
+  var phy_id = obj._id;
+  
+  $.ajax({
+    url: api_url + "phyViewProfile",
+    type: "post",
+    dataType: 'json',
+    data: {
+      physician_id: phy_id,
+    },
+
+  }).done(function(res) {
+    console.log('response',res)
+   
+         $('#profile_id').attr('src',res.data.phy_img);
+    
+     // }else{
+     //    let img='https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png';
+     //     $('#profile_id').attr('src',img);
+     // }
+   
+   
+  });
 </script>

@@ -2,7 +2,8 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+        </link>
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script> -->
 
@@ -200,6 +201,9 @@ function resizingMap() {
         margin-left:35px;
         
       }
+      .login100-form{
+        width: 100%;
+      }
       input[type=text] {
          border-radius: 6px;
          height: 50px;
@@ -232,6 +236,8 @@ function resizingMap() {
            height: 50px;
            width: 371px;
            margin-left:10px;
+           margin-bottom:1.5rem;
+           padding: 0px!important;
      }
      .logintext{
        margin-left:60px;
@@ -239,7 +245,7 @@ function resizingMap() {
      .zmdi-eye-off{
            position: absolute;
            float:right;
-           right: -2rem;
+           right: 2rem;
            top: 1rem;
 
      }
@@ -249,8 +255,10 @@ function resizingMap() {
         width: 0.1px;
         height: 0.1px;
      position: absolute;
-}
-
+    } 
+    /* .fail-alert{
+        text-align:center;
+     }*/
 .file-input label {
        display: block;
        /* position: relative; */
@@ -284,10 +292,10 @@ function resizingMap() {
     height:25px
 }
 
-.agreeDiv{
+/*.agreeDiv{
 	margin-top: -40px;
 	margin-bottom: -30px;
-}
+}*/
 
 label {
     padding-right: 0px!important;
@@ -297,7 +305,10 @@ label {
 .hidem{
   display: none;
 }
-
+#file-error {
+    position: relative;
+    top: 4rem;
+}
 /* @media only screen and (max-width: 1080px){
   .error {
     color: red;
@@ -489,8 +500,8 @@ label {
 										    </div>
 								</div> -->
                                   <div class="form-group" style="position:relative;">
-                                      <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address"></textarea>
-                                      <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:-2rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
+                                      <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address" autocomplete="on"></textarea>
+                                      <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:2rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
                                   </div>
                                         <!-- <input type="hidden" id="loc_lat" />
                                         <input type="hidden" id="loc_long" /> -->
@@ -539,8 +550,8 @@ label {
 								<div class="container-login100-form-btn">
 									<input class="login100-form-btn btn-primary mt-5" type="submit" id="submit" value="Submit">
 								</div>
-								<div class="text-center pt-3">
-									<p class="text-dark mb-0 logintext" >Already have an account?<a href="{{url('/pharmacist_Login')}}" class="text-primary ml-1">Login Here</a></p>
+								<div class="text-center pt-3 style="margin-top:20px!important;">
+									<p class="text-dark mb-0 logintext" >Already have an account?<a href="{{url('/pharmacist_Login')}}" class="text-primary">Login Here</a></p>
 								</div>
 								
 								<!-- <div class=" flex-c-m text-center mt-3">
@@ -763,7 +774,15 @@ $("#pharma_signup").validate({
       // console.log(res);
       // return false;
         if(res.status == true){
-          $('#message').html(res.message).addClass('alert alert-success');
+            swal({
+                  title: "You are Registered Successfully!",
+                  type: "success",
+                  buttons: false,
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  closeOnCancel: false,
+                });
+          // $('#message').html(res.message).addClass('alert alert-success');
           window.location.href =base_path+"pharmacist_Login";
         }else{
           //  $('#message').html(res.message).addClass('alert alert-danger');

@@ -8,9 +8,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
   /*css for profile pic*/
- 
+ .glyphicon{
+  top: 3rem;
+  left: -6rem;
+  color: #7ec1ec;
+  z-index: -1;
+ }
   
- 
+ #upload_btn{
+  border-radius:10px;
+  display:hidden;
+  margin-left:2.5rem;
+  left: 2rem;
+  }
 
 
 
@@ -32,8 +42,10 @@
     color: #7ec1ec;
   }
  #img_file{
- 
-    position: absolute;
+    top: 7.5rem;
+    opacity: 0;
+    z-index: 2;
+   /* position: absolute;
     float: left;
     left: 14.2rem;
     top: 1rem;
@@ -42,10 +54,16 @@
     height: 20px;
     border-radius: 50%;
     background-color: white;
-    color: #7ec1ec;
+    color: #7ec1ec;*/
 
     
   }
+
+  input[type=file]::file-selector-button:hover {
+  background-color: #7ec1ec;
+  border: 2px solid #00cec9;
+  }
+
   .proimg {
     height: 80px;
     width: 80px;
@@ -53,6 +71,7 @@
     position: relative;
     top: 0rem;
     left: 1rem;
+    border-radius: 50%;
   }
 
   .connewpas {
@@ -367,6 +386,7 @@
       padding: 15px;
       width: 320px;
     }
+    
   }
 </style>
 <!-- PAGE-HEADER -->
@@ -392,13 +412,17 @@
     
        
        <input type="hidden" value="" name="physician_id" id="physician_id">
-       <input id="img_file" type="file" accept="image/*" name="image"  class="glyphicon glyphicon-pencil"/>
+      
         <label for="file">
-      Choose Image<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile_phy_reg" alt="">
-      <p class="file-name_reg"></p>
+         <!-- Choose Image
+         <img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile_phy_reg" alt="">
+      <p class="file-name_reg"></p> -->
+        <input id="img_file" type="file" accept="image/*" name="image" />
+        <span  class="glyphicon glyphicon-pencil"></span>
         </label>
-       <img src="" class="proimg" id="output"  alt="">
-       <input type="submit" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload"  style="border-radius:10px;display:hidden" name="submit">
+       
+       <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" class="proimg" id="output"  alt="">
+       <input type="submit" id="upload_btn" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload"   name="submit">
     </div>
   </form>
   </div>
@@ -408,8 +432,9 @@
   <!-- form start  -->
   <form action="" method="post" id="savechanges">
     @csrf
-    <input type="hidden" name="pham_lat" id="pham_lat" value="">
-    <input type="hidden" name="pham_long" id="pham_long" value="">
+    <input type="hidden" value="" name="physician_id1" id="physician_id1">
+   <!--  <input type="hidden" name="pham_lat" id="pham_lat" value="">
+    <input type="hidden" name="pham_long" id="pham_long" value=""> -->
     <div class="form-group ">
       <label for="physician_first_name">Physician First Name:</label>
       <input type="text" class="form-control" id="physician_first_name" name="physician_first_name">
@@ -469,18 +494,18 @@
             <div class="form-group">
               <label for="password" class="pass">Password:</label>
               <input type="text" class="form-control w-100" id="password" name="password">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 2rem;top: 4rem;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 4rem;top:6rem;"></i>
             </div>
 
             <div class="form-group">
               <label for="newpassword" class="newpass">New Password:</label>
               <input type="text" class="form-control w-100" id="newpassword" name="newpassword">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right: 2rem;top: 10rem;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right:4rem;top:15rem;"></i>
             </div>
             <div class="form-group">
               <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
               <input type="text" class="form-control w-100" id="confnewpassword" name="confnewpassword">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right: 2rem;top: 16.5rem;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right:4rem;top: 25.5rem;"></i>
             </div>
           </div>
           <div class="modal-footer">
@@ -507,15 +532,15 @@
         </button>
       </div> -->
           <div class="modal-body">
-            <input type="hidden" name="physician_id" id="physician_id">
+            
             <div class="form-group">
               <label for="license_number" style="padding-right: 70%;">License number:</label>
               <input type="text" class="form-control lnum" id="license_number">
             </div>
 
             <div class="form-group licenseimg">
-              <label class="form-label" style="padding-right: 70%;">License Image</label>
-              <img src="" class="licenseimg" alt="license_image" id="license_image">
+              <label class="form-label" style="padding-right: 70%;"><h4>License Image</h4></label>
+              <i class="cis-file-pdf"><img src="" class="licenseimg" alt="license_image" id="license_image" style="height:200px;width:200px;"></i>
 
             </div>
 
@@ -609,6 +634,7 @@ $("input[type='file']").change(function(){
   //  console.log("obj",obj)
   var phy_id = obj._id;
    $('#physician_id').val(phy_id);
+   $('#physician_id1').val(phy_id);
   $.ajax({
     url: api_url + "phyViewProfile",
     type: "post",
@@ -619,15 +645,32 @@ $("input[type='file']").change(function(){
 
   }).done(function(res) {
     localStorage.setItem('profile_det', res);
+      let image_name=res.data.phy_licnse_file;
+              let ext =image_name.split(".");
+              // console.log(ext[(ext.length)-1]);
+              // return false;
+              ext =ext[(ext.length)-1];
 
-    $("#physician_first_name").val(res.data.phy_first_name);
+  $("#physician_first_name").val(res.data.phy_first_name);
     $("#physician_last_name").val(res.data.phy_last_name);
     $('#email').val(res.data.phy_email);
     $('#password').val(res.data.phy_password);
     $('#license_number').val(res.data.phy_licnse);
-    $('#license_image').attr('src', res.data.phy_licnse_file);
+    if(ext == "pdf"){
+       $('#license_image').attr('src','https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png');
+    }else{
+       $('#license_image').attr('src', res.data.phy_licnse_file);
+    }
+   
     $('#output').attr('src',res.data.phy_img);
+    $('#physician_id1').val(phy_id);
+
+  // }else{
+  //    $('#output').attr('src','https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png');
+  // }
+    
   });
+  
 </script>
 <script>
   $("#savechanges").validate({
@@ -724,24 +767,27 @@ $("input[type='file']").change(function(){
       $.ajax({
         type: "POST",
         url: api_url + "phyUpdateProfile",
-        data: formData,
-        
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
       }).done(function(res) {
-           alert('done');
+           // alert('done');
 
-        // console.log("resposne", res.data);
+        // console.log("resposne",res);
         // return false;
-        if (res.data) {
+        // if (res.data) {
           if (res.status == true) {
             console.log("resposne true", res.data);
              localStorage.setItem('user_det', JSON.stringify(res.data));
             $('#message').html(res.message).addClass('alert alert-success');
+            // window.location.reload()
             window.location.href =base_path +"physician_profile/"+physician_id5;
             // window.location.href =base_path +"physician_edit_profile/"+physician_id5;
+           
           } else {
             $('#message').html(res.message).addClass('alert alert-danger');
           }
-        }
+        // }
       });
     } else {
       //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
@@ -776,6 +822,7 @@ $("input[type='file']").change(function(){
           // return false;
            if(res.status == true){
             $('#message').html(res.message).addClass('alert alert-success');
+            window.location.href=window.location.href;
            }else{
              $('#message').html(res.message).addClass('alert alert-danger');
            }

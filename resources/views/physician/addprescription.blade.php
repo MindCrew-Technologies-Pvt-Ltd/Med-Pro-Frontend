@@ -1,7 +1,11 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
-
+<style type="text/css">
+     .input-group-append{
+        margin-top:1.5rem !important;
+    }
+</style>
 @endsection
 @section('page-header')
 <!-- PAGE-HEADER -->
@@ -197,7 +201,6 @@ $("#patient_name").append('<option value="'+value._id+'">'+ value.psnt_first_nam
 
 
 $("#pat_signup").validate({
-  
       errorElement: "span",
     // $('.eye1 i').css({'display':'none'});       
     errorClass: "error fail-alert",
@@ -295,11 +298,7 @@ $('#pat_signup').submit(function(event) {
                 physician_id:phy_id ,
                 prs_details: JSON.stringify(values),
             }
-
-                
-
-                // console.log("Fdata",formdata1);
-                // return false;
+ 
               if(patientid !="" && physician_id !="" && (namevalues.length >0) &&  (quanvalues.length >0) &&(infovalues.length>0)){
                 $.ajax({
                   type: "POST",
@@ -317,7 +316,7 @@ $('#pat_signup').submit(function(event) {
                   $('#message').html(res.message).addClass('alert alert-success');
                   setInterval(window.location.href= base_path +"prescription_management",500);
         }else{
-          //  $('#message').html(res.message).addClass('alert alert-danger');
+           // $('#message').html(res.message).addClass('alert alert-danger');
            $('#hidea').html(res.message).removeClass('hidemm');
 
         }

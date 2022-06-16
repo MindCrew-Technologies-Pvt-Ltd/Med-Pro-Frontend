@@ -22,7 +22,7 @@
                     <div class="app-sidebar__user">
                         <div class="dropdown user-pro-body text-center">
                             <div class="user-pic">
-                                <img src="{{URL::asset('assets/images/pngs/doc_image.png')}}" alt="user-img" class="avatar-xl rounded-circle">
+                                <img id="user_img" src="" alt="user-img" class="avatar-xl rounded-circle">
                             </div>
                             <div class="pham-info">
                                 <h6 class=" mb-0 text-dark"></h6>
@@ -274,6 +274,7 @@
                     </ul>
                 </aside>
 <!--/APP-SIDEBAR-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
   
@@ -289,6 +290,44 @@
          
 
 
-           
   
 </script>
+<script>
+    
+    
+    var base_path = "http://3.220.132.29/medpro/";
+    var api_url="http://3.220.132.29:3000/api/";
+    // var id=$this.id;
+      
+         let user_data545=localStorage.getItem('pharm_det');
+         var obj4 = JSON.parse(user_data545);
+         
+         var pharm_id2 =obj4._id;
+        //  window.location.href =base_path +"physician_profile/"+phy_id;
+        //     console.log("pharmCY  details",obj);
+            // alert(phy_id)
+    $.ajax({
+      url: api_url+"phamViewProfile",
+      type: "post",
+      dataType: 'json', 
+      data:{
+        phamaciest_id:pharm_id2,
+      },
+    
+      // contentType: "application/json; charset=utf-8",
+     // data: JSON.stringify(data),
+    }).done(function (res) {
+      localStorage.setItem('pharm_profile_det',res);
+      
+      // alert(res);
+          console.log("respons",res);
+
+     
+              $('#user_img').attr('src',res.data.pham_img);
+    });
+    
+   
+
+
+
+    </script>

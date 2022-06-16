@@ -281,7 +281,7 @@ hr.new1 {
                                     </div>
                                      <div class="form-group">
                                     <label  class="form-label">Insurance Image</label>
-                                    <img src="" alt="insurace_image" id='ins_img'>
+                                    <img src="" alt="insurace_image" id='ins_img' style="height:200px;width:200px;">
                                     <!-- <input type="email" class="form-control" id="femail" value=""> -->
                                     </div>
                                 
@@ -434,13 +434,21 @@ hr.new1 {
       // contentType: "application/json; charset=utf-8",
      // data: JSON.stringify(data),
     }).done(function (res) {
-       
-      
+              let image_name=res.data.psnt_insrnce_img;
+              let ext =image_name.split(".");
+              // console.log(ext[(ext.length)-1]);
+              // return false;
+              ext =ext[(ext.length)-1];
           // console.log(res)
               $("#fullname").val(res.data.psnt_first_name+' '+res.data.psnt_last_name) ;   
             $('#femail').val(res.data.psnt_email);
             $('#ins_no').val(res.data.psnt_insrnce_num);
-            $('#ins_img').attr('src',res.data.psnt_insrnce_img);
+            if(ext == "pdf"){
+                 $('#ins_img').attr('src',"https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png");
+            }else{
+                $('#ins_img').attr('src',res.data.psnt_insrnce_img);
+            }
+            // $('#ins_img').attr('src',res.data.psnt_insrnce_img);
     });
     
    }
