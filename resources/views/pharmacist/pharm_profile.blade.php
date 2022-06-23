@@ -207,7 +207,9 @@
 
                    <div class="form-group licenseimg">
                         <label  class="form-label"style="padding-right: 70%;">License Image</label>
-                        <img src="" class="licenseimg" alt="registration_file" id="registration_file">
+                        <a href="" id="reg_file">
+                        <img src="" class="licenseimg" alt="registration_file" id="registration_file" style="height:200px;width:200px;">
+                        </a>
                        
                   </div>
       </div>
@@ -264,7 +266,10 @@
      // data: JSON.stringify(data),
     }).done(function (res) {
       localStorage.setItem('pharm_profile_det',res);
-      
+      let file_name = res.data.pham_registration_file
+      let ext = file_name.split(".");
+        ext = ext[(ext.length) -1];
+        console.log(ext)
       // alert(res);
           console.log("respons",res);
 
@@ -277,7 +282,14 @@
               $('#pham_address').val(res.data.pham_address);
               $('#password').val("********");
               $('#registration_number').val(res.data.pham_registration_num);
-              $('#registration_file').attr('src',res.data.pham_registration_file);
+              if(ext =="pdf"){
+                  $('#registration_file').attr('src','https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png');
+                  $("#reg_file").attr('href',res.data.pham_registration_file)
+              }else{
+                $('#registration_file').attr('src',res.data.pham_registration_file);
+                 $("#reg_file").attr('href',res.data.pham_registration_file)
+              }
+              
               $('#proimg').attr('src',res.data.pham_img);
     });
     

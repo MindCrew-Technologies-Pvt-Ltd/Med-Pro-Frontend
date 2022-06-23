@@ -6,6 +6,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <style>
   /*css for profile pic*/
  .glyphicon{
@@ -420,8 +422,8 @@
         <input id="img_file" type="file" accept="image/*" name="image" />
         <span  class="glyphicon glyphicon-pencil"></span>
         </label>
-       
-       <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" class="proimg" id="output"  alt="">
+       <!-- https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png -->
+       <img src="" class="proimg" id="output"  alt="">
        <input type="submit" id="upload_btn" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload"   name="submit">
     </div>
   </form>
@@ -475,48 +477,10 @@
       Change Password
     </button>
 
-    <button type="submit" class="savechnagesbtn">Save Changes</button>
+    <button type="submit" value="save" class="savechnagesbtn">Save Changes</button>
 
 
 
-
-    <!-- Modal for password -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="password" class="pass">Password:</label>
-              <input type="text" class="form-control w-100" id="password" name="password">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 4rem;top:6rem;"></i>
-            </div>
-
-            <div class="form-group">
-              <label for="newpassword" class="newpass">New Password:</label>
-              <input type="text" class="form-control w-100" id="newpassword" name="newpassword">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right:4rem;top:15rem;"></i>
-            </div>
-            <div class="form-group">
-              <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
-              <input type="text" class="form-control w-100" id="confnewpassword" name="confnewpassword">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right:4rem;top: 25.5rem;"></i>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">Close</button>
-            <button type="button" class="btn btn-primary" style="border: none;" data-dismiss="modal">Save Password</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- end modal for password-->
 
 
 
@@ -535,13 +499,14 @@
             
             <div class="form-group">
               <label for="license_number" style="padding-right: 70%;">License number:</label>
-              <input type="text" class="form-control lnum" id="license_number">
+              <input name="phy_licnse" type="text" class="form-control lnum" id="license_number">
             </div>
 
             <div class="form-group licenseimg">
               <label class="form-label" style="padding-right: 70%;"><h4>License Image</h4></label>
-              <i class="cis-file-pdf"><img src="" class="licenseimg" alt="license_image" id="license_image" style="height:200px;width:200px;"></i>
-
+              <a href="" id="pdf_image1">
+              <img src="" class="licenseimg" alt="license_image" id="license_image" style="height:200px;width:200px;">
+              </a>
             </div>
 
           </div>
@@ -567,6 +532,49 @@
     </div>
   </form>
   <!-- form start  -->
+
+    <!-- Modal for password -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="message3"></div>
+            <form method="post" id="phy_pass_update" >
+              @csrf
+            <div class="form-group" style="position:relative;">
+              <label for="password" class="pass">Password:</label>
+              <input type="password" class="form-control w-100" id="password" name="password">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 2rem;top:4rem;"></i>
+            </div>
+
+            <div class="form-group" style="position:relative;">
+              <label for="newpassword" class="newpass">New Password:</label>
+              <input type="password" class="form-control w-100" id="newpassword" name="newpassword">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right:2rem;top:4rem;"></i>
+            </div>
+            <div class="form-group" style="position:relative;">
+              <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
+              <input type="password" class="form-control w-100" id="confnewpassword" name="confnewpassword">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right: 2rem;top:4rem;"></i>
+            </div>
+         
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">Close</button>
+            <button type="submit" class="btn btn-primary" value="save" style="border: none;" >Save Password</button>
+          </div>
+        </form>
+         </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end modal for password-->
 
   <!-- container end-->
 </div>
@@ -596,7 +604,7 @@ $("input[type='file']").change(function(){
    $('.profile-pic1').show();
 })
 
-   
+   const file = document.querySelector('#file');
     //file
     // const file = document.querySelector('#file');
     // file.addEventListener('change', (e) => {
@@ -658,8 +666,10 @@ $("input[type='file']").change(function(){
     $('#license_number').val(res.data.phy_licnse);
     if(ext == "pdf"){
        $('#license_image').attr('src','https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png');
+       $('#pdf_image1').attr('href',res.data.phy_licnse_file);
     }else{
        $('#license_image').attr('src', res.data.phy_licnse_file);
+        $('#pdf_image1').attr('href',res.data.phy_licnse_file);
     }
    
     $('#output').attr('src',res.data.phy_img);
@@ -742,7 +752,7 @@ $("input[type='file']").change(function(){
     var user_details5 = localStorage.getItem('user_det');
     var details5 = JSON.parse(user_details5);
     var physician_id5 = details5._id;
-    $('#physician_id').val(physician_id5);
+    $('#physician_id1').val(physician_id5);
     console.log(physician_id5);
     // alert(physician_id5)
 
@@ -755,15 +765,12 @@ $("input[type='file']").change(function(){
         phy_first_name: first_name,
         phy_last_name: last_name,
         phy_licnse: license_no,
-        phy_old_password: password,
-        phy_new_password: newpassword,
-        phy_confrim_new_password: confnewpassword,
         file: file,
       }
 
 
-      console.log("Formdata", formData);
-       // return false;
+      // console.log("Formdata", formData);
+      //  return false;
       $.ajax({
         type: "POST",
         url: api_url + "phyUpdateProfile",
@@ -771,18 +778,24 @@ $("input[type='file']").change(function(){
         processData: false,
         contentType: false,
       }).done(function(res) {
-           // alert('done');
+          
 
-        // console.log("resposne",res);
-        // return false;
         // if (res.data) {
           if (res.status == true) {
-            console.log("resposne true", res.data);
+           
              localStorage.setItem('user_det', JSON.stringify(res.data));
             $('#message').html(res.message).addClass('alert alert-success');
+            swal({
+                  title: "Profile Updated Successfully!",
+                  type: "success",
+                  buttons: false,
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  closeOnCancel: false,
+                });
             // window.location.reload()
             window.location.href =base_path +"physician_profile/"+physician_id5;
-            // window.location.href =base_path +"physician_edit_profile/"+physician_id5;
+          
            
           } else {
             $('#message').html(res.message).addClass('alert alert-danger');
@@ -790,7 +803,7 @@ $("input[type='file']").change(function(){
         // }
       });
     } else {
-      //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
+       $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
     }
 
   });
@@ -833,7 +846,52 @@ $("input[type='file']").change(function(){
         
 </script>
 
+<script>
+    $('#phy_pass_update').on('submit',function (event) {
+          event.preventDefault();
+          // alert('submitted')
+    var user_details65=localStorage.getItem('user_det');
+    var details65 =JSON.parse(user_details65);
+    var physician_id65=  details65._id;
+    var password= $('#password').val();
+    var newpassword= $('#newpassword').val();
+    var confnewpassword =$('#confnewpassword').val();
+    
+    var formdatapass ={
+    physician_id:physician_id65,
+    phy_old_password:password,
+    phy_new_password:newpassword,
+    phy_confrim_new_password:confnewpassword,
+    }
+    console.log(formdatapass)
+     $.ajax({
+      type: "POST",
+      url: api_url+"phyChangePassword",
+      data: formdatapass,
+     
+    }).done(function (res) {
+        if(res.status == true){
+    
+              swal({
+                  title: "Password Updated Successfully!",
+                  type: "success",
+                  buttons: false,
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  closeOnCancel: false,
+                });
+          // $('#message').html(res.message).addClass('alert alert-success');
+          $('#message3').html(res.message).addClass('alert alert-success');
+          window.location.href =base_path +"physician_edit_profile/"+physician_id65;
+        }else{
+           $('#message3').html(res.message).addClass('alert alert-danger');
 
+        }
+    
+    });
+  
+});
+</script>
   <script>
  function toggleVisibilty1(){
 let togglePassword = document.querySelector("#togglePassword1");

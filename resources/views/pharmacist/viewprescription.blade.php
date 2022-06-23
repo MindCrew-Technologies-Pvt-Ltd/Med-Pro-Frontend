@@ -185,13 +185,18 @@
     
      var base_path = "http://3.220.132.29/medpro/";
      var api_url="http://3.220.132.29:3000/api/";
-        
+       let phamacy_det = localStorage.getItem('pharm_det');
+    var pham_obj = JSON.parse(phamacy_det);
+  
+
+    var pharmcy_id = pham_obj._id;  
     $.ajax({
       url: api_url+"viewPsntPhyPresDetails",
       type: "post",
       dataType: 'json', 
       data:{
         presciption_id:arr[5],
+         phamaciest_id:pharmcy_id,
       },
     
     }).done(function (res) {

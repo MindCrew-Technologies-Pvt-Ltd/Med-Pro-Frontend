@@ -25,7 +25,7 @@
                     <div class="app-sidebar__user">
                         <div class="dropdown user-pro-body text-center">
                             <div class="user-pic">
-                                <img id="profile_id" src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" alt="user-img" class="avatar-xl rounded-circle">
+                                <img id="profile_id" src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" alt="profilepic" class="avatar-xl rounded-circle">
                             </div>
                             <div class="user-info">
                                 <h6 class=" mb-0 text-dark"></h6>

@@ -55,6 +55,7 @@
     margin-top: -4px;
     background-color: transparent;
     border-radius: 0;
+    text-align:center;
   }
 
   .card-body {
@@ -88,6 +89,8 @@
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
+     position: absolute;
+    left: 6rem;
   }
 
   .totalcharges {
@@ -99,6 +102,8 @@
     justify-content: space-between;
     margin-bottom: 20px;
     padding-left: 10px;
+    left: 6rem;
+    padding:1rem;
   }
 
   .meshide {
@@ -180,14 +185,18 @@
                 </tbody>
               </table>
               <div class="shipcharge">
-                <h7 class="">Shipping charges</h7>
-                <input type="text" id="ship" name="ship" value="" disabled onchange="addvalue()">
+              
+                <h7 class="ship_head" style="margin-left:44.5rem;font-weight:bold;">Shipping charges: </h7>
+           
+                <input type="text" id="ship" name="ship" value="" onchange="addvalue()">
                 <!-- <h7 class=""></h7> -->
               </div><br>
 
               <div class="totalcharges">
-                <h7>Total charges</h7>
-                <h7 class="total_amount" id="total_amount"></h7>
+                
+                  <h7 class="tot_amount" style="margin-left:48.5rem;font-weight:bold;">Total charges: </h7>
+              
+                <h7 class="total_amount" style="margin: 0 1.5rem;text-align:center;" id="total_amount"></h7>
               </div>
 
             </div>
@@ -253,7 +262,11 @@
   //   console.log("index5",arr[5])
   var base_path = "http://3.220.132.29/medpro/";
   var api_url = "http://3.220.132.29:3000/api/";
+   let phamacy_det = localStorage.getItem('pharm_det');
+    var pham_obj = JSON.parse(phamacy_det);
+  
 
+    var pharmcy_id = pham_obj._id;
 
    /* view patient prescripttion details api called*/
   $.ajax({
@@ -262,6 +275,7 @@
     dataType: 'json',
     data: {
       presciption_id: arr[5],
+      phamaciest_id:pharmcy_id,
     },
 
   }).done(function(res) {

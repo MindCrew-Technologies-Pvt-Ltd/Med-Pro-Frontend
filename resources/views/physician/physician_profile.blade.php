@@ -94,8 +94,10 @@
 
                    <div class="form-group licenseimg">
                         <label  class="form-label"style="padding-right: 70%;">License Image</label>
+                      <a href="" id="image_link1">
                         <img src="" class="licenseimg" alt="license_image" id="license_image" style="height:200px;width:200px;">
-                       
+                      </a>
+                       <a></a>
                   </div>
       </div>
       <!-- <div class="modal-footer"> -->
@@ -165,8 +167,10 @@
               $('#license_number').val(res.data.phy_licnse);
               if(ext == "pdf"){
                 $('#license_image').attr('src','https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png');
+                 $('#image_link1').attr('href',res.data.phy_licnse_file);
               }else{
                  $('#license_image').attr('src',res.data.phy_licnse_file);
+                 $('#image_link1').attr('href',res.data.phy_licnse_file);
               }
              
               $('#pro_img').attr('src',res.data.phy_img);

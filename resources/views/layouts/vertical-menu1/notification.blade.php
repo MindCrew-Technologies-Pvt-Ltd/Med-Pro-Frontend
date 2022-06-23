@@ -119,7 +119,7 @@
 								<div class="dropdown profile-1">
 									<a href="#" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex">
 										<span>
-											<img src="{{URL::asset('assets/images/users/10.jpg')}}" alt="profile-user" class="avatar  profile-user brround cover-image">
+											<img src="" alt="profile-user"  id="profile_user" class="avatar  profile-user brround cover-image">
 										</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -240,3 +240,42 @@
 
 
 </script>
+<script>
+    
+    
+    var base_path = "http://3.220.132.29/medpro/";
+    var api_url="http://3.220.132.29:3000/api/";
+    // var id=$this.id;
+      
+         let user_data546=localStorage.getItem('pharm_det');
+         var obj6 = JSON.parse(user_data546);
+         
+         var pharm_id7 =obj6._id;
+        //  window.location.href =base_path +"physician_profile/"+phy_id;
+        //     console.log("pharmCY  details",obj);
+            // alert(phy_id)
+    $.ajax({
+      url: api_url+"phamViewProfile",
+      type: "post",
+      dataType: 'json', 
+      data:{
+        phamaciest_id:pharm_id7,
+      },
+    
+      // contentType: "application/json; charset=utf-8",
+     // data: JSON.stringify(data),
+    }).done(function (res) {
+      localStorage.setItem('pharm_profile_det',res);
+      
+      // alert(res);
+          console.log("respons",res);
+
+     
+              $('#profile_user').attr('src',res.data.pham_img);
+    });
+    
+   
+
+
+
+    </script>

@@ -130,7 +130,7 @@ color: #495057!important;
 	<div class="dropdown profile-1">
 		<a href="#" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex">
 			<span>
-				<img src="{{URL::asset('assets/images/users/10.jpg')}}" alt="profile-user" class="avatar  profile-user brround cover-image">
+				<img src="" alt="profile-user" id="profile-user" class="avatar  profile-user brround cover-image">
 			</span>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -210,3 +210,35 @@ mydiv.appendChild(aTag);
 
 </script>
 
+<script>
+
+  var base_path = "http://3.220.132.29/medpro/";
+  var api_url = "http://3.220.132.29:3000/api/";
+
+
+  let user_data78 = localStorage.getItem('user_det');
+  var obj78 = JSON.parse(user_data78);
+  //  console.log("obj",obj)
+  var phy_id78 = obj78._id;
+  
+  $.ajax({
+    url: api_url + "phyViewProfile",
+    type: "post",
+    dataType: 'json',
+    data: {
+      physician_id: phy_id78,
+    },
+
+  }).done(function(res) {
+    console.log('response',res)
+   
+         $('#profile-user').attr('src',res.data.phy_img);
+    
+     // }else{
+     //    let img='https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png';
+     //     $('#profile_id').attr('src',img);
+     // }
+   
+   
+  });
+</script>

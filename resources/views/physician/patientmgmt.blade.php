@@ -281,7 +281,9 @@ hr.new1 {
                                     </div>
                                      <div class="form-group">
                                     <label  class="form-label">Insurance Image</label>
+                                    <a href="" id="image_link">
                                     <img src="" alt="insurace_image" id='ins_img' style="height:200px;width:200px;">
+                                       </a>
                                     <!-- <input type="email" class="form-control" id="femail" value=""> -->
                                     </div>
                                 
@@ -445,8 +447,11 @@ hr.new1 {
             $('#ins_no').val(res.data.psnt_insrnce_num);
             if(ext == "pdf"){
                  $('#ins_img').attr('src',"https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png");
+                
+                  $('#image_link').attr('href',res.data.psnt_insrnce_img)
             }else{
                 $('#ins_img').attr('src',res.data.psnt_insrnce_img);
+                $('#image_link').attr('href',res.data.psnt_insrnce_img)
             }
             // $('#ins_img').attr('src',res.data.psnt_insrnce_img);
     });

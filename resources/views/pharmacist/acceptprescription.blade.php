@@ -4,6 +4,19 @@
 @endsection
 @section('page-header')
 <style>
+  
+     .not {
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+        color: lightgreen;
+      }
+ 
+  td{
+    min-width:7.5rem;
+  }
   #calculate{
     height: auto;
     width: 100%;
@@ -66,6 +79,7 @@
     background-color: transparent;
     border-radius: 0;
     text-align: center;
+    margin-left:1.5rem;
   }
 
   .card-body {
@@ -112,7 +126,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
     padding-left: 10px;
-    position: absolute;
+    /*position: absolute;*/
     left: 6rem;
     padding:1rem;
   }
@@ -129,10 +143,6 @@
 <!-- PAGE-HEADER -->
 <div>
   <h1 class="dashboard page-title">Prescription management</h1>
-  <!-- <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
-                                </ol> -->
 </div>
 
 <!-- PAGE-HEADER END -->
@@ -141,17 +151,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="container">
-
   <div class="row">
     <div class="col-12">
       <!-- card-body start -->
       <div class="card">
         <div id="message"></div>
         <div class="card-header">
-
-          <!-- <input type="text" id="createdAt" value="" class="date" disabled> -->
-
-
         </div>
         <div class="card-body">
           <form action="" method="post">
@@ -182,7 +187,7 @@
               <table id="myTable" class="table table-striped table-bordered text-nowrap w-100">
                 <thead>
                   <tr>
-                    <th class="wd-15p">serial number</th>
+                    <th class="wd-15p">S.NO</th>
                     <th class="wd-15p">Name of the medicine</th>
                     <th class="wd-15p">Requested Qty</th>
                     <th class="wd-20p">Availabilty</th>
@@ -199,17 +204,16 @@
               </table>
               <div class="shipcharge">
               
-                <h7 class="ship_head" style="margin-left:44.5rem;font-weight:bold;">Shipping charges: </h7>
+                <h7 class="ship_head" style="margin-left:42.5rem;font-weight:bold;">Shipping charges: </h7>
            
                 <input type="text" id="ship" name="ship" value="" onchange="addvalue()">
-                <!-- <h7 class=""></h7> -->
               </div><br>
 
               <div class="totalcharges">
                 
-                  <h7 class="tot_charge" style="margin-left:44.5rem;font-weight:bold;">Total charges: </h7>
+                  <h7 class="tot_charge" style="margin-left:61.5rem;font-weight:bold;">Total charges: </h7>
               
-                <h7 class="total_amount" style="margin-left:2.5rem;"></h7>
+                <h7 class="total_amount" style="margin-left:5.5rem;"></h7>
               </div>
 
             </div>
@@ -226,19 +230,10 @@
                                 </tbody>
               </table>
             </div>
-            <!-- <h4 class="float-left ppname">Physician Note</h4><br><br>
-            <input class="input100" type="text" name="physician" id="physician" placeholder="Physician" disabled><br><br>
-            <h4 class="float-left ppname">Pharmacist Note</h4><br><br>
-            <input class="input100" type="text" name="pharmacist" id="pharmacist" placeholder="pharmacist" disabled> -->
-            <!-- <i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 3rem;top: 28.7rem;"></i> -->
-
-            
             <div class="form-group mt-6" id="Create">
               <input type="text" class="form-control" name="message" id="message1" placeholder="Enter Notes">
               
             </div>
-           <!--  <button class="btn  btn-primary mt-5 mb-3 float-right border-0" id="save">Save</button> -->
-             <!--  href="{{url('pharmacist_prescription')}} -->
                 <div>
                  <p class="text-red meshide" id="messagee">Please enter notes</p>
                </div>
@@ -266,14 +261,9 @@
 </div>
 <!-- container end -->
 
-
-
-
-
-
-
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="{{ URL::asset('assets/plugins/chart/Chart.bundle.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/chart/utils.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/echarts/echarts.js') }}"></script>
@@ -298,26 +288,35 @@
   var insurance = [];
   var arr = [];
   var prs_details1 = [];
+  var quot_insurance_type;
   arr = window.location.href.split("/");
-  console.log("arrr", arr)
+  // console.log("arrr", arr)
   var scrt_var = arr;
   //   console.log("index5",arr[5])
 
   var base_path = "http://3.220.132.29/medpro/";
   var api_url = "http://3.220.132.29:3000/api/";
 
+    let phamacy_det = localStorage.getItem('pharm_det');
+    var pham_obj = JSON.parse(phamacy_det);
+  
+
+    var pharmcy_id = pham_obj._id;
   $.ajax({
     url: api_url + "viewPsntPhyPresDetails",
     type: "post",
     dataType: 'json',
     data: {
       presciption_id: arr[5],
+      phamaciest_id:pharmcy_id,
     },
 
   }).done(function(res) {
-    console.log("respons", res);
+    // console.log("respons", res);
     //   console.log("respons,data",res.data);
-
+    quot_insurance_type =res.data.insurance_type;
+    // console.log(quot_insurance_type)
+    // console.log(typeof(quot_insurance_type))
     pat = res.data.patient_id;
     // prs_details1 = [{}];
     for (var i = 0; i <= res.data.prs_details.length - 1; i++) {
@@ -331,7 +330,7 @@
         quot_med_availty: 'no',
         quot_med_inc_cover: 'no',
         quot_med_cost: 0,
-
+        
       })
       console.log(prs_details1, res.data.prs_details);
       for (let key of prs_details1) {
@@ -347,11 +346,11 @@
 
       }
       prs_det.push(obj)
-      console.log(prs_det, 'prs_det');
+      // console.log(prs_det, 'prs_det');
     }
 
 
-    console.log(prs_det);
+    // console.log(prs_det);
     //     return false;
     $("#phy_full_name").val(res.data.phy_full_name);
     $("#psnt_full_name").val(res.data.psnt_full_name);
@@ -362,7 +361,12 @@
       //    console.log("prescription ID",e.presciption_id)
       // <td> '+e.prs_information+'</td>
       i++;
-      rows = rows + '<tr><td>' + i + '</td><td>' + e.prs_med_name + '</td><td>' + e.prs_quantity + '</td><td><select class="form-control" onchange="selectListEvent(event , \'' + e._id + '\')"  class="availibility" name="avail"><option >Yes / No</option><option value="yes">Yes</option><option value="no">No</option><option value="partial">Partial</option></select></td><td><input type="text" value="" name="med_qty" class="cost" id="med_qty" onchange="selectListEvent(event , \'' + e._id + '\')" ></td><td><select class="form-control" class="insurance_co" onchange="selectListEvent(event , \'' + e._id + '\')" name="inso" ><option>Yes / No</option><option value="yes">Yes</option><option value="no">No</option></select></td><td><input type="text" value="" name="ins_per" class="cost" id="ins_per" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" name="cost" class="cost" id="cost" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" value="" name="final_cost" class="cost" id="final_cost"onchange="selectListEvent(event , \'' + e._id + '\')" ></td></tr>'
+      if(quot_insurance_type){
+           rows = rows + '<tr><td>' + i + '</td><td>' + e.prs_med_name + '</td><td>' + e.prs_quantity + '</td><td><select class="form-control" onchange="selectListEvent(event , \'' + e._id + '\')"  class="availibility" name="avail"><option >Yes / No</option><option value="no" >No</option><option value="yes" selected>Yes</option><option value="partial">Partial</option></select></td><td><input type="text" value="' + e.prs_quantity + '" name="med_qty" class="cost" id="med_qty" onchange="selectListEvent(event , \'' + e._id + '\')" ></td><td><select class="form-control" class="insurance_co" onchange="selectListEvent(event , \'' + e._id + '\')" name="inso" ><option>Yes / No</option><option value="yes">Yes</option><option value="no">No</option></select></td><td><input type="text" value="" name="ins_per" class="cost" id="ins_per" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" name="cost" class="cost" id="cost" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" value="" name="final_cost" class="cost" id="final_cost"onchange="selectListEvent(event , \'' + e._id + '\')" ></td></tr>'
+      }else{
+        rows = rows + '<tr><td>' + i + '</td><td>' + e.prs_med_name + '</td><td>' + e.prs_quantity + '</td><td><select class="form-control" onchange="selectListEvent(event , \'' + e._id + '\')"  class="availibility" name="avail"><option >Yes / No</option><option value="yes">Yes</option><option value="no">No</option><option value="partial" selected>Partial</option></select></td><td><input type="text" value="" name="med_qty" class="cost" id="med_qty" onchange="selectListEvent(event , \'' + e._id + '\')" ></td><td><select class="form-control" class="insurance_co" onchange="selectListEvent(event , \'' + e._id + '\')" name="inso" ><option>Yes / No</option><option value="yes">Yes</option><option value="no">No</option></select></td><td><input type="text" value="" name="ins_per" class="cost" id="ins_per" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" name="cost" class="cost" id="cost" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" value="" name="final_cost" class="cost" id="final_cost"onchange="selectListEvent(event , \'' + e._id + '\')" ></td></tr>'
+      }
+      
       
 
     });
@@ -376,25 +380,20 @@
     e.preventDefault();
    var qty =0;
    var total=0;
-    // const table = document.querySelector("#prestable");  
-    // for (const row of table.rows) {  
-    //   for (const cell of row.cells) {  
-       
-    //     console.log(cell.innerText)  
-    //   }  
-    // }
-     var med_qty;
-    console.log(e.target.value, e.target.name, id, 'aaaaaaaaaaaaaa');
+   var med_qty;
+    // console.log(e.target.value, e.target.name, id, 'aaaaaaaaaaaaaa');
     var medInd = prs_details1.findIndex(f => f.quot_med_id === id)
-    console.log(medInd,prs_details1 )
+    // console.log(medInd,prs_details1 )
     if (e.target.name === 'avail') {
        
-      prs_details1[medInd].quot_med_availty = e.target.value
+      // e.target.options[e.target.selectedIndex].text
     
+          // alert(e.target.value)
 
        // console.dir(e.target.previousSibling)
       if(e.target.value == "yes"){
         // alert('yes')
+         prs_details1[medInd].quot_med_availty =e.target.value
          e.target.parentNode.parentNode.childNodes[4].childNodes[0].removeAttribute("disabled", "true");;
          e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
           e.target.parentNode.parentNode.childNodes[7].childNodes[0].removeAttribute("disabled", "true");
@@ -403,6 +402,7 @@
            
       }
       else if(e.target.value == "no"){
+         prs_details1[medInd].quot_med_availty =e.target.value
          // alert('no')
          /*4,6,7,8*/
          e.target.parentNode.parentNode.childNodes[4].childNodes[0].setAttribute("disabled", "true");;
@@ -411,7 +411,7 @@
          e.target.parentNode.parentNode.childNodes[8].childNodes[0].setAttribute("disabled", "true");
 
       }else if(e.target.value == "partial"){
-                 
+           prs_details1[medInd].quot_med_availty =e.target.value
       // med_qty=prs_details1[medInd].quot_med_quantity; 
       e.target.parentNode.parentNode.childNodes[4].childNodes[0].removeAttribute("disabled", "true");;
       e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
@@ -420,6 +420,7 @@
       }
     }
     if(e.target.name ==='med_qty'){
+        // alert(quot_insurance_type)
        prs_details1[medInd].quot_med_quantity = e.target.value
         addvalue(id)
     }
@@ -438,10 +439,8 @@
       }
     }
     if(e.target.name ==='ins_per'){
-       prs_details1[medInd].quot_ins_per = e.target.value || 0;
+       prs_details1[medInd].quot_ins_per = e.target.value;
         addvalue(id)
-    }else{
-      prs_details1[medInd].quot_ins_per=0;
     }
     if (e.target.name === 'cost') {
       console.log(prs_details1[medInd]);
@@ -452,7 +451,7 @@
     if (e.target.name === 'final_cost') {
       prs_details1[medInd].quot_final_cost = e.target.value
     }
-    console.log(medInd, prs_details1);
+    // console.log(medInd, prs_details1);
    
   }
 
@@ -460,66 +459,89 @@
   //adding code 
   function addvalue(id) {
 
-    var total = 0;
     var ship = 0
     var final_total=0;
-    var ins_per=0;
+    // var ins_per=0;
     var prev_total=0;
-    prs_details1.map(m => {
-      // return total = total + (parseFloat(m.quot_med_cost) * m.quot_med_quantity)
 
-      let med_cost =parseFloat(m.quot_med_cost) ||0;
-      let med_quantity =parseFloat(m.quot_med_quantity)||0;
+     /*gunjan sir code for calculation start here*/
+    prs_details1.forEach((v, i) => {
+      console.log(`value ${i}`, v);
+      let total = 0, med_cost = 0, med_quantity = 0, ins_per = 0;
 
-           if (med_cost == NaN || med_cost === ''|| med_cost === undefined) {
-               med_cost =0;
-           }
-            if (med_quantity == NaN || med_quantity === '' || med_quantity === undefined) {
-               med_quantity =0;
-           }
-            if (parseFloat(total) == NaN || total === ''|| total === undefined) {
-               total =0;
-           }
-            console.log(med_cost,med_quantity,total)
-      total = total + (med_cost * med_quantity);
+      if (v.quot_med_cost) med_cost =parseFloat(v.quot_med_cost);
+      if (v.quot_med_quantity) med_quantity = parseFloat(v.quot_med_quantity);
+      if (v.quot_ins_per) ins_per =parseFloat(v.quot_ins_per);
 
-    ins_per =parseFloat(m.quot_ins_per)||0;
- if (ins_per == NaN || ins_per === '' || ins_per === undefined) {
-               ins_per =0;
-      }
-     // ins_per =parseFloat(m.quot_ins_per);
-    
-     if (parseFloat(final_total) == NaN || final_total === '' || final_total === undefined) {
-               final_total =0;
-           }
-           if(ins_per){
-             final_total=+ total-(total *((ins_per)*.01));
-             prev_total=+final_total;
-             console.log('ins_per hai to',final_total,prev_total)
-           }else if(ins_per==0){
-            final_total=+ total-(total *((ins_per)*.01));
-             prev_total=+final_total;
-             console.log('ins_per zero hai to',final_total,prev_total)
-           }else{
-            // final_total= total;
-            // final_total=prev_total;
-            console.log('kuch nahi h to',final_total)
-           }
      
-           
-       console.log('sabse last main total',med_cost,med_quantity,ins_per,total,final_total)
-      
-       if(final_total == 0){
-           // total=0;
-       }else{
-        // total=final_total;
-       }
-      
-      console.log('final total',final_total)
-    })
+      total = (med_cost * med_quantity);
+      console.log("total again", total)
 
-    console.log('final_total',qty1);
-    // console.log('final total',final_total)
+      console.log("this is ins_per", ins_per)
+
+      if (total > 0) {
+        total = total - (total *((ins_per) / 100));
+        console.log("total inside ins", total)
+      } 
+      final_total += total
+    });
+    /* gunjan sir code for calculation ends here*/
+
+     /*previous working code starts here*/
+   //  prs_details1.map(m => {
+   //    // return total = total + (parseFloat(m.quot_med_cost) * m.quot_med_quantity)
+
+   //    let med_cost =parseFloat(m.quot_med_cost) ||0;
+   //    let med_quantity =parseFloat(m.quot_med_quantity)||0;
+
+   //         if (med_cost == NaN || med_cost === ''|| med_cost === undefined) {
+   //             med_cost =0;
+   //         }
+   //          if (med_quantity == NaN || med_quantity === '' || med_quantity === undefined) {
+   //             med_quantity =0;
+   //         }
+   //          if (parseFloat(total) == NaN || total === ''|| total === undefined) {
+   //             total =0;
+   //         }
+        
+   //       total = total + (med_cost * med_quantity);
+   //           console.log(med_cost,med_quantity,total)
+   //     ins_per =parseFloat(m.quot_ins_per)||0;
+
+   // if (ins_per == NaN || ins_per === '' || ins_per === undefined) {
+   //             ins_per =0;
+   //  }
+
+   //   // ins_per =parseFloat(m.quot_ins_per);
+    
+
+   //         if(ins_per){
+   //           final_total += total-(total *((ins_per)*.01));
+   //           prev_total += final_total;
+   //           console.log('ins_per hai to',final_total,prev_total)
+   //         }else if(ins_per==0){
+   //          final_total += total-(total *((ins_per)*.01));
+   //           prev_total += final_total;
+   //           console.log('ins_per zero hai',final_total,prev_total)
+   //         }else{
+   //          // final_total= total;
+   //          // final_total=prev_total;
+            
+   //         }
+              
+           
+   //     console.log('sabse last main total',med_cost,med_quantity,ins_per,total,final_total)
+      
+   //     if(final_total == 0){
+   //         // total=0;
+   //     }else{
+   //      // total=final_total;
+   //     }
+      
+   //    console.log('final total',final_total)
+   //  })
+           /*previous working code ends here*/
+    
     ship = $('#ship').val();
 
     if (parseFloat(ship) == NaN || ship === '') {
@@ -528,12 +550,12 @@
     console.log("ship", ship, parseFloat(ship), 'asss')
 
     final_total = final_total + parseFloat(ship);
-    console.log('----------->',final_total)
+   
     $('.total_amount').html('$' + final_total);
 
     tat = final_total;
         var rowIndex = prs_details1.findIndex(f => f.quot_med_id === id)
-        console.log(rowIndex, 'rowIndexddd')
+        // console.log(rowIndex, 'rowIndexddd')
 if(rowIndex >= 0)
    { 
     var tabRow = document.getElementById('prestable').childNodes[rowIndex].childNodes[8];
@@ -541,45 +563,30 @@ if(rowIndex >= 0)
     var quantity = document.getElementById('prestable').childNodes[rowIndex].childNodes[4];
     var cost    =document.getElementById('prestable').childNodes[rowIndex].childNodes[7];
     var ins =document.getElementById('prestable').childNodes[rowIndex].childNodes[6];
-       // console.log(tabRow, 'tabRowtabRow')
-       //  console.log(quantity, 'quantity')
-       //   console.log(cost, 'cost')
-       //   console.log(ins, 'ins')
         prs_details1.map((m,i) => {
          if(rowIndex == i){
           let t=0;
-      let med_cost1 =parseFloat(m.quot_med_cost);
-      let med_quantity1 =parseFloat(m.quot_med_quantity);
-      let med_per1 =parseFloat(m.quot_ins_per);
-      console.log(t)
-      console.log(med_cost1)
-      console.log(med_quantity1)
-      console.log(med_per1)
-        console.log(t)
-      if (med_cost1 == NaN || med_cost1 == ''|| med_cost1 == undefined) {
-               med_cost1 =0;
-           }
-      if (med_quantity1 == NaN || med_quantity1 == '' || med_quantity1 == undefined) {
-               med_quantity1 =0;
-           }
-      if (med_per1 == NaN || med_per1 == '' || med_per1 == undefined) {
-                med_per1=isNaN(med_per1)||0;
-           }
+      let med_cost1 =parseFloat(m.quot_med_cost)||0;
+      let med_quantity1 =parseFloat(m.quot_med_quantity)||0;
+      let med_per1 = parseFloat(m.quot_ins_per)||0;
+     
+      // if (med_cost1 == NaN || med_cost1 == ''|| med_cost1 == undefined) {
+      //          med_cost1 =0;
+      //      }
+      // if (med_quantity1 == NaN || med_quantity1 == '' || med_quantity1 == undefined) {
+      //          med_quantity1 =0;
+      //      }
+      // if (med_per1 == NaN || med_per1 == '' || med_per1 == undefined) {
+      //           med_per1=isNaN(med_per1)||0;
+      //      }
 
-         // t =  (parseFloat(m.quot_med_cost) * m.quot_med_quantity)-parseFloat(m.quot_med_cost * m.quot_med_quantity*m.quot_ins_per*.01);
-            
-         // t =  (med_cost1 * med_quantity1)-(!isNaN(med_cost1 * med_quantity1*(med_per1/100))||0);   
-         if(isNaN(med_cost1 * med_quantity1*(med_per1/100))){
-           t =  (med_cost1 * med_quantity1);
-         }else{
-          t= (med_cost1 * med_quantity1)-(med_cost1 * med_quantity1*(med_per1/100));
-         }
-         console.log('---------ttttttttttt-----',t)
-          console.log(t)
-      console.log(med_cost1)
-      console.log(med_quantity1)
-      console.log(med_per1)
-      console.log(t)
+  t= (med_cost1 * med_quantity1)-(med_cost1 * med_quantity1*(med_per1/100));
+         // if(isNaN(med_cost1 * med_quantity1*(med_per1/100))){
+         //   t =  (med_cost1 * med_quantity1);
+         // }else{
+         //  t= (med_cost1 * med_quantity1)-(med_cost1 * med_quantity1*(med_per1*.01));
+         // }
+        console.log('final_cost field',i,med_cost1,med_quantity1,med_per1,t)
              if(t){
               tabRow.innerText = t;
             }else{
@@ -597,48 +604,6 @@ if(rowIndex >= 0)
   }
 
 
-   // $('table tr').each(function() {
-   //    if ($(this).find('td').length && $(this).find('td input').length) {
-   //      var quant = parseFloat($(this).find('td input').eq(4).val()),
-   //        price = parseFloat($(this).find('td input').eq(7).val());
-   //        alert(quant)
-   //        alert(price)
-   //        console.log('------------------',quant, price);
-   //        if(!quant){
-   //          quant = 0
-   //        }
-   //        if(!price){
-   //          price = 0
-   //        }
-   //      $(this).find('.totalcharges').html(quant * price);
-   //      total += quant;
-   //    }
-     
-   //  });
-  // $(".availibility"+i).change(function(event) {
-  //           var avl1 = event.target.value;
-  //             console.log(avl1);
-  //         });
-  // $(".insurance_co"+i).change(function(event) {
-  //   var insurance1 = event.target.value;
-  //     console.log(insurance1);
-  // });
-  // function addselect(){
-  //   var avl;
-  //   var ins;
-  //   $('table tr').each( function(e) {
-  //     var avl1 = $(this).find('select.availibility').val();
-  //           var insurance1 = $(this).find('select.insurance_co').val();
-  //           if (avl !== undefined && insurance1 !== undefined) {
-  //               var avl = avl1;
-  //               var ins =insurance1;
-  //           }
-
-  // });
-  // // e.preventDefault();
-  //   console.log(avl);
-  //    console.log(ins);
-  // }
 
   $(document).ready(function() {
 
@@ -733,7 +698,8 @@ if(rowIndex >= 0)
       "quot_presciption_id": arr[5],
       "quot_shping_chrge": shap,
       "quot_total_chrge": tat,
-      "quot_prs_details":JSON.stringify(prs_details1)
+      "quot_prs_details":JSON.stringify(prs_details1),
+      "quot_insurance_type":quot_insurance_type,
     }
 
     console.log(formData);
@@ -802,16 +768,21 @@ let phama1321 = localStorage.getItem('pharm_det');
     res1.data.map((e, i) => {
 
 
-          if(e.sender_type =='Phamaciest'){
-         // row=row + '<tr><td><li class="float:left">'+e.message+'</li></td><tr>'
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:justify;text-align-last: left;list-style-type:none;background-color: #f1f1f9;"><h4>Pharmacist Note</h4>'+e.message+'</li></td><tr>') ;
+          // if(e.sender_type =='Phamaciest'){
+        
+          //      $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:justify;text-align-last: left;list-style-type:none;background-color: #f1f1f9;"><h4>Pharmacist Note</h4>'+e.message+'</li></td><tr>') ;
+          //   } else if(e.sender_type =='physician'){
+         
+          //      $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:justify;text-align-last: right;list-style-type:none;background-color: #e3e0ea;"><h4>Physician Notes</h4>'+e.message+'</li></td><tr>') ;
+          //   }
+     
+           if(e.sender_type =='Phamaciest'){
+        
+               $("#noteslist1").append('<tr><td><div class="not list-group-item" style="text-align:justify;display:flex;flex-wrap:wrap;background-color: #f1f1f9;color:grey;justify-content:space-between;"><h4>Pharmacist Note</h4><br>'+e.message+'</div></td></tr>') ;
             } else if(e.sender_type =='physician'){
-          // row=row + '<tr><td><li class="float:right">'+e.message+'</li></td><tr>'
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:justify;text-align-last: right;list-style-type:none;background-color: #e3e0ea;"><h4>Physician Notes</h4>'+e.message+'</li></td><tr>') ;
+         
+               $("#noteslist1").append('<tr><td><div class="not list-group-item" style="text-align:justify;display:flex;flex-wrap:wrap;background-color: #e3e0ea;color:blue;justify-content:space-between;"><h4>Physician Notes</h4><br>'+e.message+'</div></td></tr>') ;
             }
-      // $("#physician").val(e.message);
-      // $("#pharmacist").val(e.message);
-
 
     });
 

@@ -8,12 +8,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 <!-- map api script called here -->
 <!-- <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script> -->
   <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
  <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
   <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
   <script>
     
     var base_path = "http://3.220.132.29/medpro/";
@@ -40,7 +41,9 @@
      // data: JSON.stringify(data),
     }).done(function (res) {
       localStorage.setItem('pharm_profile_det',res);
-      
+         let image_name = res.data.pham_registration_file;
+         let ext = image_name.split(".");
+          ext = ext[(ext.length -1)];
       // alert(res);
           console.log("respons",res);
 
@@ -52,9 +55,16 @@
               $('#pham_address').val(res.data.pham_address);
               $('#pham_lat').val(res.data.pham_loc[0]);
                $('#pham_long').val(res.data.pham_loc[1])
-              $('#password').val("********");
+              // $('#password').val("********");
               $('#registration_number').val(res.data.pham_registration_num);
-              $('#registration_file').attr('src',res.data.pham_registration_file);
+              if(ext =="pdf"){
+                 $('#registration_file').attr('src','https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png');
+                 $("#image_show").attr('href',res.data.pham_registration_file)
+              }else{
+                 $('#registration_file').attr('src',res.data.pham_registration_file);
+                  $("#image_show").attr('href',res.data.pham_registration_file)
+              }
+              // $('#registration_file').attr('src',res.data.pham_registration_file);
               $('#output').attr('src',res.data.pham_img)
               // alert('load')
     });
@@ -467,7 +477,7 @@ left: -15.5rem;
                 @csrf 
               <div class="col-sm col-lg profile-pic">
                  
-                 <input type="hidden" value="" name="phamaciest_id" id="phamaciest_id">
+             <input type="hidden" value="" name="phamaciest_id" id="phamaciest_id">
                    <label for="file">
         
                 <input id="img_file" type="file" accept="image/*" name="image" />
@@ -487,19 +497,19 @@ left: -15.5rem;
      <!-- form start  -->
      <form action="" method="post" id="phamsavechanges">
        @csrf 
-         
+          <input type="hidden" value="" name="phamaciest_id" id="phamaciest_id1">
             <div class="form-group ">
                <label for="pham_name" id="phamname">pharmacy Name:</label>
-               <input type="text" class="form-control" id="n" name="pharm_name">
+               <input type="text" class="form-control" id="n" name="pham_name">
             </div>
             <div class="form-group ">
                <label for="pham_first_name">pharmacist First Name:</label>
-               <input type="text" class="form-control" id="pham_first_name" name="pharm_first">
+               <input type="text" class="form-control" id="pham_first_name" name="pham_first_name">
             </div>
 
             <div class="form-group">
                <label for="pham_last_name">pharmacist Last Name:</label>
-               <input type="text" class="form-control" id="pham_last_name" name="pharm_last">
+               <input type="text" class="form-control" id="pham_last_name" name="pham_last_name">
             </div>
              <div class="form-group" style="position:relative;">
               <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address" autocomplete="on"></textarea>
@@ -535,42 +545,6 @@ left: -15.5rem;
 
                       
            
-<!-- Modal for password -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      
-
-      <div class="form-group">
-               <label for="password" class="pass">Password:</label>
-               <input type="text" class="form-control w-100" id="password" >
-            </div>
-
-            <div class="form-group">
-               <label for="newpassword" class="newpass">New Password:</label>
-               <input type="text" class="form-control w-100" id="newpassword" >
-            </div>
-            <div class="form-group">
-               <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
-               <input type="text" class="form-control w-100" id="confnewpassword" >
-            </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">Close</button>
-        <button type="button" class="btn btn-primary" style="border: none;" data-dismiss="modal">Save Password</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>                     
-     <!-- end modal for password-->      
 
                 <!-- LARGE MODAL -->
 <div id="largeModal" class="modal fade">
@@ -606,12 +580,14 @@ left: -15.5rem;
         
                    <div class="form-group">
                        <label for="registration_number">Registration number:</label>
-                       <input type="text" class="form-control lnum" id="registration_number" name="regino">
+                       <input type="text" class="form-control lnum" id="registration_number" name="pham_registration_num">
                    </div>
 
                    <div class="form-group licenseimg">
                         <label  class="form-label"style="padding-right: 70%;">Registration Image</label>
-                        <img src="" class="licenseimg" alt="license_image" id="registration_file">
+                        <a href="" id="image_show">
+                        <img src="" class="licenseimg" alt="license_image" id="registration_file" style="height:200px;width:200px;">
+                        </a>
                        
                   </div>
                   
@@ -629,7 +605,49 @@ left: -15.5rem;
 </div>
 </form>
      <!-- form start  -->
-     
+    <!-- Modal for password -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+                     <div id="message3"></div>
+            <form method="post" id="pham_pass_update" >
+                @csrf
+           <div class="form-group" style="position:relative;">
+               <label for="password" class="pass">Password:</label>
+            <input type="password" class="form-control w-100" id="password" name="pham_old_password">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 2rem;top:3rem;color:#7ec1ec;"></i>
+            </div>
+
+            <div class="form-group" style="position:relative;">
+               <label for="newpassword" class="newpass">New Password:</label>
+                <input type="password" class="form-control w-100" id="newpassword" name="pham_new_password">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right:2rem;top:3rem;color:#7ec1ec;"></i>
+            </div>
+            <div class="form-group" style="position:relative;">
+               <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
+                <input type="password" class="form-control w-100" id="confnewpassword" name="pham_confrim_new_password">
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right:2rem;top:3rem;color:#7ec1ec;"></i>
+            </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">Close</button>
+        <button type="submit" id="pass_update" value="save" class="btn btn-primary" style="border: none;">Save Password</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+</div>                     
+     <!-- end modal for password-->      
+ 
       <!-- container end-->
 </div>
          
@@ -671,7 +689,11 @@ file.addEventListener('change', (e) => {
   document.querySelector('.file-name').textContent = fileNameAndSize;
 });
 
-
+var user_details15=localStorage.getItem('pharm_det');
+    var details15 =JSON.parse(user_details15);
+    var pharmacist_id15=  details15._id;
+    $('#phamaciest_id').val(pharmacist_id15);
+    $('#phamaciest_id1').val(pharmacist_id15);
 //end document ready 
 });
 </script>
@@ -748,9 +770,7 @@ file.addEventListener('change', (e) => {
     // var email= $('#email').val();
     var pham_registration_num= $('#registration_number').val();
     var file =$('#file')[0].files[0];
-    var password= $('#password').val();
-    var newpassword= $('#newpassword').val();
-    var confnewpassword =$('#confnewpassword').val();
+   
     var pham_lat =$('#pham_lat').val();
     var pham_long =$('#pham_long').val();
 
@@ -763,7 +783,7 @@ file.addEventListener('change', (e) => {
     console.log(pharmacist_id);
     // alert(physician_id5)
 
-    if(first_name!="" && last_name !==""  && file!="" ){
+    if(first_name!="" && last_name !==""){
     
         var formData = {
             phamaciest_id:pharmacist_id,
@@ -800,26 +820,82 @@ file.addEventListener('change', (e) => {
       // if (res.data) {
         if(res.status == true){
           localStorage.setItem('pharm_det', JSON.stringify(res.data));
-
+              swal({
+                  title: "Profile Updated Successfully!",
+                  type: "success",
+                  buttons: false,
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  closeOnCancel: false,
+                });
           $('#message').html(res.message).addClass('alert alert-success');
+          $('#message2').html(res.message).addClass('alert alert-success');
           window.location.href =base_path +"pharmacist_profile/"+pharmacist_id;
         }else{
            $('#message').html(res.message).addClass('alert alert-danger');
+           $('#message2').html(res.message).addClass('alert alert-success');
         }
       // }
     });
    }else{
-    //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
+     $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
    }
 
   });
 
 </script>
 <script>
+    $('#pham_pass_update').on('submit',function (event) {
+          event.preventDefault();
+          // alert('submitted')
+    var user_details65=localStorage.getItem('pharm_det');
+    var details65 =JSON.parse(user_details65);
+    var pharmacist_id65=  details65._id;
+    var password= $('#password').val();
+    var newpassword= $('#newpassword').val();
+    var confnewpassword =$('#confnewpassword').val();
+    
+    var formdatapass ={
+    phamaciest_id:pharmacist_id65,
+    pham_old_password:password,
+    pham_new_password:newpassword,
+    pham_confrim_new_password:confnewpassword,
+    }
+    console.log(formdatapass)
+     $.ajax({
+      type: "POST",
+      url: api_url+"phamChangePassword",
+      data: formdatapass,
+     
+    }).done(function (res) {
+     
+        if(res.status == true){
+    
+              swal({
+                  title: "Password Updated Successfully!",
+                  type: "success",
+                  buttons: false,
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  closeOnCancel: false,
+                });
+          // $('#message').html(res.message).addClass('alert alert-success');
+          $('#message3').html(res.message).addClass('alert alert-success');
+          window.location.href =base_path +"pharmacist_edit_profile/"+pharmacist_id65;
+        }else{
+           $('#message3').html(res.message).addClass('alert alert-danger');
+
+        }
+    
+    });
+  
+});
+</script>
+<script>
   
      $('#jsform').on('submit',function (e) {
         e.preventDefault();
-        alert('submit')
+        // alert('submit')
        $.ajax({
         url: api_url +"phamUploadImage",
         type: "POST",
@@ -830,6 +906,7 @@ file.addEventListener('change', (e) => {
       }).done(function(res) {
            if(res.status == true){
             $('#message').html(res.message).addClass('alert alert-success');
+            window.location.reload();
            }else{
              $('#message').html(res.message).addClass('alert alert-danger');
            }
@@ -839,6 +916,46 @@ file.addEventListener('change', (e) => {
       });
         $('.profile-pic1').hide();
      });
+
+</script>
+  <script>
+ function toggleVisibilty1(){
+let togglePassword = document.querySelector("#togglePassword1");
+        let password = document.querySelector("#password");
+   
+     
+            let type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            togglePassword.classList.toggle("zmdi-eye");
+      
+}
+
+  function toggleVisibilty2(){
+let togglePassword = document.querySelector("#togglePassword2");
+        let password = document.querySelector("#newpassword");
+   
+     
+            let type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            togglePassword.classList.toggle("zmdi-eye");
+      
+}
+ function toggleVisibilty3(){
+let togglePassword = document.querySelector("#togglePassword3");
+        let password = document.querySelector("#confnewpassword");
+   
+     
+            let type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            togglePassword.classList.toggle("zmdi-eye");
+      
+}
 
 </script>
 @endsection
