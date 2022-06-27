@@ -445,7 +445,50 @@ left: -15.5rem;
     color: #7ec1ec;
   }*/
 
+@media (min-width: 412px)and (max-width: 1180px){
+    #profile_user{
+        margin-left:173px!important;
+    }
+    #phamname{
+       /* padding-right:0px;*/
+    }
+    input[type="text"]{
+        width:385px;
+    }
+    .changepass{
+        margin-left: 0;
+    }
+    label{
+        font-size: 14px;
+    }
+    .connewpas{
+        padding-right:0;
+    }
+    .newpass{
+       padding-right:0;  
+    }
+}
+@media (min-width: 820px)and (max-width: 1180px){
+input[type="text"]{
+        width:540px;
+    }
 
+ .glyphicon{
+    left: -8.5rem;
+ }
+}
+
+@media (min-width: 375px)and (max-width: 812px){
+#profile_user{
+    margin-left: 252px;
+}
+.changepass{
+    margin-left: 0;
+}
+label{
+    font-size: 14px;
+}
+}
      @media (min-width: 992px){
         .col-lg {
              flex-basis: 0;
@@ -560,7 +603,7 @@ left: -15.5rem;
                 <h5 class=" lh-3 mg-b-20"><a href="" class="font-weight-bold"></a></h5>
                 <!-- map added here -->
                 <div class="col-md-12 modal_body_map">
-                    <div id="map-canvas1" class="" style="width:700px;height:480px"></div>
+                    <div id="map-canvas1" class="" style="width:100%;height:330px"></div>
                </div>
             </div><!-- modal-body -->
             

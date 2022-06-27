@@ -1,5 +1,7 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
+<link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
+
 <style>
 	@media only screen and (max-width: 1280px){
         .page-header{
@@ -45,7 +47,7 @@
 
 	@media only screen and (max-width: 540px){
               .avatar {
-          right: -8rem;
+          right: -6rem;
           background: #5e2dd8 no-repeat 50%/cover;
       }
     }
@@ -55,7 +57,8 @@
        font-weight: 400;
      }
 	 .page-header {
-             width:310px;
+             width:95%!important;
+
         }
 	}
 
@@ -66,15 +69,29 @@
     position: absolute;
     }
 	.page-header {
-    width: 362px;
+    width: 365px;
     }
-
+    .dropdown{
+        top: 0.5rem;
+       right: 0;
+    }
+    .user-pic,.user-info{
+        margin-left:-114px;
+    }
+    
 }
 @media only screen and (max-width: 414px){
 	.avatar {
     top: -1.4rem;
     right: 0rem;
     position: absolute;
+    }
+
+    .card-title{
+        font-size:1rem;
+    }
+    .user-pic,.user-info{
+        margin-left:-48px;
     }
 }
 
@@ -91,7 +108,7 @@
 	@media only screen and (max-width: 360px){
 		.avatar {
           position: absolute;
-          top: -1.5rem;
+          top: 0rem; //-1.5rem
           right: 0rem;
           background: #5e2dd8 no-repeat 50%/cover;
       }
@@ -112,7 +129,7 @@
 @section('page-header')
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">Dashboard</h1>
+                                <h1 class="dashboard page-title">{{__('dashboard.dashboard')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -127,7 +144,7 @@
 							<div class="col-xl-4 col-md-12">
 								<div class="card">
 									<div class="card-body">
-										<h5 class="card-title">Welcome To Dashboard</h5>
+										<h5 class="card-title">{{__('dashboard.welcome')}}</h5>
 										<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
 										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 										<a href="#" class="card-link">Card link</a>

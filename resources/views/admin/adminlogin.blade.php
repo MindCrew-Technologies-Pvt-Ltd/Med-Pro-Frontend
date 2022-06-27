@@ -2,28 +2,6 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
-<style type="text/css">
-            @-moz-document url-prefix() {
-                .container-login100{
-                	margin-top: 5rem;
-                }
-               
-            }
-  @media (min-width: 820px) and (max-width: 1180px) {
-                	/*.login-img{
-                		margin-top:6.5rem!important;
-                	}*/
-      .zmdi-eye-off{
-             right: 3rem!important;
-       }  
-       .forgot{
-       	    margin-right: 24px!important;
-       }  
-       #loginbtn{
-       	margin-left: -102px!important;
-       }     	
-     }
-        </style>
 <style>
 .error{
 	color: red;
@@ -153,7 +131,7 @@ input[type=password] {
 							<img src="{{URL::asset('assets/images/brand/logo1.png')}}" class="header-brand-img" alt="">
 						</div> -->
 					</div>
-					<div class="container-login100" >
+					<div class="container-login100">
 
 						<div class="wrap-login100 p-6">
 							<div class="text-center" id="message">
@@ -164,10 +142,10 @@ input[type=password] {
 </svg>
 
 
-							<form class="login100-form validate-form" id="pharma_login" method="post">
+							<form class="login100-form validate-form" id="admin_login" method="post">
 								@csrf
 								<span class="login100-form-title">
-									Pharmacy Login
+									Admin Login
 								</span>
 								<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 									<input class="input100" type="text" name="pham_email" id="pham_email" placeholder="Email">

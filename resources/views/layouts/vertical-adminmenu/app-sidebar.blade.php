@@ -1,11 +1,11 @@
 <script>
 		 
-		  let user_data9 = localStorage.getItem('user_det');
-		  var obj9 = JSON.parse(user_data9);
-		  if (!obj9) {
-		    var base_path = "http://3.220.132.29/medpro/";
-		    window.location.href = base_path + 'login';
-           }
+		  // let user_data9 = localStorage.getItem('user_det');
+		  // var obj9 = JSON.parse(user_data9);
+		  // if (!obj9) {
+		  //   var base_path = "http://3.220.132.29/medpro/";
+		  //   window.location.href = base_path + 'login';
+    //        }
 </script>
 
 
@@ -14,7 +14,7 @@
                 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
                 <aside class="app-sidebar">
                     <div class="side-header">
-                        <a class="header-brand1" href="{{ url('/dashboard')}}">
+                        <a class="header-brand1" href="{{ url('/admindashboard')}}">
                             <!-- <img src="{{URL::asset('./assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-1.png')}}"  class="header-brand-img toggle-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-2.png')}}" class="header-brand-img light-logo" alt="logo"> -->
@@ -60,7 +60,7 @@
                     <ul class="side-menu">
                       <!--   <li><h3>Main</h3></li> -->
                         <li class="slide">
-                            <a class="side-menu__item"  data-toggle="slide" href="{{ url('/dashboard')}}"><i class="side-menu__icon ti-home"></i><span class="side-menu__label">{{__('sidebar.dashboard')}}</span></i></a>
+                            <a class="side-menu__item"  data-toggle="slide" href="{{ url('/admindashboard')}}"><i class="side-menu__icon ti-home"></i><span class="side-menu__label">Dashboard</span></i></a>
                            <!--  <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{ url('/' . $page='index') }}"><span>Sales Dashboard</span></a></li>
                                 <li><a class="slide-item" href="{{ url('/' . $page='index2') }}"><span>Marketing Dashboard</span></a></li>
@@ -69,18 +69,19 @@
                                 <li><a class="slide-item" href="{{ url('/' . $page='index5') }}"><span>IT Dashboard</span></a></li>
                             </ul> -->
                         </li>
+                         <!-- <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">Prescription Management</span></a>
+                        </li> -->
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('prescription_management') }}"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">{{__('sidebar.pres_mgmt')}}</span></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a>
                         </li>
                          <li class="slide">
-                            <!-- <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a> -->
-                        </li>
-                         <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('patient_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pat_mgmt')}}</span></a>
-                       </li>
-                        <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('Pharmacy_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pharm_mgmt')}}</span></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('Pharmacy_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Pharmacy Management</span></a>
                         </li> 
+                         <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('patient_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Patient Management</span></a>
+                       </li>
+                       
                         
                         <!-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-layout-accordion-separated"></i><span class="side-menu__label">Layouts</span><i class="angle fa fa-angle-right"></i></a>
@@ -281,13 +282,13 @@
 <script type="text/javascript">
 
   
-        let user_data=localStorage.getItem('user_det');
-         var obj = JSON.parse(user_data);
-         var username=obj.phy_first_name +' '+ obj.phy_last_name;
-          console.log(username)
-          document.getElementById("usr_name").style.fontSize = "large";
-          document.querySelector(".user-info").style.color="#ffffff";
-           document.getElementById("usr_name").innerText=username;
+        // let user_data=localStorage.getItem('user_det');
+        //  var obj = JSON.parse(user_data);
+        //  var username=obj.phy_first_name +' '+ obj.phy_last_name;
+        //   console.log(username)
+        //   document.getElementById("usr_name").style.fontSize = "large";
+        //   document.querySelector(".user-info").style.color="#ffffff";
+        //    document.getElementById("usr_name").innerText=username;
          // let user=document.querySelector('#usr_name');
          
 
@@ -298,33 +299,28 @@
 
 <script>
 
-  var base_path = "http://3.220.132.29/medpro/";
-  var api_url = "http://3.220.132.29:3000/api/";
+  // var base_path = "http://3.220.132.29/medpro/";
+  // var api_url = "http://3.220.132.29:3000/api/";
 
 
-  let user_data4 = localStorage.getItem('user_det');
-  var obj = JSON.parse(user_data4);
-  //  console.log("obj",obj)
-  var phy_id = obj._id;
+  // let user_data4 = localStorage.getItem('user_det');
+  // var obj = JSON.parse(user_data4);
+  // //  console.log("obj",obj)
+  // var phy_id = obj._id;
   
-  $.ajax({
-    url: api_url + "phyViewProfile",
-    type: "post",
-    dataType: 'json',
-    data: {
-      physician_id: phy_id,
-    },
+  // $.ajax({
+  //   url: api_url + "phyViewProfile",
+  //   type: "post",
+  //   dataType: 'json',
+  //   data: {
+  //     physician_id: phy_id,
+  //   },
 
-  }).done(function(res) {
-    console.log('response',res)
+  // }).done(function(res) {
+  //   console.log('response',res)
    
-         $('#profile_id').attr('src',res.data.phy_img);
-    
-     // }else{
-     //    let img='https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png';
-     //     $('#profile_id').attr('src',img);
-     // }
+  //        $('#profile_id').attr('src',res.data.phy_img);
    
    
-  });
+  // });
 </script>

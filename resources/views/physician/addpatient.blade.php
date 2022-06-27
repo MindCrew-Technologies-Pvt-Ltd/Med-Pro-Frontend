@@ -8,6 +8,7 @@
       .file-name{
         display: none;
       }
+     
   </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -284,7 +285,7 @@ function resizingMap() {
                                                   
                                                 
                                                 <textarea class="form-control" name="psnt_address" id="psnt_address" placeholder="*Patient Address" autocomplete="off"></textarea>
-                                               <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:14rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
+                                               <i  id="add_icon"  class="fa fa-map-marker" style="" data-toggle="modal" data-target="#largeModal"></i>
                                                 </div>
                                                
                                                 <div class="form-group">
@@ -336,7 +337,8 @@ function resizingMap() {
                 <h5 class=" lh-3 mg-b-20"><a href="" class="font-weight-bold"></a></h5>
                 <!-- map added here -->
                 <div class="col-md-12 modal_body_map">
-                    <div id="map-canvas" class="" style="width:700px;height:480px"></div>
+                    <div class="row" id="map-canvas" class="" style="width:100%;height:300px;"></div>
+                    <!-- style="width:700px;height:480px" -->
                </div>
             </div><!-- modal-body -->
             

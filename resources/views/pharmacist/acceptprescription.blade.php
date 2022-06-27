@@ -113,8 +113,8 @@
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
-    position: absolute;
-    left: 6rem;
+    position: relative;
+    left: 18rem;
   }
 
   .totalcharges {
@@ -138,6 +138,11 @@
     background-color: #F1F1F9;
     opacity: 1;
     width: 100%;
+}
+@media (min-width: 412px)and (max-width: 1180px){
+    #message1{
+        width:325px!important;
+    }
 }
 </style>
 <!-- PAGE-HEADER -->
@@ -211,7 +216,8 @@
 
               <div class="totalcharges">
                 
-                  <h7 class="tot_charge" style="margin-left:61.5rem;font-weight:bold;">Total charges: </h7>
+                  <h7 class="tot_charge" style="margin-left: 48.5rem;font-weight: bold;
+    width: 100%;position: relative;left: 12rem;">Total charges: </h7>
               
                 <h7 class="total_amount" style="margin-left:5.5rem;"></h7>
               </div>
@@ -778,10 +784,10 @@ let phama1321 = localStorage.getItem('pharm_det');
      
            if(e.sender_type =='Phamaciest'){
         
-               $("#noteslist1").append('<tr><td><div class="not list-group-item" style="text-align:justify;display:flex;flex-wrap:wrap;background-color: #f1f1f9;color:grey;justify-content:space-between;"><h4>Pharmacist Note</h4><br>'+e.message+'</div></td></tr>') ;
+               $("#noteslist1").append('<tr><td style="background-color:#f1f1f9;border:1px solid white;"><div class="not clearfix" style="text-align:justify;background-color:#f1f1f9;color:grey;float:right;"><h4 style="float:right;">Pharmacist Note</h4><br><div style="float:right;">'+e.message+'</div></div></td></tr>') ;
             } else if(e.sender_type =='physician'){
          
-               $("#noteslist1").append('<tr><td><div class="not list-group-item" style="text-align:justify;display:flex;flex-wrap:wrap;background-color: #e3e0ea;color:blue;justify-content:space-between;"><h4>Physician Notes</h4><br>'+e.message+'</div></td></tr>') ;
+               $("#noteslist1").append('<tr><td style="background-color:#e3e0ea;border:1px solid white;"><div class="not  clearfix" style="text-align:justify;background-color:#e3e0ea;color:blue;float:left;"><h4 style="float:left;">Physician Notes</h4><br><div style="float:left;">'+e.message+'</div></div></td></tr>') ;
             }
 
     });

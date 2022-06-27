@@ -28,10 +28,16 @@
     background-color: #008000;
    
 }
+
+@media only screen and (max-width: 414px){
+     .card-title{
+        font-size: 0.9rem;
+     }
+    }
 </style>
                         <!-- PAGE-HEADER -->
         <div>
-            <h1 class="dashboard page-title">Prescription Management</h1>
+            <h1 class="dashboard page-title">{{__('pres_management.pres_mgmt')}}</h1>
             <!-- <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -47,14 +53,14 @@
                             <div class="col-md-12 col-lg-12">
                                 <div class="card">
                                     
-                                    <div class="card-header">
-                                        <h3 class="card-title viewp">View Prescription</h3>
+                                    <div class="card-header" style="position:relative;">
+                                        <h3 class="card-title viewp" style="position:absolute;">{{__('pres_management.view_pres')}}</h3>
                                         
                                    <div class="ml-auto pageheader-btn">
                                             <a href="{{ url('add_prescription') }}" class="btn btn-primary btn-icon text-white mr-2 bttttn">
                                                 <span>
                                                     <i class="fe fe-plus"></i>
-                                                </span> Add 
+                                                </span>{{__('pres_management.add')}}
                                             </a>
                                            
                                     </div>
@@ -70,12 +76,12 @@
                                             <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                                 <thead class="text-lowercase">
                                                     <tr>
-                                                        <th class="wd-15p">S No.</th>
-                                                        <th class="wd-15p">First name</th>
-                                                        <th class="wd-15p">Last name</th>
-                                                        <th class="wd-20p">Notes</th>
+                                                        <th class="wd-15p">{{__('pres_management.sno')}}</th>
+                                                        <th class="wd-15p">{{__('pres_management.fname')}}</th>
+                                                        <th class="wd-15p">{{__('pres_management.lname')}}</th>
+                                                        <th class="wd-20p">{{__('pres_management.notes')}}</th>
                                                         <!-- <th class="wd-15p">Information</th> -->
-                                                        <th class="wd-10p">Action</th>
+                                                        <th class="wd-10p">{{__('pres_management.action')}}</th>
                                                         
                                                     </tr>
                                                 </thead>
@@ -90,7 +96,7 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Patient Profile</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">{{__('pres_management.pat_profile')}}</h5>
                                     <button type="button" class="close clear" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
@@ -98,11 +104,11 @@
 <!-- Modal body -->
 <div class="modal-body">
             <div class="form-group">
-                <label class="form-label">Physician name</label>
+                <label class="form-label">{{__('pres_management.phy_name')}}</label>
                 <input type="text" class="form-control w-100 fa fa-plus" name="physician_name" id="physician_name" placeholder="Physician name" disabled>
             </div>
             <div class="form-group">
-                <label class="form-label">Patient name</label>
+                <label class="form-label">{{__('pres_management.pat_name')}}</label>
                 <input type="text" class="form-control w-100" name="patient_name" id="patient_name" placeholder="Patient name" disabled>
             </div>
              <!-- table  start -->
@@ -114,9 +120,9 @@
                        <table id="myTable02"  class="table table-striped table-bordered text-nowrap w-100 text-lowercase">
                            <thead class="text-lowercase">
                                 <tr>
-                                    <th class="wd-15p">Serial Number</th>
-                                    <th class="wd-15p">Name of the medicine</th>
-                                    <th class="wd-15p">Quantity</th>
+                                    <th class="wd-15p">{{__('pres_management.ser_no')}}</th>
+                                    <th class="wd-15p">{{__('pres_management.name_med')}}</th>
+                                    <th class="wd-15p">{{__('pres_management.qty')}}</th>
                                </tr>
                            </thead>
                        <tbody id="myTable02body">
@@ -136,10 +142,10 @@
 
                             
                             <table class="table" id="noteslist1">
-                                <h5>Notes</h5>
+                                <h5>{{__('pres_management.notes')}}</h5>
                                 <thead>
                                    <tr>
-                                      <th scope="col">Notes</th>
+                                      <th scope="col">{{__('pres_management.notes')}}</th>
                                    </tr>
                                 </thead>
                                <tbody id="tbodynotes">
@@ -167,12 +173,12 @@
                             </div>
 
                             
-                            <h4 class="otherlabel">Add Notes</h4><br><br>
+                            <h4 class="otherlabel">{{__('pres_management.add')}}{{__('pres_management.notes')}}</h4><br><br>
                             <div class="form-group">
                                <!-- <textarea class="form-control col-10 message" id="message1" rows="3" name="message" placeholder="Enter Information" value=""></textarea> -->
-                               <input type="text" class="form-control w-100" style="border-radius: 7px" name="message" id="message1" placeholder="Enter Notes" value="" >
+                               <input type="text" class="form-control w-100" style="border-radius: 7px" name="message" id="message1" placeholder="{{__('pres_management.ent_notes')}}" value="" >
                            </div>
-                             <button type="submit" class="btn btn-success" id="notesbtn">Add Notes</button>
+                             <button type="submit" class="btn btn-success" id="notesbtn">{{__('pres_management.add')}}{{__('pres_management.notes')}}</button>
                      </form>
 
 </div>
@@ -242,14 +248,13 @@
        //  }
     console.log(patientList);
     localStorage.setItem('patientList',JSON.stringify(patientList));
-
-          
+       
           if(res.data.length>0){
          res.data.map((e,i) => {
            
             i++;
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.message+'</td><td><button  id="'+e.prescription_id+'" onclick="editdata1(this)" class="btn btn-info in-btn text-white ebtn" data-toggle="modal" data-target="#exampleModal">View</button><button type="button" class="btn dbtn " data-toggle="modal" data-target="#exampleModalCenter'+e.prescription_id+'">Delete</button></td></tr>');         
-              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e.prescription_id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>Are you sure <br><br>you want to delete this prescription?</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">Cancel</button><button id="'+e.prescription_id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">Yes Delete It!</button></div></div></div></div>');         
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.message+'</td><td><button  id="'+e.prescription_id+'" onclick="editdata1(this)" class="btn btn-info in-btn text-white ebtn" data-toggle="modal" data-target="#exampleModal">{{__("pres_management.view1")}}</button><button type="button" class="btn dbtn " data-toggle="modal" data-target="#exampleModalCenter'+e.prescription_id+'">{{__("pres_management.delete1")}}</button></td></tr>');         
+              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e.prescription_id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('pres_management.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('pres_management.can')}}</button><button id="'+e.prescription_id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('pres_management.yes')}}</button></div></div></div></div>');         
 
             });
      }
@@ -419,9 +424,9 @@ var counter=1;
            
             
             if(e.sender_type =='Phamaciest'){
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:justify;text-align-last: left;list-style-type:none;background-color: #f1f1f9;"><h4>Pharmacist Note</h4>'+e.message+'</li></td><tr>') ;
+               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-primary" style="text-align:justify;text-align-last: left;list-style-type:none;background-color: #f1f1f9;"><h4>{{__("pres_management.pham_notes")}}</h4>'+e.message+'</li></td><tr>') ;
             } else if(e.sender_type =='physician'){
-               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:justify;text-align-last: right;list-style-type:none;background-color: #e3e0ea;"><h4>Physician Notes</h4>'+e.message+'</li></td><tr>') ;
+               $("#noteslist1").append('<tr><td><li class="list-group-item list-group-item-secondary" style="text-align:justify;text-align-last: right;list-style-type:none;background-color: #e3e0ea;"><h4>{{__("pres_management.phy_notes")}}</h4>'+e.message+'</li></td><tr>') ;
             }
             else{
 

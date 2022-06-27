@@ -296,7 +296,9 @@ function resizingMap() {
 	margin-top: -40px;
 	margin-bottom: -30px;
 }*/
-
+#terms-error{
+    margin-left:10px;
+}
 label {
     padding-right: 0px!important;
     font-size: 17px;

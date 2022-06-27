@@ -12,6 +12,33 @@
 .card-body {
     margin-top: -20px;
 }
+@media (min-width: 820px)and (max-width: 1180px){
+  #profile_user{
+       margin-left: 152px!important;
+    } 
+ .page-header{
+    margin-left:0!important;
+    width: 100%;
+ }
+}
+@media (min-width: 412px)and (max-width: 1180px){
+    .heading{
+        font-size: 1.1rem!important;
+    }
+    .sbmt {
+  width: 150px!important;
+     }
+}
+@media (min-width: 360px){
+ .heading{
+        font-size: 1.1rem!important;
+    }
+}
+@media (min-width: 384px){
+ #profile_user{
+       margin-left: 259px;
+    }
+}
 </style>
                         <!-- PAGE-HEADER -->
                             <div>

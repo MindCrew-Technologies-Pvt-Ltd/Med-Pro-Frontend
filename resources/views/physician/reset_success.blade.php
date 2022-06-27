@@ -2,8 +2,17 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
+
 @endsection
 @section('content')
+<style>
+@-moz-document url-prefix() {
+
+  .container-login100{
+  	margin-top: 5.5rem;
+  }
+ }
+</style>
 		<!-- BACKGROUND-IMAGE -->
 		<div class="login-img">
 
@@ -34,8 +43,8 @@
 
 
 							<form class="login100-form validate-form">
-								<span class="login100-form-title">
-								 Success
+								<span class="login100-form-title" id="success_title">
+								{{__('rstsuccess.success')}}
 								</span>
 								<div class="text-center">
 							  
@@ -45,11 +54,11 @@
 								
 								
 								<div class="text-center pt-3">
-									<p>ThankYou!<br> Your Password is Reset Successfully.</p>
+									<p>{{__('rstsuccess.success_msg')}}</p>
 								</div>
 								<div class="text-center pt-3">
 
-									<p class="text-dark mb-0">Back to<a href="{{url('login')}}" class="text-primary ml-1">Login</a></p>
+									<p class="text-dark mb-0"><a href="{{url('login')}}" class="text-primary ml-1">{{__('rstsuccess.success_btl')}}</a></p>
 								</div>
 								<!-- <div class=" flex-c-m text-center mt-3">
 								    <p>Or</p>

@@ -3,6 +3,9 @@
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
 <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <style>
 
      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap'); 
@@ -65,7 +68,7 @@ hr.new1 {
 
 .viewp{
     color: #7d7a7a;
-    font-size: 25px;
+    font-size: 1.1rem;
     margin-left: 10px;
 }
 .bttttn{
@@ -128,7 +131,7 @@ hr.new1 {
 
 @media only screen and (max-width: 1440px){
        .page-header{
-            width: 100%;
+            width: 95%;
        }
 
 }
@@ -175,14 +178,22 @@ hr.new1 {
 
         } */
         .ebtn{
-            width: 50px;
-            padding-left: 8px;
+           /* width: 50px;
+            padding-left: 8px;*/
+            width: 88px;
+        height: 35px;
+        border-radius: 10px;
+        color: white;
+        margin-right: 10px;
         }
         .dbtn{
-            width: 50px;
-            padding-left: 3px;
+            /*width: 50px;
+            padding-left: 3px;*/
 
-        
+        height: 35px;
+        border-radius: 10px;
+        color: white;
+        margin-right: 10px;
         }
         .card-body {
            flex: 1 1 auto;
@@ -192,12 +203,17 @@ hr.new1 {
            margin-left: 11px;
            margin: 0;
         }
-        .page-header {
+        /*.page-header {
               width:310px;
-            }
+            }*/
 
 
 
+}
+@media screen and (min-device-width: 360px){
+ .sbmt{
+  width: 128px;
+ }
 }
 </style>
 @endsection
@@ -219,9 +235,9 @@ hr.new1 {
                           
                             <div class="col-md-12 col-lg-12">
                                 <div class="card">
-                                    <div class="card-header">
+                                    <div class="card-header" style="position:relative">
                                         
-                                        <h3 class="card-title viewp">View Patient</h3>
+                                        <h3 class="card-title viewp" style="position:absolute;">View Patient</h3>
                                        
                                         
                                    <div class="ml-auto pageheader-btn btnbtn">
@@ -242,6 +258,8 @@ hr.new1 {
                                                
                                              </div>
                                         <div class="table-responsive">
+                                            <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Name">
+
                                             <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                                 <thead>
                                                     <tr>
@@ -327,6 +345,7 @@ hr.new1 {
 <script src="{{ URL::asset('assets/js/index1.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
+  
  $(document).ready( function () {
      var api_url="http://3.220.132.29:3000/api/";
      var base_path = "http://3.220.132.29/medpro/"; 
@@ -361,7 +380,7 @@ hr.new1 {
     console.log(patientList);
     localStorage.setItem('patientList',JSON.stringify(patientList));
 
-       
+        
 
          res.data.map((e,i) => {
            
@@ -369,7 +388,7 @@ hr.new1 {
               $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td><button  id="'+e._id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">View</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">Delete</button></td></tr>');         
               $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>Are you sure <br><br>you want to delete this patient?</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">Cancel</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">Yes Delete It!</button></div></div></div></div>');         
     });
-
+     
 });
 
 
@@ -461,7 +480,33 @@ hr.new1 {
 
     </script>
 
-   
+   <script>
+   function myFunction() {
+
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  // alert(filter)
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      // alert(txtValue)
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 
 @endsection
 

@@ -21,22 +21,10 @@
 		<link href="{{URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
 
 		<!-- STYLE CSS -->
-		<?php if(App::getLocale()=="en"){ ?>
 		<link href="{{URL::asset('assets/css/style.css')}}" rel="stylesheet" />
+		<link href="{{URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/css/skin-modes.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/css/dark-style.css')}}" rel="stylesheet" />
-		<link href="{{URL::asset('assets/css/sidemenu.css')}}" rel="stylesheet" />
-		<?php }else{ ?>
-		
-		<link href="{{URL::asset('assets/css/css-rtl/style.css')}}" rel="stylesheet" />
-		<link href="{{URL::asset('assets/css/css-rtl/skin-modes.css')}}" rel="stylesheet" />
-		<link href="{{URL::asset('assets/css/css-rtl/dark-style.css')}}" rel="stylesheet" />
-		<link href="{{URL::asset('assets/css/css-rtl/sidemenu.css')}}" rel="stylesheet" />
-		<link href="{{URL::asset('assets/css/rtl.css')}}" rel="stylesheet" />
-		<?php } ?>
-		<link href="{{URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet" />
-		<!-- <link href="{{URL::asset('assets/css/skin-modes.css')}}" rel="stylesheet" />
-		<link href="{{URL::asset('assets/css/dark-style.css')}}" rel="stylesheet" /> -->
 
 		<!--C3 CHARTS CSS -->
 		<link href="{{URL::asset('assets/plugins/charts-c3/c3-chart.css')}}" rel="stylesheet" />
@@ -54,7 +42,7 @@
 		@yield('css')
 
 		<!-- SIDE-MENU CSS -->
-		
+		<link href="{{URL::asset('assets/css/sidemenu.css')}}" rel="stylesheet" />
 
 		<!-- SIDEBAR CSS -->
 		<link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet" />
@@ -62,7 +50,7 @@
 		<!-- COLOR SKIN CSS -->
 		<link id="theme" rel="stylesheet" type="text/css" media="all" href="{{URL::asset('assets/colors/color1.css')}}" />
 
-		<script>
+		<!-- <script>
 		  function signout1() {
 
 		    var api_url = "http://3.220.132.29:3000/api/";
@@ -86,9 +74,7 @@
 		        physician_id: pharmacist_id,
 		      }
 		    }).done(function(res) {
-		      //  console.log("response for logout successfully",res);
-		      //  alert('response',res)
-		      //  return false;
+		      
 
 		      if (res.status == true) {
 		        swal({
@@ -108,9 +94,9 @@
 		        $('#message').html(res.message).addClass('alert alert-danger');
 		      }
 		    });
-		    // });
+		   
 		  }
 
-		  // });
+		  
 		</script>
-		</script>
+		</script> -->

@@ -24,10 +24,16 @@
   left: 2rem;
   }
 
+  #togglePassword1{
+    position: absolute;float:right;right: 2rem;top:4rem;
+  }
+#togglePassword2{
+    position: absolute;float:right;right: 2rem;top:4rem;
+  }
 
-
-
-
+#togglePassword3{
+    position: absolute;float:right;right: 2rem;top:4rem;
+  }
 
 
 
@@ -238,11 +244,11 @@
 
   @media only screen and (max-width: 1180px) {
     .newpass {
-      padding-right: 77%;
+     /* padding-right: 77%;*/
     }
 
     .connewpas {
-      padding-right: 69%;
+     /* padding-right: 69%;*/
     }
 
     .pass {
@@ -251,7 +257,7 @@
 
     input[type=text] {
       width: 850px;
-      margin-left: 36px;
+     /* margin-left: 36px;*/
     }
 
     label {
@@ -277,6 +283,11 @@
 
     .proimg {
       margin-right: 20px;
+      top: -6rem;
+     left: -21rem;
+    }
+    #upload_btn{
+      top: 4rem;
     }
   }
 
@@ -317,20 +328,26 @@
     }
 
     .changepass {
-      margin-left: 330px;
+      /*margin-left: 330px;*/
+      margin-left: -80px;
     }
-
+     #togglePassword2{
+      top: 4rem;
+     }
+     #togglePassword3{
+      top: 4rem;
+     }
     .page-header {
       padding: 15px;
       width: 510px;
     }
 
     .newpass {
-      padding-right: 75%;
+      /*padding-right: 75%;*/
     }
 
     .connewpas {
-      padding-right: 62%;
+      /*padding-right: 62%;*/
     }
 
     input[type=text] {
@@ -439,12 +456,12 @@
     <input type="hidden" name="pham_long" id="pham_long" value=""> -->
     <div class="form-group ">
       <label for="physician_first_name">Physician First Name:</label>
-      <input type="text" class="form-control" id="physician_first_name" name="physician_first_name">
+      <input type="text" class="form-control" id="physician_first_name" name="phy_first_name">
     </div>
 
     <div class="form-group">
       <label for="physician_last_name">Physician Last Name:</label>
-      <input type="text" class="form-control" id="physician_last_name" name="physician_last_name">
+      <input type="text" class="form-control" id="physician_last_name" name="phy_last_name">
     </div>
 
     <div class="form-group">
@@ -550,18 +567,18 @@
             <div class="form-group" style="position:relative;">
               <label for="password" class="pass">Password:</label>
               <input type="password" class="form-control w-100" id="password" name="password">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 2rem;top:4rem;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style=""></i>
             </div>
 
             <div class="form-group" style="position:relative;">
               <label for="newpassword" class="newpass">New Password:</label>
               <input type="password" class="form-control w-100" id="newpassword" name="newpassword">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right:2rem;top:4rem;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style=""></i>
             </div>
             <div class="form-group" style="position:relative;">
               <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
               <input type="password" class="form-control w-100" id="confnewpassword" name="confnewpassword">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right: 2rem;top:4rem;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style=""></i>
             </div>
          
           <div class="modal-footer">
@@ -689,12 +706,12 @@ $("input[type='file']").change(function(){
     errorClass: "error fail-alert",
     validClass: "valid success-alert",
     rules: {
-      physician_first_name: {
+      phy_first_name: {
         required: true,
         lettersonly: true,
         // minlength: 3
       },
-      physician_last_name: {
+      phy_last_name: {
         required: true,
         lettersonly: true,
         // minlength: 3
@@ -710,11 +727,11 @@ $("input[type='file']").change(function(){
 
     },
     messages: {
-      physician_first_name: {
+      phy_first_name: {
         required: "First Name field is Required",
         lettersonly: "Only Alphabetical Characters are allowed",
       },
-      physician_last_name: {
+      phy_last_name: {
         required: "Last Name field is Required",
         lettersonly: "Only Alphabetical Characters are allowed",
 
@@ -779,7 +796,8 @@ $("input[type='file']").change(function(){
         contentType: false,
       }).done(function(res) {
           
-
+        // console.log(res);
+        // return false;
         // if (res.data) {
           if (res.status == true) {
            

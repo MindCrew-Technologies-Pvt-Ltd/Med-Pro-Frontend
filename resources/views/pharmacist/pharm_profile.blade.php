@@ -114,7 +114,30 @@
             }
 
      }
-          
+     @media (min-width: 375px)and (max-width: 667px){
+        #profile_user{
+            margin-left: 248px!important;
+        }
+     }
+      @media (min-width: 412px)and (max-width: 1180px){
+
+        #phamname{
+            margin-top: 80px;
+            margin-left: -119px;
+
+            margin-bottom: 4px;
+        }
+        label{
+            font-size: 13px;
+            padding-right:0rem!important;
+        }
+
+        #profile_user{
+            margin-left: 196px;
+        }
+    
+    }
+    
 </style>
                         <!-- PAGE-HEADER -->
                             <div>

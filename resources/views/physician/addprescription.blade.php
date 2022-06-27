@@ -10,7 +10,7 @@
 @section('page-header')
 <!-- PAGE-HEADER -->
 <div>
-    <h1 class="dashboard page-title">Prescription Management</h1>
+    <h1 class="dashboard page-title">{{__('addpres.pres_mgmt')}}</h1>
     <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -27,7 +27,7 @@
     <div class="col-md-12 col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Add Prescription</h3>
+                <h3 class="card-title">{{__('addpres.add_pres')}}</h3>
 
                 <div class="ml-auto pageheader-btn">
                     <!-- <a href="{{ url('add_patient') }}" class="btn btn-primary btn-icon text-white mr-2">
@@ -48,7 +48,7 @@
             
                     <div class="form-group">
                            <select class="form-control col-10 classic" id="patient_name" name="patient_name">
-                             <option value="">Select Patient</option> 
+                             <option value="">{{__('addpres.sel')}}</option> 
                              
                            </select>
                     </div>
@@ -60,17 +60,17 @@
               
                         <!-- <div class="row"> -->
                             <!-- <div class="col"> -->
-                               <input type="text" name="prs_med_name[]" class="form-control m-input" id="prs_med_name" placeholder="Medicine Name" autocomplete="off" />
+                               <input type="text" name="prs_med_name[]" class="form-control m-input" id="prs_med_name" placeholder="{{__('addpres.med_name')}}" autocomplete="off" />
                                
                             <!-- </div> -->
                             <!-- <div class="col"> -->
-                                 <input type="text" name="prs_quantity[]" class="form-control m-input prs_quantity" id="prs_quantity"  placeholder="Quantity" autocomplete="off" />
+                                 <input type="text" name="prs_quantity[]" class="form-control m-input prs_quantity" id="prs_quantity"  placeholder="{{__('addpres.qty')}}" autocomplete="off" />
                             <!-- </div> -->
                         <!-- </div><br> -->
                         <!-- <div class="row"> -->
                           
                             <!-- <div class="col"> -->
-                               <textarea class="form-control col-10 prs_information" id="prs_information" rows="3" name="prs_information[]" placeholder="Enter Information"></textarea>
+                               <textarea class="form-control col-10 prs_information" id="prs_information" rows="3" name="prs_information[]" placeholder="{{__('addpres.info')}}"></textarea>
                             <!-- </div> -->
                                
                                 
@@ -113,14 +113,14 @@
 
             <!-- <div class="box border " id="box"></div> -->
                    <h5 class="text-red hidemm" id="hidea"></h5>
-                    <button id="addRow" type="button">+ Add More Medicine Details</button>
+                    <button id="addRow" type="button">+ {{__('addpres.add_more')}}</button>
 
                     <!-- <div class="form-group"> -->
                        <a href="{{ url('prescription_management') }}" class="cancelbutton" data-dismiss="modal">
-                           Cancel
+                        {{__('addpres.can')}}
                        </a>
                        <!--  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button> -->
-                       <input type="submit" class="acceptbutton" id="submit" name="submit" value="Submit">
+                       <input type="submit" class="acceptbutton" id="submit" name="submit" value=" {{__('addpres.sub')}}">
                     <!-- </div> -->
             </form>
         </div>
@@ -353,13 +353,13 @@ $('#pat_signup').submit(function(event) {
         html += '<div class="inputFormRow">';
         // html += '<h4 class="text-primary medicined">Medicine details '+i+'</h4>';
         html += '<div class="input-group mb-3">';
-        html += '<input type="text" name="prs_med_name[]" id="prs_med_name" class="form-control m-input col-6" placeholder="Medicine Name" autocomplete="off">';
-        html += '<input type="text" class="form-control col-4 ml-3" name="prs_quantity[]" id="prs_quantity" placeholder="Quantity">';
+        html += '<input type="text" name="prs_med_name[]" id="prs_med_name" class="form-control m-input col-6" placeholder="{{__('addpres.med_name')}}" autocomplete="off">';
+        html += '<input type="text" class="form-control col-4 ml-3" name="prs_quantity[]" id="prs_quantity" placeholder="{{__('addpres.qty')}}">';
         html += '<div class="input-group-append">';
         html += '<i class="ti-trash mt-3 ml-3 trashd" id="removeRow" style="color: #4ec1ec"></i>';
         html += '</div>';
         html += '</div>';
-        html += '<div class="form-group inputFormRow"><textarea class="form-control col-10 " id="prs_information" rows="3" name="prs_information[]" placeholder="Enter Information"></textarea></div>';
+        html += '<div class="form-group inputFormRow"><textarea class="form-control col-10 " id="prs_information" rows="3" name="prs_information[]" placeholder="{{__('addpres.info')}}"></textarea></div>';
         // <i class="ti-plus  mt-3 ml-3" id="submitrow" style="color: blue"></i>
         $('#newRow').append(html);
     });

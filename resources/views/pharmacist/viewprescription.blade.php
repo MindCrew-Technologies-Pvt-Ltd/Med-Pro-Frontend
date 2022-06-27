@@ -33,7 +33,22 @@
     opacity: 1;
     width: 100%;
 }
+@media (min-width: 820px) and (max-width: 1180px) {
 
+.danger{
+    width: 150px!important;
+}
+
+.success{
+    width: 150px!important;
+}
+
+}
+@media (min-width: 412px)and (max-width: 1180px){
+    .ml-5{
+        margin-left: 0.5rem!important;
+    }
+}
 </style>
                         <!-- PAGE-HEADER -->
                             <div>

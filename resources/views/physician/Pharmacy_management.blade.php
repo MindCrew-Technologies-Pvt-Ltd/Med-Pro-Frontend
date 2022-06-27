@@ -285,7 +285,7 @@ body {
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">Pharmacy Management</h1>
+                                <h1 class="dashboard page-title">{{__('sidebar.pharm_mgmt')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -301,7 +301,7 @@ body {
                      <div class="row mb-3">
                     <div class="col">
                         <div class="input-group mr-9">
-                            <input class="form-control py-2 border-right-0 border" type="text" value="" id="pac-input" placeholder="Enter a Search Location">
+                            <input class="form-control py-2 border-right-0 border" type="text" value="" id="pac-input" placeholder="{{__('sidebar.ent_search')}}">
                             <input class="form-control" name="psnt_lat"  type="hidden" value="" id="psnt_lat" placeholder="*Latitude" autocomplete="off">
                             <input class="form-control" name="psnt_long"  type="hidden" value="" id="psnt_long" placeholder="*Longitude" autocomplete="off">
                         <span class="input-group-append">
