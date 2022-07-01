@@ -167,10 +167,10 @@ input[type=password] {
 							<form class="login100-form validate-form" id="pharma_login" method="post">
 								@csrf
 								<span class="login100-form-title">
-									Pharmacy Login
+									{{__('phamlogin.pham_login')}}
 								</span>
 								<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-									<input class="input100" type="text" name="pham_email" id="pham_email" placeholder="Email">
+									<input class="input100" type="text" name="pham_email" id="pham_email" placeholder="{{__('phamlogin.pham_email')}}">
 									<span class="focus-input100"></span>
 									<!-- <span class="symbol-input100"> -->
 										<i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 0.9rem;"></i>
@@ -181,7 +181,7 @@ input[type=password] {
 								<div class="wrap-input100 validate-input" data-validate = "Password is required" style="position:relative; ">
 
 									
-                                 <input class="input100 mt-5" type="password" name="pham_password" id="pham_password" placeholder="Password" autocomplete="off">
+                                 <input class="input100 mt-5" type="password" name="pham_password" id="pham_password" placeholder="{{__('phamlogin.pham_pass')}}" autocomplete="off">
                                  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty()"  ></i>
 								
 
@@ -202,15 +202,15 @@ input[type=password] {
 								</div>
 								<p class="text-red mhide" id="hidemm">Email or Password not correct</p>
 								<div class="text-right pt-1">
-									<p class="mb-0"><a href="{{url('/pharmacist_forgot_password')}}" class="text-primary ml-1 forgot">Forgot Password?</a></p>
+									<p class="mb-0"><a href="{{url('/pharmacist_forgot_password')}}" class="text-primary ml-1 forgot">{{__('phamlogin.pham_forgot')}}</a></p>
 								</div>
 								<div class="container-login100-form-btn">
 									<button  class="login100-form-btn btn-primary" id="loginbtn" type="submit" name="submit">
-										Login
+										{{__('phamlogin.pham_login')}}
 									</button>
 								</div>
 								<div class="text-center pt-3">
-									<p class="text-dark mb-0 dont">Don't have an account?<a href="{{url('pharmacist_register')}}" class="text-primary ml-1">Sign up</a></p>
+									<p class="text-dark mb-0 dont">{{__('phamlogin.pham_dont')}}<a href="{{url('pharmacist_register')}}" class="text-primary ml-1">{{__('phamlogin.pham_signup')}}</a></p>
 								</div>
 								<!-- <div class=" flex-c-m text-center mt-3">
 								    <p>Or</p>

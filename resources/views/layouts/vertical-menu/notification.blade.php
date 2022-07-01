@@ -14,6 +14,20 @@ color: red!important;
 color: #495057!important;
 
 }
+#flag{
+  position: relative!important;
+    /*left: -96rem!important;*/
+    height: 30px;
+    width: 82px;
+ } 
+.us1{
+		   	   /* margin-left: -56px;*/
+		   }
+
+#profile_user {
+    margin-left: 11px!important;
+}
+
 </style>
 <div class="d-flex  ml-auto header-right-icons header-search-icon">
 	<div class="dropdown d-sm-flex">
@@ -35,10 +49,16 @@ color: #495057!important;
 	<!-- SEARCH -->
 
 
-	<!-- <div class="dropdown d-md-flex">
-		<a class="nav-link icon full-screen-link nav-link-bg">
-			<i class="fe fe-maximize fullscreen-button"></i>
-		</a>
+	<!-- <div class="dropdown d-md-flex" id="flag">
+		<div class="us1">
+               	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
+              </div>
+		<select class="form-control" onchange="selectlang(this)">
+			<option>Sel</option>
+			<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">EN</option>
+			<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">AR</option>
+		</select>
 	</div> -->
 	
 	<!-- FULL-SCREEN -->
@@ -137,7 +157,7 @@ color: #495057!important;
 			<div class="drop-heading">
 				<div class="text-center">
 					<h5 class="text-dark mb-0" id="admin"></h5>
-					<small class="text-muted">Administrator</small>
+					<small class="text-muted">{{__('sidebar.admin')}}</small>
 				</div>
 			</div>
 			<div class="dropdown-divider m-0"></div>
@@ -160,9 +180,20 @@ color: #495057!important;
 				<i class="dropdown-icon mdi mdi-compass-outline"></i> Need help?
 			</a> -->
 			<a class="dropdown-item"  onclick="signout1()">
-				<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
+				<i class="dropdown-icon mdi  mdi-logout-variant"></i>{{__('sidebar.signout')}}
 			</a>
 		</div>
+	</div>
+	<div class="dropdown d-md-flex" id="flag">
+		<div class="us1">
+               	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
+              </div>
+		<select class="form-control" onchange="selectlang(this)">
+			<option>Sel</option>
+			<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">EN</option>
+			<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">AR</option>
+		</select>
 	</div>
 	<div class="dropdown d-md-flex header-settings">
 		<!-- <a href="#" class="nav-link icon " data-toggle="sidebar-right" data-target=".sidebar-right">
@@ -201,7 +232,7 @@ var mydiv = document.getElementById("profilev");
 var aTag = document.createElement('a');
 aTag.setAttribute('href',url);
 aTag.setAttribute('class','dropdown-item protext');
-aTag.innerText = "Profile";
+aTag.innerText = '{{__('sidebar.profile')}}';
 aTag.innerHTML='<i class="dropdown-icon mdi mdi-account-outline">&nbsp &nbsp'+ aTag.innerText +'</i>';
 
 mydiv.appendChild(aTag);
@@ -232,7 +263,12 @@ mydiv.appendChild(aTag);
   }).done(function(res) {
     console.log('response',res)
    
-         $('#profile-user').attr('src',res.data.phy_img);
+           if(res.status==true){
+              $('#profile-user').attr('src',res.data.phy_img);  
+            }
+            // else{
+            //   $('#profile-user').attr('src',"https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" );    
+            // }
     
      // }else{
      //    let img='https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png';
@@ -242,3 +278,35 @@ mydiv.appendChild(aTag);
    
   });
 </script>
+
+<script>
+function selectlang($this){
+	// alert('hi')
+    var url = window.location.href;
+     let uri=url.split('/');
+     // console.log(uri)
+     // return false;
+   if(uri[6]|| (uri[5]=="en" || uri[5]=="ar")){
+				    var newUrl = url.slice(0, url.lastIndexOf('/'));
+				    if($this.value=="en"){
+						window.location.href=newUrl+"/en";
+					}else if($this.value=="ar"){
+						window.location.href=newUrl+"/ar";
+					}else{
+						// window.location.href=window.location.href;
+					}
+   }else{
+
+			        if($this.value=="en"){
+					window.location.href=window.location.href+"/en";
+				}else if($this.value=="ar"){
+					window.location.href=window.location.href+"/ar";
+				}else{
+					// window.location.href=window.location.href;
+				}
+   }
+
+	
+}
+
+	</script>

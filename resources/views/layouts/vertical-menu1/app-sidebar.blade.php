@@ -67,7 +67,7 @@
                             </ul> -->
                         <!-- </li> -->
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('pharmacist_prescription') }}"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">Prescription Management</span></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('pharmacist_prescription') }}"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">{{__('pham_dashboard.pres_mgmt')}}</span></a>
                         </li>
                          <li class="slide">
                             <!-- <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a> -->

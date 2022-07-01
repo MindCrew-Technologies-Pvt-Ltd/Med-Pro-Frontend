@@ -111,7 +111,7 @@
     border-right: 1px solid #EAEDF1;
     border-left: 1px solid #EAEDF1;
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     padding-left: 10px;
     position: relative;
     left: 18rem;
@@ -128,7 +128,9 @@
     padding-left: 10px;
     /*position: absolute;*/
     left: 6rem;
-    padding:1rem;
+    /*padding:1rem;*/
+    position: relative;
+    left: 200px;
   }
 
   .meshide {
@@ -147,7 +149,7 @@
 </style>
 <!-- PAGE-HEADER -->
 <div>
-  <h1 class="dashboard page-title">Prescription management</h1>
+  <h1 class="dashboard page-title">{{__('pham_accpres.pres_mgmt')}}</h1>
 </div>
 
 <!-- PAGE-HEADER END -->
@@ -173,17 +175,17 @@
               <label class="form-label"></label>
             </div>
             <div class="form-group ">
-              <label for="phy_full_name">Physician name:</label>
+              <label for="phy_full_name">{{__('pham_accpres.phy_name')}}:</label>
               <input type="text" class="form-control" id="phy_full_name" disabled>
             </div>
 
             <div class="form-group ">
-              <label for="psnt_full_name" class="psnt_full_name">Patient name:</label>
+              <label for="psnt_full_name" class="psnt_full_name">{{__('pham_accpres.pat_name')}}:</label>
               <input type="text" class="form-control" id="psnt_full_name" disabled>
             </div>
 
             <div class="form-group">
-              <label for="psnt_address">Delivery address</label>
+              <label for="psnt_address">{{__('pham_accpres.del_add')}}:</label>
               <textarea class="form-control" id="psnt_address" rows="3" disabled></textarea>
             </div>
 
@@ -192,15 +194,15 @@
               <table id="myTable" class="table table-striped table-bordered text-nowrap w-100">
                 <thead>
                   <tr>
-                    <th class="wd-15p">S.NO</th>
-                    <th class="wd-15p">Name of the medicine</th>
-                    <th class="wd-15p">Requested Qty</th>
-                    <th class="wd-20p">Availabilty</th>
-                     <th class="wd-15p">Qty Of Medicine</th>
-                    <th class="wd-15p">Insurance Availabilty</th>
-                    <th class="wd-15p">Insurance %</th>
-                    <th class="wd-10p">Unit Cost</th>
-                    <th class="wd-10p">Final Cost</th>
+                    <th class="wd-15p">{{__('pham_accpres.sno')}}</th>
+                    <th class="wd-15p">{{__('pham_accpres.med_name')}}</th>
+                    <th class="wd-15p">{{__('pham_accpres.req_qty')}}</th>
+                    <th class="wd-20p">{{__('pham_accpres.avl')}}</th>
+                     <th class="wd-15p">{{__('pham_accpres.qty')}}</th>
+                    <th class="wd-15p">{{__('pham_accpres.ins_avl')}}</th>
+                    <th class="wd-15p">{{__('pham_accpres.ins_per')}}</th>
+                    <th class="wd-10p">{{__('pham_accpres.unitcost')}}</th>
+                    <th class="wd-10p">{{__('pham_accpres.fincost')}}</th>
                   </tr>
                 </thead>
                 <tbody id="prestable">
@@ -209,17 +211,17 @@
               </table>
               <div class="shipcharge">
               
-                <h7 class="ship_head" style="margin-left:42.5rem;font-weight:bold;">Shipping charges: </h7>
+                <h7 class="ship_head" style="margin-left:42.5rem;font-weight:bold;">{{__('pham_accpres.ship_charges')}}: </h7>
            
-                <input type="text" id="ship" name="ship" value="" onchange="addvalue()">
+                <input type="text" id="ship" name="ship" value="" onchange="addvalue()" style="background-color:#80808033;">
               </div><br>
 
               <div class="totalcharges">
                 
-                  <h7 class="tot_charge" style="margin-left: 48.5rem;font-weight: bold;
-    width: 100%;position: relative;left: 12rem;">Total charges: </h7>
+                  <h7 class="tot_charge" style="margin-left: 19.5rem;font-weight: bold;
+    width: 100%;position: relative;left: 12rem;">{{__('pham_accpres.tot_charges')}}: </h7>
               
-                <h7 class="total_amount" style="margin-left:5.5rem;"></h7>
+                <h7 class="total_amount" ></h7>
               </div>
 
             </div>
@@ -228,7 +230,7 @@
               <table class="table table-striped table-bordered text-nowrap w-100" id="noteslist1">
                                 <thead>
                                    <tr>
-                                      <th scope="col">Notes</th>
+                                      <th scope="col">{{__('pham_accpres.notes')}}</th>
                                    </tr>
                                 </thead>
                                <tbody id="tbodynotes">
@@ -237,15 +239,15 @@
               </table>
             </div>
             <div class="form-group mt-6" id="Create">
-              <input type="text" class="form-control" name="message" id="message1" placeholder="Enter Notes">
+              <input type="text" class="form-control" name="message" id="message1" placeholder="{{__('pham_accpres.enter_notes')}}">
               
             </div>
                 <div>
                  <p class="text-red meshide" id="messagee">Please enter notes</p>
                </div>
             <div class="buttons mt-7">
-              <button class="btn btn-primary border-0" id="sendquatation">Send Quatation</button>
-               <button class="btn btn-primary border-0  hide" id="show">Add notes</button>
+              <button class="btn btn-primary border-0" id="sendquatation">{{__('pham_accpres.send_quot')}}</button>
+               <button class="btn btn-primary border-0  hide" id="show">{{__('pham_accpres.add_notes')}}</button>
             </div>
 
 
@@ -405,7 +407,10 @@
           e.target.parentNode.parentNode.childNodes[7].childNodes[0].removeAttribute("disabled", "true");
          e.target.parentNode.parentNode.childNodes[8].childNodes[0].removeAttribute("disabled", "true");
       // med_qty =prs_details1[medInd].quot_med_quantity;
-           
+       e.target.parentNode.parentNode.childNodes[4].style.backgroundColor = '#fff' 
+          e.target.parentNode.parentNode.childNodes[6].style.backgroundColor = '#fff' 
+       e.target.parentNode.parentNode.childNodes[7].style.backgroundColor = '#fff'
+       e.target.parentNode.parentNode.childNodes[8].style.backgroundColor = '#fff' 
       }
       else if(e.target.value == "no"){
          prs_details1[medInd].quot_med_availty =e.target.value
@@ -416,6 +421,13 @@
           e.target.parentNode.parentNode.childNodes[7].childNodes[0].setAttribute("disabled", "true");
          e.target.parentNode.parentNode.childNodes[8].childNodes[0].setAttribute("disabled", "true");
 
+        e.target.parentNode.parentNode.childNodes[4].style.backgroundColor = '#eaedf1'
+        e.target.parentNode.parentNode.childNodes[6].style.backgroundColor = '#eaedf1' 
+       e.target.parentNode.parentNode.childNodes[7].style.backgroundColor = '#eaedf1'
+        e.target.parentNode.parentNode.childNodes[8].style.backgroundColor = '#eaedf1' 
+
+        e.target.parentNode.parentNode.childNodes[4].childNodes[0].setAttribute("value", 0); 
+
       }else if(e.target.value == "partial"){
            prs_details1[medInd].quot_med_availty =e.target.value
       // med_qty=prs_details1[medInd].quot_med_quantity; 
@@ -423,6 +435,7 @@
       e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
       e.target.parentNode.parentNode.childNodes[7].childNodes[0].removeAttribute("disabled", "true");
       e.target.parentNode.parentNode.childNodes[8].childNodes[0].removeAttribute("disabled", "true");
+
       }
     }
     if(e.target.name ==='med_qty'){

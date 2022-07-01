@@ -35,7 +35,7 @@
 
 							<form class="login100-form validate-form">
 								<span class="login100-form-title">
-								Forgot Password
+								{{__('pham_forgotpassword.pham_forgotpass')}}
 								</span>
 								<div class="text-center">
 							  
@@ -45,10 +45,10 @@
 								
 								
 								<div class="text-center pt-3">
-									<p>ThankYou!<br> We have sent an email to <br>reset your password.</p>
+									<p>{{__('pham_forgotpassword.pham_btl')}}</p>
 								</div>
 								<div class="text-center pt-3">
-									<p class="text-dark mb-0">Back to<a href="{{url('/pharmacist_Login')}}" class="text-primary ml-1">Login</a></p>
+									<p class="text-dark mb-0"><a href="{{url('/pharmacist_Login')}}" class="text-primary ml-1">{{__('pham_forgotpassword.pham_thanks')}}</a></p>
 								</div>
 								<!-- <div class=" flex-c-m text-center mt-3">
 								    <p>Or</p>

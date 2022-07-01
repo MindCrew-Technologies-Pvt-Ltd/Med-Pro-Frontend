@@ -42,7 +42,7 @@
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">Prescription Management</h1>
+                                <h1 class="dashboard page-title">{{__('pham_presmgmt.pres_mgmt')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -60,7 +60,7 @@
 						<div class="card">
                             <!-- card-head start -->
 							<div class="card-header">
-										<h4 class="heading">View prescription</h4>
+										<h4 class="heading">{{__('pham_presmgmt.view_pres')}}</h4>
                             </div>
                             <!-- divider -->
                             <hr class="solid">
@@ -71,15 +71,18 @@
 
                             <!-- table start -->
                              <div class="table-responsive">
+                                <div class="search_opt" style="margin-bottom:50px;">
+                                 <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
+                                </div>
                                 <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                         <thead>
                                             <tr>
-                                                <th class="wd-15p">S No.</th>
-                                                <th class="wd-15p">Patient Name</th>
-                                                <th class="wd-15p">Physician name</th>
-                                                <th class="wd-20p">Address</th>
-                                                <th class="wd-15p">Notes</th>
-                                                <th class="wd-10p">Action</th>
+                                                <th class="wd-15p">{{__('pham_presmgmt.sno')}}</th>
+                                                <th class="wd-15p">{{__('pham_presmgmt.pat_name')}}</th>
+                                                <th class="wd-15p">{{__('pham_presmgmt.phy_name')}}</th>
+                                                <th class="wd-20p">{{__('pham_presmgmt.add')}}</th>
+                                                <th class="wd-15p">{{__('pham_presmgmt.notes')}}</th>
+                                                <th class="wd-10p">{{__('pham_presmgmt.action')}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -126,7 +129,33 @@
 <script src="{{ URL::asset('assets/plugins/peitychart/peitychart.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/index1.js') }}"></script>
 
+ <script>
+   function myFunction() {
 
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  // alert(filter)
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      // alert(txtValue)
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 
 <script>
  $(document).ready( function () {
@@ -173,11 +202,11 @@
          res.data.map((e,i) => {
            console.log("-- ID",e._id)
             i++;
-            let str1='<a id="'+e.presciption_id+'" href="{{url("show_prescription")}}/'+e.presciption_id+'" class="btn ebtn">View</a>'
-            let str2='<a id="'+e.presciption_id+'" href="{{url("accept_prescription")}}/'+e.presciption_id+'" class="btn ebtn">View</a>'
-            let str3='<a id="'+e.presciption_id+'" href="{{url("view_prescription")}}/'+e.presciption_id+'" class="btn ebtn">View</a>'
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_full_name+'</td><td>'+e.phy_full_name+'</td><td> '+e.psnt_address+'</td><td>'+e.message+'</td><td>'+(e.phpr_req_type==2 ?str1:(e.phpr_req_type==1)?str2:str3)+'<button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">Delete</button></td></tr>');         
-              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>Are you sure you <br> want to delete the prescription?</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">Cancel</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">Yes Delete It!</button></div></div></div></div>');         
+            let str1='<a id="'+e.presciption_id+'" href="{{url("show_prescription")}}/'+e.presciption_id+'" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
+            let str2='<a id="'+e.presciption_id+'" href="{{url("accept_prescription")}}/'+e.presciption_id+'" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
+            let str3='<a id="'+e.presciption_id+'" href="{{url("view_prescription")}}/'+e.presciption_id+'" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_full_name+'</td><td>'+e.phy_full_name+'</td><td> '+e.psnt_address+'</td><td>'+e.message+'</td><td>'+(e.phpr_req_type==2 ?str1:(e.phpr_req_type==1)?str2:str3)+'<button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('pham_presmgmt.delete')}}</button></td></tr>');         
+              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('pham_presmgmt.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('pham_presmgmt.can')}}</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('pham_presmgmt.yes')}}</button></div></div></div></div>');         
     });
 
 });

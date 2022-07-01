@@ -117,7 +117,7 @@
 </style>
 <!-- PAGE-HEADER -->
 <div>
-  <h1 class="dashboard page-title">Prescription Details</h1>
+  <h1 class="dashboard page-title">{{__('pham_showpres.pres_det')}}</h1>
   <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -151,17 +151,17 @@
               <label class="form-label"></label>
             </div>
             <div class="form-group ">
-              <label for="phy_full_name">Physician name:</label>
+              <label for="phy_full_name">{{__('pham_showpres.phy_name')}}:</label>
               <input type="text" class="form-control" id="phy_full_name" disabled>
             </div>
 
             <div class="form-group ">
-              <label for="psnt_full_name" class="psnt_full_name">Patient name:</label>
+              <label for="psnt_full_name" class="psnt_full_name">{{__('pham_showpres.pat_name')}}:</label>
               <input type="text" class="form-control" id="psnt_full_name" disabled>
             </div>
 
             <div class="form-group">
-              <label for="psnt_address">Delivery address</label>
+              <label for="psnt_address">{{__('pham_showpres.del_add')}}:</label>
               <textarea class="form-control" id="psnt_address" rows="3" disabled></textarea>
             </div>
 
@@ -170,13 +170,13 @@
               <table id="myTable" class="table table-striped table-bordered text-nowrap w-100">
                 <thead>
                   <tr>
-                    <th class="wd-15p">serial number</th>
-                    <th class="wd-15p">Name of the medicine</th>
-                    <th class="wd-15p">Quantity</th>
-                    <th class="wd-20p">Availibility</th>
-                    <th class="wd-15p">Insurance Availabilty</th>
-                    <th class="wd-15p">Insurance %</th>
-                    <th class="wd-10p">Unit Cost</th>
+                    <th class="wd-15p">{{__('pham_showpres.sno')}}</th>
+                    <th class="wd-15p">{{__('pham_showpres.med_name')}}</th>
+                    <th class="wd-15p">{{__('pham_showpres.qty')}}</th>
+                    <th class="wd-20p">{{__('pham_showpres.avl')}}</th>
+                    <th class="wd-15p">{{__('pham_showpres.ins_avl')}}</th>
+                    <th class="wd-15p">{{__('pham_showpres.ins_per')}}</th>
+                    <th class="wd-10p">{{__('pham_showpres.unitcost')}}</th>
                     
                   </tr>
                 </thead>
@@ -186,7 +186,7 @@
               </table>
               <div class="shipcharge">
               
-                <h7 class="ship_head" style="margin-left:44.5rem;font-weight:bold;">Shipping charges: </h7>
+                <h7 class="ship_head" style="margin-left:44.5rem;font-weight:bold;">{{__('pham_showpres.ship_charges')}}: </h7>
            
                 <input type="text" id="ship" name="ship" value="" onchange="addvalue()">
                 <!-- <h7 class=""></h7> -->
@@ -194,7 +194,7 @@
 
               <div class="totalcharges">
                 
-                  <h7 class="tot_amount" style="margin-left:48.5rem;font-weight:bold;">Total charges: </h7>
+                  <h7 class="tot_amount" style="margin-left:48.5rem;font-weight:bold;">{{__('pham_showpres.tot_charges')}}: </h7>
               
                 <h7 class="total_amount" style="margin: 0 1.5rem;text-align:center;" id="total_amount"></h7>
               </div>
@@ -203,7 +203,7 @@
             <!-- table end -->
 
  
-            <a class="btn  btn-primary mt-5 mb-3 float-right border-0" href="{{url('pharmacist_prescription')}}">Back</a>
+            <a class="btn  btn-primary mt-5 mb-3 float-right border-0" href="{{url('pharmacist_prescription')}}">{{__('pham_showpres.back')}}</a>
 
            <!--  <div class="buttons mt-7">
               <button class="btn btn-primary border-0" id="sendquatation">Send Quatation</button>
@@ -358,7 +358,7 @@
    
   });
 
-
+// v.quot_med_availty
   function selectListEvent(e,id) {
     e.preventDefault();
    var qty =0;

@@ -410,7 +410,7 @@
 </style>
 <!-- PAGE-HEADER -->
 <div>
-  <h1 class="dashboard page-title">Profile</h1>
+  <h1 class="dashboard page-title">{{__('phy_profile.profile')}}</h1>
   <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -441,7 +441,7 @@
         </label>
        <!-- https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png -->
        <img src="" class="proimg" id="output"  alt="">
-       <input type="submit" id="upload_btn" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload"   name="submit">
+       <input type="submit" id="upload_btn" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="{{__('phy_profile.upload')}}"   name="submit">
     </div>
   </form>
   </div>
@@ -455,22 +455,22 @@
    <!--  <input type="hidden" name="pham_lat" id="pham_lat" value="">
     <input type="hidden" name="pham_long" id="pham_long" value=""> -->
     <div class="form-group ">
-      <label for="physician_first_name">Physician First Name:</label>
+      <label for="physician_first_name">{{__('phy_profile.fname')}}:</label>
       <input type="text" class="form-control" id="physician_first_name" name="phy_first_name">
     </div>
 
     <div class="form-group">
-      <label for="physician_last_name">Physician Last Name:</label>
+      <label for="physician_last_name">{{__('phy_profile.lname')}}:</label>
       <input type="text" class="form-control" id="physician_last_name" name="phy_last_name">
     </div>
 
     <div class="form-group">
-      <label for="email" class="emaill">Email:</label>
+      <label for="email" class="emaill">{{__('phy_profile.email')}}:</label>
       <input type="text" class="form-control" id="email" name="email" disabled>
     </div>
 
     <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">
-      License Number <i class="fa-solid fa-greater-than" id="arrow"></i>
+      {{__('phy_profile.lic')}} <i class="fa-solid fa-greater-than" id="arrow"></i>
     </button>
 
     <!-- <div class="form-group">
@@ -491,10 +491,10 @@
 
     <!-- Button trigger modal  for password-->
     <button type="button" class="btn changepass" data-toggle="modal" data-target="#exampleModalCenter">
-      Change Password
+    {{__('phy_profile.change_pass')}}
     </button>
 
-    <button type="submit" value="save" class="savechnagesbtn">Save Changes</button>
+    <button type="submit" value="save" class="savechnagesbtn">{{__('phy_profile.save_changes')}}</button>
 
 
 
@@ -515,12 +515,12 @@
           <div class="modal-body">
             
             <div class="form-group">
-              <label for="license_number" style="padding-right: 70%;">License number:</label>
+              <label for="license_number" style="padding-right: 70%;"> {{__('phy_profile.lic')}}:</label>
               <input name="phy_licnse" type="text" class="form-control lnum" id="license_number">
             </div>
 
             <div class="form-group licenseimg">
-              <label class="form-label" style="padding-right: 70%;"><h4>License Image</h4></label>
+              <label class="form-label" style="padding-right: 70%;"><h4>{{__('phy_profile.lic_img')}}</h4></label>
               <a href="" id="pdf_image1">
               <img src="" class="licenseimg" alt="license_image" id="license_image" style="height:200px;width:200px;">
               </a>
@@ -541,7 +541,7 @@
           <!-- <div class="modal-footer"> -->
           <!-- <button class="btn btnupload">Upload New</button> -->
 
-          <button type="button" class="btn ok" data-dismiss="modal">Ok</button>
+          <button type="button" class="btn ok" data-dismiss="modal">{{__('phy_profile.ok')}}</button>
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
           <!-- </div> -->
         </div>
@@ -555,7 +555,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">{{__('phy_profile.change_pass')}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -565,25 +565,25 @@
             <form method="post" id="phy_pass_update" >
               @csrf
             <div class="form-group" style="position:relative;">
-              <label for="password" class="pass">Password:</label>
+              <label for="password" class="pass">{{__('phy_profile.password')}}:</label>
               <input type="password" class="form-control w-100" id="password" name="password">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style=""></i>
+              <i class="zmdi zmdi2 zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style=""></i>
             </div>
 
             <div class="form-group" style="position:relative;">
-              <label for="newpassword" class="newpass">New Password:</label>
+              <label for="newpassword" class="newpass">{{__('phy_profile.new_pass')}}:</label>
               <input type="password" class="form-control w-100" id="newpassword" name="newpassword">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style=""></i>
+              <i class="zmdi zmdi2 zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style=""></i>
             </div>
             <div class="form-group" style="position:relative;">
-              <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
+              <label for="confnewpassword" class="connewpas">{{__('phy_profile.conf_new')}}:</label>
               <input type="password" class="form-control w-100" id="confnewpassword" name="confnewpassword">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style=""></i>
+              <i class="zmdi zmdi2 zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style=""></i>
             </div>
          
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">Close</button>
-            <button type="submit" class="btn btn-primary" value="save" style="border: none;" >Save Password</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">{{__('phy_profile.close')}}</button>
+            <button type="submit" class="btn btn-primary" value="save" style="border: none;" >{{__('phy_profile.save_pass')}}</button>
           </div>
         </form>
          </div>

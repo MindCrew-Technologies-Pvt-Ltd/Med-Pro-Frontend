@@ -141,7 +141,7 @@
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">Profile</h1>
+                                <h1 class="dashboard page-title">{{__('pham_profile.profile')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -164,37 +164,37 @@
        @csrf 
          
             <div class="form-group ">
-               <label for="pham_name" id="phamname">Pharmacy Name:</label>
+               <label for="pham_name" id="phamname">{{__('pham_profile.pname')}}:</label>
                <input type="text" class="form-control" value="" id="n" disabled>
               
             </div>
 
             <div class="form-group ">
-               <label for="pham_first_name">Pharmacist First Name:</label>
+               <label for="pham_first_name">{{__('pham_profile.fname')}}:</label>
                <input type="text" class="form-control" value="" id="pham_first_name" disabled>
             </div>
 
             <div class="form-group">
-               <label for="pham_last_name">Pharmacist Last Name:</label>
+               <label for="pham_last_name">{{__('pham_profile.lname')}}:</label>
                <input type="text" class="form-control" value="" id="pham_last_name" disabled>
             </div>
 
             <div class="form-group">
-               <label for="pham_address">Pharmacist Address:</label>
+               <label for="pham_address">{{__('pham_profile.add')}}:</label>
                <input type="text" class="form-control" id="pham_address" disabled>
             </div>
 
             <div class="form-group">
-               <label for="email" class="emaill">Email:</label>
+               <label for="email" class="emaill">{{__('pham_profile.email')}}:</label>
                <input type="text" class="form-control" value="" id="email" disabled>
             </div>
 
             <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">
-            Registration Number  <i class="fa-solid fa-greater-than" id="arrow"></i>
+            {{__('pham_profile.reg_no')}}  <i class="fa-solid fa-greater-than" id="arrow"></i>
             </button>
 
             <div class="form-group">
-               <label for="password" class="pass">Password:</label>
+               <label for="password" class="pass">{{__('pham_profile.password')}}:</label>
                <input type="text" class="form-control" value="" id="password" disabled>
             </div>
 
@@ -224,12 +224,12 @@
       </div> -->
       <div class="modal-body">
                    <div class="form-group">
-                       <label for="registration_number" style="padding-right: 70%;">Registration number:</label>
+                       <label for="registration_number" style="padding-right: 70%;">{{__('pham_profile.reg_no')}}:</label>
                        <input type="text" class="form-control lnum" value="" id="registration_number" disabled>
                    </div>
 
                    <div class="form-group licenseimg">
-                        <label  class="form-label"style="padding-right: 70%;">License Image</label>
+                        <label  class="form-label"style="padding-right: 70%;">{{__('pham_profile.lic_img')}}</label>
                         <a href="" id="reg_file">
                         <img src="" class="licenseimg" alt="registration_file" id="registration_file" style="height:200px;width:200px;">
                         </a>
@@ -237,7 +237,7 @@
                   </div>
       </div>
       <!-- <div class="modal-footer"> -->
-        <button type="button" class="btn ok" data-dismiss="modal">Ok</button>
+        <button type="button" class="btn ok" data-dismiss="modal">{{__('pham_profile.ok')}}</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       <!-- </div> -->
     </div>
@@ -334,7 +334,7 @@
 		var aTag = document.createElement('a');
 		aTag.setAttribute('href',url);
 		aTag.setAttribute('class','btn editbtn mt-4');
-		aTag.innerText = "Edit";
+		aTag.innerText = "{{__('pham_profile.edit')}}";
 		// aTag.innerHTML='<i class="dropdown-icon mdi mdi-account-outline">&nbsp &nbsp'+ aTag.innerText +'</i>';
 		
 		mydiv.appendChild(aTag);

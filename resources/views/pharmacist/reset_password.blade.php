@@ -16,8 +16,8 @@
 
 		}
 		.login100-form-title{
-			margin-top: -32px;
-            margin-bottom: -15px;
+			/*margin-top: -32px;
+            margin-bottom: -15px;*/
             margin-left: 35px;
 		}
 		.container-login100-form-btn{
@@ -102,7 +102,7 @@
 
 							<form class="login100-form validate-form" id="reset_pass" method="post">
 								<span class="login100-form-title">
-								  Reset Password
+								 {{__('pham_resetpassword.pham_reset')}}
 								</span>
 								<div class="text-center" id="message">
 							     
@@ -116,7 +116,7 @@
 								</div> -->
 								<div class="wrap-input100 validate-input" data-validate = "Password is required">
 
-									<input class="input100" type="password" name="pham_password" id="pham_password" placeholder="Password">
+									<input class="input100" type="password" name="pham_password" id="pham_password" placeholder="{{__('pham_resetpassword.pham_reset_pass')}}">
                                     <div class="symbol-input100 eye" onclick="toggleVisibilty()">
 									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye "></i>
                                      </div>
@@ -124,7 +124,7 @@
 									<span class="focus-input100">
 										</span>
 									<span class="symbol-input100">
-										<i class="zmdi zmdi-lock" aria-hidden="true"></i>
+										<i class="zmdi zmdi-lock" style="color:#7ec1ec;" aria-hidden="true"></i>
 									</span>
 									
 									
@@ -133,7 +133,7 @@
 
 								<div class="wrap-input100 validate-input" data-validate = "Password is required">
 
-									<input class="input100" type="password" name="confpass" id="password1" placeholder="Confirm Password">
+									<input class="input100" type="password" name="confpass" id="password1" placeholder="{{__('pham_resetpassword.pham_reset_confpass')}}">
                                     <div class="symbol-input100 eye" onclick="toggleVisibilty1()">
 									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye "></i>
                                      </div>
@@ -141,13 +141,13 @@
 									<span class="focus-input100">
 										</span>
 									<span class="symbol-input100">
-										<i class="zmdi zmdi-lock" aria-hidden="true"></i>
+										<i class="zmdi zmdi-lock" style="color:#7ec1ec;" aria-hidden="true"></i>
 									</span>
 									
 									
 								</div>
 								<div class="container-login100-form-btn">
-									<input type="submit" name="submit" value="Submit" class="login100-form-btn btn-primary">
+									<input type="submit" name="submit" value="{{__('pham_resetpassword.pham_reset_submit')}}" class="login100-form-btn btn-primary">
 										
 								</div>
 								<!-- <div class="text-center pt-3">

@@ -1,10 +1,26 @@
 @extends('layouts.vertical-menu.master')
 @section('css')
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.js-example-responsive').select2({
+    placeholder: "Please select a Patient",
+    allowClear: true
+  });
+});
+
+</script>
 <style type="text/css">
      .input-group-append{
         margin-top:1.5rem !important;
     }
+
 </style>
 @endsection
 @section('page-header')
@@ -26,6 +42,7 @@
 
     <div class="col-md-12 col-lg-12">
         <div class="card">
+           
             <div class="card-header">
                 <h3 class="card-title">{{__('addpres.add_pres')}}</h3>
 
@@ -47,7 +64,7 @@
                     @csrf
             
                     <div class="form-group">
-                           <select class="form-control col-10 classic" id="patient_name" name="patient_name">
+                           <select class="js-example-responsive form-control col-10 classic " id="patient_name" name="patient_name">
                              <option value="">{{__('addpres.sel')}}</option> 
                              
                            </select>
@@ -188,8 +205,8 @@
 
     var pat_list=JSON.parse(localStorage.getItem('patientList'));
  
- console.log(pat_list[0])
-
+ console.log(pat_list[0].sort())
+ pat_list[0]=pat_list[0].sort()
 $.each(pat_list[0], function(key,value){
 console.log(value.psnt_first_name + value.psnt_last_name);
 $("#patient_name").append('<option value="'+value._id+'">'+ value.psnt_first_name + " "+ value.psnt_last_name +'</option>');

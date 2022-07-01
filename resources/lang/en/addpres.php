@@ -8,7 +8,7 @@ return[
 "med_name"=>"Medicine Name",
 "qty"=>"Quantity",
 "info"=>"Enter Information",
-"add_more"=>"Add More Medicine Details",
+"add_more"=>"Add More Medicine",
 "sub"=>"Submit",
 "can"=>"Cancel",
 ];

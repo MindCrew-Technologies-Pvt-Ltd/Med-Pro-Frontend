@@ -25,7 +25,7 @@
                     <div class="app-sidebar__user">
                         <div class="dropdown user-pro-body text-center">
                             <div class="user-pic">
-                                <img id="profile_id" src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" alt="profilepic" class="avatar-xl rounded-circle">
+                                <img id="profile_id" src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="avatar-xl rounded-circle">
                             </div>
                             <div class="user-info">
                                 <h6 class=" mb-0 text-dark"></h6>
@@ -69,18 +69,19 @@
                                 <li><a class="slide-item" href="{{ url('/' . $page='index5') }}"><span>IT Dashboard</span></a></li>
                             </ul> -->
                         </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('patient_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pat_mgmt')}}</span></a>
+                       </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('Pharmacy_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pharm_mgmt')}}</span></a>
+                        </li> 
                          <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="{{ url('prescription_management') }}"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">{{__('sidebar.pres_mgmt')}}</span></a>
                         </li>
                          <li class="slide">
                             <!-- <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a> -->
                         </li>
-                         <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('patient_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pat_mgmt')}}</span></a>
-                       </li>
-                        <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('Pharmacy_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pharm_mgmt')}}</span></a>
-                        </li> 
+                         
                         
                         <!-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-layout-accordion-separated"></i><span class="side-menu__label">Layouts</span><i class="angle fa fa-angle-right"></i></a>
@@ -300,7 +301,7 @@
 
   var base_path = "http://3.220.132.29/medpro/";
   var api_url = "http://3.220.132.29:3000/api/";
-
+  var image1='http://3.220.132.29/medpro/assets/images/pngs/doc_image.png';
 
   let user_data4 = localStorage.getItem('user_det');
   var obj = JSON.parse(user_data4);
@@ -317,9 +318,13 @@
 
   }).done(function(res) {
     console.log('response',res)
-   
-         $('#profile_id').attr('src',res.data.phy_img);
-    
+            if(res.status==true){
+              $('#profile_id').attr('src',res.data.phy_img);  
+            }
+            else{
+              $('#profile_id').attr('src',image1);    
+            }
+    // alt="profilepic
      // }else{
      //    let img='https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png';
      //     $('#profile_id').attr('src',img);

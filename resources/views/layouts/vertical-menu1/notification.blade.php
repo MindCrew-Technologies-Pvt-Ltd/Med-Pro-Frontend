@@ -2,6 +2,16 @@
 		.dropdown-icon {
           color: #495057!important;
 		   }
+		   /*.us1{
+		   	    margin-left: -56px;
+		   }*/
+		   #flag{
+  position: relative!important;
+    /*left: -96rem!important;*/
+    height: 30px;
+    width: 117px;
+   /* right: -16rem;*/
+ } 
 </style>
 <!-- /Notification -->
 							<div class="d-flex  ml-auto header-right-icons header-search-icon">
@@ -29,9 +39,10 @@
 										<i class="fe fe-maximize fullscreen-button"></i>
 									</a>
 								</div> -->
-								
+				
+
 								<!-- FULL-SCREEN -->
-								<div class="dropdown d-md-flex notifications">
+								<!-- <div class="dropdown d-md-flex notifications"> -->
 									<!-- <a class="nav-link icon" data-toggle="dropdown">
 										<i class="fe fe-bell"></i>
 										<span class="nav-unread badge badge-success badge-pill">2</span>
@@ -66,7 +77,7 @@
 										<div class="dropdown-divider"></div>
 										<a href="#" class="dropdown-item text-center">View all Notification</a>
 									</div> -->
-								</div>
+								<!-- </div> -->
 								<!-- NOTIFICATIONS -->
 								 	<!-- <div class="dropdown d-md-flex message"> -->
 									<!-- <a class="nav-link icon text-center" data-toggle="dropdown"> -->
@@ -126,7 +137,7 @@
 										<div class="drop-heading">
 											<div class="text-center">
 												<h5 class="text-dark mb-0" id="adminn1"></h5>
-												<small class="text-muted">Administrator</small>
+												<small class="text-muted">{{__('pham_dashboard.admin')}}</small>
 											</div>
 										</div>
 										<div class="dropdown-divider m-0"></div>
@@ -149,10 +160,23 @@
 											<i class="dropdown-icon mdi mdi-compass-outline"></i> Need help?
 										</a> -->
 										<a class="dropdown-item" onclick="logoutt()">
-											<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
+											<i class="dropdown-icon mdi  mdi-logout-variant"></i>{{__('pham_dashboard.signout')}}
 										</a>
 									</div>
 								</div>
+				<div class="dropdown d-md-flex" id="flag">
+	               <div class="us1">
+	               	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+	                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
+	              </div>
+				        <select class="form-control" onchange="selectlang(this)">
+				            <option>Sel</option>
+	     
+				            <option value="en">EN</option>
+				           
+				            <option value="ar">AR</option>
+				        </select>
+				    </div>
 								<div class="dropdown d-md-flex header-settings">
 									<!-- <a href="#" class="nav-link icon " data-toggle="sidebar-right" data-target=".sidebar-right">
 										<i class="fe fe-align-right"></i>
@@ -189,7 +213,7 @@
 		var aTag = document.createElement('a');
 		aTag.setAttribute('href',url);
 		aTag.setAttribute('class','dropdown-item');
-		aTag.innerText = "Profile";
+		aTag.innerText = "{{__('pham_dashboard.profile')}}";
 		aTag.innerHTML='<i class="dropdown-icon mdi mdi-account-outline">&nbsp &nbsp'+ aTag.innerText +'</i>';
 		
 		mydiv.appendChild(aTag);
@@ -277,5 +301,34 @@
    
 
 
+
+    </script>
+     <script>
+function selectlang($this){
+    // alert('hi')
+    var url = window.location.href;
+     let uri=url.split('/');
+   if(uri[6]|| (uri[5]=="en" || uri[5]=="ar")){
+                    var newUrl = url.slice(0, url.lastIndexOf('/'));
+                    if($this.value=="en"){
+                        window.location.href=newUrl+"/en";
+                    }else if($this.value=="ar"){
+                        window.location.href=newUrl+"/ar";
+                    }else{
+                        // window.location.href=window.location.href;
+                    }
+   }else{
+
+                    if($this.value=="en"){
+                    window.location.href=window.location.href+"/en";
+                }else if($this.value=="ar"){
+                    window.location.href=window.location.href+"/ar";
+                }else{
+                    // window.location.href=window.location.href;
+                }
+   }
+
+    
+}
 
     </script>

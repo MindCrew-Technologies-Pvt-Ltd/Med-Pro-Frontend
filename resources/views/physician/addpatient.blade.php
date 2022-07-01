@@ -5,9 +5,9 @@
 
   <style type="text/css">
       
-      .file-name{
+      /*.file-name{
         display: none;
-      }
+      }*/
      
   </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -101,7 +101,12 @@ $(document).on('change', '#'+searchInput, function () {
  
 var lat=$('#psnt_lat').val();
 var long= $('#psnt_long').val();  
+if(lat && long){
 
+}else{
+    lat ="25.354826";
+    long="51.183884";
+}
 var myCenter=new google.maps.LatLng(lat,long);
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow();
@@ -189,7 +194,7 @@ function resizingMap() {
                         <!-- PAGE-HEADER -->
                        
                             <div>
-                                <h1 class="dashboard page-title">Patient Management</h1>
+                                <h1 class="dashboard page-title">{{__('addpatient.pat_mgmt')}}</h1>
                                 <!-- <ol class="breadcrumb"> -->
                                     <!-- <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li> -->
                                     <!-- <li class="breadcrumb-item active" aria-current="page"><a href="{{url('add_patient')}}">Add Patient</a></li> -->
@@ -210,7 +215,7 @@ function resizingMap() {
                                 <div class="card">
                                     <div class="card-header">
                                    
-                                        <h3 class="card-title viewp">Add Patient</h3>
+                                        <h3 class="card-title viewp1">{{__('addpatient.add_pat')}}</h3>
                                         
                                    <div class="ml-auto pageheader-btn">
                                            <!--  <a href="{{ url('add_patient') }}" class="btn btn-primary btn-icon text-white mr-2">
@@ -238,31 +243,31 @@ function resizingMap() {
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label"></label>
-                                                <input type="text" class="form-control" name="psnt_first_name" id="psnt_first_name"placeholder="*First Name">
+                                                <input type="text" class="form-control" name="psnt_first_name" id="psnt_first_name"placeholder="*{{__('addpatient.fname')}}">
                                                 
                                             </div>
                                             
                                             <div class="form-group">
                                                 <label class="form-label"></label>
-                                                <input type="text" class="form-control" name="psnt_last_name" id="psnt_last_name"placeholder="*Last Name">
+                                                <input type="text" class="form-control" name="psnt_last_name" id="psnt_last_name"placeholder="*{{__('addpatient.lname')}}">
                                                 
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label"></label>
-                                                <input type="email" class="form-control" name="psnt_email" id="psnt_email" placeholder="*Email">
+                                                <input type="email" class="form-control" name="psnt_email" id="psnt_email" placeholder="*{{__('addpatient.email')}}">
                                                 
                                             </div>
                                              <div class="form-group" style="position:relative">
                                                         <label class="form-label"></label>
-                                                <input class="form-control" type="password" name="psnt_password" id="psnt_password" placeholder="*Password" autocomplete="off">
-                                                <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
+                                                <input class="form-control" type="password" name="psnt_password" id="psnt_password" placeholder="*{{__('addpatient.pass')}}" autocomplete="off">
+                                                <i class="zmdi zmdi1 zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
 
                                                 
                                               </div>
                                                 <div class="form-group"  style="position:relative">
                                                             <label class="form-label"></label>
-                                                <input class="form-control" type="password" name="psnt_confpassword" id="psnt_confpassword" placeholder="*Confirm Password" autocomplete="off">
-                                                <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()" ></i>
+                                                <input class="form-control" type="password" name="psnt_confpassword" id="psnt_confpassword" placeholder="*{{__('addpatient.confpass')}}" autocomplete="off">
+                                                <i class="zmdi zmdi1 zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()" ></i>
 
                                                 </div>
 
@@ -284,17 +289,17 @@ function resizingMap() {
                                                             <label class="form-label"></label>
                                                   
                                                 
-                                                <textarea class="form-control" name="psnt_address" id="psnt_address" placeholder="*Patient Address" autocomplete="off"></textarea>
+                                                <textarea class="form-control" name="psnt_address" id="psnt_address" placeholder="*{{__('addpatient.pat_address')}}" autocomplete="off"></textarea>
                                                <i  id="add_icon"  class="fa fa-map-marker" style="" data-toggle="modal" data-target="#largeModal"></i>
                                                 </div>
                                                
                                                 <div class="form-group">
                                                     <label class="form-label"></label>
-                                                      <input class="form-control" type="text" name="psnt_insrnce_num" id="psnt_insrnce_num" placeholder="Patient Insurance" autocomplete="off">
+                                                      <input class="form-control" type="text" name="psnt_insrnce_num" id="psnt_insrnce_num" placeholder="{{__('addpatient.pat_ins')}}" autocomplete="off">
                                                 </div>
                                                  <div class="file-input">
                                                       <input type="file" id="file" class="file" name="file">
-                                                      <label for="file">Upload Insurance Image <img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt=""></label>
+                                                      <label for="file">{{__('addpatient.upload')}} <img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt=""></label>
                                                       <p class="file-name"></p>
                                                 </div>
                                                    
@@ -303,10 +308,10 @@ function resizingMap() {
 
                                                 <div class="form-group btndiv">
                                                  <a href="{{ url('patient_management') }}"  class="btn btn-danger btn-lg sbmt " data-dismiss="modal">
-                                                 Cancel
+                                                {{__('addpatient.can')}}
                                                 </a>    
                                            <!--  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button> -->
-                                              <input type="submit" class="btn btn-primary btn-lg sbmt clrbtn" id="submit" name="submit" value="Submit" >
+                                              <input type="submit" class="btn btn-primary btn-lg sbmt clrbtn" id="submit" name="submit" value="{{__('addpatient.sub')}}" >
                                                 </div>
                                             </form>
                                          </div>
@@ -430,10 +435,10 @@ let confpassword = document.querySelector("#psnt_confpassword");
          required: true,
         email: true
       },
-    //   psnt_insrnce_num:{
-    //     required:true,
-    //     minlength:8
-    //   },
+      psnt_insrnce_num:{
+        required:true,
+        minlength:8
+      },
     //  file:{
     //   required:true,
     //  },
@@ -468,10 +473,10 @@ let confpassword = document.querySelector("#psnt_confpassword");
         email: "The email should be in the format: abc@domain.tld"
       },
 
-    //   psnt_insrnce_num:{
-    //     required:"Insurance Number is Required",
-    //     minlength: "Insurance Number should be at least 8 characters"
-    //   },
+      psnt_insrnce_num:{
+        required:"Insurance Number is Required",
+        minlength: "Insurance Number should be at least 8 characters"
+      },
     //   file:{
     //     required:"Insurance document is Required",
     //  },
@@ -488,7 +493,16 @@ let confpassword = document.querySelector("#psnt_confpassword");
     }
   });
 
-
+$('#file').on('change',function(){
+    var fakepath =$('#file').val();
+    // alert(fakepath)
+    var filename=fakepath.split("\\").pop();
+    // alert(file)
+    if(filename){
+      $(".file-name").html(filename);
+      // $(".file-error").hide();
+    }
+  });
  $('#pat_signup').on('submit',function (event) {
     event.preventDefault();
 

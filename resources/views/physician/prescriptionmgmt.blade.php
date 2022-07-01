@@ -73,6 +73,9 @@
                                                
                                              </div>
                                         <div class="table-responsive">
+                                            <div class="search" style="padding-bottom:50px;">
+                                            <input class="form-control" type="text" id="myInput" style="width:100%;" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
+                                            </div>
                                             <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                                 <thead class="text-lowercase">
                                                     <tr>
@@ -211,7 +214,33 @@
 <script src="{{ URL::asset('assets/plugins/peitychart/peitychart.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/index1.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+   function myFunction() {
 
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  // alert(filter)
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      // alert(txtValue)
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 
 <script>
  $(document).ready( function () {

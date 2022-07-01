@@ -200,7 +200,7 @@
 
                                  <div class="text-center agreeDiv" >
 									<label class="text-dark mt-2">
-										<input id="terms" name="terms" type="checkbox"><a href="#" class="text-primary ml-1"> {{__('register.agree')}}</a>
+										<input id="terms" name="terms" type="checkbox"><a href="#" class="text-primary ml-1"> </a>{{__('register.agree')}}
 									</label>
 
 								</div>

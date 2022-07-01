@@ -1,11 +1,11 @@
 <script>
 		 
-		  // let user_data9 = localStorage.getItem('user_det');
-		  // var obj9 = JSON.parse(user_data9);
-		  // if (!obj9) {
-		  //   var base_path = "http://3.220.132.29/medpro/";
-		  //   window.location.href = base_path + 'login';
-    //        }
+		  let admin_data9 = localStorage.getItem('admin_det');
+		  var obj9 = JSON.parse(admin_data9);
+		  if (!obj9) {
+		    var base_path = "http://3.220.132.29/medpro/";
+		    window.location.href = base_path + 'admin_login';
+           }
 </script>
 
 
@@ -282,14 +282,14 @@
 <script type="text/javascript">
 
   
-        // let user_data=localStorage.getItem('user_det');
-        //  var obj = JSON.parse(user_data);
-        //  var username=obj.phy_first_name +' '+ obj.phy_last_name;
-        //   console.log(username)
-        //   document.getElementById("usr_name").style.fontSize = "large";
-        //   document.querySelector(".user-info").style.color="#ffffff";
-        //    document.getElementById("usr_name").innerText=username;
-         // let user=document.querySelector('#usr_name');
+        let admin_data=localStorage.getItem('admin_det');
+         var obj = JSON.parse(admin_data);
+         var adminname=obj.admin_first_name +' '+ obj.admin_last_name;
+          console.log(adminname)
+          document.getElementById("usr_name").style.fontSize = "large";
+          document.querySelector(".user-info").style.color="#ffffff";
+           document.getElementById("usr_name").innerText=username;
+         let user=document.querySelector('#usr_name');
          
 
 

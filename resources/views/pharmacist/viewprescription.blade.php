@@ -52,7 +52,7 @@
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">Prescription management</h1>
+                                <h1 class="dashboard page-title">{{__('pham_viewpres.pres_mgmt')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -83,17 +83,17 @@
                                <form action="" method="post" id="denyallow">
                                    @csrf 
                                    <div class="form-group ">
-                                      <label for="phy_full_name" >Physician name:</label>
+                                      <label for="phy_full_name" >{{__('pham_viewpres.phy_name')}}:</label>
                                       <input type="text" class="form-control" id="phy_full_name" disabled>
                                    </div>
 
                                    <div class="form-group ">
-                                      <label for="psnt_full_name" id="pname">Patient name:</label>
+                                      <label for="psnt_full_name" id="pname">{{__('pham_viewpres.pat_name')}}:</label>
                                       <input type="text" class="form-control" id="psnt_full_name" disabled>
                                    </div>
 
                                    <div class="form-group">
-                                       <label for="psnt_address">Delivery address</label>
+                                       <label for="psnt_address">{{__('pham_viewpres.add')}}</label>
                                        <textarea class="form-control" id="psnt_address" rows="3" disabled></textarea>
                                      </div>
 
@@ -102,10 +102,10 @@
                                 <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                         <thead>
                                             <tr>
-                                                <th class="wd-15p">serial number</th>
-                                                <th class="wd-15p">Name of the medicine</th>
-                                                <th class="wd-15p">Quantity</th>
-                                                <th class="wd-15p">Information</th>
+                                                <th class="wd-15p">{{__('pham_viewpres.ser_no')}}</th>
+                                                <th class="wd-15p">{{__('pham_viewpres.med_name')}}</th>
+                                                <th class="wd-15p">{{__('pham_viewpres.qty')}}</th>
+                                                <th class="wd-15p">{{__('pham_viewpres.info')}}</th>
                                             </tr>
                                         </thead>
                                         <tbody id="prestable">
@@ -120,11 +120,11 @@
 
 
                                <div class="form-group ">
-                                      <label for="insurance_type"><span>Select Availability:</span></label>
+                                      <label for="insurance_type"><span>{{__('pham_viewpres.sel_avl')}}:</span></label>
                                       <select name="insurance_type" id="insurance_type" class="form-control" onchange="update()">
-                                        <option>Select</option>
-                                        <option value="0">Partially Available</option>
-                                         <option value="1">Fully Available</option>
+                                        <option>{{__('pham_viewpres.sel')}}</option>
+                                        <option value="0">{{__('pham_viewpres.par_avl')}}</option>
+                                         <option value="1">{{__('pham_viewpres.ful_avl')}}</option>
                                         
                                       </select>
                               </div>
@@ -137,18 +137,18 @@
 
                                         
                                     <div class="buttons" id="addbuttons">
-                                         <button class="btn danger" id="req_type0"  value="0">Deny</button>
+                                         <button class="btn danger" id="req_type0"  value="0">{{__('pham_viewpres.deny')}}</button>
                                        
-                                         <button class="btn success ml-5" value="1" id="req_type1" >Accept</button>
+                                         <button class="btn success ml-5" value="1" id="req_type1" >{{__('pham_viewpres.accept')}}</button>
                                     </div>
                                     <div><br><br></div>
                                     <div class="form-group">
 
-                                        <h4>Notes</h4>
+                                        <h4>{{__('pham_viewpres.notes')}}</h4>
                                          <table class="table" id="noteslist2">
                                                 <thead>
                                                    <tr>
-                                                      <th scope="col">Notes</th>
+                                                      <th scope="col">{{__('pham_viewpres.notes')}}</th>
                                                    </tr>
                                                 </thead>
                                                <tbody id="tbodynotes">

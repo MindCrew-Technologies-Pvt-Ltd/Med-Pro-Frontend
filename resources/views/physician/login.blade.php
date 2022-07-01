@@ -55,7 +55,7 @@ input[type=password] {
 	
 }
 .forgot{
-	margin-right: -41px;
+	margin-right: -20px;
 	margin-top: -8px;
 }
 #loginbtn{
@@ -211,7 +211,15 @@ input[type=password] {
 			<!-- /GLOABAL LOADER -->
 
 			<!-- PAGE -->
-			<div class="page" style="position:relative;">
+			<!-- <div class="page" style="position:relative;">
+				<div class="dropdown d-md-flex" id="flag">
+			        <select class="form-control" onchange="selectlang(this)">
+			            <option>Sel</option>
+			            <option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">En</option>
+			            <option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">Ar</option>
+			        </select>
+			    </div> -->
+
 				<div class="">
 				    <!-- CONTAINER OPEN -->
 					<!-- <div class="col col-login mx-auto">

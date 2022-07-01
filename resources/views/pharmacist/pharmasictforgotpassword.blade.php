@@ -131,27 +131,27 @@
 							<form class="login100-form validate-form" method="post" id="ph_forgot_pass" action="">
 								@csrf
 								<span class="login100-form-title fotgottext">
-								Forgot Password
+								{{__('pham_forgotpassword.pham_forgotpass')}}
 								</span>
 								<div class="text-center fotgottext">
-							     <p>Enter Email Address by which you<br>have registered</p>
+							     <p>{{__('pham_forgotpassword.pham_reg_email')}}</p>
 						        </div> 
 								<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-									<input class="input100" type="text" name="pham_email" id="pham_email" placeholder="Email">
+									<input class="input100" type="text" name="pham_email" id="pham_email" placeholder="{{__('pham_forgotpassword.pham_email')}}">
 									<span class="focus-input100"></span>
 									<span class="symbol-input100">
-										<i class="zmdi zmdi-email" aria-hidden="true"></i>
+										<i class="zmdi zmdi-email" style="color:#7ec1ec;" aria-hidden="true"></i>
 									</span>
 								</div>
 								<p class="text-red mhide" id="hidemm">Email or Password not correct</p>
 
 								<div class="container-login100-form-btn">
-									<input class="login100-form-btn btn-primary" name="submit" type="submit" value="Continue">
+									<input class="login100-form-btn btn-primary" name="submit" type="submit" value="{{__('pham_forgotpassword.pham_continue')}}">
 										
 								</div>
 								<div class="text-center pt-3">
 
-									<p class="text-dark mb-0">Back to<a href="{{url('pharmacist_Login')}}" class="text-primary ml-1">Login</a></p>
+									<p class="text-dark mb-0"><a href="{{url('pharmacist_Login')}}" class="text-primary ml-1">{{__('pham_forgotpassword.pham_btl')}}</a></p>
 								</div>
 								<!-- <div class=" flex-c-m text-center mt-3">
 								    <p>Or</p>

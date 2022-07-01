@@ -26,7 +26,7 @@
     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
         types: ['geocode'],
     });
-
+ // alert(autocomplete)
      $.ajax({
           type: "POST",
           url: api_url+"phyPhamList",
@@ -48,13 +48,24 @@
      console.log(features,address);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var near_place = autocomplete.getPlace();
+        // alert(near_place)
+
+       
         document.getElementById('psnt_lat').value = near_place.geometry.location.lat();
         document.getElementById('psnt_long').value = near_place.geometry.location.lng();
         
         document.getElementById('psnt_lat').innerHTML = near_place.geometry.location.lat();
         document.getElementById('psnt_long').innerHTML = near_place.geometry.location.lng();
+    
               var lat=document.getElementById('psnt_lat').value 
               var long=document.getElementById('psnt_long').value
+
+              // if(lat && long){
+
+              //       }else{
+              //           lat =25.354826;
+              //           long=51.183884;
+              //       }
                 // lat= 0|lat;
                 // long=0|long;
               let map;
@@ -153,13 +164,14 @@
 
 /*code for search ends here*/
 
- 
+ //lat =25.354826;
+              //           long=51.183884;
 
 // function initMap() {
   
 //   map = new google.maps.Map(document.getElementById("map"), {
 
-//     center: new google.maps.LatLng(lat,long),
+//     center: new google.maps.LatLng(25.354826,51.183884),
 //     zoom: 16,
 //   });
 
@@ -300,7 +312,7 @@ body {
                 -->
                      <div class="row mb-3">
                     <div class="col">
-                        <div class="input-group mr-9">
+                        <div class="input-group">
                             <input class="form-control py-2 border-right-0 border" type="text" value="" id="pac-input" placeholder="{{__('sidebar.ent_search')}}">
                             <input class="form-control" name="psnt_lat"  type="hidden" value="" id="psnt_lat" placeholder="*Latitude" autocomplete="off">
                             <input class="form-control" name="psnt_long"  type="hidden" value="" id="psnt_long" placeholder="*Longitude" autocomplete="off">
@@ -316,7 +328,10 @@ body {
         </div>
          
         <div class="container">
-               <div id="map" style = "width:100%; height:600px;"></div>
+               <div id="map" style = "width:100%; height:600px;">
+                   
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d923095.8104199886!2d50.657278949475696!3d25.34304852013537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45c534ffdce87f%3A0x1cfa88cf812b4032!2sQatar!5e0!3m2!1sen!2sin!4v1656585901495!5m2!1sen!2sin" width="100%" height="600px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>   
+               </div>
         </div>
 
 

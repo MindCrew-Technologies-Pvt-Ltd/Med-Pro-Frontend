@@ -92,6 +92,12 @@ $(document).on('change', '#'+searchInput, function () {
 });
 var lat=$('#pham_lat').val();
 var long= $('#pham_long').val(); 
+if(lat && long){
+
+}else{
+    lat ="25.354826";
+    long="51.183884";
+}
  // lat=22.7544;
  // long=75.8668;
 var myCenter=new google.maps.LatLng(lat,long);
@@ -196,9 +202,9 @@ function resizingMap() {
       width: 456px;
 	    }
       .login100-form-title{
-        margin-top:-40px;
+        /*margin-top:-40px;
         margin-bottom:-30px;
-        margin-left:35px;
+        margin-left:35px;*/
         
       }
       .login100-form{
@@ -279,10 +285,13 @@ function resizingMap() {
 
 .file-name {
   position: absolute;
-  bottom: -35px;
-  left: 10px;
+ /* bottom: -35px;
+  left: 10px;*/
   font-size: 0.85rem;
-  color: #555;
+  /*color: #555;*/
+  color: green;
+  padding-top:50px;
+  padding-left:50px;
 }
 
 
@@ -429,33 +438,33 @@ label {
 							
 								
 								<span class="login100-form-title">
-									Pharmacy Registration
+									{{__('pham_register.pham_register')}}
 								</span>
                                  <div class="text-center" id="message">
                                    
                                  </div>
 								<div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_name" id="pham_name" placeholder="*Pharmacy Name" >
+									<input type="text" class="form-control" name="pham_name" id="pham_name" placeholder="*{{__('pham_register.pham_name')}}" >
 									
 									
 								</div>
 								
                                  <div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_first_name" id="pham_first_name" placeholder="*Pharmacist First Name" >
+									<input type="text" class="form-control" name="pham_first_name" id="pham_first_name" placeholder="*{{__('pham_register.pham_first_name')}}" >
 									
 								</div> 
 
                                 <div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_last_name" id="pham_last_name" placeholder="*Pharmacist Last Name" >
+									<input type="text" class="form-control" name="pham_last_name" id="pham_last_name" placeholder="*{{__('pham_register.pham_last_name')}}" >
 									
 								</div> 
 
                                 <div class="form-group">
 									<label class="form-label"></label>
-									<input type="email" class="form-control" name="pham_email" id="pham_email" placeholder="*Email" >
+									<input type="email" class="form-control" name="pham_email" id="pham_email" placeholder="*{{__('pham_register.pham_email')}}" >
 									
 								</div>
                                <!--  <div class="row">
@@ -485,12 +494,12 @@ label {
                                    
 								</div> -->
 								<div class="form-group"style="position:relative">
-                                 <input class="form-control" type="password" name="pham_password" id="pham_password" placeholder="*Password" autocomplete="off">
+                                 <input class="form-control" type="password" name="pham_password" id="pham_password" placeholder="*{{__('pham_register.pham_pass')}}" autocomplete="off">
                                  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibiltypass()" ></i>
 								</div>
 
 								<div class="form-group"style="position:relative">
-                                 <input class="form-control" type="password" name="confpass" id="confpassword" placeholder="*Confirm Password" autocomplete="off" > 
+                                 <input class="form-control" type="password" name="confpass" id="confpassword" placeholder="*{{__('pham_register.pham_confpass')}}" autocomplete="off" > 
                                  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye " onclick="toggleVisibilty2()" ></i>
                                 <!-- <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "style="margin-left: 7.5rem ;position: absolute;bottom:0.5rem;cursor: pointer;color:'#4ec1ec'" onclick="toggleVisibilty2()" ></i> -->
 								</div>
@@ -502,7 +511,7 @@ label {
 										    </div>
 								</div> -->
                                   <div class="form-group" style="position:relative;">
-                                      <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address" autocomplete="on"></textarea>
+                                      <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="{{__('pham_register.add')}}" autocomplete="on"></textarea>
                                       <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:2rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
                                   </div>
                                         <!-- <input type="hidden" id="loc_lat" />
@@ -519,7 +528,7 @@ label {
                                       <!-- <div class="col"> -->
                                           <div class="form-group">
                                               <label class="form-label"></label>
-                                             <input type="text" class="form-control" name="pham_registration_num" id="pham_registration_num"placeholder="*Registration Number" >
+                                             <input type="text" class="form-control" name="pham_registration_num" id="pham_registration_num"placeholder="*{{__('pham_register.reg_no')}}" >
                                          </div>
                                      <!--  </div> -->
                                      <!--  <div class="col"> -->
@@ -529,9 +538,10 @@ label {
                        <div class="file-input mt-4">
                                            <input type="file" id="file"  name="file" class="file">
                                            <label for="file">
-                                             Upload License Doc<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt="">
-                                             <p class="file-name"></p>
+                                            {{__('pham_register.upload_lic')}}<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt="">
+                                            
                                            </label>
+                                            <p class="file-name"></p>
                                    </div>
                        <!-- file -->
 							          <!--   </div> -->
@@ -541,7 +551,7 @@ label {
                                     
                                  <div class="text-center float-left agreeDiv" >
 								                   	<label class="text-dark mt-2">
-								                   		<input id="terms" name="terms" type="checkbox">&nbsp; I agree to the<a href="#" class="text-primary ml-1">Terms & conditions</a>
+								                   		<input id="terms" name="terms" type="checkbox">&nbsp;<a href="#" class="text-primary "></a>{{__('pham_register.agree')}}
 								                   	</label>
 
 							                	</div>
@@ -550,10 +560,10 @@ label {
 
 
 								<div class="container-login100-form-btn">
-									<input class="login100-form-btn btn-primary mt-5" type="submit" id="submit" value="Submit">
+									<input class="login100-form-btn btn-primary mt-5" type="submit" id="submit" value="{{__('pham_register.pham_submit')}}">
 								</div>
 								<div class="text-center pt-3 style="margin-top:20px!important;">
-									<p class="text-dark mb-0 logintext" >Already have an account?<a href="{{url('/pharmacist_Login')}}" class="text-primary">Login Here</a></p>
+									<p class="text-dark mb-0 logintext" >{{__('pham_register.already')}}<a href="{{url('/pharmacist_Login')}}" class="text-primary">{{__('pham_register.login_here')}}</a></p>
 								</div>
 								
 								<!-- <div class=" flex-c-m text-center mt-3">
@@ -733,7 +743,15 @@ $("#pharma_signup").validate({
     
   });
 
-
+ $('#file').on('change',function(){
+    var fakepath =$('#file').val();
+    var filename=fakepath.split("\\").pop();
+    // alert(file)
+    if(filename){
+      $(".file-name").html(filename);
+      $(".file-error").hide();
+    }
+  });
        $('#pharma_signup').submit(function (event) {
     event.preventDefault();
 

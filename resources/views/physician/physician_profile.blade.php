@@ -12,7 +12,7 @@
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">Profile</h1>
+                                <h1 class="dashboard page-title">{{__('phy_profile.profile')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -36,29 +36,29 @@
        @csrf 
          
             <!-- <div class="form-group "> -->
-               <label for="physician_first_name" class="pnamelab">Physician First Name:</label>
+               <label for="physician_first_name" class="pnamelab">{{__('phy_profile.fname')}}:</label>
                <input type="text" class="form-control mb-5" value="" id="physician_first_name" disabled>
             <!-- </div> -->
 
             <div class="form-group">
-               <label for="physician_last_name">Physician Last Name:</label>
+               <label for="physician_last_name">{{__('phy_profile.lname')}}:</label>
                <input type="text" class="form-control" value="" id="physician_last_name" disabled>
             </div>
 
             <div class="form-group">
-               <label for="email" class="emaill">Email:</label>
+               <label for="email" class="emaill">{{__('phy_profile.email')}}:</label>
                <input type="text" class="form-control eemail" value="" id="email" disabled>
             </div>
 
             <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">
-            License Number <i class="fa-solid fa-greater-than" id="arrow"></i>
+            {{__('phy_profile.lic')}}<i class="fa-solid fa-greater-than" id="arrow"></i>
             <!-- <span class="erroww">></span> -->
 
              <!-- <img src="{{URL::asset('assets/images/brand/arrow.png')}}" alt="" style="width: 50px; background:#7EC1EC"> -->
             </button>
 
             <div class="form-group">
-               <label for="password">Password:</label>
+               <label for="password">{{__('phy_profile.password')}}:</label>
                <input type="text" class="form-control pass" value="" id="password" disabled>
             </div>
 
@@ -88,12 +88,12 @@
       </div> -->
       <div class="modal-body">
                    <div class="form-group">
-                       <label for="license_number" style="padding-right: 70%;">License number:</label>
+                       <label for="license_number" style=""> {{__('phy_profile.lic')}}:</label>
                        <input type="text" class="form-control lnum" value="" id="license_number" disabled>
                    </div>
 
                    <div class="form-group licenseimg">
-                        <label  class="form-label"style="padding-right: 70%;">License Image</label>
+                        <label  class="form-label"style="padding-right: 70%;"> {{__('phy_profile.lic_img')}}</label>
                       <a href="" id="image_link1">
                         <img src="" class="licenseimg" alt="license_image" id="license_image" style="height:200px;width:200px;">
                       </a>
@@ -101,7 +101,7 @@
                   </div>
       </div>
       <!-- <div class="modal-footer"> -->
-        <button type="button" class="btn ok" data-dismiss="modal">Ok</button>
+        <button type="button" class="btn ok" data-dismiss="modal">{{__('phy_profile.ok')}}</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       <!-- </div> -->
     </div>
@@ -192,7 +192,7 @@
 		var aTag = document.createElement('a');
 		aTag.setAttribute('href',url);
 		aTag.setAttribute('class','btn editbtn mt-4');
-		aTag.innerText = "Edit";
+		aTag.innerText = "{{__('phy_profile.edit')}}";
 		// aTag.innerHTML='<i class="dropdown-icon mdi mdi-account-outline">&nbsp &nbsp'+ aTag.innerText +'</i>';
 		
 		mydiv.appendChild(aTag);

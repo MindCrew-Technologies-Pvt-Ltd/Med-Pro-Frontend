@@ -35,7 +35,7 @@
 
 							<form class="login100-form validate-form">
 								<span class="login100-form-title">
-								 Success
+								{{__('pham_rstsuccess.p_success')}}
 								</span>
 								<div class="text-center">
 							  
@@ -45,11 +45,11 @@
 								
 								
 								<div class="text-center pt-3">
-									<p>ThankYou!<br> Your Password is Reset Successfully.</p>
+									<p>{{__('pham_rstsuccess.p_success_msg')}}</p>
 								</div>
 								<div class="text-center pt-3">
 
-									<p class="text-dark mb-0">Back to<a href="{{url('login')}}" class="text-primary ml-1">Login</a></p>
+									<p class="text-dark mb-0"><a href="{{url('login')}}" class="text-primary ml-1">{{__('pham_rstsuccess.p_success_btl')}}</a></p>
 								</div>
 								<!-- <div class=" flex-c-m text-center mt-3">
 								    <p>Or</p>

@@ -255,7 +255,15 @@ function resizingMap() {
   background-color: #7ec1ec;
   border: 2px solid #00cec9;
   }
-
+#add_icon{
+    font-size:24px;
+    position: absolute;
+    float:left;
+    right:2rem;
+    top:3rem;
+    color:#7ec1ec;
+    cursor:pointer;
+}
   .proimg {
     height: 80px;
     width: 80px;
@@ -488,6 +496,7 @@ input[type="text"]{
 label{
     font-size: 14px;
 }
+
 }
      @media (min-width: 992px){
         .col-lg {
@@ -502,7 +511,7 @@ label{
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">Profile</h1>
+                                <h1 class="dashboard page-title">{{__('pham_profile.profile')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
@@ -524,10 +533,10 @@ label{
                    <label for="file">
         
                 <input id="img_file" type="file" accept="image/*" name="image" />
-                <span  class="glyphicon glyphicon-pencil"></span>
+                <span  class="glyphicon glyphicon-pencil gly"></span>
                 </label>
                   <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" class="proimg" id="output"  alt="">
-                  <input type="submit" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="Upload" id="upload_btn" style="border-radius:10px;display:hidden" name="submit">
+                  <input type="submit" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="{{__('pham_profile.upload')}}" id="upload_btn" style="border-radius:10px;display:hidden" name="submit">
               </div>
 
           </form>
@@ -542,21 +551,22 @@ label{
        @csrf 
           <input type="hidden" value="" name="phamaciest_id" id="phamaciest_id1">
             <div class="form-group ">
-               <label for="pham_name" id="phamname">pharmacy Name:</label>
+               <label for="pham_name" id="phamname p1" class="phamname1">{{__('pham_profile.pname')}}:</label>
                <input type="text" class="form-control" id="n" name="pham_name">
             </div>
             <div class="form-group ">
-               <label for="pham_first_name">pharmacist First Name:</label>
+               <label for="pham_first_name">{{__('pham_profile.fname')}}:</label>
                <input type="text" class="form-control" id="pham_first_name" name="pham_first_name">
             </div>
 
             <div class="form-group">
-               <label for="pham_last_name">pharmacist Last Name:</label>
+               <label for="pham_last_name">{{__('pham_profile.lname')}}:</label>
                <input type="text" class="form-control" id="pham_last_name" name="pham_last_name">
             </div>
              <div class="form-group" style="position:relative;">
+                 <label for="address">{{__('pham_profile.add')}}:</label>
               <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address" autocomplete="on"></textarea>
-               <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:2rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
+               <i  id="add_icon"  class="fa fa-map-marker"  data-toggle="modal" data-target="#largeModal"></i>
             </div>
             <div class="form-group">
                 <label class="form-label"></label>
@@ -567,22 +577,22 @@ label{
                 <input class="form-control" name="pham_long" type="hidden" value="" id="pham_long" placeholder="*Longitude" autocomplete="off">
             </div>
             <div class="form-group">
-               <label for="email" class="emaill">Email:</label>
+               <label for="email" class="emaill">{{__('pham_profile.email')}}:</label>
                <input type="text" class="form-control" id="email" disabled>
             </div>
 
-            <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">Registration Number<i class="fa-solid fa-greater-than" id="arrow">
+            <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">{{__('pham_profile.reg_no')}}<i class="fa-solid fa-greater-than" id="arrow">
             </i> </button>
 
            
             <button type="button" class="btn changepass" data-toggle="modal" data-target="#exampleModalCenter">
-              Change Password
+            {{__('pham_profile.change_pass')}}
             </button>
 
 
 
 
-         <button type="submit" class="savechnagesbtn" >Save Changes</button>
+         <button type="submit" class="savechnagesbtn" > {{__('pham_profile.save_changes')}}</button>
 
      
 
@@ -594,7 +604,7 @@ label{
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
             <div class="modal-header pd-x-20">
-                <h6 class="modal-title">Map Preview</h6>
+                <h6 class="modal-title">{{__('pham_profile.map')}}</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -622,12 +632,12 @@ label{
       <div class="modal-body">
         
                    <div class="form-group">
-                       <label for="registration_number">Registration number:</label>
+                       <label for="registration_number">{{__('pham_profile.reg_no')}}:</label>
                        <input type="text" class="form-control lnum" id="registration_number" name="pham_registration_num">
                    </div>
 
                    <div class="form-group licenseimg">
-                        <label  class="form-label"style="padding-right: 70%;">Registration Image</label>
+                        <label  class="form-label"style="padding-right: 70%;">{{__('pham_profile.lic_img')}}</label>
                         <a href="" id="image_show">
                         <img src="" class="licenseimg" alt="license_image" id="registration_file" style="height:200px;width:200px;">
                         </a>
@@ -640,7 +650,7 @@ label{
 
                      
      
-        <button type="button" class="btn ok" data-dismiss="modal">Ok</button>
+        <button type="button" class="btn ok" data-dismiss="modal">{{__('pham_profile.ok')}}</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       <!-- </div> -->
     </div>
@@ -653,7 +663,7 @@ label{
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">{{__('pham_profile.change_pass')}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -664,25 +674,25 @@ label{
             <form method="post" id="pham_pass_update" >
                 @csrf
            <div class="form-group" style="position:relative;">
-               <label for="password" class="pass">Password:</label>
+               <label for="password" class="pass">{{__('pham_profile.password')}}:</label>
             <input type="password" class="form-control w-100" id="password" name="pham_old_password">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 2rem;top:3rem;color:#7ec1ec;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off zmdi3" id="togglePassword1" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty1()"style="position: absolute;float:right;right: 2rem;top:3rem;color:#7ec1ec;"></i>
             </div>
 
             <div class="form-group" style="position:relative;">
-               <label for="newpassword" class="newpass">New Password:</label>
+               <label for="newpassword" class="newpass">{{__('pham_profile.new_pass')}}:</label>
                 <input type="password" class="form-control w-100" id="newpassword" name="pham_new_password">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right:2rem;top:3rem;color:#7ec1ec;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off zmdi3" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()"style="position: absolute;float:right;right:2rem;top:3rem;color:#7ec1ec;"></i>
             </div>
             <div class="form-group" style="position:relative;">
-               <label for="confnewpassword" class="connewpas">Confirm New Password:</label>
+               <label for="confnewpassword" class="connewpas">{{__('pham_profile.conf_new')}}:</label>
                 <input type="password" class="form-control w-100" id="confnewpassword" name="pham_confrim_new_password">
-              <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right:2rem;top:3rem;color:#7ec1ec;"></i>
+              <i class="zmdi zmdi-eye zmdi-eye-off zmdi3" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty3()"style="position: absolute;float:right;right:2rem;top:3rem;color:#7ec1ec;"></i>
             </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">Close</button>
-        <button type="submit" id="pass_update" value="save" class="btn btn-primary" style="border: none;">Save Password</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="border: none;">{{__('pham_profile.close')}}</button>
+        <button type="submit" id="pass_update" value="save" class="btn btn-primary" style="border: none;">{{__('pham_profile.save_pass')}}</button>
       </div>
         </form>
     </div>

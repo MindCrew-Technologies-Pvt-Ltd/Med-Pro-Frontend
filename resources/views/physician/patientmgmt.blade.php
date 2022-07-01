@@ -220,7 +220,7 @@ hr.new1 {
 @section('page-header')
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title ">Patient Management</h1>
+                                <h1 class="dashboard page-title ">{{__('patientmgmt.patient_mgmt')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -237,14 +237,15 @@ hr.new1 {
                                 <div class="card">
                                     <div class="card-header" style="position:relative">
                                         
-                                        <h3 class="card-title viewp" style="position:absolute;">View Patient</h3>
+                                        <h3 class="card-title viewp" style="position:absolute;">{{__('patientmgmt.view_pat')}}</h3>
                                        
                                         
                                    <div class="ml-auto pageheader-btn btnbtn">
                                             <a href="{{ url('add_patient') }}" class="btn bttttn mr-2">
                                                 <span>
                                                     <i class="fe fe-plus"></i>
-                                                </span> Add 
+                                                </span> {{__('patientmgmt.add')}}</h3>
+                                       
                                             </a>
                                            
                                     </div>
@@ -258,17 +259,19 @@ hr.new1 {
                                                
                                              </div>
                                         <div class="table-responsive">
-                                            <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Name">
+                                            <div class="search" style="padding-bottom: 50px;">
+                                            <input class="form-control"  style="width:100%;"type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
+                                            </div>
 
                                             <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                                 <thead>
                                                     <tr>
-                                                        <th class="wd-15p">S No.</th>
-                                                        <th class="wd-15p">First name</th>
-                                                        <th class="wd-15p">Last name</th>
-                                                        <th class="wd-20p">Email</th>
-                                                        <th class="wd-15p">Insurance Number</th>
-                                                        <th class="wd-10p">Action</th>
+                                                        <th class="wd-15p">{{__('patientmgmt.sno')}}</th>
+                                                        <th class="wd-15p">{{__('patientmgmt.fname')}}</th>
+                                                        <th class="wd-15p">{{__('patientmgmt.lname')}}</th>
+                                                        <th class="wd-20p">{{__('patientmgmt.email')}}</th>
+                                                        <th class="wd-15p">{{__('patientmgmt.ins_no')}}</th>
+                                                        <th class="wd-10p">{{__('patientmgmt.action')}}</th>
                                                         
                                                     </tr>
                                                 </thead>
@@ -278,7 +281,7 @@ hr.new1 {
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Patient Profile</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">{{__('patientmgmt.pat_profile')}}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
@@ -286,19 +289,19 @@ hr.new1 {
                                 <div class="modal-body">
                                 
                                     <div class="form-group">
-                                    <label class="form-label">Full Name</label>
+                                    <label class="form-label">{{__('patientmgmt.fullname')}}</label>
                                     <input type="text" class="form-control" id="fullname" value="" disabled>
                                     </div>
                                      <div class="form-group">
-                                    <label  class="form-label">Email</label>
+                                    <label  class="form-label">{{__('patientmgmt.email1')}}</label>
                                     <input type="email" class="form-control" id="femail" value="" disabled>
                                     </div>
                                      <div class="form-group">
-                                    <label  class="form-label">Insurance Number</label>
+                                    <label  class="form-label">{{__('patientmgmt.ins_no1')}}</label>
                                     <input type="text" class="form-control" id="ins_no" value="" disabled>
                                     </div>
                                      <div class="form-group">
-                                    <label  class="form-label">Insurance Image</label>
+                                    <label  class="form-label">{{__('patientmgmt.ins_img')}}</label>
                                     <a href="" id="image_link">
                                     <img src="" alt="insurace_image" id='ins_img' style="height:200px;width:200px;">
                                        </a>
@@ -307,7 +310,7 @@ hr.new1 {
                                 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary ok" data-dismiss="modal">Ok</button>
+                                    <button type="button" class="btn btn-primary ok" data-dismiss="modal">{{__('patientmgmt.ok')}}</button>
                                    <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
                                 </div>
                             </div>
@@ -385,8 +388,8 @@ hr.new1 {
          res.data.map((e,i) => {
            
             i++;
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td><button  id="'+e._id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">View</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">Delete</button></td></tr>');         
-              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>Are you sure <br><br>you want to delete this patient?</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">Cancel</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">Yes Delete It!</button></div></div></div></div>');         
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td><button  id="'+e._id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">{{__('patientmgmt.view')}}</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('patientmgmt.delete')}}</button></td></tr>');         
+              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('patientmgmt.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('patientmgmt.can')}}</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('patientmgmt.yes')}}</button></div></div></div></div>');         
     });
      
 });
