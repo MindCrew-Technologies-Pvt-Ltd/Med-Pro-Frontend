@@ -93,7 +93,11 @@
 		
   }*/
 
+@media (min-width: 375px) and (max-width: 812px){
 
+   .zmdi{
+   	left: 18rem;
+   }
 </style>
 
 @endsection

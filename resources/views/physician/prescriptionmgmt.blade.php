@@ -1,3 +1,4 @@
+<?php $locale = Session::get('locale'); ?>
 @extends('layouts.vertical-menu.master')
 @section('css')
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
@@ -8,7 +9,10 @@
 @endsection
 @section('page-header')
 <style>
-   
+   hr.new1{
+    margin-top:0!important;
+    margin-bottom:0!important;
+   }
 .ebtn{
     background-color: #5e2dd8;
     width: 88px;
@@ -34,6 +38,19 @@
         font-size: 0.9rem;
      }
     }
+
+    @media (min-width: 414px) and (max-width:896px) {
+      #profile-user{
+        position: relative!important;
+        left: 0rem!important;
+       
+     }
+
+     .dropdown-menu{
+        text-align:right;
+        left: 9rem;
+      }
+    }
 </style>
                         <!-- PAGE-HEADER -->
         <div>
@@ -57,7 +74,7 @@
                                         <h3 class="card-title viewp" style="position:absolute;">{{__('pres_management.view_pres')}}</h3>
                                         
                                    <div class="ml-auto pageheader-btn">
-                                            <a href="{{ url('add_prescription') }}" class="btn btn-primary btn-icon text-white mr-2 bttttn">
+                                            <a href="{{ url('add_prescription') }}<?="/".$locale; ?>" class="btn btn-primary btn-icon text-white mr-2 bttttn">
                                                 <span>
                                                     <i class="fe fe-plus"></i>
                                                 </span>{{__('pres_management.add')}}
@@ -176,12 +193,12 @@
                             </div>
 
                             
-                            <h4 class="otherlabel">{{__('pres_management.add')}}{{__('pres_management.notes')}}</h4><br><br>
+                            <h4 class="otherlabel">{{__('pres_management.add')}} {{__('pres_management.notes')}}</h4><br><br>
                             <div class="form-group">
                                <!-- <textarea class="form-control col-10 message" id="message1" rows="3" name="message" placeholder="Enter Information" value=""></textarea> -->
                                <input type="text" class="form-control w-100" style="border-radius: 7px" name="message" id="message1" placeholder="{{__('pres_management.ent_notes')}}" value="" >
                            </div>
-                             <button type="submit" class="btn btn-success" id="notesbtn">{{__('pres_management.add')}}{{__('pres_management.notes')}}</button>
+                             <button type="submit" class="btn btn-success" id="notesbtn">{{__('pres_management.add')}}  {{__('pres_management.notes')}}</button>
                      </form>
 
 </div>
@@ -414,8 +431,8 @@ var counter=1;
       // contentType: "application/json; charset=utf-8",
      // data: JSON.stringify(data),
     }).done(function (res) {
-            $("#patient_name").val(res.data.patient_name) ;   
-            $('#physician_name').val(res.data.physician_name);
+            $("#patient_name").val(" " + res.data.patient_name) ;   
+            $('#physician_name').val(" " +res.data.physician_name);
             $('#prescription_id').val(res.data._id);
             $('#sender_id').val(res.data.physician_id);
             res.data.prs_details.map((e,i) => {

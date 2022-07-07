@@ -1,4 +1,4 @@
-
+<?php $locale = Session::get('locale'); ?>
 <!-- /Notification -->
 <style>
 .protext{
@@ -18,7 +18,7 @@ color: #495057!important;
   position: relative!important;
     /*left: -96rem!important;*/
     height: 30px;
-    width: 82px;
+    width: 98px;
  } 
 .us1{
 		   	   /* margin-left: -56px;*/
@@ -27,7 +27,12 @@ color: #495057!important;
 #profile_user {
     margin-left: 11px!important;
 }
-
+.avatar{
+    /*right: 15rem!important;
+    top: 1rem!important;*/
+    width: 3rem!important;
+    height:3rem!important;
+  }
 </style>
 <div class="d-flex  ml-auto header-right-icons header-search-icon">
 	<div class="dropdown d-sm-flex">
@@ -186,13 +191,16 @@ color: #495057!important;
 	</div>
 	<div class="dropdown d-md-flex" id="flag">
 		<div class="us1">
-               	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
-                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
+              	<?php if($locale =="en"){ ?>
+	               	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+	               <?php }else{ ?>
+	                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
+	            <?php } ?>
               </div>
 		<select class="form-control" onchange="selectlang(this)">
-			<option>Sel</option>
-			<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">EN</option>
-			<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">AR</option>
+			<option>Language</option>
+			<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">English (EN)</option>
+			<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">Arabic (AR)</option>
 		</select>
 	</div>
 	<div class="dropdown d-md-flex header-settings">
@@ -221,7 +229,7 @@ console.log(document.getElementById("admin"))
 
 //  document.getElementById('profilev').appendChild('<a class="dropdown-item" href=""><i class="dropdown-icon mdi mdi-account-outline"></i> Profile</a>');         
 
-var url = '{{ route("profile", ":id") }}';
+var url = '{{ route("profile", ":id") }}<?="/".$locale; ?>';
 url = url.replace(':id',phy_id );
 //   alert(url)
 //   console(url)

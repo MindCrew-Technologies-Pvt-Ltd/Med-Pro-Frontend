@@ -19,11 +19,11 @@
 .wrap-login100{
 
 width: 456px;
- height:550px;
+ height:500px;
 }
 .login100-form-title{
-	margin-bottom: -20px;
-	margin-top: -26px;
+	margin-bottom: -10px;
+	margin-top: -10px;
     margin-left: 20px;
 
 }
@@ -115,16 +115,27 @@ input[type=password] {
 @section('content')
 		<!-- BACKGROUND-IMAGE -->
 		<div class="login-img">
-
+            
 			<!-- GLOABAL LOADER -->
 			<div id="global-loader">
 				<img src="{{URL::asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">
 			</div>
 			<!-- /GLOABAL LOADER -->
-
+  
 			<!-- PAGE -->
 			<div class="page">
 				<div class="">
+					<div class="dropdown d-md-flex" id="flag" style="width:150px;
+    float: right;top:-5rem;">
+						<div class="us1">
+				            
+				              </div>
+						<select class="form-control" onchange="selectlang(this)">
+							<option>Language</option>
+							<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">English (EN)</option>
+							<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">Arabic (AR)</option>
+						</select>
+					</div>
 				    <!-- CONTAINER OPEN -->
 					<div class="col col-login mx-auto">
 						<!-- <div class="text-center">
@@ -145,10 +156,10 @@ input[type=password] {
 							<form class="login100-form validate-form" id="admin_login" method="post">
 								@csrf
 								<span class="login100-form-title">
-									Admin Login
+									{{__('sidebar.admin_login')}}
 								</span>
 								<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-									<input class="input100" type="text" name="pham_email" id="pham_email" placeholder="Email">
+									<input class="input100" type="text" name="admin_email" id="admin_email" placeholder="{{__('login.phy_email')}}">
 									<span class="focus-input100"></span>
 									<!-- <span class="symbol-input100"> -->
 										<i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 0.9rem;"></i>
@@ -159,7 +170,7 @@ input[type=password] {
 								<div class="wrap-input100 validate-input" data-validate = "Password is required" style="position:relative; ">
 
 									
-                                 <input class="input100 mt-5" type="password" name="pham_password" id="pham_password" placeholder="Password" autocomplete="off">
+                                 <input class="input100 mt-5" type="password" name="admin_password" id="admin_password" placeholder="{{__('login.phy_pass')}}" autocomplete="off">
                                  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty()"  ></i>
 								
 
@@ -179,17 +190,17 @@ input[type=password] {
 									
 								</div>
 								<p class="text-red mhide" id="hidemm">Email or Password not correct</p>
-								<div class="text-right pt-1">
+								<!-- <div class="text-right pt-1">
 									<p class="mb-0"><a href="{{url('/pharmacist_forgot_password')}}" class="text-primary ml-1 forgot">Forgot Password?</a></p>
-								</div>
+								</div> -->
 								<div class="container-login100-form-btn">
 									<button  class="login100-form-btn btn-primary" id="loginbtn" type="submit" name="submit">
-										Login
+									{{__('login.phy_login')}}
 									</button>
 								</div>
-								<div class="text-center pt-3">
+								<!-- <div class="text-center pt-3">
 									<p class="text-dark mb-0 dont">Don't have an account?<a href="{{url('pharmacist_register')}}" class="text-primary ml-1">Sign up</a></p>
-								</div>
+								</div> -->
 								<!-- <div class=" flex-c-m text-center mt-3">
 								    <p>Or</p>
 									<div class="social-icons">
@@ -216,7 +227,7 @@ input[type=password] {
 <script>
  function toggleVisibilty(){
 let togglePassword = document.querySelector("#togglePassword");
-        let password = document.querySelector("#pham_password");
+        let password = document.querySelector("#admin_password");
    
      
             let type = password.getAttribute("type") === "password" ? "text" : "password";
@@ -236,17 +247,17 @@ $(document).ready(function(){
 	var api_url="http://3.220.132.29:3000/api/";
 var base_path = "http://3.220.132.29/medpro/"; 
 
- $("#pharma_login").validate({
+ $("#admin_login").validate({
     errorClass: "error fail-alert",
     validClass: "valid success-alert",
     rules: {
       
-      pham_email: {
+      admin_email: {
          required: true,
         email: true
       },
       
-     pham_password: {
+     admin_password: {
       required:true,
      
      }
@@ -254,11 +265,11 @@ var base_path = "http://3.220.132.29/medpro/";
     },
     messages : {
      
-      pham_email: {
+      admin_email: {
         required: "Email field is Required",
       },
 
-      pham_password: {
+      admin_password: {
       required:"Password field is Required",
       
      },
@@ -270,35 +281,35 @@ var base_path = "http://3.220.132.29/medpro/";
     }
   });
 
-$("#pharma_login").submit(function (event) {
+$("#admin_login").submit(function (event) {
   	 event.preventDefault();
 
   
  
-  var pham_email = $('#pham_email').val();
-    var pham_password = $('#pham_password').val();
+  var admin_email = $('#admin_email').val();
+    var admin_password = $('#admin_password').val();
 
 
     var formData = {
-    pham_email: $('#pham_email').val(),
-    pham_password: $('#pham_password').val() ,
+    admin_email: $('#admin_email').val(),
+    admin_password: $('#admin_password').val() ,
 
     };
  
-   if(pham_email !="" &&  pham_password !=""){
+   if(admin_email !="" &&  admin_password !=""){
     $.ajax({
       type: "POST",
-      url: api_url+"phamsistLogin",
+      url: api_url+"adminLogin",
       data: formData,
       dataType: "json",
       encode: true,
     }).done(function (res) {
       console.log(res.data);
-      localStorage.setItem('pharm_det', JSON.stringify(res.data));
+      localStorage.setItem('admin_det', JSON.stringify(res.data));
       // return false;
         if(res.status == true){
         	$('#message').html(res.message).addClass('alert alert-success');
-        	window.location.href=base_path+"pharmacist_prescription";
+        	window.location.href=base_path+"admindashboard";
         }else{
         //    $('#message').html(res.message).addClass('alert alert-danger');
 		$('#hidemm').html(res.message).removeClass('mhide');
@@ -318,4 +329,35 @@ $("#pharma_login").submit(function (event) {
 
 })
 </script>
+<script>
+function selectlang($this){
+	// alert('hi')
+    var url = window.location.href;
+     let uri=url.split('/');
+     // console.log(uri)
+     // return false;
+   if(uri[6]|| (uri[5]=="en" || uri[5]=="ar")){
+				    var newUrl = url.slice(0, url.lastIndexOf('/'));
+				    if($this.value=="en"){
+						window.location.href=newUrl+"/en";
+					}else if($this.value=="ar"){
+						window.location.href=newUrl+"/ar";
+					}else{
+						// window.location.href=window.location.href;
+					}
+   }else{
+
+			        if($this.value=="en"){
+					window.location.href=window.location.href+"/en";
+				}else if($this.value=="ar"){
+					window.location.href=window.location.href+"/ar";
+				}else{
+					// window.location.href=window.location.href;
+				}
+   }
+
+	
+}
+
+	</script>
 @endsection

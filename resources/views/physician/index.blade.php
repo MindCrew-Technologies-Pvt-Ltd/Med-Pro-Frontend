@@ -6,6 +6,26 @@
     #dash{
         height:800px;
     }
+
+    @media (min-width: 414px) and (max-width:896px) {
+      #profile-user{
+        position: relative!important;
+        left: 0rem!important;
+       
+     }
+
+     .dropdown-menu{
+        text-align:right;
+        left: 9rem;
+      }
+    }
+    @media (min-width: 375px) and (max-width:667px) {
+
+  #profile-user{
+        left: 16rem;
+        top: 1rem;
+  }
+}
 	@media only screen and (max-width: 1280px){
         .page-header{
             width: 959px;
@@ -66,13 +86,13 @@
 	}
 
 @media only screen and (max-width: 414px){
-	.avatar {
+	/*.avatar {
     top: -1.1rem;
     right: -3rem;
     position: absolute;
-    }
+    }*/
 	.page-header {
-    width: 365px;
+    width: 365px;//365px
     }
     .dropdown{
         top: 0.5rem;
@@ -132,6 +152,7 @@
 @section('page-header')
                         <!-- PAGE-HEADER -->
                             <div>
+                               <!--  < ?php echo Session::get('locale');?> -->
                                 <h1 class="dashboard page-title">{{__('dashboard.dashboard')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -148,6 +169,7 @@
 								<div class="card">
 									<div class="card-body">
 										<h5 class="card-title">{{__('dashboard.welcome')}}</h5>
+                                        
 										<!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
 										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 										<a href="#" class="card-link">Card link</a>

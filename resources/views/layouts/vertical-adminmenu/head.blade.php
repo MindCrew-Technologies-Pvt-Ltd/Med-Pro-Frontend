@@ -21,10 +21,23 @@
 		<link href="{{URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
 
 		<!-- STYLE CSS -->
+		<?php if(App::getLocale()=="en"){ ?>
 		<link href="{{URL::asset('assets/css/style.css')}}" rel="stylesheet" />
-		<link href="{{URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/css/skin-modes.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/css/dark-style.css')}}" rel="stylesheet" />
+		<link href="{{URL::asset('assets/css/sidemenu.css')}}" rel="stylesheet" />
+		<?php }else{ ?>
+		
+		<link href="{{URL::asset('assets/css/css-rtl/style.css')}}" rel="stylesheet" />
+		<link href="{{URL::asset('assets/css/css-rtl/skin-modes.css')}}" rel="stylesheet" />
+		<link href="{{URL::asset('assets/css/css-rtl/dark-style.css')}}" rel="stylesheet" />
+		<link href="{{URL::asset('assets/css/css-rtl/sidemenu.css')}}" rel="stylesheet" />
+		<link href="{{URL::asset('assets/css/rtl.css')}}" rel="stylesheet" />
+		<?php } ?>
+		<!-- <link href="{{URL::asset('assets/css/style.css')}}" rel="stylesheet" /> -->
+		<link href="{{URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet" />
+		<!-- <link href="{{URL::asset('assets/css/skin-modes.css')}}" rel="stylesheet" />
+		<link href="{{URL::asset('assets/css/dark-style.css')}}" rel="stylesheet" /> -->
 
 		<!--C3 CHARTS CSS -->
 		<link href="{{URL::asset('assets/plugins/charts-c3/c3-chart.css')}}" rel="stylesheet" />
@@ -42,7 +55,7 @@
 		@yield('css')
 
 		<!-- SIDE-MENU CSS -->
-		<link href="{{URL::asset('assets/css/sidemenu.css')}}" rel="stylesheet" />
+		<!-- <link href="{{URL::asset('assets/css/sidemenu.css')}}" rel="stylesheet" /> -->
 
 		<!-- SIDEBAR CSS -->
 		<link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet" />
@@ -50,28 +63,28 @@
 		<!-- COLOR SKIN CSS -->
 		<link id="theme" rel="stylesheet" type="text/css" media="all" href="{{URL::asset('assets/colors/color1.css')}}" />
 
-		<!-- <script>
+		<script>
 		  function signout1() {
 
 		    var api_url = "http://3.220.132.29:3000/api/";
 		    var base_path = "http://3.220.132.29/medpro/";
-		    var phy_details = localStorage.getItem('user_det');
+		    var admin_details = localStorage.getItem('admin_det');
 		   
-		    var details1 = JSON.parse(phy_details);
+		    var details1 = JSON.parse(admin_details);
 			// console.log(details1)
-		    var pharmacist_id = details1._id;
+		    var admin_id = details1._id;
 		   
 		    var formData = {
-		      physician_id: pharmacist_id,
+		      admin_id: admin_id,
 		    };
 
 
 		    $.ajax({
-		      url: api_url + "PhyLogout",
+		      url: api_url + "adminLogout",
 		      type: "POST",
 		      dataType: 'json',
 		      data: {
-		        physician_id: pharmacist_id,
+		        admin_id: admin_id,
 		      }
 		    }).done(function(res) {
 		      
@@ -87,7 +100,7 @@
 		        });
 		        $('#message').html(res.message).addClass('alert alert-success');
 		        localStorage.clear();
-		        setTimeout(window.location.href = base_path + "login", 1000);
+		        setTimeout(window.location.href = base_path + "admin_login", 1000);
 
 		      } else {
 		        swal("Oops!", "Something went wrong, you should logout again!", "error");
@@ -99,4 +112,4 @@
 
 		  
 		</script>
-		</script> -->
+		</script>

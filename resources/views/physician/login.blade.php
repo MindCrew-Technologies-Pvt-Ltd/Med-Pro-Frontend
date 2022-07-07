@@ -35,7 +35,7 @@ input{
 	float:right;
 	right: -1rem;
 	top: 1.1rem;
-
+    
 }
 .login100-form-title{
 	margin-bottom: -20px;
@@ -196,14 +196,15 @@ input[type=password] {
         
         }
         
-        
+  
+  }      
         
 </style>
 @endsection
 @section('content')
 		<!-- BACKGROUND-IMAGE -->
 		<div class="login-img">
-
+        
 			<!-- GLOABAL LOADER -->
 			<div id="global-loader">
 				<img src="{{URL::asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">
@@ -221,6 +222,17 @@ input[type=password] {
 			    </div> -->
 
 				<div class="">
+						<div class="dropdown d-md-flex" id="flag" style="width:150px;
+    float: right;">
+						<div class="us1">
+				            
+				              </div>
+						<select class="form-control" onchange="selectlang(this)">
+							<option>Language</option>
+							<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">English (EN)</option>
+							<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">Arabic (AR)</option>
+						</select>
+					</div>
 				    <!-- CONTAINER OPEN -->
 					<!-- <div class="col col-login mx-auto">
 						
@@ -244,7 +256,7 @@ input[type=password] {
 									<input class="input100" type="text" name="email" id="email" placeholder="{{__('login.phy_email')}}">
 									<span class="focus-input100"></span>
 									<!-- <span class="symbol-input100" > -->
-										<i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 0.9rem;"></i>
+										<i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 1.1rem;"></i>
 									<!-- </span> -->
 									<span></span>
 
@@ -264,7 +276,7 @@ input[type=password] {
 									<span class="focus-input100">
 										</span>
 									<!-- <span class="symbol-input100"> -->
-										<i class="zmdi zmdi-lock" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 0.9rem;"></i>
+										<i class="zmdi zmdi-lock" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 1.1rem;"></i>
 									<!-- </span> -->
 									<span></span>
 
@@ -323,6 +335,36 @@ let togglePassword = document.querySelector("#togglePassword");
  
  
 </script>
+<script>
+function selectlang($this){
+	// alert('hi')
+    var url = window.location.href;
+     let uri=url.split('/');
+     // console.log(uri)
+     // return false;
+   if(uri[6]|| (uri[5]=="en" || uri[5]=="ar")){
+				    var newUrl = url.slice(0, url.lastIndexOf('/'));
+				    if($this.value=="en"){
+						window.location.href=newUrl+"/en";
+					}else if($this.value=="ar"){
+						window.location.href=newUrl+"/ar";
+					}else{
+						// window.location.href=window.location.href;
+					}
+   }else{
 
+			        if($this.value=="en"){
+					window.location.href=window.location.href+"/en";
+				}else if($this.value=="ar"){
+					window.location.href=window.location.href+"/ar";
+				}else{
+					// window.location.href=window.location.href;
+				}
+   }
+
+	
+}
+
+	</script>
 @section('js')
 @endsection

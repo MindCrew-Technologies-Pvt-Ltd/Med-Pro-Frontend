@@ -115,7 +115,7 @@ function logoutt(){
  
  if(res.status == true){
        swal({  
-         title: "Log Out Successfully!",  
+         title: "Log Out Successfully! |تم تسجيل الخروج بنجاح!",  
          type: "success" ,
          buttons: false,
          showCancelButton: false,

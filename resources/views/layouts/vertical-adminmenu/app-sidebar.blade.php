@@ -1,3 +1,4 @@
+<?php $locale = Session::get('locale'); ?>
 <script>
 		 
 		  let admin_data9 = localStorage.getItem('admin_det');
@@ -9,12 +10,12 @@
 </script>
 
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <!--APP-SIDEBAR-->
                 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
                 <aside class="app-sidebar">
                     <div class="side-header">
-                        <a class="header-brand1" href="{{ url('/admindashboard')}}">
+                        <a class="header-brand1" href="{{ url('/admindashboard')}}<?="/".$locale; ?>">
                             <!-- <img src="{{URL::asset('./assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-1.png')}}"  class="header-brand-img toggle-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-2.png')}}" class="header-brand-img light-logo" alt="logo"> -->
@@ -59,27 +60,23 @@
                     </div> -->
                     <ul class="side-menu">
                       <!--   <li><h3>Main</h3></li> -->
-                        <li class="slide">
+                        <!-- <li class="slide">
                             <a class="side-menu__item"  data-toggle="slide" href="{{ url('/admindashboard')}}"><i class="side-menu__icon ti-home"></i><span class="side-menu__label">Dashboard</span></i></a>
-                           <!--  <ul class="slide-menu">
-                                <li><a class="slide-item" href="{{ url('/' . $page='index') }}"><span>Sales Dashboard</span></a></li>
-                                <li><a class="slide-item" href="{{ url('/' . $page='index2') }}"><span>Marketing Dashboard</span></a></li>
-                                <li><a class="slide-item" href="{{ url('/' . $page='index3') }}"><span>Service Dashboard</span></a></li>
-                                <li><a class="slide-item" href="{{ url('/' . $page='index4') }}"><span>Finance Dashboard</span></a></li>
-                                <li><a class="slide-item" href="{{ url('/' . $page='index5') }}"><span>IT Dashboard</span></a></li>
-                            </ul> -->
-                        </li>
+                         
+                        </li> -->
                          <!-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">Prescription Management</span></a>
                         </li> -->
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('/admin_physician_mgmt') }}<?="/".$locale; ?>"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">{{__('sidebar.phy_mgmt')}}</span></a>
                         </li>
+
+                        
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('Pharmacy_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Pharmacy Management</span></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('/admin_pharmacist_mgmt') }}<?="/".$locale; ?>"><i class="side-menu__icon  fa  fa-clinic-medical"></i><span class="side-menu__label">{{__('sidebar.pharm_mgmt')}}</span></a>
                         </li> 
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('patient_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">Patient Management</span></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('/admin_patient_mgmt') }}<?="/".$locale; ?>"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pat_mgmt')}}</span></a>
                        </li>
                        
                         
@@ -279,7 +276,7 @@
                 </aside>
 <!--/APP-SIDEBAR-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   
         let admin_data=localStorage.getItem('admin_det');
@@ -295,7 +292,7 @@
 
            
   
-</script>
+</script> -->
 
 <script>
 

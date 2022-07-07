@@ -1,9 +1,26 @@
+<?php $locale = Session::get('locale'); ?>
 @extends('layouts.vertical-menu1.master')
 @section('css')
 @endsection
 @section('page-header')
 <style>
-    
+    @media (min-width: 375px)and (max-width:812px){
+      #flag{
+        position: relative;
+        left:12rem!important;
+        top:-2rem!important;
+    }
+     
+     .date{
+        width: 100px!important;
+        font-size:.875rem!important;
+     }
+     #req_type1{
+        position: relative!important;
+        /*left: -24px!important;*/
+
+     }
+    }
     #physician{
        
         border: none;
@@ -139,7 +156,7 @@
                                     <div class="buttons" id="addbuttons">
                                          <button class="btn danger" id="req_type0"  value="0">{{__('pham_viewpres.deny')}}</button>
                                        
-                                         <button class="btn success ml-5" value="1" id="req_type1" >{{__('pham_viewpres.accept')}}</button>
+                                         <button class="btn success" value="1" id="req_type1" >{{__('pham_viewpres.accept')}}</button>
                                     </div>
                                     <div><br><br></div>
                                     <div class="form-group">
@@ -399,7 +416,7 @@ var pham_det123=localStorage.getItem('pharm_det');
           // return false;
             if(res.status == true){
               $('#message').html(res.message).addClass('alert alert-success');
-              window.location.href =base_path +"accept_prescription/"+arrp1[5];
+              window.location.href =base_path +"accept_prescription/"+arrp1[5]+'<?="/".$locale; ?>'
             }else{
                $('#message').html(res.message).addClass('alert alert-danger');
             }

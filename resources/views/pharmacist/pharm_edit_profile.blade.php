@@ -274,8 +274,9 @@ function resizingMap() {
     border-radius: 50%;
   }
 .glyphicon{
+    position:relative;
   top: 3.5rem;
-left: -15.5rem;
+left: -13.5rem;
   color: #7ec1ec;
   z-index: -1;
  }
@@ -298,7 +299,7 @@ left: -15.5rem;
     }
      
      input[type=text]{
-         width: 1114px;
+         width: 100%;
          height: 50px;
          background-color: #F1F1F9;
       }
@@ -336,7 +337,7 @@ left: -15.5rem;
      #arrow{
          color: #7EC1EC;
          padding-left: 900px;
-         font-size: 26px;
+         font-size: 18px;
      }
      .licenseimg {
           width: auto;
@@ -581,7 +582,7 @@ label{
                <input type="text" class="form-control" id="email" disabled>
             </div>
 
-            <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">{{__('pham_profile.reg_no')}}<i class="fa-solid fa-greater-than" id="arrow">
+            <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">{{__('pham_profile.reg_no')}}<i class="fas fa-eye" id="arrow">
             </i> </button>
 
            

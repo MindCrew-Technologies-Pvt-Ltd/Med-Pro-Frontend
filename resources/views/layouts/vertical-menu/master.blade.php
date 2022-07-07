@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= App::getLocale();?>" dir="ltr">
+<html lang="<?php echo Session::get('locale');?>" dir="ltr">
     <head>
 
         <!-- META DATA -->

@@ -1,10 +1,33 @@
+<?php $locale = Session::get('locale'); ?>
 @extends('layouts.vertical-menu1.master')
 @section('css')
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 @endsection
 @section('page-header')
 <style>
-  
+  .tot_charge{
+    font-weight: bold;
+    width: 63%;position: 
+    relative;
+    margin-left: 19.5rem;
+    left: 12rem;
+  }
+  @media (min-width: 375px)and (max-width:812px){
+      #flag{
+        position: relative;
+        left:12rem!important;
+        top:-2rem!important;
+    }
+   .tot_charge{
+    font-weight: bold;
+    width: 63%;position: 
+    relative;
+    margin-left: 0rem!important;
+    left: 0rem!important;
+  }
+  .totalcharges{
+    left: 910px!important;
+    }
      .not {
         white-space: pre-wrap;
         white-space: -moz-pre-wrap;
@@ -13,6 +36,7 @@
         word-wrap: break-word;
         color: lightgreen;
       }
+  }
  
   td{
     min-width:7.5rem;
@@ -93,7 +117,7 @@
   }
 
   .psnt_full_name {
-    padding-right: 87%;
+    /*padding-right: 87%;*/
   }
 
   select.form-control:not([size]):not([multiple]) {
@@ -209,7 +233,7 @@
                 
                 </tbody>
               </table>
-              <div class="shipcharge">
+              <div class="shipcharge" id="shipcharge">
               
                 <h7 class="ship_head" style="margin-left:42.5rem;font-weight:bold;">{{__('pham_accpres.ship_charges')}}: </h7>
            
@@ -218,9 +242,9 @@
 
               <div class="totalcharges">
                 
-                  <h7 class="tot_charge" style="margin-left: 19.5rem;font-weight: bold;
-    width: 100%;position: relative;left: 12rem;">{{__('pham_accpres.tot_charges')}}: </h7>
-              
+                  <h7 class="tot_charge" style="">{{__('pham_accpres.tot_charges')}}: </h7>
+              <!-- margin-left: 19.5rem;font-weight: bold;
+    width: 63%;position: relative;left: 12rem; -->
                 <h7 class="total_amount" ></h7>
               </div>
 
@@ -570,7 +594,7 @@
 
     final_total = final_total + parseFloat(ship);
    
-    $('.total_amount').html('$' + final_total);
+    $('.total_amount').html('QR ' + final_total);
 
     tat = final_total;
         var rowIndex = prs_details1.findIndex(f => f.quot_med_id === id)
@@ -744,7 +768,7 @@ if(rowIndex >= 0)
                   showConfirmButton: false,
                   closeOnCancel: false,
                 });
-        window.location.href=base_path+"pharmacist_prescription";
+        window.location.href=base_path+"pharmacist_prescription<?="/".$locale; ?>"
       } else {
         $('#message').html(res.message).addClass('alert alert-danger');
       }

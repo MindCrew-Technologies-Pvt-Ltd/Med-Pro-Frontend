@@ -10,11 +10,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <style>
   /*css for profile pic*/
+  @media (min-width: 375px) and (max-width:667px) {
+
+  #profile-user{
+        left: 24rem;
+        top: 1rem;
+  }
+}
  .glyphicon{
-  top: 3rem;
-  left: -6rem;
+  position: relative;
+  top: 6rem;
+  right:5rem;
   color: #7ec1ec;
-  z-index: -1;
+  z-index: 1;
  }
   
  #upload_btn{
@@ -66,7 +74,27 @@
 
     
   }
+  @media (min-width: 375px) and (max-width:667px) {
 
+    .proimg{
+      left: -17rem!important;
+    }
+    .changepass{
+      margin-left:0px!important;
+    }
+  }
+  @media (min-width: 414px) and (max-width:896px) {
+      #profile-user{
+        position: relative!important;
+        left: 0rem!important;
+       
+     }
+
+     .dropdown-menu{
+        text-align:right;
+        left: 9rem;
+      }
+    }
   input[type=file]::file-selector-button:hover {
   background-color: #7ec1ec;
   border: 2px solid #00cec9;
@@ -223,7 +251,7 @@
     color: #7EC1EC;
     padding-left: 950px;
     font-weight: bolder;
-    font-size: 24px;
+    font-size: 18px;
   }
 
   .changepass {
@@ -470,7 +498,7 @@
     </div>
 
     <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">
-      {{__('phy_profile.lic')}} <i class="fa-solid fa-greater-than" id="arrow"></i>
+      {{__('phy_profile.lic')}} <i class="fas fa-eye" id="arrow" ></i>
     </button>
 
     <!-- <div class="form-group">

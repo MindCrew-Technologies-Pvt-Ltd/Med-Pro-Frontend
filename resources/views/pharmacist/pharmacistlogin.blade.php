@@ -147,6 +147,17 @@ input[type=password] {
 			<!-- PAGE -->
 			<div class="page">
 				<div class="">
+						<div class="dropdown d-md-flex" id="flag" style="width:8%;
+    float: right;position:absolute;top:2px;right:0px;">
+						<div class="us1">
+				              
+				              </div>
+						<select class="form-control" onchange="selectlang(this)">
+							<option>Language</option>
+							<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">English (EN)</option>
+							<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">Arabic (AR)</option>
+						</select>
+					</div>
 				    <!-- CONTAINER OPEN -->
 					<div class="col col-login mx-auto">
 						<!-- <div class="text-center">
@@ -277,11 +288,11 @@ var base_path = "http://3.220.132.29/medpro/";
     messages : {
      
       pham_email: {
-        required: "Email field is Required",
+        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
       },
 
       pham_password: {
-      required:"Password field is Required",
+      required:"Password field is Required | حقل كلمة المرور مطلوب",
       
      },
     errorElement: "span",
@@ -319,8 +330,9 @@ $("#pharma_login").submit(function (event) {
       localStorage.setItem('pharm_det', JSON.stringify(res.data));
       // return false;
         if(res.status == true){
-        	$('#message').html(res.message).addClass('alert alert-success');
+        	$('#message').html(res.message + "تم تسجيل الدخول بنجاح").addClass('alert alert-success');
         	window.location.href=base_path+"pharmacist_prescription";
+        	// return false;
         }else{
         //    $('#message').html(res.message).addClass('alert alert-danger');
 		$('#hidemm').html(res.message).removeClass('mhide');
@@ -340,4 +352,33 @@ $("#pharma_login").submit(function (event) {
 
 })
 </script>
+     <script>
+function selectlang($this){
+    // alert('hi')
+    var url = window.location.href;
+     let uri=url.split('/');
+   if(uri[6]|| (uri[5]=="en" || uri[5]=="ar")){
+                    var newUrl = url.slice(0, url.lastIndexOf('/'));
+                    if($this.value=="en"){
+                        window.location.href=newUrl+"/en";
+                    }else if($this.value=="ar"){
+                        window.location.href=newUrl+"/ar";
+                    }else{
+                        // window.location.href=window.location.href;
+                    }
+   }else{
+
+                    if($this.value=="en"){
+                    window.location.href=window.location.href+"/en";
+                }else if($this.value=="ar"){
+                    window.location.href=window.location.href+"/ar";
+                }else{
+                    // window.location.href=window.location.href;
+                }
+   }
+
+    
+}
+
+    </script>
 @endsection

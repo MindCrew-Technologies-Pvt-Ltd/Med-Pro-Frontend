@@ -1,10 +1,13 @@
+<?php $locale = Session::get('locale'); ?>
 <script>
-		 
+	 
 		  let user_data1 = localStorage.getItem('pharm_det');
 		  var obj1 = JSON.parse(user_data1);
-		  if (!obj1) {
+          // alert(obj1)
+		  if (!obj1){
+            // alert('hi')
 		    var base_path = "http://3.220.132.29/medpro/";
-		    window.location.href = base_path + 'pharmacist_Login';
+		    window.location.href = base_path+'pharmacist_Login'<?="/".$locale; ?>;
            }
 </script>
 <!--APP-SIDEBAR-->
@@ -22,7 +25,7 @@
                     <div class="app-sidebar__user">
                         <div class="dropdown user-pro-body text-center">
                             <div class="user-pic">
-                                <img id="user_img" src="" alt="user-img" class="avatar-xl rounded-circle">
+                                <img id="user_img" src="{{URL::asset('assets/images/pngs/doc_image.png')}}" alt="user-img" class="avatar-xl rounded-circle">
                             </div>
                             <div class="pham-info">
                                 <h6 class=" mb-0 text-dark"></h6>
@@ -67,7 +70,16 @@
                             </ul> -->
                         <!-- </li> -->
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('pharmacist_prescription') }}"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">{{__('pham_dashboard.pres_mgmt')}}</span></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('pharmacist_prescription') }}<?="/".$locale; ?>"><!-- <i class="side-menu__icon typcn typcn-document-text" ></i> --><svg  id="pre_icon" style="position:relative;margin-left:7px;" fill="aliceblue" width="33pt" height="33pt" version="1.1" viewBox="0 0 752 752" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <path d="m474.66 607.86h-310.79c-10.852 0-19.734-8.8789-19.734-19.734l0.003906-388.73c0-10.852 8.8789-19.734 19.734-19.734h77.945c10.852 0 19.734 8.8789 19.734 19.734 0 10.852-8.8789 19.734-19.734 19.734h-59.199v350.25l272.3-0.003906v-51.305c0-10.852 8.8789-19.734 19.734-19.734 10.852 0 19.734 8.8789 19.734 19.734v70.051c0 10.855-8.8828 19.734-19.734 19.734z"/>
+  <path d="m474.66 378.96c-10.852 0-19.734-8.8789-19.734-19.734v-140.1h-61.172c-10.852 0-19.734-8.8789-19.734-19.734 0-10.852 8.8789-19.734 19.734-19.734l80.906 0.003906c10.852 0 19.734 8.8789 19.734 19.734v160.82c0 10.848-8.8828 18.742-19.734 18.742z"/>
+  <path d="m385.87 254.64h-133.2c-10.852 0-19.734-8.8789-19.734-19.734l0.003906-71.035c0-10.852 8.8789-19.734 19.734-19.734l133.19 0.003906c10.852 0 19.734 8.8789 19.734 19.734v72.023c-0.98828 9.8633-9.8672 18.742-19.734 18.742zm-113.46-38.477h93.73v-33.547h-93.73z"/>
+  <path d="m530.9 573.33c-14.801 0-28.613-5.918-38.477-15.785l-122.34-122.34c-2.9609-2.9609-4.9336-5.918-4.9336-9.8672l-16.773-90.77c-0.98828-5.918 0.98828-12.824 4.9336-16.773 4.9336-4.9336 10.852-6.9062 16.773-4.9336l90.77 16.773c3.9453 0.98828 6.9062 2.9609 9.8672 4.9336l122.34 122.34c23.68 23.68 19.734 65.117-7.8945 92.742-15.785 14.801-35.516 23.684-54.262 23.684zm-129.25-160.82 117.41 117.41c2.9609 2.9609 7.8945 3.9453 11.84 3.9453 8.8789 0 18.746-4.9336 26.641-11.84 13.812-13.812 14.801-30.586 7.8945-37.492l-118.4-118.39-56.238-10.852z"/>
+  <path d="m258.59 378.96c-10.852 0-19.734-8.8789-19.734-19.734v-61.172c0-10.852 8.8789-19.734 19.734-19.734 10.852 0 19.734 8.8789 19.734 19.734v61.172c-0.98828 11.84-9.8672 19.734-19.734 19.734z"/>
+  <path d="m289.18 348.38h-62.16c-10.852 0-19.734-8.8789-19.734-19.734 0-10.852 8.8789-19.734 19.734-19.734h61.172c10.852 0 19.734 8.8789 19.734 19.734s-7.8945 19.734-18.746 19.734z"/>
+ </g>
+</svg><span class="side-menu__label">{{__('pham_dashboard.pres_mgmt')}}</span></a>
                         </li>
                          <li class="slide">
                             <!-- <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a> -->
@@ -317,13 +329,11 @@
       // contentType: "application/json; charset=utf-8",
      // data: JSON.stringify(data),
     }).done(function (res) {
-      localStorage.setItem('pharm_profile_det',res);
+      // localStorage.setItem('pharm_profile_det',res);
       
       // alert(res);
           console.log("respons",res);
-
-     
-              $('#user_img').attr('src',res.data.pham_img);
+     $('#user_img').attr('src',res.data.pham_img);
     });
     
    

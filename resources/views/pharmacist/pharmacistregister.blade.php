@@ -281,6 +281,7 @@ function resizingMap() {
        /* font-weight: bold; */
        cursor: pointer;
        transition: transform .2s ease-out;
+       font-size:.875rem;
 }
 
 .file-name {
@@ -445,26 +446,26 @@ label {
                                  </div>
 								<div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_name" id="pham_name" placeholder="*{{__('pham_register.pham_name')}}" >
+									<input type="text" class="form-control" name="pham_name" id="pham_name" placeholder="{{__('pham_register.pham_name')}}" >
 									
 									
 								</div>
 								
                                  <div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_first_name" id="pham_first_name" placeholder="*{{__('pham_register.pham_first_name')}}" >
+									<input type="text" class="form-control" name="pham_first_name" id="pham_first_name" placeholder="{{__('pham_register.pham_first_name')}}" >
 									
 								</div> 
 
                                 <div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_last_name" id="pham_last_name" placeholder="*{{__('pham_register.pham_last_name')}}" >
+									<input type="text" class="form-control" name="pham_last_name" id="pham_last_name" placeholder="{{__('pham_register.pham_last_name')}}" >
 									
 								</div> 
 
                                 <div class="form-group">
 									<label class="form-label"></label>
-									<input type="email" class="form-control" name="pham_email" id="pham_email" placeholder="*{{__('pham_register.pham_email')}}" >
+									<input type="email" class="form-control" name="pham_email" id="pham_email" placeholder="{{__('pham_register.pham_email')}}" >
 									
 								</div>
                                <!--  <div class="row">
@@ -494,12 +495,12 @@ label {
                                    
 								</div> -->
 								<div class="form-group"style="position:relative">
-                                 <input class="form-control" type="password" name="pham_password" id="pham_password" placeholder="*{{__('pham_register.pham_pass')}}" autocomplete="off">
+                                 <input class="form-control" type="password" name="pham_password" id="pham_password" placeholder="{{__('pham_register.pham_pass')}}" autocomplete="off">
                                  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibiltypass()" ></i>
 								</div>
 
 								<div class="form-group"style="position:relative">
-                                 <input class="form-control" type="password" name="confpass" id="confpassword" placeholder="*{{__('pham_register.pham_confpass')}}" autocomplete="off" > 
+                                 <input class="form-control" type="password" name="confpass" id="confpassword" placeholder="{{__('pham_register.pham_confpass')}}" autocomplete="off" > 
                                  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye " onclick="toggleVisibilty2()" ></i>
                                 <!-- <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "style="margin-left: 7.5rem ;position: absolute;bottom:0.5rem;cursor: pointer;color:'#4ec1ec'" onclick="toggleVisibilty2()" ></i> -->
 								</div>
@@ -550,7 +551,7 @@ label {
                                     
                                     
                                  <div class="text-center float-left agreeDiv" >
-								                   	<label class="text-dark mt-2">
+								                   	<label class="text-dark mt-2" style="font-size:.875rem;">
 								                   		<input id="terms" name="terms" type="checkbox">&nbsp;<a href="#" class="text-primary "></a>{{__('pham_register.agree')}}
 								                   	</label>
 

@@ -1,3 +1,4 @@
+<?php $locale = Session::get('locale'); ?>
 <style>
 		.dropdown-icon {
           color: #495057!important;
@@ -166,15 +167,18 @@
 								</div>
 				<div class="dropdown d-md-flex" id="flag">
 	               <div class="us1">
+	               	<?php if($locale =="en"){ ?>
 	               	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+	               <?php }else{ ?>
 	                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
+	            <?php } ?>
 	              </div>
 				        <select class="form-control" onchange="selectlang(this)">
-				            <option>Sel</option>
+				            <option>Language</option>
 	     
-				            <option value="en">EN</option>
+				            <option value="en">English (EN)</option>
 				           
-				            <option value="ar">AR</option>
+				            <option value="ar">Arabic (AR)</option>
 				        </select>
 				    </div>
 								<div class="dropdown d-md-flex header-settings">
@@ -202,7 +206,7 @@
            console.log(document.getElementById("adminn1")) 
 		   
 		   
-		   var url = '{{ route("pharmprofile", ":id") }}';
+		   var url = '{{ route("pharmprofile", ":id") }}<?="/".$locale; ?>';
           url = url.replace(':id',pham_id );
 		//   alert(url)
 		//   console(url)

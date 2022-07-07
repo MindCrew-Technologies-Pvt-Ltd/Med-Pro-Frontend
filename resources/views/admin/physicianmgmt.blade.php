@@ -1,6 +1,4 @@
-<?php $locale = Session::get('locale'); ?>
-
-@extends('layouts.vertical-menu.master')
+@extends('layouts.vertical-adminmenu.master')
 @section('css')
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
 <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
@@ -49,7 +47,7 @@
    
 }
 hr.new1 {
-   /* border-top: 1px solid black;*/
+    border-top: 1px solid black;
     margin-top: -20px;
     width: 1150px;
     margin-left: -27px;
@@ -85,8 +83,8 @@ hr.new1 {
 
 }
 .dashboard{
-    /*font-size: 30px;
-    font-weight: 400;*/
+    /*font-size: 30px;*/
+    font-weight: 400;
 
 
 }
@@ -118,7 +116,7 @@ hr.new1 {
     border: none;
     border-radius: 10px;
     height: 30px;
-    width: 50px;
+    width: 100px;
     text-align: center;
     align-items: center;
     padding: 2px;
@@ -217,35 +215,12 @@ hr.new1 {
   width: 128px;
  }
 }
-
-/*dimension for Iphone SE*/
-@media (min-width: 375px) and (max-width:667px) {
-
-  #profile-user{
-        left: 15rem;
-        top: 1rem;
-  }
-
-
-}
-@media (min-width: 414px) and (max-width:896px) {
-      #profile-user{
-        position: relative!important;
-        left: 0rem!important;
-       
-     }
-
-     .dropdown-menu{
-        text-align:right;
-        left: 9rem;
-      }
-    }
 </style>
 @endsection
 @section('page-header')
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">{{__('patientmgmt.patient_mgmt')}}</h1>
+                                <h1 class="dashboard page-title ">{{__('sidebar.phy_mgmt')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -256,24 +231,24 @@ hr.new1 {
                         <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-		    <div class="row">
+            <div class="row">
                           
                             <div class="col-md-12 col-lg-12">
                                 <div class="card">
                                     <div class="card-header" style="position:relative">
                                         
-                                        <h3 class="card-title viewp" style="position:absolute;">{{__('patientmgmt.view_pat')}}</h3>
+                                        <h3 class="card-title viewp" style="position:absolute;">Manage Physician</h3>
                                        
                                         
-                                   <div class="ml-auto pageheader-btn btnbtn">
-                                            <a href="{{ url('add_patient') }}<?="/".$locale; ?>" class="btn bttttn mr-2">
+                                   <!-- <div class="ml-auto pageheader-btn btnbtn">
+                                            <a href="{{ url('add_patient') }}" class="btn bttttn mr-2">
                                                 <span>
                                                     <i class="fe fe-plus"></i>
                                                 </span> {{__('patientmgmt.add')}}</h3>
                                        
                                             </a>
                                            
-                                    </div>
+                                    </div> -->
                                     
 
 
@@ -296,6 +271,7 @@ hr.new1 {
                                                         <th class="wd-15p">{{__('patientmgmt.lname')}}</th>
                                                         <th class="wd-20p">{{__('patientmgmt.email')}}</th>
                                                         <th class="wd-15p">{{__('patientmgmt.ins_no')}}</th>
+                                                        <th class="wd-15p">{{__('sidebar.app_status')}}</th>
                                                         <th class="wd-10p">{{__('patientmgmt.action')}}</th>
                                                         
                                                     </tr>
@@ -306,14 +282,17 @@ hr.new1 {
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">{{__('patientmgmt.pat_profile')}}</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">{{__('sidebar.phy_profile')}}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
+                            <form id="approve" method="post">
+                                @csrf
                                 <div class="modal-body">
                                 
                                     <div class="form-group">
+                                        <input type="hidden" name="physician_id" value="" id="physician_id">
                                     <label class="form-label">{{__('patientmgmt.fullname')}}</label>
                                     <input type="text" class="form-control" id="fullname" value="" disabled>
                                     </div>
@@ -322,11 +301,11 @@ hr.new1 {
                                     <input type="email" class="form-control" id="femail" value="" disabled>
                                     </div>
                                      <div class="form-group">
-                                    <label  class="form-label">{{__('patientmgmt.ins_no1')}}</label>
+                                    <label  class="form-label">{{__('sidebar.lic_no')}}</label>
                                     <input type="text" class="form-control" id="ins_no" value="" disabled>
                                     </div>
                                      <div class="form-group">
-                                    <label  class="form-label">{{__('patientmgmt.ins_img')}}</label>
+                                    <label  class="form-label">{{__('sidebar.lic_file')}}</label>
                                     <a href="" id="image_link">
                                     <img src="" alt="insurace_image" id='ins_img' style="height:200px;width:200px;">
                                        </a>
@@ -335,9 +314,10 @@ hr.new1 {
                                 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary ok" data-dismiss="modal">{{__('patientmgmt.ok')}}</button>
+                                    <input type="submit" id="approve1" class="btn btn-primary ok"  value="Approve">
                                    <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
                                 </div>
+                              </form>
                             </div>
                         </div>
                     </div>
@@ -354,7 +334,7 @@ hr.new1 {
                                 <!-- SECTION WRAPPER -->
                             </div>
                         </div>
-                        <!-- ROW-1 CLOSED -->	
+                        <!-- ROW-1 CLOSED -->   
                         
 
 <!-- Modal -->
@@ -377,87 +357,88 @@ hr.new1 {
  $(document).ready( function () {
      var api_url="http://3.220.132.29:3000/api/";
      var base_path = "http://3.220.132.29/medpro/"; 
-      var user_details=localStorage.getItem('user_det');
-    var details =JSON.parse(user_details);
-    var physician_id=details._id;
-        // var _token =document.querySelector('[name="_token"]').value;
-     var formData = {
-        physician_id:physician_id,
-    };
-    console.log(physician_id)
-    console.log(formData)
+    
   $.ajax({
       type: "POST",
-      url: api_url+"patientList",
+      url: api_url+"adminphylist",
       dataType:"json",
-      data: {
-        physician_id:physician_id,
-    },
-      // contentType:false,
-      // cache:false,
-      // processData:false,
+    
     }).done(function (res) {
-
 
        var patientList=[];
         patientList.push(res.data);
        console.log(res.data.length);
-       //  for(var i = 0; i < res.data.length; i++) {
-	      // patientList.push(res.data);
-       //  }
+      
     console.log(patientList);
-    localStorage.setItem('patientList',JSON.stringify(patientList));
+    localStorage.setItem('physicianList',JSON.stringify(patientList));
 
         
 
          res.data.map((e,i) => {
-           
+           let str1="Approved";
+           let str2="Pending";
             i++;
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td><button  id="'+e._id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">{{__('patientmgmt.view')}}</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('patientmgmt.delete')}}</button></td></tr>');         
-              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('patientmgmt.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('patientmgmt.can')}}</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('patientmgmt.yes')}}</button></div></div></div></div>');         
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.phy_first_name+'</td><td>'+e.phy_last_name+'</td><td>'+e.phy_email+'</td><td> '+e.phy_licnse+'</td><td> '+(e.approval_type>0?str1:str2)+'</td><td><button  id="'+e.physician_id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">{{__('patientmgmt.view')}}</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e.physician_id+'">{{__('patientmgmt.delete')}}</button></td></tr>');         
+              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e.physician_id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('sidebar.aysp')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('patientmgmt.can')}}</button><button id="'+e.physician_id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('patientmgmt.yes')}}</button></div></div></div></div>');         
     });
      
 });
 
 
-
-
-
-
-
-
-
     });
-
-
-   
-
-
 
 
 </script>
 <script type="text/javascript">
+    $(document).ready(function(){
+    var base_path = "http://3.220.132.29/medpro/";
+      var api_url="http://3.220.132.29:3000/api/";
+         $('#approve').submit(function(e){
+
+        let physician_id =$('#physician_id').val();
+                $.ajax({
+              url: api_url+"phyapprove",
+              type: "POST",
+                dataType: 'json', 
+              data:{
+                physician_id:physician_id,
+              }
+            }).done(function (res) {
+              // console.log(res);
+              // return false;
+                if(res.status == true){
+                  
+                  $('#message').html(res.message).addClass('alert alert-success');
+                  window.location.href= base_path + "admin_physician_mgmt";
+                  
+                }else{
+                   $('#message').html(res.message).addClass('alert alert-danger');
+                }
+            });
+               });
+    })
+   
      function deletedata($this){
       var base_path = "http://3.220.132.29/medpro/";
       var api_url="http://3.220.132.29:3000/api/";
     //   var id1= $this.attr('id');
   var id=$this.id;
-  console.log(id);
-//   console.log(id1);
-//   return false;
+  
+  
    $.ajax({
-      url: api_url+"patientDelete",
+      url: api_url+"phyDelete",
       type: "POST",
         dataType: 'json', 
       data:{
-        Patient_id:id,
+        physician_id:id,
       }
     }).done(function (res) {
-
+      // console.log(res);
+      // return false;
         if(res.status == true){
             $('.mdbtn').prop('disabled', true);
           $('#message').html(res.message).addClass('alert alert-success');
-          window.location.href= base_path + "patient_management";
+          window.location.href= base_path + "admin_physician_mgmt";
           
         }else{
            $('#message').html(res.message).addClass('alert alert-danger');
@@ -472,33 +453,36 @@ hr.new1 {
    function editdata($this){
     var api_url="http://3.220.132.29:3000/api/";
     var id=$this.id;
+    alert(id)
     $.ajax({
-      url: api_url+"patientProfileView",
+      url: api_url+"phyViewProfile",
       type: "post",
       dataType: 'json', 
       data:{
-        Patient_id:id,
+         physician_id:id,
       },
     
-      // contentType: "application/json; charset=utf-8",
-     // data: JSON.stringify(data),
     }).done(function (res) {
-              let image_name=res.data.psnt_insrnce_img;
+              let image_name=res.data.phy_licnse_file;
               let ext =image_name.split(".");
-              // console.log(ext[(ext.length)-1]);
-              // return false;
+             
               ext =ext[(ext.length)-1];
-          // console.log(res)
-              $("#fullname").val(res.data.psnt_first_name+' '+res.data.psnt_last_name) ;   
-            $('#femail').val(res.data.psnt_email);
-            $('#ins_no').val(res.data.psnt_insrnce_num);
+              $('#physician_id').val(res.data._id)
+              $("#fullname").val(res.data.phy_first_name+' '+res.data.phy_last_name) ;   
+            $('#femail').val(res.data.phy_email);
+            $('#ins_no').val(res.data.phy_licnse);
             if(ext == "pdf"){
                  $('#ins_img').attr('src',"https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png");
                 
-                  $('#image_link').attr('href',res.data.psnt_insrnce_img)
+                  $('#image_link').attr('href',res.data.phy_licnse_file)
             }else{
-                $('#ins_img').attr('src',res.data.psnt_insrnce_img);
-                $('#image_link').attr('href',res.data.psnt_insrnce_img)
+                $('#ins_img').attr('src',res.data.phy_licnse_file);
+                $('#image_link').attr('href',res.data.phy_licnse_file)
+            }
+            if(res.data.approval_type==1){
+                $('#approve1').hide();
+            }else{
+                $('#approve1').show();
             }
             // $('#ins_img').attr('src',res.data.psnt_insrnce_img);
     });

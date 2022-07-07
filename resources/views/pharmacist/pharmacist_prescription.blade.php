@@ -1,3 +1,4 @@
+<?php $locale = Session::get('locale'); ?>
 @extends('layouts.vertical-menu1.master')
 @section('css')
 @endsection
@@ -21,6 +22,13 @@
     width: 100%;
  }
 }
+@media (min-width: 375px)and (max-width:812px){
+      #flag{
+        left:12rem!important;
+        top:-2rem!important;
+    }
+
+    }
 @media (min-width: 412px)and (max-width: 1180px){
     .heading{
         font-size: 1.1rem!important;
@@ -202,9 +210,9 @@
          res.data.map((e,i) => {
            console.log("-- ID",e._id)
             i++;
-            let str1='<a id="'+e.presciption_id+'" href="{{url("show_prescription")}}/'+e.presciption_id+'" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
-            let str2='<a id="'+e.presciption_id+'" href="{{url("accept_prescription")}}/'+e.presciption_id+'" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
-            let str3='<a id="'+e.presciption_id+'" href="{{url("view_prescription")}}/'+e.presciption_id+'" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
+            let str1='<a id="'+e.presciption_id+'" href="{{url("show_prescription")}}/'+e.presciption_id+'<?="/".$locale; ?>" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
+            let str2='<a id="'+e.presciption_id+'" href="{{url("accept_prescription")}}/'+e.presciption_id+'<?="/".$locale; ?>" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
+            let str3='<a id="'+e.presciption_id+'" href="{{url("view_prescription")}}/'+e.presciption_id+'<?="/".$locale; ?>" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
               $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_full_name+'</td><td>'+e.phy_full_name+'</td><td> '+e.psnt_address+'</td><td>'+e.message+'</td><td>'+(e.phpr_req_type==2 ?str1:(e.phpr_req_type==1)?str2:str3)+'<button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('pham_presmgmt.delete')}}</button></td></tr>');         
               $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('pham_presmgmt.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('pham_presmgmt.can')}}</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('pham_presmgmt.yes')}}</button></div></div></div></div>');         
     });

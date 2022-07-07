@@ -1,3 +1,4 @@
+<?php $locale = Session::get('locale'); ?>
 @extends('layouts.vertical-menu.master')
 @section('css')
 @endsection
@@ -8,7 +9,18 @@
 #pro_img{
     border-radius: 50%;
 }
+@media (min-width: 414px) and (max-width:896px) {
+      #profile-user{
+        position: relative!important;
+        left: 0rem!important;
+       
+     }
 
+     .dropdown-menu{
+        text-align:right;
+        left: 9rem;
+      }
+    }
 </style>
                         <!-- PAGE-HEADER -->
                             <div>
@@ -51,7 +63,7 @@
             </div>
 
             <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">
-            {{__('phy_profile.lic')}}<i class="fa-solid fa-greater-than" id="arrow"></i>
+            {{__('phy_profile.lic')}}<i class="fas fa-eye" id="arrow"></i>
             <!-- <span class="erroww">></span> -->
 
              <!-- <img src="{{URL::asset('assets/images/brand/arrow.png')}}" alt="" style="width: 50px; background:#7EC1EC"> -->
@@ -185,7 +197,7 @@
      let user_data14=localStorage.getItem('user_det');
          var obj = JSON.parse(user_data14);
          var phy_id14 =obj._id;
-     var url = '{{ route("edit.profile", ":id") }}';
+     var url = '{{ route("edit.profile", ":id") }}<?="/".$locale; ?>';
           url = url.replace(':id',phy_id14 );
 		
 		var mydiv = document.getElementById("editprofile");

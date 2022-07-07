@@ -288,7 +288,25 @@ body {
   margin: 0;
   padding: 0;
 }
+@media (min-width: 375px) and (max-width:667px) {
 
+  #profile-user{
+        left: 16rem;
+        top: 1rem;
+  }
+}
+@media (min-width: 414px) and (max-width:896px) {
+      #profile-user{
+        position: relative!important;
+        left: 0rem!important;
+       
+     }
+
+     .dropdown-menu{
+        text-align:right;
+        left: 9rem;
+      }
+    }
     </style>
 @endsection
 @section('page-header')

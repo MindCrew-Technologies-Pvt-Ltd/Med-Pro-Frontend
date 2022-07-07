@@ -8,7 +8,56 @@
       /*.file-name{
         display: none;
       }*/
-     
+@media (min-width: 375px) and (max-width:667px) {
+
+  /*#profile-user{
+        left: 15rem;
+        top: 1rem;
+  }*/
+#psnt_first_name{
+    width: 100%;
+  }
+  #psnt_last_name{
+    width: 100%;
+  }
+  
+  #psnt_email{
+    width: 100%;
+  }
+  #psnt_password{
+    width: 100%;
+  }
+  #psnt_confpassword{
+    width: 100%;
+  }
+  #psnt_address{
+    width: 100%;
+  }
+  #psnt_insrnce_num{
+    width: 100%;
+  }
+  .file-input label{
+    width: 100%;
+  }
+  .zmdi{
+    right: 2rem;
+  }
+  #add_icon{
+    right: 2rem;
+  }
+}
+@media (min-width: 414px) and (max-width:896px) {
+      #profile-user{
+        position: relative!important;
+        left: 0rem!important;
+       
+     }
+
+     .dropdown-menu{
+        text-align:right;
+        left: 9rem;
+      }
+    }
   </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -455,38 +504,38 @@ let confpassword = document.querySelector("#psnt_confpassword");
     },
     messages : {
         psnt_first_name: {
-         required: "First Name field is Required",
-         lettersonly:"Only Alphabetical Characters are allowed",
+         required: "First Name field is Required | حقل الاسم الأول مطلوب",
+         lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
         // minlength: "First Name should be at least 3 characters"
       },
       psnt_last_name: {
-          required: "Last Name field is Required",
-           lettersonly:"Only Alphabetical Characters are allowed",
+          required: 'Last Name field is Required | حقل "الاسم الأخير" مطلوب',
+           lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
         // minlength: "Last Name should be at least 3 characters"
       },
       psnt_address: {
-          required: "Address field is Required",
+          required: "Address field is Required | حقل العنوان مطلوب",
         // minlength: "Last Name should be at least 3 characters"
       },
       psnt_email: {
-        required: "Email field is Required",
-        email: "The email should be in the format: abc@domain.tld"
+        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
+        email: "The email should be in the format: abc@domain.tld | يجب أن يكون البريد الإلكتروني بالتنسيق: abc@domain.tld"
       },
 
       psnt_insrnce_num:{
-        required:"Insurance Number is Required",
-        minlength: "Insurance Number should be at least 8 characters"
+        required:"Insurance Number is Required |رقم التأمين مطلوب ",
+        minlength: "Insurance Number should be at least 8 characters | يجب ألا يقل رقم التأمين عن 8 أحرف"
       },
     //   file:{
     //     required:"Insurance document is Required",
     //  },
      psnt_password: {
-      required:"Password field is Required",
-      minlength:"Password should be of atleast 8 characters"
+      required:"Password field is Required | حقل كلمة المرور مطلوب",
+      minlength:"Password should be of atleast 8 characters | يجب أن تتكون كلمة المرور من 8 أحرف على الأقل"
      },
      psnt_confpassword: {
-        required: "Confirm Password field is Required",
-        minlength: "Password and Confirm password should be same",
+        required: "Confirm Password field is Required | حقل تأكيد كلمة المرور مطلوب",
+        minlength: "Password and Confirm password should be same |يجب أن تكون كلمة المرور وتأكيد كلمة المرور متطابقتين",
         // equalTo: "Password and Confirm password should be same"
       },
      

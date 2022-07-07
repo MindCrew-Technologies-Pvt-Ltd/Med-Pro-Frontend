@@ -1,20 +1,24 @@
+<?php $locale = Session::get('locale'); ?>
+
 <script>
 		 
 		  let user_data9 = localStorage.getItem('user_det');
 		  var obj9 = JSON.parse(user_data9);
 		  if (!obj9) {
-		    var base_path = "http://3.220.132.29/medpro/";
-		    window.location.href = base_path + 'login';
+		    var base_path = "http://3.220.132.29/medpro/"+<?php echo $locale; ?>;
+		    window.location.href = base_path + 'login'<?="/".$locale; ?>;
            }
 </script>
 
 
 
 <!--APP-SIDEBAR-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
                 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
                 <aside class="app-sidebar">
                     <div class="side-header">
-                        <a class="header-brand1" href="{{ url('/dashboard')}}">
+                        <a class="header-brand1" href="{{ url('/dashboard')}}<?="/".$locale; ?>">
                             <!-- <img src="{{URL::asset('./assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-1.png')}}"  class="header-brand-img toggle-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-2.png')}}" class="header-brand-img light-logo" alt="logo"> -->
@@ -60,7 +64,7 @@
                     <ul class="side-menu">
                       <!--   <li><h3>Main</h3></li> -->
                         <li class="slide">
-                            <a class="side-menu__item"  data-toggle="slide" href="{{ url('/dashboard')}}"><i class="side-menu__icon ti-home"></i><span class="side-menu__label">{{__('sidebar.dashboard')}}</span></i></a>
+                            <a class="side-menu__item"  data-toggle="slide" href="{{ url('dashboard')}}<?="/".$locale; ?>"><i class="side-menu__icon ti-home"></i><span class="side-menu__label" style=" height: 50px !important;line-height: 50px!important;position: relative;">{{__('sidebar.dashboard')}}</span></i></a>
                            <!--  <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{ url('/' . $page='index') }}"><span>Sales Dashboard</span></a></li>
                                 <li><a class="slide-item" href="{{ url('/' . $page='index2') }}"><span>Marketing Dashboard</span></a></li>
@@ -70,13 +74,24 @@
                             </ul> -->
                         </li>
                         <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('patient_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pat_mgmt')}}</span></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('/patient_management') }}<?="/".$locale; ?>"> <!-- <img  style="width:10%;"src="{{URL::asset('assets/images/svgs/patient-new.png')}}"> --><i class="side-menu__icon fa fa-user-md"></i> <span class="side-menu__label"style=" height: 50px !important;line-height: 50px!important;position: relative;">{{__('sidebar.pat_mgmt')}}</span></a>
                        </li>
                         <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('Pharmacy_management') }}"><i class="side-menu__icon fa fa-user-o"></i><span class="side-menu__label">{{__('sidebar.pharm_mgmt')}}</span></a>
+                            <a class="side-menu__item typcn" data-toggle="slide" href="{{ url('/Pharmacy_management') }}<?="/".$locale; ?>"><!-- <img  style="width:10%;"src="{{URL::asset('assets/images/svgs/pharmacy_manage.png')}}"> --><i class="side-menu__icon fa  fa-clinic-medical"></i><span class="side-menu__label" style=" height: 50px !important;line-height: 50px !important;position: relative;">{{__('sidebar.pharm_mgmt')}}</span></a>
                         </li> 
                          <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('prescription_management') }}"><i class="side-menu__icon typcn typcn-document-text" ></i><span class="side-menu__label">{{__('sidebar.pres_mgmt')}}</span></a>
+                            <a class="side-menu__item typcn" data-toggle="slide" href="{{ url('/prescription_management') }}<?="/".$locale; ?>"> <!-- <img  style="width:10%;padding:2px;" src="{{URL::asset('assets/images/svgs/medical-prescription.png')}}"> --> <!-- <i class="side-menu__icon far fa-edit"></i> -->
+                                <svg  id="pre_icon" style="position:relative;margin-left:7px;" fill="aliceblue" width="33pt" height="33pt" version="1.1" viewBox="0 0 752 752" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <path d="m474.66 607.86h-310.79c-10.852 0-19.734-8.8789-19.734-19.734l0.003906-388.73c0-10.852 8.8789-19.734 19.734-19.734h77.945c10.852 0 19.734 8.8789 19.734 19.734 0 10.852-8.8789 19.734-19.734 19.734h-59.199v350.25l272.3-0.003906v-51.305c0-10.852 8.8789-19.734 19.734-19.734 10.852 0 19.734 8.8789 19.734 19.734v70.051c0 10.855-8.8828 19.734-19.734 19.734z"/>
+  <path d="m474.66 378.96c-10.852 0-19.734-8.8789-19.734-19.734v-140.1h-61.172c-10.852 0-19.734-8.8789-19.734-19.734 0-10.852 8.8789-19.734 19.734-19.734l80.906 0.003906c10.852 0 19.734 8.8789 19.734 19.734v160.82c0 10.848-8.8828 18.742-19.734 18.742z"/>
+  <path d="m385.87 254.64h-133.2c-10.852 0-19.734-8.8789-19.734-19.734l0.003906-71.035c0-10.852 8.8789-19.734 19.734-19.734l133.19 0.003906c10.852 0 19.734 8.8789 19.734 19.734v72.023c-0.98828 9.8633-9.8672 18.742-19.734 18.742zm-113.46-38.477h93.73v-33.547h-93.73z"/>
+  <path d="m530.9 573.33c-14.801 0-28.613-5.918-38.477-15.785l-122.34-122.34c-2.9609-2.9609-4.9336-5.918-4.9336-9.8672l-16.773-90.77c-0.98828-5.918 0.98828-12.824 4.9336-16.773 4.9336-4.9336 10.852-6.9062 16.773-4.9336l90.77 16.773c3.9453 0.98828 6.9062 2.9609 9.8672 4.9336l122.34 122.34c23.68 23.68 19.734 65.117-7.8945 92.742-15.785 14.801-35.516 23.684-54.262 23.684zm-129.25-160.82 117.41 117.41c2.9609 2.9609 7.8945 3.9453 11.84 3.9453 8.8789 0 18.746-4.9336 26.641-11.84 13.812-13.812 14.801-30.586 7.8945-37.492l-118.4-118.39-56.238-10.852z"/>
+  <path d="m258.59 378.96c-10.852 0-19.734-8.8789-19.734-19.734v-61.172c0-10.852 8.8789-19.734 19.734-19.734 10.852 0 19.734 8.8789 19.734 19.734v61.172c-0.98828 11.84-9.8672 19.734-19.734 19.734z"/>
+  <path d="m289.18 348.38h-62.16c-10.852 0-19.734-8.8789-19.734-19.734 0-10.852 8.8789-19.734 19.734-19.734h61.172c10.852 0 19.734 8.8789 19.734 19.734s-7.8945 19.734-18.746 19.734z"/>
+ </g>
+</svg><span class="side-menu__label"style=" height: 50px !important;
+    line-height: 50px !important;left: 7px;position: relative;">{{__('sidebar.pres_mgmt')}}</span></a>
                         </li>
                          <li class="slide">
                             <!-- <a class="side-menu__item" data-toggle="slide" href="{{ url('physician_management') }}"><i class="side-menu__icon fa fa-user-md"></i><span class="side-menu__label">Physician Management</span></a> -->
@@ -283,12 +298,12 @@
 
   
         let user_data=localStorage.getItem('user_det');
-         var obj = JSON.parse(user_data);
-         var username=obj.phy_first_name +' '+ obj.phy_last_name;
-          console.log(username)
-          document.getElementById("usr_name").style.fontSize = "large";
-          document.querySelector(".user-info").style.color="#ffffff";
-           document.getElementById("usr_name").innerText=username;
+        var obj = JSON.parse(user_data);
+        var username=obj.phy_first_name +' '+ obj.phy_last_name;
+        console.log(username)
+        document.getElementById("usr_name").style.fontSize = "large";
+        document.querySelector(".user-info").style.color="#ffffff";
+        document.getElementById("usr_name").innerText=username;
          // let user=document.querySelector('#usr_name');
          
 

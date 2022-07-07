@@ -7,6 +7,9 @@ font-size: 17px;
 font-weight: bold;
 
 }
+.drop-heading{
+	display: none!important;
+}
 #profilev  {
 color: red!important;
 }
@@ -130,7 +133,7 @@ color: #495057!important;
 	<div class="dropdown profile-1">
 		<a href="#" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex">
 			<span>
-				<img src="" alt="profile-user" id="profile-user" class="avatar  profile-user brround cover-image">
+				<img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" alt="profile-user" id="profile-user" class="avatar  profile-user brround cover-image">
 			</span>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -163,6 +166,17 @@ color: #495057!important;
 				<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
 			</a>
 		</div>
+	</div>
+		<div class="dropdown d-md-flex" id="flag">
+		<div class="us1">
+              <!--  	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;"> -->
+              </div>
+		<select class="form-control" onchange="selectlang(this)">
+			<option>Language</option>
+			<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">English (EN)</option>
+			<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">Arabic (AR)</option>
+		</select>
 	</div>
 	<div class="dropdown d-md-flex header-settings">
 		<!-- <a href="#" class="nav-link icon " data-toggle="sidebar-right" data-target=".sidebar-right">
@@ -228,3 +242,34 @@ mydiv.appendChild(aTag);
    
   });
 </script> -->
+<script>
+function selectlang($this){
+    // alert('hi')
+    var url = window.location.href;
+     let uri=url.split('/');
+     // console.log(uri)
+     // return false;
+   if(uri[6]|| (uri[5]=="en" || uri[5]=="ar")){
+                    var newUrl = url.slice(0, url.lastIndexOf('/'));
+                    if($this.value=="en"){
+                        window.location.href=newUrl+"/en";
+                    }else if($this.value=="ar"){
+                        window.location.href=newUrl+"/ar";
+                    }else{
+                        // window.location.href=window.location.href;
+                    }
+   }else{
+
+                    if($this.value=="en"){
+                    window.location.href=window.location.href+"/en";
+                }else if($this.value=="ar"){
+                    window.location.href=window.location.href+"/ar";
+                }else{
+                    // window.location.href=window.location.href;
+                }
+   }
+
+    
+}
+
+    </script>

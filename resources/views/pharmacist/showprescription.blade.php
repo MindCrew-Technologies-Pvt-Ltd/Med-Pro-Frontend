@@ -1,8 +1,15 @@
+<?php $locale = Session::get('locale'); ?>
 @extends('layouts.vertical-menu1.master')
 @section('css')
 @endsection
 @section('page-header')
 <style>
+  @media (min-width: 375px)and (max-width:812px){
+      #flag{
+        position: relative;
+        left:12rem!important;
+        top:-2rem!important;
+    }
   #physician {
     padding-left: 10px;
     border: none;
@@ -188,7 +195,7 @@
               
                 <h7 class="ship_head" style="margin-left:44.5rem;font-weight:bold;">{{__('pham_showpres.ship_charges')}}: </h7>
            
-                <input type="text" id="ship" name="ship" value="" onchange="addvalue()">
+                <input type="text" id="ship" style="width:50px;"name="ship" value="" onchange="addvalue()">
                 <!-- <h7 class=""></h7> -->
               </div><br>
 
@@ -203,7 +210,7 @@
             <!-- table end -->
 
  
-            <a class="btn  btn-primary mt-5 mb-3 float-right border-0" href="{{url('pharmacist_prescription')}}">{{__('pham_showpres.back')}}</a>
+            <a class="btn  btn-primary mt-5 mb-3 float-right border-0" href="{{url('pharmacist_prescription')}}<?="/".$locale; ?>">{{__('pham_showpres.back')}}</a>
 
            <!--  <div class="buttons mt-7">
               <button class="btn btn-primary border-0" id="sendquatation">Send Quatation</button>
@@ -344,7 +351,7 @@
           var ship_charge = res.data.quot_shping_chrge;
           var total_amount = res.data.quot_total_chrge;
            $('#ship').val(ship_charge);
-           $('#total_amount').html(total_amount)
+           $('#total_amount').html("QR "+total_amount)
             res.data.quot_prs_details.map((v,i)=>{
 
         console.log(v,i)

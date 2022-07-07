@@ -5,7 +5,7 @@ return[
 "patient_mgmt"=>"Patient Management",
 "view_pat"=>"View Patient",
 "add"=>"Add",
-"search"=>"Search By Name",
+"search"=>" Search By Name",
 "sno"=>"S No.",
 "fname"=>"First Name",
 "lname"=>"Last Name",

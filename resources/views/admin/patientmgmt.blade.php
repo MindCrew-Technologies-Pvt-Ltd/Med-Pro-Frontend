@@ -1,6 +1,4 @@
-<?php $locale = Session::get('locale'); ?>
-
-@extends('layouts.vertical-menu.master')
+@extends('layouts.vertical-adminmenu.master')
 @section('css')
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
 <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
@@ -49,7 +47,7 @@
    
 }
 hr.new1 {
-   /* border-top: 1px solid black;*/
+    border-top: 1px solid black;
     margin-top: -20px;
     width: 1150px;
     margin-left: -27px;
@@ -85,8 +83,8 @@ hr.new1 {
 
 }
 .dashboard{
-    /*font-size: 30px;
-    font-weight: 400;*/
+ /*   font-size: 30px;*/
+    font-weight: 400;
 
 
 }
@@ -217,35 +215,12 @@ hr.new1 {
   width: 128px;
  }
 }
-
-/*dimension for Iphone SE*/
-@media (min-width: 375px) and (max-width:667px) {
-
-  #profile-user{
-        left: 15rem;
-        top: 1rem;
-  }
-
-
-}
-@media (min-width: 414px) and (max-width:896px) {
-      #profile-user{
-        position: relative!important;
-        left: 0rem!important;
-       
-     }
-
-     .dropdown-menu{
-        text-align:right;
-        left: 9rem;
-      }
-    }
 </style>
 @endsection
 @section('page-header')
                         <!-- PAGE-HEADER -->
                             <div>
-                                <h1 class="dashboard page-title">{{__('patientmgmt.patient_mgmt')}}</h1>
+                                <h1 class="dashboard page-title ">{{__('patientmgmt.patient_mgmt')}}</h1>
                                 <!-- <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -262,18 +237,18 @@ hr.new1 {
                                 <div class="card">
                                     <div class="card-header" style="position:relative">
                                         
-                                        <h3 class="card-title viewp" style="position:absolute;">{{__('patientmgmt.view_pat')}}</h3>
+                                        <h3 class="card-title viewp" style="position:absolute;">Manage Patient</h3>
                                        
                                         
-                                   <div class="ml-auto pageheader-btn btnbtn">
-                                            <a href="{{ url('add_patient') }}<?="/".$locale; ?>" class="btn bttttn mr-2">
+                                   <!-- <div class="ml-auto pageheader-btn btnbtn">
+                                            <a href="{{ url('add_patient') }}" class="btn bttttn mr-2">
                                                 <span>
                                                     <i class="fe fe-plus"></i>
                                                 </span> {{__('patientmgmt.add')}}</h3>
                                        
                                             </a>
                                            
-                                    </div>
+                                    </div> -->
                                     
 
 
@@ -377,25 +352,12 @@ hr.new1 {
  $(document).ready( function () {
      var api_url="http://3.220.132.29:3000/api/";
      var base_path = "http://3.220.132.29/medpro/"; 
-      var user_details=localStorage.getItem('user_det');
-    var details =JSON.parse(user_details);
-    var physician_id=details._id;
-        // var _token =document.querySelector('[name="_token"]').value;
-     var formData = {
-        physician_id:physician_id,
-    };
-    console.log(physician_id)
-    console.log(formData)
+    
+    
   $.ajax({
       type: "POST",
-      url: api_url+"patientList",
+      url: api_url+"patList",
       dataType:"json",
-      data: {
-        physician_id:physician_id,
-    },
-      // contentType:false,
-      // cache:false,
-      // processData:false,
     }).done(function (res) {
 
 
@@ -413,8 +375,8 @@ hr.new1 {
          res.data.map((e,i) => {
            
             i++;
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td><button  id="'+e._id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">{{__('patientmgmt.view')}}</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('patientmgmt.delete')}}</button></td></tr>');         
-              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('patientmgmt.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('patientmgmt.can')}}</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('patientmgmt.yes')}}</button></div></div></div></div>');         
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td><button  id="'+e.patient_id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">{{__('patientmgmt.view')}}</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e.patient_id+'">{{__('patientmgmt.delete')}}</button></td></tr>');         
+              $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e.patient_id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('patientmgmt.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('patientmgmt.can')}}</button><button id="'+e.patient_id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('patientmgmt.yes')}}</button></div></div></div></div>');         
     });
      
 });
@@ -457,7 +419,7 @@ hr.new1 {
         if(res.status == true){
             $('.mdbtn').prop('disabled', true);
           $('#message').html(res.message).addClass('alert alert-success');
-          window.location.href= base_path + "patient_management";
+          window.location.href= base_path + "admin_patient_mgmt";
           
         }else{
            $('#message').html(res.message).addClass('alert alert-danger');

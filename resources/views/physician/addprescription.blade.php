@@ -20,7 +20,18 @@ $(document).ready(function() {
      .input-group-append{
         margin-top:1.5rem !important;
     }
+@media (min-width: 414px) and (max-width:896px) {
+      #profile-user{
+        position: relative!important;
+        left: 0rem!important;
+       
+     }
 
+     .dropdown-menu{
+        text-align:right;
+        left: 9rem;
+      }
+    }
 </style>
 @endsection
 @section('page-header')
@@ -242,19 +253,19 @@ $("#pat_signup").validate({
     
     messages : {
         patient_name: {
-         required: "Patient Name field is Required",
-         lettersonly:"Only Alphabetical Characters are allowed & Space Not allowed",
+         required: "Patient Name field is Required |حقل اسم المريض مطلوب",
+         lettersonly:"Only Alphabetical Characters are allowed & Space Not allowed | يُسمح فقط باستخدام الأحرف الأبجدية ولا يُسمح باستخدام المسافات",
         // minlength: "First Name should be at least 3 characters"
       },
       prs_med_name: {
-          required: "Medicine Name field is Required",
-           lettersonly:"Only Alphabetical Characters are allowed & Space Not allowed",
+          required: "Medicine Name field is Required |حقل اسم الدواء مطلوب",
+           lettersonly:"Only Alphabetical Characters are allowed & Space Not allowed | يُسمح فقط باستخدام الأحرف الأبجدية ولا يُسمح باستخدام المسافات",
         // minlength: "Last Name should be at least 3 characters"
       },
       prs_quantity: {
-        required: "Quantity field is Required",
-        minlength: "minimum lenght one",
-        number: "Enter Number Only"
+        required: "Quantity field is Required |حقل الكمية مطلوب",
+        minlength: "Minimum Lenght One |الحد الأدنى لطول واحد",
+        number: "Enter Number Only | أدخل الرقم فقط"
         
       }
 

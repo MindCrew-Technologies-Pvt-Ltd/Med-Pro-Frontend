@@ -1,3 +1,4 @@
+<?php $locale = Session::get('locale'); ?>
 @extends('layouts.vertical-menu1.master')
 @section('css')
 @endsection
@@ -30,7 +31,7 @@
      #arrow{
          color: #7EC1EC;
          padding-left: 900px;
-         font-size: 26px;
+         font-size: 18px;
      }
        
      
@@ -190,7 +191,8 @@
             </div>
 
             <button type="button" class="btn btninput" data-toggle="modal" data-target="#exampleModal">
-            {{__('pham_profile.reg_no')}}  <i class="fa-solid fa-greater-than" id="arrow"></i>
+            {{__('pham_profile.reg_no')}}  <i class="fas fa-eye" id="arrow"></i>
+            <!-- fa-solid fa-greater-than -->
             </button>
 
             <div class="form-group">
@@ -327,7 +329,7 @@
          
          var phy_id5 =obj._id;
         //  alert(phy_id4)
-     var url = '{{ route("edit.pharmprofile", ":id") }}';
+     var url = '{{ route("edit.pharmprofile", ":id") }}<?="/".$locale; ?>';
           url = url.replace(':id',phy_id5 );
 		
 		var mydiv = document.getElementById("pharmeditprofile");
