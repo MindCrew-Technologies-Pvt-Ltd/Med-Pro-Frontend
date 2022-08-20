@@ -2,7 +2,7 @@
 
    *{
         font-family: 'Poppins', sans-serif;
-        text-transform: capitalize;
+        /* text-transform: capitalize; */
     }
     body{
       background-color: white;

@@ -748,6 +748,22 @@ var user_details15=localStorage.getItem('pharm_det');
     var pharmacist_id15=  details15._id;
     $('#phamaciest_id').val(pharmacist_id15);
     $('#phamaciest_id1').val(pharmacist_id15);
+
+
+// jQuery.validator.addMethod('validUsername', function (value) 
+// {
+// var regex = new RegExp("^[a-zA-Z .'()-]*$");
+//         var key = value;
+
+//         if (!regex.test(key))
+//          {
+//           return false;
+//         }
+//         return true;
+// }, 'Please enter a valid name');
+
+
+
 //end document ready 
 });
 </script>
@@ -760,7 +776,8 @@ var user_details15=localStorage.getItem('pharm_det');
     validClass: "valid success-alert",
     rules: {
       pharm_name:{
-        required: true
+        required: true,
+        // validUsername:true
 
       },
       pharm_first: {

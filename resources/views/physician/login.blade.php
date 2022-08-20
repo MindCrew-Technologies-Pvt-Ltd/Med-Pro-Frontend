@@ -2,6 +2,8 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
+
+
 <style>
 	
 	 

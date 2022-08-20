@@ -1,4 +1,4 @@
-
+// const { zip } = require("lodash");
 
 $(document).ready(function(){
 var api_url="http://3.220.132.29:3000/api/";
@@ -21,21 +21,43 @@ $('#lic_doc').change(function() {
 
 });
 
-  
-    $("#signupform").validate({
+
+
+
+
+
+jQuery.validator.addMethod('validUsername', function (value) 
+{
+var regex = new RegExp("^[a-zA-Z .'()-]*$");
+        var key = value;
+
+        if (!regex.test(key))
+         {
+          return false;
+        }
+        return true;
+}, 'Please enter a valid name');
+
+
+
+
+$("#signupform").validate({
       errorElement: "span",
     // $('.eye1 i').css({'display':'none'});       
     errorClass: "error fail-alert",
     validClass: "valid success-alert",
     rules: {
       phy_first_name: {
-        required: true,
-        lettersonly: true,
+         required: true,
+          // lettersonly: true,
+          validUsername: true,
+          
         // minlength: 3
       },
        phy_last_name: {
         required: true,
-        lettersonly: true,
+        // lettersonly: true.
+         validUsername: true
         // minlength: 3
       },
       phy_email: {
@@ -47,7 +69,7 @@ $('#lic_doc').change(function() {
         minlength:8
       },
      file:{
-      required:true,
+      required:true
      },
      phy_password: {
       required:true,
@@ -56,7 +78,7 @@ $('#lic_doc').change(function() {
       confpass: {
         required: true,
         minlength: 8,
-        equalTo: "#password",
+        equalTo: "#password"
       },
       terms:{
            required: true
@@ -65,7 +87,8 @@ $('#lic_doc').change(function() {
     messages : {
       phy_first_name: {
          required: "First Name field is Required",
-         lettersonly:"Only Alphabetical Characters are allowed",
+        //  pattern:"please pass valide name",
+        //  lettersonly:"Only Alphabetical Characters are allowed",
         // minlength: "First Name should be at least 3 characters"
       },
       phy_last_name: {
@@ -324,17 +347,20 @@ $("#reset_pass").submit(function (event) {
     rules: {
       pham_name: {
         required: true,
-        lettersonly: true,
+        //  lettersonly: true,
+            validUsername:true,
         // minlength: 3
       },
        pham_first_name: {
         required: true,
-        lettersonly: true,
+        //  lettersonly: true,
+         validUsername:true,
         // minlength: 3
       },
        pham_last_name: {
         required: true,
-        lettersonly: true,
+        //  lettersonly: true,
+         validUsername:true,
         // minlength: 3
       },
       pham_email: {
@@ -367,17 +393,17 @@ $("#reset_pass").submit(function (event) {
 
       pham_name: {
         required: "Pharmacy Name field is Required",
-        lettersonly: "Only Alphabetical Characters are allowed",
+        // lettersonly: "Only Alphabetical Characters are allowed",
         // minlength: 3
       },
       phy_first_name: {
          required: "First Name field is Required",
-         lettersonly:"Only Alphabetical Characters are allowed",
+        //  lettersonly:"Only Alphabetical Characters are allowed",
         // minlength: "First Name should be at least 3 characters"
       },
       phy_last_name: {
           required: "Last Name field is Required",
-           lettersonly:"Only Alphabetical Characters are allowed",
+          //  lettersonly:"Only Alphabetical Characters are allowed",
         // minlength: "Last Name should be at least 3 characters"
       },
       phy_email: {

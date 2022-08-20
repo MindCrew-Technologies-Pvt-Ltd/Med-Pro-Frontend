@@ -66,7 +66,7 @@
  <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
   <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
 
-</script>
+{{-- </script> --}}
   <script>
 
    var searchInput = 'psnt_address';
@@ -182,6 +182,19 @@ function initialize() {
     infowindow.open(map, marker);
     
   }); 
+
+
+jQuery.validator.addMethod('validUsername', function (value) 
+{
+var regex = new RegExp("^[a-zA-Z .'()-]*$");
+        var key = value;
+
+        if (!regex.test(key))
+         {
+          return false;
+        }
+        return true;
+}, 'Please enter a valid name');
   
   
 };
@@ -467,12 +480,14 @@ let confpassword = document.querySelector("#psnt_confpassword");
     rules: {
         psnt_first_name: {
         required: true,
-        lettersonly: true,
+        // lettersonly: true,
+        validUsername:true,
         // minlength: 3
       },
       psnt_last_name: {
         required: true,
-        lettersonly: true,
+        // lettersonly: true,
+        validUsername:true,
         // minlength: 3
       },
       psnt_address: {
@@ -505,12 +520,12 @@ let confpassword = document.querySelector("#psnt_confpassword");
     messages : {
         psnt_first_name: {
          required: "First Name field is Required | حقل الاسم الأول مطلوب",
-         lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
+        //  lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
         // minlength: "First Name should be at least 3 characters"
       },
       psnt_last_name: {
           required: 'Last Name field is Required | حقل "الاسم الأخير" مطلوب',
-           lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
+          //  lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
         // minlength: "Last Name should be at least 3 characters"
       },
       psnt_address: {

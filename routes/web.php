@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhysicianController;
+use App\Http\Controllers\PharmacistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -142,3 +143,9 @@ route::get('/error500', [UserController::class, 'error500']);
 route::get('/error503', [UserController::class, 'error503']);
 route::get('/verticalmenu', [UserController::class, 'verticalmenu']);
 route::get('/horizontalmenu', [UserController::class, 'horizontalmenu']);
+
+
+
+
+route::get('/pharmacistregister',[PharmacistController::class,'registration']);
+route::get('/presicription',[PharmacistController::class,'index']);

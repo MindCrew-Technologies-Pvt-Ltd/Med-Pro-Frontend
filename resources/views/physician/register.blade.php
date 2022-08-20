@@ -3,9 +3,10 @@
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/phy.css')}}" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="{{ URL::asset('assets/js/formapi.js')}}"></script>
-<!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> -->
+ {{-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>  --}}
  <style>
 .zmdi {
 	color: #4ec1ec;
@@ -141,14 +142,14 @@
                                  </div>
 								<div class="form-group mt-2">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="phy_first_name" id="first_name"placeholder="{{__('register.phy_first_name')}}" >
+									<input type="text" class="form-control" name="phy_first_name" id="first_name" placeholder="{{__('register.phy_first_name')}}" >
 									
 									
 								</div>
 								
                                 <div class="form-group">
 									<label class="form-label"></label>
-									<input type="text" class="form-control" name="phy_last_name" id="last_name"placeholder="{{__('register.phy_last_name')}}" >
+									<input type="text" class="form-control" name="phy_last_name" id="last_name" placeholder="{{__('register.phy_last_name')}}" >
 									
 								</div>
 
@@ -302,6 +303,7 @@ rules: {
     },
     email: {
     required: true,
+
     email: true
     },
     licence_no: {
