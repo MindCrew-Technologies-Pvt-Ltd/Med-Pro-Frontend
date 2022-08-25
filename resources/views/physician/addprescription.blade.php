@@ -227,6 +227,19 @@ $("#patient_name").append('<option value="'+value._id+'">'+ value.psnt_first_nam
 
 
 
+jQuery.validator.addMethod('validUsername', function (value) 
+{
+var regex = new RegExp("^[a-zA-Z .'()-]*$" || "شا زا زت");
+        var key = value;
+      if (!regex.test(key))
+         {
+          return false;
+        }
+        return true;
+}, 'Please enter a valid name' || "رجاء ادخل اسما صحيحا");
+
+
+
 
 $("#pat_signup").validate({
       errorElement: "span",
@@ -254,7 +267,7 @@ $("#pat_signup").validate({
     messages : {
         patient_name: {
          required: "Patient Name field is Required |حقل اسم المريض مطلوب",
-         lettersonly:"Only Alphabetical Characters are allowed & Space Not allowed | يُسمح فقط باستخدام الأحرف الأبجدية ولا يُسمح باستخدام المسافات",
+        //  lettersonly:"Only Alphabetical Characters are allowed & Space Not allowed | يُسمح فقط باستخدام الأحرف الأبجدية ولا يُسمح باستخدام المسافات",
         // minlength: "First Name should be at least 3 characters"
       },
       prs_med_name: {
