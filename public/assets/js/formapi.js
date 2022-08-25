@@ -26,9 +26,23 @@ $('#lic_doc').change(function() {
 
 
 
+// jQuery.validator.addMethod('validUsername', function (value) 
+// {
+// var regex = new RegExp("^[a-zA-Z .'()-]*$");
+//         var key = value;
+
+//         if (!regex.test(key))
+//          {
+//           return false;
+//         }
+//         return true;
+// }, 'Please enter a valid name');
+
+
+
 jQuery.validator.addMethod('validUsername', function (value) 
 {
-var regex = new RegExp("^[a-zA-Z .'()-]*$");
+var regex = new RegExp("^[a-zA-Z .'()-]*$" || "شا زا زت");
         var key = value;
 
         if (!regex.test(key))
@@ -36,7 +50,7 @@ var regex = new RegExp("^[a-zA-Z .'()-]*$");
           return false;
         }
         return true;
-}, 'Please enter a valid name');
+}, 'Please enter a valid name' || "رجاء ادخل اسما صحيحا");
 
 
 
