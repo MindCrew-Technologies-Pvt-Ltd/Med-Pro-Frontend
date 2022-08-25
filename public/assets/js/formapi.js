@@ -1,4 +1,4 @@
-// const { zip } = require("lodash");
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 $(document).ready(function(){
 var api_url="http://3.220.132.29:3000/api/";
