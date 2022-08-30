@@ -14,6 +14,8 @@ button, input, optgroup, select, textarea {
 
 .side-menu__label{
   text-align: left!important;
+ position: relative;
+    /*left: 20px;*/
 }
 .zmdi{
 
@@ -94,7 +96,7 @@ button, input, optgroup, select, textarea {
  *
  * *****************/
 .login100-form-title{
-	padding-top: 20px;
+	/*padding-top: 20px;*/
 	line-height: 40px;
 	letter-spacing:3%;
 }
@@ -103,7 +105,7 @@ button, input, optgroup, select, textarea {
 }
 
 .eye{
-	left: 85%;
+	/*left: 85%;*/
 	pointer-events: all;
   color: #7ec1ec;
 }

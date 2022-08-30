@@ -3,6 +3,8 @@
 <link href="{{URL::asset('assets/css/phy.css')}}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+
   <style type="text/css">
       
       /*.file-name{
@@ -72,6 +74,44 @@
    var searchInput = 'psnt_address';
 
 $(document).ready(function () {
+
+
+
+
+jQuery.validator.addMethod('validUserName', function (value) 
+{
+  alert("hello")
+  let data=window.location.href;
+  let valarr=data.split("/");
+  let lastval=valarr[valarr.length-1];
+  if(lastval == "ar")
+  {
+    var regex =/^(?:[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+    var key = value;
+    if (regex.test(key))
+         {
+          // console.log("true")
+        return true;
+          } 
+          else{
+          return false;
+          }
+        }
+        else{
+          var regex = new RegExp("^[a-zA-Z .'()-]*$");;
+          var key = value;
+          if (regex.test(key))
+               {
+                // console.log("true")
+              return true;
+                } 
+                else{
+                
+                  return false;
+                }
+        }
+},'Please Enter a Valid Name from add patient | الرجاء إدخال اسم صحيح')
+
     var map;  
     var marker; 
     var autocomplete;
@@ -107,7 +147,7 @@ $(document).ready(function () {
               geocoder1.geocode({'latLng': myCenter }, function(results, status) {
 if (status == google.maps.GeocoderStatus.OK) {
 if (results[0]) {
-    console.log(results[0])
+    // console.log(results[0])
 $('#psnt_lat,#psnt_long').show();
 $('#psnt_address').val(results[0].formatted_address);
 $('#psnt_lat').val(marker.getPosition().lat());
@@ -134,6 +174,7 @@ infowindow.open(map, marker);
     });
 
     
+
    
 
        
@@ -182,19 +223,6 @@ function initialize() {
     infowindow.open(map, marker);
     
   }); 
-
-
-jQuery.validator.addMethod('validUsername', function (value) 
-{
-var regex = new RegExp("^[a-zA-Z .'()-]*$");
-        var key = value;
-
-        if (!regex.test(key))
-         {
-          return false;
-        }
-        return true;
-}, 'Please enter a valid name');
   
   
 };
@@ -202,7 +230,7 @@ var regex = new RegExp("^[a-zA-Z .'()-]*$");
 geocoder.geocode({'latLng': myCenter }, function(results, status) {
 if (status == google.maps.GeocoderStatus.OK) {
 if (results[0]) {
-    console.log(results[0])
+    // console.log(results[0])
 $('#psnt_lat,#psnt_long').show();
 $('#psnt_address').val(results[0].formatted_address);
 $('#psnt_lat').val(marker.getPosition().lat());
@@ -264,6 +292,8 @@ function resizingMap() {
                                 </ol> -->
                             </div>
                            
+
+
 
                          
                         <!-- PAGE-HEADER END -->
@@ -354,7 +384,22 @@ function resizingMap() {
                                                 <textarea class="form-control" name="psnt_address" id="psnt_address" placeholder="*{{__('addpatient.pat_address')}}" autocomplete="off"></textarea>
                                                <i  id="add_icon"  class="fa fa-map-marker" style="" data-toggle="modal" data-target="#largeModal"></i>
                                                 </div>
-                                               
+
+                                                 
+                                                <div class="form-group">
+                                                    <label class="form-label"></label>
+                                                      <input class="form-control" type="text" name="psnt_qid_num" id="psnt_qid_no" placeholder="*{{__('addpatient.qidno')}}" autocomplete="off">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label"></label>
+                                                      <select class="form-control"  id="psnt_qid" name="psnt_hasins" onchange="getqid(this)" >
+                                                      <option>Have Insurance?</option>
+                                                      <option value="1">Yes</option>
+                                                      <option value="0">No</option>
+                                                      </select>
+                                                </div>
+                                                <div id="ins_val">
                                                 <div class="form-group">
                                                     <label class="form-label"></label>
                                                       <input class="form-control" type="text" name="psnt_insrnce_num" id="psnt_insrnce_num" placeholder="{{__('addpatient.pat_ins')}}" autocomplete="off">
@@ -364,7 +409,7 @@ function resizingMap() {
                                                       <label for="file">{{__('addpatient.upload')}} <img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt=""></label>
                                                       <p class="file-name"></p>
                                                 </div>
-                                                   
+                                                  </div> 
                                                  
 
 
@@ -424,6 +469,15 @@ function resizingMap() {
 <script src="{{ URL::asset('assets/plugins/peitychart/peitychart.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/index1.js') }}"></script>
 <script>
+function getqid($this){
+    if($this.value =='1'){
+      $('#ins_val').show()
+    }else{
+       $('#ins_val').hide()
+    }
+}
+</script>
+<script>
 function toggleVisibiltypass(){
 	// alert('clicked1');
 let togglePassword3 = document.querySelector("#togglePassword3");
@@ -471,6 +525,7 @@ let confpassword = document.querySelector("#psnt_confpassword");
     var base_path="http://3.220.132.29/medpro/"
     var api_url="http://3.220.132.29:3000/api/";
 
+
     
     $("#pat_signup").validate({
       errorElement: "span",
@@ -480,14 +535,14 @@ let confpassword = document.querySelector("#psnt_confpassword");
     rules: {
         psnt_first_name: {
         required: true,
-        // lettersonly: true,
-        validUsername:true,
+        //  lettersonly: true,
+          validUserName:true,
         // minlength: 3
       },
       psnt_last_name: {
         required: true,
-        // lettersonly: true,
-        validUsername:true,
+        lettersonly: true,
+        validUserName:true
         // minlength: 3
       },
       psnt_address: {
@@ -498,6 +553,11 @@ let confpassword = document.querySelector("#psnt_confpassword");
       psnt_email: {
          required: true,
         email: true
+      },
+      psnt_qid_num:{
+        required:true,
+        minlength:11,
+        maxlength:11
       },
       psnt_insrnce_num:{
         required:true,
@@ -525,7 +585,7 @@ let confpassword = document.querySelector("#psnt_confpassword");
       },
       psnt_last_name: {
           required: 'Last Name field is Required | حقل "الاسم الأخير" مطلوب',
-          //  lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
+           lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
         // minlength: "Last Name should be at least 3 characters"
       },
       psnt_address: {
@@ -536,7 +596,11 @@ let confpassword = document.querySelector("#psnt_confpassword");
         required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
         email: "The email should be in the format: abc@domain.tld | يجب أن يكون البريد الإلكتروني بالتنسيق: abc@domain.tld"
       },
-
+      psnt_qid_num:{
+        required:"QID is Required |الرقم الشخصي مطلوب",
+        minlength:"QID should be of 11 characters | يجب أن يتكون QID من 11 حرفًا",
+        maxlength: "QID should be of 11 characters | يجب أن يتكون QID من 11 حرفًا"
+      },
       psnt_insrnce_num:{
         required:"Insurance Number is Required |رقم التأمين مطلوب ",
         minlength: "Insurance Number should be at least 8 characters | يجب ألا يقل رقم التأمين عن 8 أحرف"
@@ -570,7 +634,7 @@ $('#file').on('change',function(){
  $('#pat_signup').on('submit',function (event) {
     event.preventDefault();
 
-   
+    
     /*formvalidation for signup form*/
     var _token =document.querySelector('[name="_token"]').value;
 
@@ -584,11 +648,14 @@ $('#file').on('change',function(){
     var password = $('#psnt_password').val();
     var confpassword =$('#psnt_confpassword').val();
     var user_details=localStorage.getItem('user_det');
+    //  console.log(user_details,".............")
     var details =JSON.parse(user_details);
+    // console.log(details,"dskf")
+    // var physician_id=  details._id;
     var physician_id=  details._id;
     var address=$('#psnt_address').val();
     $('#physician_id').val(physician_id);
-    console.log(physician_id);
+    // console.log(physician_id);
     // var address1{}=getCoordinates(address);
    
     // if(first_name!="" && last_name !=="" && email!="" && insurance_no!="" && file!="" && address!="" && password!="" ){
@@ -608,7 +675,7 @@ $('#file').on('change',function(){
         }
 
 
-        console.log(formData);
+        // console.log(new FormData(this));
     $.ajax({
       type: "POST",
       url: api_url+"addPatient",

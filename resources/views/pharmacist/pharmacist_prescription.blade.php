@@ -80,7 +80,8 @@
                             <!-- table start -->
                              <div class="table-responsive">
                                 <div class="search_opt" style="margin-bottom:50px;">
-                                 <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
+                                 <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" style="width: 50%;float: left;"placeholder="{{__('patientmgmt.search')}}">
+                                 <input class="form-control" type="text" id="myInput1" onkeyup="myFunction1()" style="width: 50%;float: right;"placeholder="{{__('patientmgmt.searchq')}}">
                                 </div>
                                 <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                         <thead>
@@ -90,6 +91,7 @@
                                                 <th class="wd-15p">{{__('pham_presmgmt.phy_name')}}</th>
                                                 <th class="wd-20p">{{__('pham_presmgmt.add')}}</th>
                                                 <th class="wd-15p">{{__('pham_presmgmt.notes')}}</th>
+                                                <th class="wd-15p">{{__('pham_presmgmt.qidno')}}</th>
                                                 <th class="wd-10p">{{__('pham_presmgmt.action')}}</th>
                                             </tr>
                                         </thead>
@@ -138,6 +140,31 @@
 <script src="{{ URL::asset('assets/js/index1.js') }}"></script>
 
  <script>
+     function myFunction1() {
+
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput1");
+  filter = input.value.toUpperCase();
+  // alert(filter)
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[5];
+
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      // alert(txtValue)
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
    function myFunction() {
 
   // Declare variables
@@ -213,7 +240,7 @@
             let str1='<a id="'+e.presciption_id+'" href="{{url("show_prescription")}}/'+e.presciption_id+'<?="/".$locale; ?>" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
             let str2='<a id="'+e.presciption_id+'" href="{{url("accept_prescription")}}/'+e.presciption_id+'<?="/".$locale; ?>" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
             let str3='<a id="'+e.presciption_id+'" href="{{url("view_prescription")}}/'+e.presciption_id+'<?="/".$locale; ?>" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_full_name+'</td><td>'+e.phy_full_name+'</td><td> '+e.psnt_address+'</td><td>'+e.message+'</td><td>'+(e.phpr_req_type==2 ?str1:(e.phpr_req_type==1)?str2:str3)+'<button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('pham_presmgmt.delete')}}</button></td></tr>');         
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_full_name+'</td><td>'+e.phy_full_name+'</td><td> '+e.psnt_address+'</td><td>'+e.message+'</td><td>'+e.psnt_qid_num+'</td><td>'+(e.phpr_req_type==2 ?str1:(e.phpr_req_type==1)?str2:str3)+'<button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('pham_presmgmt.delete')}}</button></td></tr>');         
               $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('pham_presmgmt.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('pham_presmgmt.can')}}</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('pham_presmgmt.yes')}}</button></div></div></div></div>');         
     });
 

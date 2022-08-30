@@ -10,9 +10,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="{{ URL::asset('assets/js/formapi.js')}}"></script>
+ <script src="{{ URL::asset('assets/js/formapi.js')}}"></script> 
 <!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
- --><!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> -->
+ -->
+  {{-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>  --}}
 
 <!-- map api script called here -->
  <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
@@ -429,10 +430,11 @@ label {
 							<!-- <div class="text-center">
 							<img src="{{URL::asset('assets/images/brand/logo1.png')}}" class="header-brand-img" alt="">
 						    </div> -->
-						    <svg width="53" height="137" viewBox="0 0 83 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+						   <!--  <svg width="53" height="137" viewBox="0 0 83 137" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M34.1916 108.445C43.0857 96.8096 46.5093 93.3981 46.5093 86.886C46.5093 77.9879 39.323 73.882 33.5053 69.7761C27.6876 65.6702 18.1031 62.2466 21.1876 56.4329C18.7894 54.7211 18.7894 54.7211 18.7894 54.7211L11.6031 63.6192C11.6031 63.6192 6.18509 69.441 6.4677 76.2801C6.81087 84.4959 10.2668 87.1848 17.4208 92.0214C29.0562 99.8941 34.5267 102.975 31.4503 106.394C34.1916 108.445 32.4798 107.076 34.1916 108.445ZM62.3959 83.7168L77.5115 64.2369C77.5115 64.2369 82.7599 58.6373 82.7599 48.1484C82.7599 37.6556 74.3664 31.3574 69.8164 28.2084C65.2664 25.0633 48.4795 13.5168 48.4795 13.5168C48.4795 13.5168 42.5326 10.3717 42.5326 5.82174C42.5326 2.32546 43.4894 1.74814 43.4894 1.74814L41.3941 0L28.1922 17.7155C28.1922 17.7155 22.9438 23.3112 22.9438 31.7047C22.9438 40.0981 26.7913 46.7435 30.9901 49.8925C35.1888 53.0376 54.0792 65.981 54.0792 65.981C54.0792 65.981 60.2804 70.5876 61.0717 76.1267C61.6289 79.9944 61.3503 80.5677 60.3006 82.3158C62.3959 83.7168 62.3959 83.7168 62.3959 83.7168ZM55.1329 136.427H25.4832L22.3826 124.025H0L3.10062 117.824H77.5155L80.6161 124.025H58.2335L55.1329 136.427Z" fill="#6BA5CD"/>
-</svg>
+</svg> -->
 
+<img src="{{URL::asset('assets/images/pngs/oldlogo1.png')}}"  id="svg_img" style="width:20%;height:auto;padding-bottom:1rem;"  alt="logo">
 
 							<form class="login100-form validate-form" enctype="multipart/form-data"  id="pharma_signup" method="post">
 								@csrf
@@ -647,179 +649,254 @@ let confpassword = document.querySelector("#confpassword");
 $(document).ready(function(){
 	var api_url="http://3.220.132.29:3000/api/";
 	var base_path = "http://3.220.132.29/medpro/";
-$("#pharma_signup").validate({
- 
-     errorElement: "span",
-    // $('.eye1 i').css({'display':'none'});       
-    errorClass: "error fail-alert",
-    validClass: "valid success-alert",
-    rules: {
-      pham_name: {
-        required: true,
-        lettersonly: true
+
+
+// jQuery.validator.addMethod('validUserName', function (value) 
+// {
+//   let data=window.location.href;
+//   alert(data)
+
+//   let valarr=data.split("/");
+//  alert(valarr)
+//   let lastval=valarr[valarr.length-1];
+
+//   let val=lastval;
+// alert(val)
+//  if(val=="ar")
+//  {
+//   var regex = /^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+//   var key = value;
+//   if (regex.test(key))
+//          {
+//           console.log("false")
+//           return false;
+        
+//         }
+//          console.log("true")
+//         return true;
+// }, 'Please Enter a Valid Name pharamacistregister | رجاء ادخل اسما صحيحا');
+//  }
+//  else{
+
+//  }
+
+// // var regex = new RegExp("^[a-zA-Z .'()-]*$");
+// var regex =/^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+//         var key = value;
+//         console.log(key,"your value")
+
+//         // alert(regex.test(key))
+//         // alert(regex.test("أهلا"))
+
+//         // if (regex.test(key))
+//         //  {
+//         //   console.log("false")
+//         //   return false;
+        
+//         // }
+//         // console.log("true")
+//         // return true;
+// }, 'Please Enter a Valid Name pharamacistregister | رجاء ادخل اسما صحيحا');
+
+
+
+// jQuery.validator.addMethod('validUserName', function (value) 
+// {
+//   alert("hello nidhi")
+//   let data=window.location.href;
+//   let valarr=data.split("/");
+//   let lastval=valarr[valarr.length-1];
+//   if(lastval == "ar")
+//   {
+//     var regex =/^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+//     console.log("true")
+//     var key = value;
+//     if (!regex.test(key))
+//          {
+//           console.log("false")
+//           return false;
+        
+//         }
+//          console.log("true")
+//         return true;
+//       }, 'Please Enter a Valid Name pharamacistregister | رجاء ادخل اسما صحيحا';
+
+// })
+
+
+// $("#pharma_signup").validate({
+//    errorElement: "span",
+//     // $('.eye1 i').css({'display':'none'});       
+//     errorClass: "error fail-alert",
+//     validClass: "valid success-alert",
+//     rules: {
+//       pham_name: {
+//         required: true,
+//         validUserName:true,
+//         // lettersonly: true
        
-      },
-      pham_first_name: {
-        required: true,
-        lettersonly: true
+//       },
+//       pham_first_name: {
+//         required: true,
+//         lettersonly: true
       
-      },
-       pham_last_name: {
-        required: true,
-        lettersonly: true
-      },
-      pham_email: {
-         required: true,
-        email: true
-      },
-      pham_registration_num:{
-        required:true,
-        minlength:8
-      },
-      pham_address:{
-        required:true,
-      },
-     file:{
-      required:true,
-     },
-     pham_password: {
-      required:true,
-      minlength:8
-     },
-      confpass: {
-        required: true,
-        minlength: 8,
-        equalTo: "#pham_password",
-      },
-      terms:{
-           required: true
-      }
-    },
-    messages : {
+//       },
+//        pham_last_name: {
+//         required: true,
+//         lettersonly: true
+//       },
+//       pham_email: {
+//          required: true,
+//         email: true
+//       },
+//       pham_registration_num:{
+//         required:true,
+//         minlength:8
+//       },
+//       pham_address:{
+//         required:true,
+//       },
+//      file:{
+//       required:true,
+//      },
+//      pham_password: {
+//       required:true,
+//       minlength:8
+//      },
+//       confpass: {
+//         required: true,
+//         minlength: 8,
+//         equalTo: "#pham_password",
+//       },
+//       terms:{
+//            required: true
+//       }
+//     },
+//     messages : {
 
-      pham_name: {
-        required: "Pharmacy Name 62field is Required"
+//       pham_name: {
+//         required: "Pharmacy Name 62field is Required"
      
-      },
-      pham_first_name: {
-         required: "First Name field is Required",
-         lettersonly:"Only Alphabetical Characters are allowed"
+//       },
+//       pham_first_name: {
+//          required: "First Name field is Required",
+//          lettersonly:"Only Alphabetical Characters are allowed"
      
-      },
-      pham_last_name: {
-          required: "Last Name field is Required",
-           lettersonly:"Only Alphabetical Characters are allowed"
+//       },
+//       pham_last_name: {
+//           required: "Last Name field is Required",
+//            lettersonly:"Only Alphabetical Characters are allowed"
        
-      },
-      pham_email: {
-        required: "Email field is Required",
-        email: "The email should be in the format: abc@domain.tld"
-      },
-      pham_address: {
-        required: "Address field is Required"
-      },
+//       },
+//       pham_email: {
+//         required: "Email field is Required",
+//         email: "The email should be in the format: abc@domain.tld"
+//       },
+//       pham_address: {
+//         required: "Address field is Required"
+//       },
 
-     pham_registration_num:{
-        required:"License Number field is Required",
-        minlength: "Licence Number should be at least 8 characters"
-      },
-      file:{
-        required:"License doc is Required"
-     },
-      pham_password: {
-      required:"Password field is Required",
-      minlength:"Password should be of atleast 8 characters"
-     },
-     confpass: {
-        required: "Confirm Password field is Required",
-        minlength: "Password and Confirm password should be same"
-        // equalTo: "Password and Confirm password should be same"
-      },
-      terms:{
-        required:"<p>I agree to the Terms & conditions<p>"
-      }
+//      pham_registration_num:{
+//         required:"License Number field is Required",
+//         minlength: "Licence Number should be at least 8 characters"
+//       },
+//       file:{
+//         required:"License doc is Required"
+//      },
+//       pham_password: {
+//       required:"Password field is Required",
+//       minlength:"Password should be of atleast 8 characters"
+//      },
+//      confpass: {
+//         required: "Confirm Password field is Required",
+//         minlength: "Password and Confirm password should be same"
+//         // equalTo: "Password and Confirm password should be same"
+//       },
+//       terms:{
+//         required:"<p>I agree to the Terms & conditions<p>"
+//       }
 
      
-    }
+//     }
     
-  });
+//   });
 
- $('#file').on('change',function(){
-    var fakepath =$('#file').val();
-    var filename=fakepath.split("\\").pop();
-    // alert(file)
-    if(filename){
-      $(".file-name").html(filename);
-      $(".file-error").hide();
-    }
-  });
-       $('#pharma_signup').submit(function (event) {
-    event.preventDefault();
+//  $('#file').on('change',function(){
+//     var fakepath =$('#file').val();
+//     var filename=fakepath.split("\\").pop();
+//     // alert(file)
+//     if(filename){
+//       $(".file-name").html(filename);
+//       $(".file-error").hide();
+//     }
+//   });
+//        $('#pharma_signup').submit(function (event) {
+//     event.preventDefault();
 
-        $('#terms').on('change', function(){
-      this.value = this.checked ? 1 : 0;
-      // alert(this.value);
-   }).change();
+//         $('#terms').on('change', function(){
+//       this.value = this.checked ? 1 : 0;
+//       // alert(this.value);
+//    }).change();
  
 
-    /*formvalidation for signup form*/
-    var pham_name =$('#pham_name').val();
-    var pham_first_name = $('#pham_first_name').val();
-    var pham_last_name = $('#pham_last_name').val();
-    var email = $('#pham_email').val();
-    var pham_regn =$('#pham_registration_num').val();
-    var pham_address =$('#pham_address').val();
-    var file =$('file').val();
-    var password = $('#pham_password').val();
-    var confpassword =$('#confpassword').val();
-    var terms =$('#terms').val();
+//     /*formvalidation for signup form*/
+//     var pham_name =$('#pham_name').val();
+//     var pham_first_name = $('#pham_first_name').val();
+//     var pham_last_name = $('#pham_last_name').val();
+//     var email = $('#pham_email').val();
+//     var pham_regn =$('#pham_registration_num').val();
+//     var pham_address =$('#pham_address').val();
+//     var file =$('file').val();
+//     var password = $('#pham_password').val();
+//     var confpassword =$('#confpassword').val();
+//     var terms =$('#terms').val();
    
       
 
-    // }
-    //  formData.append('phy_licnse_file', $('input[type=file]')[0].files[0]);  
-    // console.log(formData);
-    // return false;
+//     // }
+//     //  formData.append('phy_licnse_file', $('input[type=file]')[0].files[0]);  
+//     // console.log(formData);
+//     // return false;
     
-    if(pham_name!="" && pham_first_name!="" && pham_last_name !=="" && email!="" && pham_regn!="" && file!="" && password!="" && terms=="1" && pham_address!="" ){
-    $.ajax({
-      type: "POST",
-      url: api_url+"phamsistRegister",
-      data: new FormData(this),
-      contentType:false,
-      cache:false,
-      processData:false,
-    }).done(function (res) {
-     //    alert('done');
+//     if(pham_name!="" && pham_first_name!="" && pham_last_name !=="" && email!="" && pham_regn!="" && file!="" && password!="" && terms=="1" && pham_address!="" ){
+//     $.ajax({
+//       type: "POST",
+//       url: api_url+"phamsistRegister",
+//       data: new FormData(this),
+//       contentType:false,
+//       cache:false,
+//       processData:false,
+//     }).done(function (res) {
+//      //    alert('done');
   
-      // console.log(res);
-      // return false;
-        if(res.status == true){
-            swal({
-                  title: "You are Registered Successfully!",
-                  type: "success",
-                  buttons: false,
-                  showCancelButton: false,
-                  showConfirmButton: false,
-                  closeOnCancel: false,
-                });
-          // $('#message').html(res.message).addClass('alert alert-success');
-          window.location.href =base_path+"pharmacist_Login";
-        }else{
-          //  $('#message').html(res.message).addClass('alert alert-danger');
-          $('#emhide').html(res.message).removeClass('hidem');
-        }
-    });
-   }else{
-   }
+//       // console.log(res);
+//       // return false;
+//         if(res.status == true){
+//             swal({
+//                   title: "You are Registered Successfully!",
+//                   type: "success",
+//                   buttons: false,
+//                   showCancelButton: false,
+//                   showConfirmButton: false,
+//                   closeOnCancel: false,
+//                 });
+//           // $('#message').html(res.message).addClass('alert alert-success');
+//           window.location.href =base_path+"pharmacist_Login";
+//         }else{
+//           //  $('#message').html(res.message).addClass('alert alert-danger');
+//           $('#emhide').html(res.message).removeClass('hidem');
+//         }
+//     });
+//    }else{
+//    }
 
-  });
-
-
+//   });
 
 
 
-})
+
+
+// })
   
 </script>
 

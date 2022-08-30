@@ -649,6 +649,20 @@ $("input[type='file']").change(function(){
    $('.profile-pic1').show();
 })
 
+
+
+jQuery.validator.addMethod('validUserName', function (value) 
+{
+var regex = new RegExp("^[a-zA-Z .'()-]*$");
+        var key = value;
+
+        if (!regex.test(key))
+         {
+          return false;
+        }
+        return true;
+}, 'Please Enter a Valid Name | رجاء ادخل اسما صحيحا');
+
    const file = document.querySelector('#file');
     //file
     // const file = document.querySelector('#file');
@@ -736,12 +750,14 @@ $("input[type='file']").change(function(){
     rules: {
       phy_first_name: {
         required: true,
-        lettersonly: true,
+        // lettersonly: true,
+         validUserName:true,
         // minlength: 3
       },
       phy_last_name: {
         required: true,
-        lettersonly: true,
+        validUserName:true
+        // lettersonly: true,
         // minlength: 3
       },
       email: {
@@ -756,22 +772,22 @@ $("input[type='file']").change(function(){
     },
     messages: {
       phy_first_name: {
-        required: "First Name field is Required",
-        lettersonly: "Only Alphabetical Characters are allowed",
+        required: "First Name field is Required |  حقل الاسم الأول مطلوب",
+        // lettersonly: "Only Alphabetical Characters are allowed",
       },
       phy_last_name: {
-        required: "Last Name field is Required",
-        lettersonly: "Only Alphabetical Characters are allowed",
+        required: 'Last Name field is Required |  حقل "الاسم الأخير" مطلوب',
+        // lettersonly: "Only Alphabetical Characters are allowed",
 
       },
       email: {
-        required: "Email field is Required",
-        email: "The email should be in the format: abc@domain.tld"
+        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
+        email: "The email should be in the format: abc@domain.tld | يجب أن يكون البريد الإلكتروني بالتنسيق: abc@domain.tld"
       },
 
       license_number: {
-        required: "License Number field is Required",
-        minlength: "Licence Number should be at least 8 characters"
+        required: "License Number field is Required | حقل رقم الترخيص مطلوب",
+        minlength: "Licence Number should be at least 8 characters | يجب ألا يقل رقم الترخيص عن 8 أحرف"
       },
 
     }

@@ -287,7 +287,7 @@ hr.new1 {
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                            <form id="approve" method="post">
+                            <form id="approve">
                                 @csrf
                                 <div class="modal-body">
                                 
@@ -394,29 +394,31 @@ hr.new1 {
     var base_path = "http://3.220.132.29/medpro/";
       var api_url="http://3.220.132.29:3000/api/";
          $('#approve').submit(function(e){
-
+            e.preventDefault();
         let physician_id =$('#physician_id').val();
+        // alert(physician_id)
                 $.ajax({
               url: api_url+"phyapprove",
               type: "POST",
-                dataType: 'json', 
+              dataType: 'json', 
               data:{
                 physician_id:physician_id,
               }
             }).done(function (res) {
+              //   alert(res)
               // console.log(res);
               // return false;
+
                 if(res.status == true){
                   
                   $('#message').html(res.message).addClass('alert alert-success');
                   window.location.href= base_path + "admin_physician_mgmt";
-                  
-                }else{
+                               }else{
                    $('#message').html(res.message).addClass('alert alert-danger');
                 }
             });
                });
-    })
+    });
    
      function deletedata($this){
       var base_path = "http://3.220.132.29/medpro/";
@@ -453,7 +455,7 @@ hr.new1 {
    function editdata($this){
     var api_url="http://3.220.132.29:3000/api/";
     var id=$this.id;
-    alert(id)
+    // alert(id)
     $.ajax({
       url: api_url+"phyViewProfile",
       type: "post",

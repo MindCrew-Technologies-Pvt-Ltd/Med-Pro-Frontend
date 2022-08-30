@@ -17,16 +17,19 @@
 
                 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
                 <aside class="app-sidebar">
-                    <div class="side-header">
+                    <div class="side-header" style="padding:15px 10px;">
                         <a class="header-brand1" href="{{ url('/dashboard')}}<?="/".$locale; ?>">
                             <!-- <img src="{{URL::asset('./assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-1.png')}}"  class="header-brand-img toggle-logo" alt="logo">
                             <img src="{{URL::asset('assets/images/brand/logo-2.png')}}" class="header-brand-img light-logo" alt="logo"> -->
-                            <img src="{{URL::asset('assets/images/pngs/logo.png')}}" class="header-brand-img light-logo1" id="header_logo" alt="logo">
+                            <div  id="logotxt" style="text-align:center;position:relative;left: 1rem;top:0.3rem;">
+                            <!-- <img src="{{URL::asset('assets/images/pngs/oldlogo1.png')}}" class="header-brand-img light-logo1"  style="width: 30%;height:auto;float:right;" id="header_logo" alt="logo"> -->
+                            <h2 style="color:white;">Med Pro</h2>
+                            </div>
                         </a><!-- LOGO -->
                         <a aria-label="Hide Sidebar" class="app-sidebar__toggle ml-auto" data-toggle="sidebar" href="#"></a><!-- sidebar-toggle-->
                     </div>
-                    <div class="app-sidebar__user">
+                    <div class="app-sidebar__user" style="border-bottom:none;">
                         <div class="dropdown user-pro-body text-center">
                             <div class="user-pic">
                                 <img id="profile_id" src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="avatar-xl rounded-circle">

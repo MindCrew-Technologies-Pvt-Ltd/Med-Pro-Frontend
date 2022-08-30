@@ -14,7 +14,7 @@
     margin-bottom:0!important;
    }
 .ebtn{
-    background-color: #5e2dd8;
+    background-color: darkblue;
     width: 88px;
     height: 35px;
     border-radius: 10px;

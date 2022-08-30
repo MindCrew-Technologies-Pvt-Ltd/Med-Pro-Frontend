@@ -6,6 +6,7 @@ return[
 "view_pat"=>"View Patient",
 "add"=>"Add",
 "search"=>" Search By Name",
+"searchq"=>" Search By QID",
 "sno"=>"S No.",
 "fname"=>"First Name",
 "lname"=>"Last Name",
@@ -22,7 +23,8 @@ return[
 "delete"=>"Delete",
 "ays"=>"Are you sure you want to delete this patient?",
 "can"=>"Cancel",
-"yes"=>"Yes Delete It!"
+"yes"=>"Yes Delete It!",
+"qid_no"=>"QID"
 ];
 
 

@@ -1,11 +1,67 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
 
 $(document).ready(function(){
+  var url=window.location.href;
+var locale=url.substr(url.lastIndexOf('/') +1);
+
 var api_url="http://3.220.132.29:3000/api/";
 var base_path = "http://3.220.132.29/medpro/"; 
-// alert(base_path);
-// alert(api_url);
-  
+
+
+// jquery validation for English
+// jQuery.validator.addMethod('validUserName', function (value) 
+// {
+// var regex = new RegExp("^[a-zA-Z .'()-]*$");
+//         var key = value;
+
+//         if (!regex.test(key))
+//          {
+//           return false;
+//         }
+//         return true;
+// }, 'Please Enter a Valid Name | رجاء ادخل اسما صحيحا');
+
+
+
+// jquery validation for English and arabic
+jQuery.validator.addMethod('validUserName', function (value) 
+{
+  let data=window.location.href;
+  let valarr=data.split("/");
+  let lastval=valarr[valarr.length-1];
+  if(lastval == "ar")
+  {
+    var regex =/^(?:[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+    var key = value;
+    if (regex.test(key))
+         {
+          // console.log("true")
+        return true;
+          } 
+          else{
+          
+            return false;
+          }
+        }
+        else{
+          var regex = new RegExp("^[a-zA-Z .'()-]*$");;
+          var key = value;
+          if (regex.test(key))
+               {
+                // console.log("true")
+              return true;
+                } 
+                else{
+                
+                  return false;
+                }
+        }
+},'Please Enter a Valid Name | الرجاء إدخال اسم صحيح')
+
+
+
+
 
 
 
@@ -21,69 +77,55 @@ $('#lic_doc').change(function() {
 
 });
 
+    //trim white spaces
+document.addEventListener('change', function (ev) {
+  if(ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')
+    // alert('change')
+  // ev.target.trim().toLowerCase();
+   TrimText(ev.target);
+});
+
+function TrimText(el) {
+  // console.log(el.value)
+  el.value = el.value.
+  replace(/(^\s*)|(\s*$)/gi, "").
+  replace(/[ ]{2,}/gi, " ").
+  replace(/\n +/, "\n");
+  return;
+ }
+
+ //end trim white spaces
 
 
 
-
-
-// jQuery.validator.addMethod('validUsername', function (value) 
-// {
-// var regex = new RegExp("^[a-zA-Z .'()-]*$");
-//         var key = value;
-
-//         if (!regex.test(key))
-//          {
-//           return false;
-//         }
-//         return true;
-// }, 'Please enter a valid name');
-
-
-
-jQuery.validator.addMethod('validUsername', function (value) 
-{
-var regex = new RegExp("^[a-zA-Z .'()-]*$" || "شا زا زت");
-        var key = value;
-
-        if (!regex.test(key))
-         {
-          return false;
-        }
-        return true;
-}, 'Please enter a valid name' || "رجاء ادخل اسما صحيحا");
-
-
-
-
-$("#signupform").validate({
+    $("#signupform").validate({
       errorElement: "span",
     // $('.eye1 i').css({'display':'none'});       
     errorClass: "error fail-alert",
     validClass: "valid success-alert",
     rules: {
       phy_first_name: {
-         required: true,
-          // lettersonly: true,
-          validUsername: true,
-          
+        required: true,
+        validUserName:true,
+      // lettersonly: true,
         // minlength: 3
       },
        phy_last_name: {
         required: true,
-        // lettersonly: true.
-         validUsername: true
+        validUserName:true,
+        // lettersonly: true,
         // minlength: 3
       },
       phy_email: {
          required: true,
-        email: true
+         email: true
       },
       phy_licnse:{
         required:true,
         minlength:8
       },
      file:{
-      required:true
+      required:true,
      },
      phy_password: {
       required:true,
@@ -92,7 +134,7 @@ $("#signupform").validate({
       confpass: {
         required: true,
         minlength: 8,
-        equalTo: "#password"
+        equalTo: "#password",
       },
       terms:{
            required: true
@@ -100,71 +142,74 @@ $("#signupform").validate({
     },
     messages : {
       phy_first_name: {
-         required: "First Name field is Required",
-        //  pattern:"please pass valide name",
-        //  lettersonly:"Only Alphabetical Characters are allowed",
+         required: "First Name field is Required | حقل الاسم الأول مطلوب",
+         // lettersonly:"Only Alphabetical Characters are allowed",
         // minlength: "First Name should be at least 3 characters"
       },
       phy_last_name: {
-          required: "Last Name field is Required",
-           lettersonly:"Only Alphabetical Characters are allowed",
+          required: 'Last Name field is Required | حقل "الاسم الأخير" مطلوب ',
+           lettersonly:'Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية',
         // minlength: "Last Name should be at least 3 characters"
       },
       phy_email: {
-        required: "Email field is Required",
-        email: "The email should be in the format: abc@domain.tld"
+        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
+        email: "The email should be in the format: abc@domain.tld | يجب أن يكون البريد الإلكتروني بالتنسيق: abc@domain.tld"
       },
 
      phy_licnse:{
-        required:"License Number field is Required",
-        minlength: "Licence Number should be at least 8 characters"
+        required:"License Number field is Required | حقل رقم الترخيص مطلوب",
+        minlength: "Licence Number should be at least 8 characters | يجب ألا يقل رقم الترخيص عن 8 أحرف"
       },
       file:{
-        required:"License doc is Required",
+        required:"License doc is Required | مطلوب مستند الترخيص",
      },
       phy_password: {
-      required:"Password field is Required",
-      minlength:"Password should be of atleast 8 characters"
+      required:"Password field is Required | حقل كلمة المرور مطلوب",
+      minlength:"Password should be of atleast 8 characters | يجب أن تتكون كلمة المرور من 8 أحرف على الأقل"
      },
      confpass: {
-        required: "Confirm Password field is Required",
-        minlength: "Password and Confirm password should be same",
-        equalTo: "Password and Confirm password should be same"
+        required: "Confirm Password field is Required | حقل تأكيد كلمة المرور مطلوب",
+        minlength: "Password and Confirm password should be same | يجب أن تكون كلمة المرور وتأكيد كلمة المرور متطابقتين",
+        equalTo: "Password and Confirm password should be same | يجب أن تكون كلمة المرور وتأكيد كلمة المرور متطابقتين"
       },
       terms:{
-        required:"<p>Please Agree The Terms & Conditions<p>"
+        required:"<p>Please Agree The Terms & Conditions |يرجى الموافقة على الشروط والأحكام<p>"
       }
 
 
     }
   });
 
-
-/*api call for registeration form submit*/
+  $('#file').on('change',function(){
+    var fakepath =$('#file').val();
+    var filename=fakepath.split("\\").pop();
+    // alert(file)
+    if(filename){
+      $(".file-name_reg").html(filename);
+      $(".file-error").hide();
+    }
+  });
+/*api call for physician registeration form submit*/
   $('#signupform').on('submit',function (event) {
     event.preventDefault();
 
- 
+    $('#terms').on('change', function(){
+      this.value = this.checked ? 1 : 0;
+      // alert(this.value);
+   }).change();
 
     /*formvalidation for signup form*/
-    var first_name = $('#first_name').val();
+    var first_name= $('#first_name').val();
     var last_name = $('#last_name').val();
     var email = $('#email').val();
     var licence_no =$('#licence_no').val();
     var file =$('file').val();
     var password = $('#password').val();
     var confpassword =$('#confpassword').val();
-    var chk;
-   
-    
-      
-
-    // }
-    //  formData.append('phy_licnse_file', $('input[type=file]')[0].files[0]);  
-    // console.log(formData);
-    // return false;
-    
-    if(first_name!="" && last_name !=="" && email!="" && licence_no!="" && file!="" && password!="" && confpassword !="" && chk!="" ){
+    var terms=$('#terms').val();
+ 
+    console.log(terms, 'chk');
+    if(first_name!="" && last_name !=="" && email!="" && licence_no!="" && file!="" && password!="" && confpassword !="" && terms=="1" ){
     $.ajax({
       type: "POST",
       url: api_url+"PhysicianRegister",
@@ -173,8 +218,7 @@ $("#signupform").validate({
       cache:false,
       processData:false,
     }).done(function (res) {
-     //    alert('done');
-  
+        // alert(res) 
       // console.log(res);
       // return false;
 	      if(res.status == true){
@@ -194,7 +238,7 @@ $("#signupform").validate({
 
 
 
-
+ 
   $("#loginform").validate({
     errorElement: "span",
     errorClass: "error fail-alert",
@@ -210,7 +254,7 @@ $("#signupform").validate({
      pass: {
       required:true,
      minlength: 8,
-     alphanumeric: true
+    //  alphanumeric: true
 
      }
       
@@ -220,13 +264,13 @@ $("#signupform").validate({
     messages : {
      
       email: {
-        required: "Email field is Required",
+        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
       },
 
       pass: {
-      required:"Password field is Required",
-      minlength:"8 characters Required",
-      alphanumeric: "Password Should be Alphanumeric",
+      required:"Password field is Required | حقل كلمة المرور مطلوب",
+      minlength:"8 characters Required  |مطلوب 8 أحرف",
+      // alphanumeric: "Password Should be Alphanumeric",
 
      },
     
@@ -234,6 +278,7 @@ $("#signupform").validate({
 
     }
   });
+
 /*api call for login form submit*/
 
   $("#loginform").submit(function (event) {
@@ -249,8 +294,8 @@ $("#signupform").validate({
     phy_email:$('#email').val(),
     phy_password:$('#password').val() ,
     };
- 
-   if(phy_email!="" &&  phy_password !==""){
+ console.log(phy_password.length, 'phy_password.length');
+   if(phy_email!="" &&  phy_password !=="" && phy_password.length >=8){
     $.ajax({
       type: "POST",
       url: api_url+"physicianLogin",
@@ -263,10 +308,11 @@ $("#signupform").validate({
      
 
         if(res.status == true){
-        	$('#message').html(res.message).addClass('alert alert-success');
+        	$('#message').html(res.message + "تم تسجيل الدخول بنجاح").addClass('alert alert-success');
         	window.location.href=base_path+"dashboard";
         }else{
-           $('#message').html(res.message).addClass('alert alert-danger');
+          //  $('#message').html(res.message).addClass('alert alert-danger');
+           $('#hidepp').html(res.message).removeClass('hidep');
         }
 
   });
@@ -276,7 +322,24 @@ $("#signupform").validate({
  });
 
     /*api call for forgot password*/
-
+     // $("#forgot_pass").validate({
+     //  errorElement: "span",
+     //  errorClass: "error fail-alert",
+     //   validClass: "valid success-alert",
+     //  rules: {
+        
+     //     eemail: {
+     //        required: true,
+         
+     //     },
+     //     messages : {
+     
+     //       eemail: {
+     //        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
+     //       },
+     //     }
+     //   }
+     //   });
 
   $("#forgot_pass").submit(function (event) {
       event.preventDefault();
@@ -292,10 +355,12 @@ $("#signupform").validate({
       encode: true,
       }).done(function (res) {
       if(res.status == true){
-          // $('#message').html(res.message).addClass('alert alert-success');
+          $('#message').html(res.message).addClass('alert alert-success');
           window.location.href=base_path+"forgot_password2";
         }else{
-           $('#message').html(res.message).addClass('alert alert-danger');
+          //  $('#message').html(res.message).addClass('alert alert-danger');
+          $('#hideem').html(res.message).removeClass('hideemail');
+
         }
 
     });
@@ -361,32 +426,34 @@ $("#reset_pass").submit(function (event) {
     rules: {
       pham_name: {
         required: true,
-        //  lettersonly: true,
-            validUsername:true,
-        // minlength: 3
+        validUserName:true
+        
+        
       },
        pham_first_name: {
         required: true,
-        //  lettersonly: true,
-         validUsername:true,
-        // minlength: 3
+        validUserName:true
+        // lettersonly: true
+       
       },
        pham_last_name: {
         required: true,
-        //  lettersonly: true,
-         validUsername:true,
-        // minlength: 3
+        // lettersonly: true,
+        validUserName:true
       },
       pham_email: {
          required: true,
         email: true
       },
-      pham_regn:{
+      pham_address: {
+        required: true
+      },
+      pham_registration_num:{
         required:true,
         minlength:8
       },
      file:{
-      required:true,
+      required:true
      },
      pham_password: {
       required:true,
@@ -395,7 +462,7 @@ $("#reset_pass").submit(function (event) {
       confpass: {
         required: true,
         minlength: 8,
-        equalTo: "#pham_password",
+        equalTo: "#pham_password"
       },
       terms:{
            required: true
@@ -405,44 +472,44 @@ $("#reset_pass").submit(function (event) {
 
     messages : {
 
-      pham_name: {
-        required: "Pharmacy Name field is Required",
-        // lettersonly: "Only Alphabetical Characters are allowed",
-        // minlength: 3
+     pham_name: {
+        required: "Pharmacy Name field is Required | حقل اسم الصيدلية مطلوب"
+     
       },
-      phy_first_name: {
-         required: "First Name field is Required",
-        //  lettersonly:"Only Alphabetical Characters are allowed",
-        // minlength: "First Name should be at least 3 characters"
+      pham_first_name: {
+        required: "First Name field is Required | حقل الاسم الأول مطلوب",
+        lettersonly:"Only Alphabetical Characters are allowed |يسمح فقط باستخدام الأحرف الأبجدية"
+    
+     },
+      pham_last_name: {
+          required: 'Last Name field is Required |حقل "الاسم الأخير" مطلوب'
+       
       },
-      phy_last_name: {
-          required: "Last Name field is Required",
-          //  lettersonly:"Only Alphabetical Characters are allowed",
-        // minlength: "Last Name should be at least 3 characters"
+      pham_email: {
+        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
+        email: "The email should be in the format: abc@domain.tld | يجب أن يكون البريد الإلكتروني بالتنسيق: abc@domain.tld"
       },
-      phy_email: {
-        required: "Email field is Required",
-        email: "The email should be in the format: abc@domain.tld"
+      pham_address: {
+        required: "Address field is Required |حقل العنوان مطلوب"
       },
-
-     pham_regn:{
-        required:"License Number field is Required",
-        minlength: "Licence Number should be at least 8 characters"
+      pham_registration_num:{
+        required:"License Number field is Required |حقل رقم الترخيص مطلوب",
+        minlength: "Licence Number should be at least 8 characters | يجب ألا يقل رقم الترخيص عن 8 أحرف"
       },
       file:{
-        required:"License doc is Required",
+        required:"License doc is Required |مطلوب مستند الترخيص",
      },
       pham_password: {
-      required:"Password field is Required",
-      minlength:"Password should be of atleast 8 characters"
+      required:"Password field is Required | حقل كلمة المرور مطلوب",
+      minlength:"Password should be of atleast 8 characters | يجب أن تتكون كلمة المرور من 8 أحرف على الأقل"
      },
      confpass: {
-        required: "Confirm Password field is Required",
-        minlength: "Password and Confirm password should be same",
-        equalTo: "Password and Confirm password should be same"
+        required: "Confirm Password field is Required |حقل تأكيد كلمة المرور مطلوب",
+        minlength: "Password and Confirm password should be same | يجب أن تكون كلمة المرور وتأكيد كلمة المرور متطابقتين",
+        equalTo: "Password and Confirm password should be same | يجب أن تكون كلمة المرور وتأكيد كلمة المرور متطابقتين"
       },
       terms:{
-        required:"<p>Please Agree The Terms & Conditions<p>"
+        required:"<p>Please Agree The Terms & Conditions |يرجى الموافقة على الشروط والأحكام<p>"
       }
 
 

@@ -14,7 +14,8 @@ return[
 "delete"=>"Delete",
 "ays"=>"Are you sure you want to delete the prescription?",
 "can"=>"Cancel",
-"yes"=>"Yes Delete It!"
+"yes"=>"Yes Delete It!",
+"qidno"=>"QID"
 ];
 
 

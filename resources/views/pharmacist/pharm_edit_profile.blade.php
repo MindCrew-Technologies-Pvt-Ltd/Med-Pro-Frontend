@@ -139,7 +139,50 @@ infowindow.open(map, marker);
 });
  });
 
+
+
+ jQuery.validator.addMethod('validUserName', function (value) 
+{
+  let data=window.location.href;
+  let valarr=data.split("/");
+  let lastval=valarr[valarr.length-1];
+  if(lastval == "ar")
+  {
+    var regex =/^(?:[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+    var key = value;
+    if (regex.test(key))
+         {
+          // console.log("true")
+        return true;
+          } 
+          else{
+          
+            return false;
+          }
+        }
+        else{
+          var regex = new RegExp("^[a-zA-Z .'()-]*$");;
+          var key = value;
+          if (regex.test(key))
+               {
+                // console.log("true")
+              return true;
+                } 
+                else{
+                
+                  return false;
+                }
+        }
+},'Please Enter a Valid Name | الرجاء إدخال اسم صحيح')
+
+
+
+
+
 });
+
+
+
 $(document).on('change', '#'+searchInput, function () {
      document.getElementById('pham_lat').value = '';
      document.getElementById('pham_long').value = '';
@@ -748,22 +791,6 @@ var user_details15=localStorage.getItem('pharm_det');
     var pharmacist_id15=  details15._id;
     $('#phamaciest_id').val(pharmacist_id15);
     $('#phamaciest_id1').val(pharmacist_id15);
-
-
-// jQuery.validator.addMethod('validUsername', function (value) 
-// {
-// var regex = new RegExp("^[a-zA-Z .'()-]*$");
-//         var key = value;
-
-//         if (!regex.test(key))
-//          {
-//           return false;
-//         }
-//         return true;
-// }, 'Please enter a valid name');
-
-
-
 //end document ready 
 });
 </script>
@@ -777,17 +804,19 @@ var user_details15=localStorage.getItem('pharm_det');
     rules: {
       pharm_name:{
         required: true,
-        // validUsername:true
+        validUserName:true,
 
       },
       pharm_first: {
         required: true,
-        lettersonly: true,
+        validUserName:true,
+        // lettersonly: true,
         // minlength: 3
       },
       pharm_last: {
         required: true,
-        lettersonly: true,
+        validUserName:true,
+        // lettersonly: true,
         // minlength: 3
       },
       pharm_add: {
@@ -801,27 +830,27 @@ var user_details15=localStorage.getItem('pharm_det');
     },
     messages : {
       pharm_name:{
-        required: "First Name field is Required"
+        required: "First Name field is Required" | "حقل الاسم الأول مطلوب"
 
       },
       
       pharm_first: {
-         required: "First Name field is Required",
-         lettersonly:"Only Alphabetical Characters are allowed"
+         required: "First Name field is Required | حقل الاسم الأول مطلوب",
+        //  lettersonly:"Only Alphabetical Characters are allowed"
       },
       pharm_last: {
-          required: "Last Name field is Required",
-           lettersonly:"Only Alphabetical Characters are allowed"
+          required: 'Last Name field is Required |  حقل "الاسم الأخير" مطلوب',
+          //  lettersonly:"Only Alphabetical Characters are allowed"
 
       },
       pharm_add: {
-        required: "Address field is Required"
+        required: "Address field is Required | حقل العنوان مطلوب"
         
       },
 
       regino:{
-        required:"Registration  Number field is Required",
-        minlength: "Registration Number should be at least 8 characters"
+        required:"Registration  Number field is Required | حقل رقم التسجيل مطلوب",
+        minlength: "Registration Number should be at least 8 characters".
       },
 
     }

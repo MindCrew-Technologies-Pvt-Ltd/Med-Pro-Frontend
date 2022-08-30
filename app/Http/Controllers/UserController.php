@@ -524,6 +524,10 @@ class UserController extends Controller
 		return view('horizontalmenu');
     }
 
+    public function admindashboard()
+	{
+		return view('dashboard');
+    }
 
    
 }

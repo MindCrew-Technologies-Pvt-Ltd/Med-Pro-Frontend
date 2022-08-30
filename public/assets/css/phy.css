@@ -2,26 +2,21 @@
 
    *{
         font-family: 'Poppins', sans-serif;
-        /* text-transform: capitalize; */
+        text-transform: none;
     }
     body{
       background-color: white;
     }
-
-    /* prescription managment ------------------------------------------------------------------*/
-      .error{
-        color: #CF142B;
-      }
+    /******************common css***************/
+   
      #myTable{
         text-transform: capitalize;
      }
-     .bttttn{
-        width: 120px;
-        background-color: #7ec1ec;
-        border: none;
-        border-radius: 10px;
-      }
-      .ebtn{
+     .slide .is-expanded{
+  position: relative!important;
+  left: -0.5rem!important;
+}
+     .ebtn{
         background-color: #5e2dd8;
         width: 88px;
         height: 35px;
@@ -37,6 +32,36 @@
         border-radius: 10px;
         color: white;
     }
+    label{
+    float: left;
+    }
+    .bttttn{
+        width: 120px;
+        background-color: #7ec1ec;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .agreeDiv{
+    margin-top: 60px;
+    margin-bottom: 10px;
+  }
+.error{
+  color: red;
+  
+}
+.valid{
+  color: black;
+  
+}
+  /*******************common css ends here**********************/
+    /*************** prescription managment**************/
+      .error{
+        color: #CF142B;
+      }
+    
+     
+      
     /* .ok{
       border: none;
       border-radius: 10px;
@@ -50,9 +75,7 @@
     box-shadow: none;
     border-radius: 10px;
   }
-  label{
-    float: left;
-  }
+  
   .otherlabel{
     font-size: 16px;
     float: left;
@@ -83,7 +106,7 @@
       border: none;
       background-color: #CF142B;
       color: white;
-      padding: 10px 28px;
+      padding: 10px;
       font-size: 16px;
       cursor: pointer;
       text-align: center;
@@ -121,7 +144,7 @@
     }
     .iconn{
       position: absolute;
-      top: 6.5rem;
+      top: 7.5rem !important;
       right: 9rem;
     }
     .prs_information{
@@ -175,12 +198,14 @@
     
   }
   .file-name {
-    /* position: absolute; */
-    bottom: -35px;
-    left: 10px;
+     position: absolute; 
+   /* bottom: -35px;*/
+    /*left: 10px;*/
+    right: 400px;
     font-size: 0.85rem;
-    color: #555;
-    margin-right: 900px;
+    /*color: #555;*/
+   /* margin-right: 900px;*/
+    color: green;
   }
   
 .sbmt{
@@ -226,15 +251,18 @@
   #psnt_insrnce_num{
     width: 80%;
   }
+  #psnt_qid{
+    width: 80%;
+  }
+  #psnt_qid_no{
+    width: 80%;
+  }
   /* end patient end ------------------------------------------------------------- */
   .wrap-login100{
     width: 420px;
     border-radius:10px;
   }
-  .agreeDiv{
-    margin-top: -40px;
-    margin-bottom: 10px;
-  }
+  
   #imgfile1{
     padding-left: 110px; 
     padding-top:5px; 
@@ -340,6 +368,104 @@
 .profilediv{
   width: 100%;
 }
+
+    /************ css for Physician registration form ************/
+
+#imgfile_phy_reg{
+
+    padding-left: 126px;
+    padding-top: 5px;
+    height: 25px;
+    margin-left:1.5rem;
+
+}
+.file-input1 label {
+  display: block;
+  position: relative;
+  width: 323px;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #E2E6EB;
+  background: #F1F1F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #797785;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+  margin-top: 1%;
+  margin-bottom: -25px;
+  font-size: 0.875rem;
+}
+
+  .agreeDiv input[type=checkbox]{
+        margin-top: 40px;
+  
+      }
+
+  #file-error{
+    position: relative;
+    top: 4rem;
+  }
+  .file_reg {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+
+.file-name_reg {
+  position: absolute;
+  bottom: -40px;
+  left: 10px;
+  font-size: 0.85rem;
+  color: #555;
+  color:green;
+}
+
+.error{
+  color: red;
+  
+}
+.valid{
+  color: green;
+  
+}
+  
+}
+.form-label{
+  font-size: 20px;
+}
+
+input{
+  margin-top: 20px;
+}
+.wrap-login100{
+  width: 420px;
+  border-radius:10px;
+}
+ #add_icon{
+  font-size:24px;
+  position: absolute;
+  float:left;
+  right:14rem;
+  top:0.9rem;
+  color:#7ec1ec;
+  cursor:pointer;
+}
+.footer{
+ /* margin: 0 7rem!important;*/
+}
+/***********css for physician registration form ends here************/
+
+/************ css for Physician Login form Starts Here************/
+
+
+
+
+/************ css for Physician Login form Ends Here************/
+
 /* resposive media query  ==================================================================================================*/
 @media screen and (max-device-width: 1280px){
   #prs_med_name{
@@ -351,7 +477,7 @@
     margin-right: 145px;
   }
   .iconn{
-    top: 6.5rem;
+    top: 7.5rem;
     right: 8.5rem;
   }
   #addRow{
@@ -371,6 +497,11 @@
 }
 
 
+@media screen and (max-device-width: 896px){
+  .footer .container{
+    margin-left:0rem!important;
+  }
+}
 
 @media screen and (max-device-width: 1180px){
   #prs_med_name{
@@ -378,11 +509,12 @@
     margin-bottom: 15px;
   }
   .prs_quantity {
-    width: 32%!important;
+    width: 26%!important;
+    margin-left: -9px;
     margin-right: 131px;
 }
   .iconn{
-    top: 6.5rem;
+    top:7.5rem;
     right: 7rem;
   }
   #addRow{
@@ -398,7 +530,10 @@
       padding-left: 402px;
   }
   .zmdi-eye{
-    right: 11rem;      
+    right: 7rem;      
+    }
+    #add_icon{
+       right: 7rem;  
     }
     .zmdi-eye-off{
      right: 11rem;      
@@ -406,13 +541,36 @@
    #arrow {
     padding-left: 740px;
 }
-  
+  /*.footer .container{
+    margin-left:-7rem!important;
+  }*/
 
 }
 
 
 
 @media screen and (max-device-width: 1024px){
+
+  /*registration form button css*/
+  .container-login100-form-btn{
+    margin: 0 -11px;
+    width: 90%;
+  }
+  .zmdi {
+    right: 7rem!important;
+  }
+  .headtext{
+    margin-right: 2rem;
+  }
+  .text-dark{
+  margin-right: 2rem;
+  }
+  .fail-alert{
+   margin-right: 3rem;
+  }
+ /* #terms-error{
+    margin-right:0!important;
+  }*/
   #prs_med_name{
     width: 50%;
     margin-bottom: 15px;
@@ -422,7 +580,7 @@
     margin-right: 106px;
 }
   .iconn{
-    top: 6.5rem;
+    top: 7.5rem;
     right: 5.5rem;
   }
   #addRow{
@@ -450,7 +608,10 @@
    .acceptbutton {
      margin-right: 90px;
    }
-
+   .login-img{
+    height: fit-content;
+    display: block;
+   }
 
      /* add prescription  END*/
      #imgfile {
@@ -465,6 +626,9 @@
      #arrow{
       padding-left: 470px;
     }
+
+    /*login start*/
+    
 }
 
 
@@ -478,7 +642,7 @@
      margin-right: 91px;
    }
   .iconn{
-    top: 6.5rem;
+    top: 7.5rem;
     right: 5.5rem;
   }
   #addRow{
@@ -509,7 +673,7 @@
      margin-right: 91px;
    }
   .iconn{
-    top: 6.5rem;
+    top: 7.5rem;
     right: 5.5rem;
   }
   #addRow{
@@ -561,7 +725,7 @@
      margin-right: 68px;
    }
    .iconn{
-    top: 6.5rem;
+    top: 7.5rem;
     right: 4rem;
   }
   .preform{
@@ -592,7 +756,7 @@
     margin-right: 76px;
   }
   .iconn{
-    top: 6.5rem;
+    top: 7.5rem;
     right: 2rem;
   }
   #addRow{
@@ -608,14 +772,14 @@
   #arrow{
     padding-left: 400px;
   }
-
+   
 }
 
 
 
 @media screen and (max-device-width: 768px){
   .iconn{
-    top: 6.5rem;
+    top: 7.5rem;
     right: 3rem;
   }
   .prs_quantity {
@@ -663,7 +827,7 @@
 }
 @media screen and (max-device-width: 414px){
    .iconn{
-      top: 6.5rem;
+      top: 7.5rem;
       right: 2rem;
     }
     .prs_quantity {
@@ -677,7 +841,8 @@
     margin-right: 41px;
   } 
   .preform{
-    margin-left: 50px;
+    margin-left: 0px;
+    font-size:10px;
   }  
     /* add prescription  END*/
     .bttttn {
@@ -694,7 +859,7 @@
    #arrow{
      padding-left: 226px;
    }
-
+  
 }
 
 
@@ -716,7 +881,7 @@
         margin-right: 42px;
       }
       .iconn{
-        top: 6.5rem;
+        top: 7.5rem;
         right: 2rem;
       }
       #addRow{
@@ -727,7 +892,7 @@
         margin-right: 41px;
       } 
       .preform{
-        margin-left: 40px;
+        margin-left: 0px;
       }  
       .cancelbutton{
         padding: 7px;
@@ -807,3 +972,34 @@
       }
 
     }
+
+@media screen and (min-device-width: 360px){
+
+ .avatar{
+    top: 0rem;
+ }
+ .card-title{
+    font-size:1rem;
+ }
+ .form-control{
+  padding: 0;
+
+ }
+ /*.sbmt{
+  width: 128px;
+ }*/
+/* #add_icon{
+  right:4rem;
+ }*/
+
+}
+
+
+/*mobile responsive css for LTR View*/
+@media (min-width: 375px) and (max-width:667px) {
+
+  #profile-user{
+        left: 16rem;
+        top: 1rem;
+  }
+}

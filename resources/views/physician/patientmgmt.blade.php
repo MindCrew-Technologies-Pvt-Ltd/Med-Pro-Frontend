@@ -100,7 +100,7 @@ hr.new1 {
 } */
 
 .ebtn{
-    background-color: #5e2dd8;
+    background-color: darkblue;//#5e2dd8
     width: 88px;
     height: 35px;
     border-radius: 10px;
@@ -283,9 +283,11 @@ hr.new1 {
                                          <div class="text-center" id="message">
                                                
                                              </div>
-                                        <div class="table-responsive">
-                                            <div class="search" style="padding-bottom: 50px;">
-                                            <input class="form-control"  style="width:100%;"type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
+                                        <div class="table-responsive"style="padding-bottom: 50px;">
+                                        <div class="search" >
+                                            <input class="form-control"  style="width:40%;float:left;"type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
+                                            <input class="form-control"  style="width:40%;float:right;"type="text" id="myInput1" onkeyup="myFunction1()" placeholder="{{__('patientmgmt.searchq')}}">
+                                        </div>
                                             </div>
 
                                             <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
@@ -296,6 +298,7 @@ hr.new1 {
                                                         <th class="wd-15p">{{__('patientmgmt.lname')}}</th>
                                                         <th class="wd-20p">{{__('patientmgmt.email')}}</th>
                                                         <th class="wd-15p">{{__('patientmgmt.ins_no')}}</th>
+                                                        <th class="wd-15p">{{__('patientmgmt.qid_no')}}</th>
                                                         <th class="wd-10p">{{__('patientmgmt.action')}}</th>
                                                         
                                                     </tr>
@@ -321,6 +324,13 @@ hr.new1 {
                                     <label  class="form-label">{{__('patientmgmt.email1')}}</label>
                                     <input type="email" class="form-control" id="femail" value="" disabled>
                                     </div>
+
+                                     <div class="form-group">
+                                    <label  class="form-label">{{__('patientmgmt.qid_no')}}</label>
+                                    <input type="text" class="form-control" id="qidno" value="" disabled>
+                                    </div>
+
+                                    <div id="hasins">
                                      <div class="form-group">
                                     <label  class="form-label">{{__('patientmgmt.ins_no1')}}</label>
                                     <input type="text" class="form-control" id="ins_no" value="" disabled>
@@ -332,7 +342,7 @@ hr.new1 {
                                        </a>
                                     <!-- <input type="email" class="form-control" id="femail" value=""> -->
                                     </div>
-                                
+                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary ok" data-dismiss="modal">{{__('patientmgmt.ok')}}</button>
@@ -411,9 +421,10 @@ hr.new1 {
         
 
          res.data.map((e,i) => {
-           
+           // str1='<td> '+e.psnt_insrnce_num+'</td><td> '+e.psnt_qid_num+'</td>';
+           // str2=""
             i++;
-              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td><button  id="'+e._id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">{{__('patientmgmt.view')}}</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('patientmgmt.delete')}}</button></td></tr>');         
+              $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td> '+e.psnt_qid_num+'</td><td><button  id="'+e._id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">{{__('patientmgmt.view')}}</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('patientmgmt.delete')}}</button></td></tr>');         
               $("#myTable").append('<div class="modal fade" id="exampleModalCenter'+e._id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><h4>{{__('patientmgmt.ays')}}</h4></div><div class="modal-footer"><button type="button" class="btn btn-danger sbmt" data-dismiss="modal">{{__('patientmgmt.can')}}</button><button id="'+e._id+'" onclick="deletedata(this)" class="btn text-white sbmt mdbtn">{{__('patientmgmt.yes')}}</button></div></div></div></div>');         
     });
      
@@ -492,6 +503,12 @@ hr.new1 {
               $("#fullname").val(res.data.psnt_first_name+' '+res.data.psnt_last_name) ;   
             $('#femail').val(res.data.psnt_email);
             $('#ins_no').val(res.data.psnt_insrnce_num);
+            $('#qidno').val(res.data.psnt_qid_num)
+            if(res.data.psnt_hasins==1){
+                $('#hasins').show()
+            }else{
+                  $('#hasins').hide()
+            }
             if(ext == "pdf"){
                  $('#ins_img').attr('src',"https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png");
                 
@@ -521,8 +538,8 @@ hr.new1 {
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
+    
     td = tr[i].getElementsByTagName("td")[1];
-
     if (td) {
       txtValue = td.textContent || td.innerText;
       // alert(txtValue)
@@ -532,6 +549,44 @@ hr.new1 {
         tr[i].style.display = "none";
       }
     }
+
+   
+
+
+
+
+  }
+}
+
+function myFunction1() {
+
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput1");
+  filter = input.value.toUpperCase();
+  // alert(filter)
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    
+    td = tr[i].getElementsByTagName("td")[5];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      // alert(txtValue)
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+
+   
+
+
+
+
   }
 }
 </script>

@@ -412,7 +412,7 @@ hr.new1 {
     var base_path = "http://3.220.132.29/medpro/";
       var api_url="http://3.220.132.29:3000/api/";
          $('#approve').submit(function(e){
-
+            e.preventDefault();
         let pham_id =$('#pham_id').val();
                 $.ajax({
               url: api_url+"phamapprove",
