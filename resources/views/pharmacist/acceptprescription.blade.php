@@ -344,7 +344,7 @@
     },
 
   }).done(function(res) {
-    // console.log("respons", res);
+     console.log("respons", res);
     //   console.log("respons,data",res.data);
     quot_insurance_type =res.data.insurance_type;
     // console.log(quot_insurance_type)

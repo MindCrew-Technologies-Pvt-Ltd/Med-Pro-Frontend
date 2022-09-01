@@ -6,7 +6,8 @@ $(document).ready(function(){
 var locale=url.substr(url.lastIndexOf('/') +1);
 
 var api_url="http://3.220.132.29:3000/api/";
-var base_path = "http://3.220.132.29/medpro/"; 
+ var base_path = "http://3.220.132.29/medpro/"; 
+// var base_path = "http://localhost:8000/"
 
 
 // jquery validation for English
@@ -223,7 +224,9 @@ function TrimText(el) {
       // return false;
 	      if(res.status == true){
 	      	$('#message').html(res.message).addClass('alert alert-success');
-	      	window.location.href =base_path+"login";
+	      	// window.location.href =base_path+"login";
+          window.location.href = base_path+"login"
+
 	      }else{
 	         $('#message').html(res.message).addClass('alert alert-danger');
 	      }

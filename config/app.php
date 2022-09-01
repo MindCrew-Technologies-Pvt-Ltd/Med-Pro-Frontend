@@ -52,9 +52,9 @@ return [
     |
     */
 
-    //  'url' => env('APP_URL', 'http://3.220.132.29/medpro/'),
+     'url' => env('APP_URL', 'http://3.220.132.29/medpro/'),
 
-    'url'=> env('APP_URL','http://localhost:8000/'),
+    // 'url'=> env('APP_URL','http://localhost:8000/'),
    
     'asset_url' => env('ASSET_URL', null),
 
