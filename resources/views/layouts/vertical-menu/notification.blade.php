@@ -18,7 +18,8 @@ color: #495057!important;
   position: relative!important;
     /*left: -96rem!important;*/
     height: 30px;
-    width: 98px;
+    /*width: 98px;*/
+    width: 200px;
  } 
 .us1{
 		   	   /* margin-left: -56px;*/
@@ -33,6 +34,55 @@ color: #495057!important;
     width: 3rem!important;
     height:3rem!important;
   }
+
+  .myclass{
+  	width:117px;
+  }
+/*@media screen and (min-width: 0px) and (max-width: 1150px){*/
+
+/*}*/
+
+
+@media screen and (min-width: 0px) and (max-width: 780px){
+/*.d-md-flex{
+	background: red;
+	width: 500px;
+}*/
+
+
+
+/*	#flag{
+
+/*width: 40%;*/
+/*display: flex;*/
+
+/*flex-direction: row;*/
+
+
+	/*}*/
+}
+
+button{
+	border: transparent;
+	background-color: transparent;
+}
+
+.btn-success, .btn-success:hover, .btn-success:active
+{
+				background-color: transparent !important;
+				border: none !important;
+				min-width: 1rem;
+               text-align: right;
+			}
+
+.btn-success:focus,.btn-success
+               {
+				box-shadow: none !important;
+			    }
+			    .dropdown-toggle:after{
+			    	display: none;
+			    }
+
 </style>
 <div class="d-flex  ml-auto header-right-icons header-search-icon">
 	<div class="dropdown d-sm-flex">
@@ -52,9 +102,7 @@ color: #495057!important;
 	</div>
 	
 	<!-- SEARCH -->
-
-
-	<!-- <div class="dropdown d-md-flex" id="flag">
+<!-- div class="dropdown d-md-flex" id="flag">
 		<div class="us1">
                	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
                 <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
@@ -152,6 +200,43 @@ color: #495057!important;
 			<a href="#" class="dropdown-item text-center">See all Messages</a>
 		</div> -->
 	</div> <!-- MESSAGE-BOX -->
+
+<!-- ----------------------------------------------- -->
+<!-- new code -->
+
+<div class="dropdown" style="display:flex">
+	<button class="btn btn-success
+					dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">
+				<?php if($locale =="en"){ ?>
+				<img src="http://3.220.132.29/medpro/assets/images/flags/us.svg" width="50"
+				height="20" class="mainImage">
+				<?php } else if ($locale == 'ar') { ?>
+				<img src="http://3.220.132.29/medpro/assets/images/flags/ar.svg" width="50"
+				height="20" class="ArabicData">
+				<?php }else{ ?>
+				<img src="http://3.220.132.29/medpro/assets/images/flags/us.svg" width="50"
+				height="20" class="mainImage">
+				<?php } ?>
+				 </button>
+
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+				 
+				<li class="dropdown-item" id="english" name="english" onclick="demo()">
+					<button>
+					<img src="http://3.220.132.29/medpro/assets/images/flags/us.svg" width="20"
+						height="15">English
+                   </button>
+				</li>
+				<li class="dropdown-item"  id="arabic" name="arabic" onclick="demo1()">
+				<button>
+					<img src="http://3.220.132.29/medpro/assets/images/flags/ar.svg" 
+					width="20" height="15" 
+					> Arabic
+					</button>
+				</li>
+			</ul>
+
 	<div class="dropdown profile-1">
 		<a href="#" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex">
 			<span>
@@ -188,21 +273,31 @@ color: #495057!important;
 				<i class="dropdown-icon mdi  mdi-logout-variant"></i>{{__('sidebar.signout')}}
 			</a>
 		</div>
+</div>
 	</div>
-	<div class="dropdown d-md-flex" id="flag">
+
+<!-- ---------------------------------------------------------------------------- -->
+<!-- old code -->
+	<!-- <div class="dropdown d-md-flex" id="flag">
 		<div class="us1">
               	<?php if($locale =="en"){ ?>
+	               	 <img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;"> 
 	               	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+	               <?php } elseif ($locale == '') { ?>
+	               	 	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
 	               <?php }else{ ?>
 	                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
 	            <?php } ?>
-              </div>
-		<select class="form-control" onchange="selectlang(this)">
+              </div> 
+		<select class="form-control myclass" onchange="selectlang(this)">
 			<option>Language</option>
 			<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">English (EN)</option>
 			<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">Arabic (AR)</option>
 		</select>
-	</div>
+	</div> -->
+
+	<!-- --------------------------------------------------------------------------- -->
+
 	<div class="dropdown d-md-flex header-settings">
 		<!-- <a href="#" class="nav-link icon " data-toggle="sidebar-right" data-target=".sidebar-right">
 			<i class="fe fe-align-right"></i>
@@ -269,11 +364,17 @@ mydiv.appendChild(aTag);
     },
 
   }).done(function(res) {
-    console.log('response',res)
-   
-           if(res.status==true){
+	let resarr=res.data.phy_img.split("/");
+    let image=resarr[resarr.length-1];
+
+            if(res.status==true && image!=""){
               $('#profile-user').attr('src',res.data.phy_img);  
-            }
+            } 
+			else  {
+			  $('#profile-user').attr('src',"http://3.220.132.29/medpro/assets/images/pngs/doc_image.png" );    
+
+			}
+          
             // else{
             //   $('#profile-user').attr('src',"https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" );    
             // }
@@ -313,8 +414,66 @@ function selectlang($this){
 					// window.location.href=window.location.href;
 				}
    }
-
-	
 }
+
+
+
+ function demo()
+    {
+ 	let x = document.getElementById("english").getAttribute('name');
+ 	let path = window.location.href;
+    let uri=path.split('/');
+   
+if(x == "english")
+    {
+    	if(uri[5] == "ar")
+    	{
+    		let ab = uri.pop();
+    		console.log(ab);
+    		console.log(uri,"ldsfk")
+    		console.log("Inside if condition",path)
+    		uri[5]='en';
+    		let newPath = uri[0]+"/"+"/"+uri[1]+uri[2]+"/"+uri[3]+"/"+uri[4]+"/"+uri[5]
+            window.location.href = newPath;
+    	}
+
+    if(uri[5] == undefined)
+    {
+        uri[5]="en";
+    	let newPath = uri[0]+"/"+"/"+uri[1]+uri[2]+"/"+uri[3]+"/"+uri[4]+"/"+uri[5];
+        window.location.href = newPath;
+    }
+ }
+ }
+
+
+ function demo1()
+ {
+ 	let y = document.getElementById("arabic").getAttribute('name');
+    let path = window.location.href;
+    let uri=path.split('/');
+ 	console.log(uri[0],uri[1],uri[2],uri[3],uri[4],uri[5],"demo1")
+    
+    if(y == "arabic")
+    {
+    	
+    if(uri[5] == "en")
+     {
+     	let ab = uri.pop();
+    	uri[5]='ar';
+    	let newPath = uri[0]+"/"+"/"+uri[1]+uri[2]+"/"+uri[3]+"/"+uri[4]+"/"+uri[5]
+        window.location.href = newPath;
+    }
+
+    if(uri[5] == undefined)
+    {
+    	console.log("abvc")
+    	uri[5]='ar';
+    	let newPath = uri[0]+"/"+"/"+uri[1]+uri[2]+"/"+uri[3]+"/"+uri[4]+"/"+uri[5]
+        window.location.href = newPath;
+     }
+    }
+ 
+ }
 
 	</script>

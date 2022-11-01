@@ -12,15 +12,20 @@
 
     *{
        font-family: 'Poppins', sans-serif;
-       text-transform: capitalize;
+       /*text-transform: capitalize;*/
 
-   }
-       card-header:first-child {
+      }
+
+
+
+card-header:first-child
+{
            border-radius: 2px 2px 0 0;
            margin-top: -13px;
            width: 1050px;
            font-size: 21px;
-         }
+}
+
 .form-control:disabled, .form-control[readonly] {
     width: 100%;
     background-color: #F1F1F9;
@@ -57,7 +62,9 @@ hr.new1 {
     padding: 1.5rem;
     margin: 0;
     position: relative;
-    width: 1150px;
+    /*width: 1150px;*/
+    /*width: 1165px;*/
+    width: 100%;
     margin-left: 14px;
 }
 .form-label{
@@ -129,14 +136,102 @@ hr.new1 {
     text-transform: initial;
 }
 
-@media only screen and (max-width: 1440px){
+
+/*@media only screen and (max-width: 280px)
+{
+    .page-header
+    {
+        display: flex !important;
+    }
+
+    .viewp
+    {
+   position: absolute !important;
+    margin-left: -42px !important;
+    padding: 26px !important;
+    }
+    
+    .dashboard{
+        width: 60px !important;
+    }
+
+    #profile-user{
+        margin-top: 19px !important;
+        width: 5vw !important ;
+        height: 6vw !important;
+        /*height: 39px !important;*/
+    }
+/*}*/
+
+
+
+/*@media only screen and (max-width: 376px)
+{
+    /*h1{
+        font-size: 13px;
+      }*/
+
+    /*.page-header{
+        display: flex;
+    }*/
+
+ /* .profile-1{
+     margin-left: -25px;
+}
+}*/
+
+
+
+
+/*@media only screen and (max-width: 400px)
+{
+.dropdown{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dashboard
+{
+        bottom: 39px;
+        position: absolute;
+}
+
+}
+*/
+
+
+/*@media only screen and (max-width: 375px)
+{
+.profile-1{
+margin-left: -25px !important;
+}
+}*/
+
+
+
+/*@media only screen and (max-width: 414px)
+{
+
+.dashboard{
+            font-size: 13px;
+            width: 160px;
+        }
+}
+*/
+
+
+
+
+
+/*@media only screen and (max-width: 1440px){
        .page-header{
             width: 95%;
        }
+   }
+*/
 
-}
 
-@media only screen and (max-width: 1280px){
+/*@media only screen and (max-width: 1280px){
           .card-body{
            width: auto;
          }
@@ -144,8 +239,10 @@ hr.new1 {
              width: 100%;
              margin-left: 20px;
          }
-}
-@media only screen and (max-width: 1080px){
+}*/
+
+
+/*@media only screen and (max-width: 1080px){
 
        .card-body {
            width: auto;
@@ -154,67 +251,154 @@ hr.new1 {
        .card-header {
             margin-left: 10px;
         }
-}
+}*/
 
-@media only screen and (max-width: 820px) {
+/*@media only screen and (max-width: 820px) {
     
     .card-body {
     width: 100%;
      }
-}
+}*/
 
-    @media only screen and (max-width: 480px) {
-        .dashboard{
+
+/*@media only screen and (max-width: 772px)
+{
+    h1
+    {
+        width:250px;
+    }
+}*/
+
+
+
+
+/*@media only screen and (max-width: 480px) {*/
+      /*  .dashboard{
             font-size: 20px;
         }
         .viewp{
             font-size: 17px;
             padding-right: 80px;
-        }
+        }*/
         /* .bttttn{
             padding-bottom: 5px;
          width: 70px;
          height: 30px;
 
         } */
-        .ebtn{
+        /*.ebtn{*/
            /* width: 50px;
             padding-left: 8px;*/
             width: 88px;
-        height: 35px;
+        /*height: 35px;
         border-radius: 10px;
         color: white;
         margin-right: 10px;
-        }
-        .dbtn{
+        }*/
+        /*.dbtn{*/
             /*width: 50px;
             padding-left: 3px;*/
 
-        height: 35px;
+       /* height: 35px;
         border-radius: 10px;
         color: white;
         margin-right: 10px;
-        }
-        .card-body {
+        }*/
+       /* .card-body {
            flex: 1 1 auto;
            padding: 1.5rem;
            position: relative;
            width: 100%;
            margin-left: 11px;
            margin: 0;
-        }
+        }*/
         /*.page-header {
               width:310px;
             }*/
+/*}*/
 
 
 
-}
-@media screen and (min-device-width: 360px){
+
+
+
+
+
+
+
+
+
+/*@media screen and (min-device-width: 360px) 
+{
  .sbmt{
   width: 128px;
  }
 }
+
+
+@media screen and (max-device: 314px)
+{
+    img{
+        width: 108% !important;
+        height: 108% !important;
+    }
+
+    .page-header
+    {
+    width: 315px;
+    height: 87px;
+    }
+
+    .dropdown{
+    display: flex;
+    margin-left: 130px;
+    margin-top: -11px;
+    }
+
+    
+.dashboard .page-title
+    {
+    font-size: 15px;
+    width: 20%;
+    }
+
+}*/
+
+
+/*@media only screen and (max-width: 280px)
+{
+    .pageheader{
+     height: 70px !important;
+    }
+
+    .dashboard .page-title
+    {
+    font-size: 14px !important;
+    padding-right: 64px !important;
+    margin-left: -10px !important;
+    }
+
+    .table-responsive{
+        margin-top: -5px !important;
+    }
+
+    .dropdown{
+    display: flex !important;
+    margin-left: 90px !important;
+    margin-bottom: -15px !important;
+    margin-top: -30px !important;
+    }
+
+    #profile-user
+    {
+    width: 50px !important;
+    height: 46px !important;
+    margin-top: 19px !important;
+    }
+}*/
+
+/*@media only screen and (max-width: 1440px){*/
+
 </style>
 @endsection
 @section('page-header')
@@ -287,7 +471,7 @@ hr.new1 {
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                            <form id="approve">
+                            <form id="approve" method="post">
                                 @csrf
                                 <div class="modal-body">
                                 
@@ -394,31 +578,29 @@ hr.new1 {
     var base_path = "http://3.220.132.29/medpro/";
       var api_url="http://3.220.132.29:3000/api/";
          $('#approve').submit(function(e){
-            e.preventDefault();
+
         let physician_id =$('#physician_id').val();
-        // alert(physician_id)
                 $.ajax({
               url: api_url+"phyapprove",
               type: "POST",
-              dataType: 'json', 
+                dataType: 'json', 
               data:{
                 physician_id:physician_id,
               }
             }).done(function (res) {
-              //   alert(res)
               // console.log(res);
               // return false;
-
                 if(res.status == true){
                   
                   $('#message').html(res.message).addClass('alert alert-success');
                   window.location.href= base_path + "admin_physician_mgmt";
-                               }else{
+                  
+                }else{
                    $('#message').html(res.message).addClass('alert alert-danger');
                 }
             });
                });
-    });
+    })
    
      function deletedata($this){
       var base_path = "http://3.220.132.29/medpro/";
@@ -455,7 +637,6 @@ hr.new1 {
    function editdata($this){
     var api_url="http://3.220.132.29:3000/api/";
     var id=$this.id;
-    // alert(id)
     $.ajax({
       url: api_url+"phyViewProfile",
       type: "post",

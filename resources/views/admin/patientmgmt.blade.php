@@ -12,9 +12,10 @@
 
     *{
        font-family: 'Poppins', sans-serif;
-       text-transform: capitalize;
+       /*text-transform: capitalize;*/
+};
 
-   }
+
        card-header:first-child {
            border-radius: 2px 2px 0 0;
            margin-top: -13px;
@@ -57,7 +58,8 @@ hr.new1 {
     padding: 1.5rem;
     margin: 0;
     position: relative;
-    width: 1150px;
+    /*width: 1150px;*/
+    width: 1160px;
     margin-left: 14px;
 }
 .form-label{
@@ -75,7 +77,7 @@ hr.new1 {
     width: 120px;
     height: 35px;
     color: white;
-    background-color: #7ec1ec;
+    background-color:#7ec1ec;
     border: none;
     border-radius: 10px;
     text-align: center;
@@ -231,7 +233,7 @@ hr.new1 {
                         <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-		    <div class="row">
+            <div class="row">
                           
                             <div class="col-md-12 col-lg-12">
                                 <div class="card">
@@ -263,7 +265,7 @@ hr.new1 {
                                             <input class="form-control"  style="width:100%;"type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
                                             </div>
 
-                                            <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
+                                         <!--   <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                                 <thead>
                                                     <tr>
                                                         <th class="wd-15p">{{__('patientmgmt.sno')}}</th>
@@ -276,7 +278,7 @@ hr.new1 {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                  <!-- MODAL -->
+                                                   MODAL 
                     <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -303,25 +305,83 @@ hr.new1 {
                                      <div class="form-group">
                                     <label  class="form-label">{{__('patientmgmt.ins_img')}}</label>
                                     <a href="" id="image_link">
-                                    <img src="" alt="insurace_image" id='ins_img' style="height:200px;width:200px;">
+                                    <img src="" alt="insurance_image" id='ins_img' style="height:200px;width:200px;">
                                        </a>
-                                    <!-- <input type="email" class="form-control" id="femail" value=""> -->
+                                   
+                                     <input type="email" class="form-control" id="femail" value=""> 
                                     </div>
                                 
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary ok" data-dismiss="modal">{{__('patientmgmt.ok')}}</button>
-                                   <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
+                                     <button type="button" class="btn btn-primary">Save changes</button> 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- MODAL CLOSED -->
+                    MODAL CLOSED 
                                 
                                                     
                                                    
                                                 </tbody>
-                                            </table>
+                                            </table> -->
+
+<table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm " cellspacing="0"
+  width="100%">
+  <thead>
+    <tr>
+    <th class="wd-15p">{{__('patientmgmt.sno')}}</th>
+    <th class="wd-15p">{{__('patientmgmt.fname')}}</th>
+    <th class="wd-15p">{{__('patientmgmt.lname')}}</th>
+    <th class="wd-20p">{{__('patientmgmt.email')}}</th>
+    <th class="wd-15p">{{__('patientmgmt.ins_no')}}</th>
+    <th class="wd-10p">{{__('patientmgmt.action')}}</th>
+</tr>
+  </thead>
+  <tbody>
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{__('patientmgmt.pat_profile')}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                    <div class="form-group">
+                                    <label class="form-label">{{__('patientmgmt.fullname')}}</label>
+                                    <input type="text" class="form-control" id="fullname" value="" disabled>
+                                    </div>
+                                     <div class="form-group">
+                                    <label  class="form-label">{{__('patientmgmt.email1')}}</label>
+                                    <input type="email" class="form-control" id="femail" value="" disabled>
+                                    </div>
+                                     <div class="form-group">
+                                    <label  class="form-label">{{__('patientmgmt.ins_no1')}}</label>
+                                    <input type="text" class="form-control" id="ins_no" value="" disabled>
+                                    </div>
+                                     <div class="form-group">
+                                    <label  class="form-label">{{__('patientmgmt.ins_img')}}</label>
+                                    <a href="" id="image_link">
+                                    <img src="" alt="insurance_image" id='ins_img' style="height:200px;width:200px;">
+                                       </a>
+                                   
+                                     <input type="email" class="form-control" id="femail" value=""> 
+                                    </div>
+                                
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary ok" data-dismiss="modal">{{__('patientmgmt.ok')}}</button>
+                                     <button type="button" class="btn btn-primary">Save changes</button> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MODAL CLOSED  -->
+                </tbody>
+</table>
                                         </div>
                                     </div>
                                     <!-- TABLE WRAPPER -->
@@ -329,7 +389,7 @@ hr.new1 {
                                 <!-- SECTION WRAPPER -->
                             </div>
                         </div>
-                        <!-- ROW-1 CLOSED -->	
+                        <!-- ROW-1 CLOSED -->   
                         
 
 <!-- Modal -->
@@ -365,12 +425,19 @@ hr.new1 {
         patientList.push(res.data);
        console.log(res.data.length);
        //  for(var i = 0; i < res.data.length; i++) {
-	      // patientList.push(res.data);
+          // patientList.push(res.data);
        //  }
     console.log(patientList);
     localStorage.setItem('patientList',JSON.stringify(patientList));
 
-        
+    res.data.sort(function(a, b){
+    var keyA = new Date(a.createdAt),
+        keyB = new Date(b.createdAt);
+    // Compare the 2 dates
+    if(keyA > keyB) return -1;
+    if(keyA < keyB) return 1;
+    return 0;
+});
 
          res.data.map((e,i) => {
            

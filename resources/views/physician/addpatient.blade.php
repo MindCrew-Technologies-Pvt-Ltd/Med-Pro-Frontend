@@ -5,8 +5,27 @@
 
 
 
+
   <style type="text/css">
       
+/*input[type=text]{
+    text-transform:capitalize;
+}*/
+
+
+
+.login100-form.validate-form{
+width: 80%;
+}
+
+.error .fail-alert{
+    text-align:right;
+}
+
+#psnt_first_name,#psnt_last_name{
+    text-transform: capitalize;
+}
+
       /*.file-name{
         display: none;
       }*/
@@ -16,12 +35,17 @@
         left: 15rem;
         top: 1rem;
   }*/
+
+
+
 #psnt_first_name{
     width: 100%;
-  }
+    
+}
   #psnt_last_name{
     width: 100%;
-  }
+     
+}
   
   #psnt_email{
     width: 100%;
@@ -34,6 +58,7 @@
   }
   #psnt_address{
     width: 100%;
+     /*text-transform: capitalize;*/
   }
   #psnt_insrnce_num{
     width: 100%;
@@ -68,19 +93,15 @@
  <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB9stNP2UYOkJCJkR2CfnabPiNP6g08UH8"></script>
   <!-- //AIzaSyB-y0dbXb_sEdeGTzo1ahCkXPAS_KGg19E -->
 
-{{-- </script> --}}
-  <script>
 
-   var searchInput = 'psnt_address';
+<script>
+
+var searchInput = 'psnt_address';
 
 $(document).ready(function () {
 
-
-
-
-jQuery.validator.addMethod('validUserName', function (value) 
+jQuery.validator.addMethod('validUserNameAddPat', function (value) 
 {
-  alert("hello")
   let data=window.location.href;
   let valarr=data.split("/");
   let lastval=valarr[valarr.length-1];
@@ -110,7 +131,7 @@ jQuery.validator.addMethod('validUserName', function (value)
                   return false;
                 }
         }
-},'Please Enter a Valid Name from add patient | الرجاء إدخال اسم صحيح')
+},'Please Enter a Valid Name  | الرجاء إدخال اسم صحيح')
 
     var map;  
     var marker; 
@@ -173,12 +194,8 @@ infowindow.open(map, marker);
 });
     });
 
-    
 
-   
-
-       
-});
+// });
 $(document).on('change', '#'+searchInput, function () {
     document.getElementById('psnt_lat').innerHTML = '';
     document.getElementById('psnt_long').innerHTML = '';
@@ -275,7 +292,7 @@ function resizingMap() {
    map.setCenter(center); 
 }
 
-
+})
   </script>
 
 
@@ -323,7 +340,7 @@ function resizingMap() {
                                     <div class="card-body">
                                        <form class="login100-form validate-form" enctype="multipart/form-data"  id="pat_signup" method="post">
                                             @csrf
-                                                                                                       
+                                                                                                 
                                              <div class="text-center" id="message">
                                                
                                              </div>
@@ -352,14 +369,16 @@ function resizingMap() {
                                              <div class="form-group" style="position:relative">
                                                         <label class="form-label"></label>
                                                 <input class="form-control" type="password" name="psnt_password" id="psnt_password" placeholder="*{{__('addpatient.pass')}}" autocomplete="off">
-                                                <i class="zmdi zmdi1 zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
+                                                <!-- <i class="zmdi zmdi1 zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i> -->
+                                                 <i class="zmdi eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
 
                                                 
                                               </div>
                                                 <div class="form-group"  style="position:relative">
                                                             <label class="form-label"></label>
                                                 <input class="form-control" type="password" name="psnt_confpassword" id="psnt_confpassword" placeholder="*{{__('addpatient.confpass')}}" autocomplete="off">
-                                                <i class="zmdi zmdi1 zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()" ></i>
+                                              <!--   <i class="zmdi zmdi1 zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()" ></i> -->
+                                                <i class="zmdi eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty2()" ></i>
 
                                                 </div>
 
@@ -382,13 +401,13 @@ function resizingMap() {
                                                   
                                                 
                                                 <textarea class="form-control" name="psnt_address" id="psnt_address" placeholder="*{{__('addpatient.pat_address')}}" autocomplete="off"></textarea>
-                                               <i  id="add_icon"  class="fa fa-map-marker" style="" data-toggle="modal" data-target="#largeModal"></i>
+                                               <i  id="add_icon"  class="fa fa-map-marker" data-toggle="modal" data-target="#largeModal"></i>
                                                 </div>
 
                                                  
                                                 <div class="form-group">
                                                     <label class="form-label"></label>
-                                                      <input class="form-control" type="text" name="psnt_qid_num" id="psnt_qid_no" placeholder="*{{__('addpatient.qidno')}}" autocomplete="off">
+                                                      <input class="form-control" type="text" name="psnt_qid_num" id="psnt_qid_no" maxlength="11" minlength="11" placeholder="*{{__('addpatient.qidno')}}" autocomplete="off">
                                                 </div>
 
                                                 <div class="form-group">
@@ -399,19 +418,21 @@ function resizingMap() {
                                                       <option value="0">No</option>
                                                       </select>
                                                 </div>
+                                               
                                                 <div id="ins_val">
                                                 <div class="form-group">
                                                     <label class="form-label"></label>
                                                       <input class="form-control" type="text" name="psnt_insrnce_num" id="psnt_insrnce_num" placeholder="{{__('addpatient.pat_ins')}}" autocomplete="off">
                                                 </div>
                                                  <div class="file-input">
-                                                      <input type="file" id="file" class="file" name="file">
-                                                      <label for="file">{{__('addpatient.upload')}} <img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt=""></label>
+                                                      <input type="file" id="file" class="file"  name="file">
+                                                      <label for="file" class="patFile">{{__('addpatient.upload')}} <img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt=""></label>
                                                       <p class="file-name"></p>
                                                 </div>
                                                   </div> 
                                                  
 
+                                                   
 
                                                 <div class="form-group btndiv">
                                                  <a href="{{ url('patient_management') }}"  class="btn btn-danger btn-lg sbmt " data-dismiss="modal">
@@ -435,7 +456,7 @@ function resizingMap() {
             </div>
                       
                         <!-- ROW-1 CLOSED -->   
-		<!-- LARGE MODAL -->
+    <!-- LARGE MODAL -->
 <div id="largeModal" class="modal fade">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
@@ -458,7 +479,7 @@ function resizingMap() {
     </div><!-- MODAL DIALOG -->
 </div>
 <!-- LARGE MODAL CLOSED -->   
-	
+  
 @endsection
 @section('js')
 <script src="{{ URL::asset('assets/plugins/chart/Chart.bundle.js') }}"></script>
@@ -479,7 +500,7 @@ function getqid($this){
 </script>
 <script>
 function toggleVisibiltypass(){
-	// alert('clicked1');
+  // alert('clicked1');
 let togglePassword3 = document.querySelector("#togglePassword3");
         let password = document.querySelector("#psnt_password");
    
@@ -496,18 +517,21 @@ const file = document.querySelector('#file');
 file.addEventListener('change', (e) => {
   // Get the selected file
   const [file] = e.target.files;
+  console.log([file])
   // Get the file name and size
   const { name: fileName, size } = file;
+  console.log(name,size,"data")
   // Convert size in bytes to kilo bytes
   const fileSize = (size / 1000).toFixed(2);
   // Set the text content
   const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+  console.log(fileNameAndSize)
   document.querySelector('.file-name').textContent = fileNameAndSize;
 });
 </script>
 <script>
 function toggleVisibilty2(){
-	// alert('clicked2');
+  // alert('clicked2');
 let togglePassword2 = document.querySelector("#togglePassword2");
 let confpassword = document.querySelector("#psnt_confpassword");
   let type = confpassword.getAttribute("type") === "password" ? "text" : "password";
@@ -522,12 +546,25 @@ let confpassword = document.querySelector("#psnt_confpassword");
 </script>
 
 <script>
-    var base_path="http://3.220.132.29/medpro/"
-    var api_url="http://3.220.132.29:3000/api/";
 
 
-    
-    $("#pat_signup").validate({
+$(document).ready(function()
+{
+var base_path="http://3.220.132.29/medpro/"
+var api_url="http://3.220.132.29:3000/api/";
+
+ jQuery.validator.addMethod('validEmails',function(value)
+ {
+   var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (!regex.test(value))
+         {
+          return false;
+        }
+        return true;
+}, 'Please enter valid email address addpatient |  الرجاء إدخال عنوان بريد إلكتروني صالح.')
+
+
+$("#pat_signup").validate({
       errorElement: "span",
     // $('.eye1 i').css({'display':'none'});       
     errorClass: "error fail-alert",
@@ -536,13 +573,13 @@ let confpassword = document.querySelector("#psnt_confpassword");
         psnt_first_name: {
         required: true,
         //  lettersonly: true,
-          validUserName:true,
+         validUserNameAddPat:true,
         // minlength: 3
       },
       psnt_last_name: {
         required: true,
-        lettersonly: true,
-        validUserName:true
+        // lettersonly: true,
+        validUserNameAddPat:true
         // minlength: 3
       },
       psnt_address: {
@@ -552,20 +589,25 @@ let confpassword = document.querySelector("#psnt_confpassword");
       },
       psnt_email: {
          required: true,
-        email: true
+         validEmails:true,
+         // // customemail:true,
+         //  // emailid:true,
+        // email: true
       },
       psnt_qid_num:{
-        required:true,
-        minlength:11,
-        maxlength:11
+         required:true,
+          minlength:11,
+          number:true,
+        // maxlength:11,
+        // validQidNumber:true,
       },
       psnt_insrnce_num:{
         required:true,
         minlength:8
       },
-    //  file:{
-    //   required:true,
-    //  },
+     file:{
+      required:true,
+     },
      psnt_password: {
       required:true,
       minlength:8
@@ -575,9 +617,15 @@ let confpassword = document.querySelector("#psnt_confpassword");
         minlength: 8,
         equalTo: "#psnt_password",
       },
-    
+    psnt_hasins:{
+        required:true,
+    }
+
+     
     },
-    messages : {
+
+
+messages : {
         psnt_first_name: {
          required: "First Name field is Required | حقل الاسم الأول مطلوب",
         //  lettersonly:"Only Alphabetical Characters are allowed | يسمح فقط باستخدام الأحرف الأبجدية",
@@ -593,21 +641,24 @@ let confpassword = document.querySelector("#psnt_confpassword");
         // minlength: "Last Name should be at least 3 characters"
       },
       psnt_email: {
-        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
-        email: "The email should be in the format: abc@domain.tld | يجب أن يكون البريد الإلكتروني بالتنسيق: abc@domain.tld"
+         required: "Email field is Required | حقل البريد الإلكتروني مطلوب", 
+         // email: "The email should be in the format: abc@domain.tld xyz.....| يجب أن يكون البريد الإلكتروني بالتنسيق: abc@domain.tld"
       },
       psnt_qid_num:{
-        required:"QID is Required |الرقم الشخصي مطلوب",
+        required:"QID is Required |الرقم الشخصي مطلوب",,
+        number:"QID accept only number",
         minlength:"QID should be of 11 characters | يجب أن يتكون QID من 11 حرفًا",
-        maxlength: "QID should be of 11 characters | يجب أن يتكون QID من 11 حرفًا"
+
+       
+        // maxlength: "QID should be of 11 characters | يجب أن يتكون QID من 11 حرفًا"
       },
       psnt_insrnce_num:{
         required:"Insurance Number is Required |رقم التأمين مطلوب ",
         minlength: "Insurance Number should be at least 8 characters | يجب ألا يقل رقم التأمين عن 8 أحرف"
       },
-    //   file:{
-    //     required:"Insurance document is Required",
-    //  },
+      file:{
+        required:"Insurance Image field is Required |  حقل صورة التأمين مطلوب"
+     },
      psnt_password: {
       required:"Password field is Required | حقل كلمة المرور مطلوب",
       minlength:"Password should be of atleast 8 characters | يجب أن تتكون كلمة المرور من 8 أحرف على الأقل"
@@ -617,96 +668,304 @@ let confpassword = document.querySelector("#psnt_confpassword");
         minlength: "Password and Confirm password should be same |يجب أن تكون كلمة المرور وتأكيد كلمة المرور متطابقتين",
         // equalTo: "Password and Confirm password should be same"
       },
-     
+     psnt_hasins:{
+        required:"Please choose your insurance"
+     }
+
+      // image:{
+      //   required:"Insurance Image field is Required"
+      // }
     }
-  });
+});
+
 
 $('#file').on('change',function(){
     var fakepath =$('#file').val();
-    // alert(fakepath)
+    console.log(fakepath,"fakepath")
     var filename=fakepath.split("\\").pop();
-    // alert(file)
+    console.log(filename,"filename")
     if(filename){
       $(".file-name").html(filename);
       // $(".file-error").hide();
     }
-  });
- $('#pat_signup').on('submit',function (event) {
-    event.preventDefault();
+});
 
+
+$('#pat_signup').on('submit',function (event) {
+    // alert($('psnt_qid_num').length);
+    alert("hello")
+     // event.stopPropagation()
+      event.preventDefault();
     
-    /*formvalidation for signup form*/
-    var _token =document.querySelector('[name="_token"]').value;
 
-    var first_name = $('#psnt_first_name').val();
-    var last_name = $('#psnt_last_name').val();
-    var email = $('#psnt_email').val();
-     var insurance_no =$('#psnt_insrnce_num').val();
-    var file =$('#file')[0].files[0];
-    var psnt_lat=$('#psnt_lat').val();
-    var psnt_long=$('#psnt_long').val(); 
-    var password = $('#psnt_password').val();
-    var confpassword =$('#psnt_confpassword').val();
-    var user_details=localStorage.getItem('user_det');
-    //  console.log(user_details,".............")
-    var details =JSON.parse(user_details);
-    // console.log(details,"dskf")
+    /*formvalidation for signup form*/
+    // var _token =document.querySelector('[name="_token"]').value;
+    // var first_name = $('#psnt_first_name').val();
+    // var last_name = $('#psnt_last_name').val();
+    // var email = $('#psnt_email').val();
+    // var qid_number = $('#psnt_qid_no').val()
+    // var insurance_no =$('#psnt_insrnce_num').val();
+    // var file =$('#file')[0].files[0];
+    // var psnt_lat=$('#psnt_lat').val();
+    // var psnt_long=$('#psnt_long').val(); 
+    // var password = $('#psnt_password').val();
+    // var confpassword =$('#psnt_confpassword').val();
+    // var user_details=localStorage.getItem('user_det');
+    // var details =JSON.parse(user_details);
+    // // console.log(details,"dskf")
+    // // var physician_id=  details._id;
     // var physician_id=  details._id;
-    var physician_id=  details._id;
-    var address=$('#psnt_address').val();
-    $('#physician_id').val(physician_id);
+    // var address=$('#psnt_address').val();
+    // $('#physician_id').val(physician_id);
+    
+
     // console.log(physician_id);
     // var address1{}=getCoordinates(address);
+
+    // alert(first_name.match("ab"),"your first name");
    
-    // if(first_name!="" && last_name !=="" && email!="" && insurance_no!="" && file!="" && address!="" && password!="" ){
-    if(first_name!="" && last_name !=="" && email!="" && address!="" && password!="" ){
-    
-        var formData = {
-            physician_id:physician_id,
-            psnt_first_name:first_name,
-            psnt_last_name:last_name,
-            psnt_email:email,
-            psnt_password:password,
-            psnt_insrnce_num:insurance_no,
-            psnt_address: address,
-            psnt_lat: psnt_lat,
-            psnt_long:psnt_long,
-            file:file,
-        }
+   
+   //  if(qid_number.length == 11)
+   //  {
+   //   console.log("qid_number",qid_number.length);
+   //    // event.preventDefault();
+   // //  // return false;
+   //   }
 
+//    console.log({first:first_name,last:last_name,email:email,id:qid_number,insurance_no:insurance_no,f:file,lat:psnt_lat,long:psnt_long,p:password,cp:confpassword,add:address},"COnsoling data")
 
-        // console.log(new FormData(this));
-    $.ajax({
-      type: "POST",
-      url: api_url+"addPatient",
-      data: new FormData(this),
-      contentType:false,
-      cache:false,
-      processData:false,
-    }).done(function (res) {
-     //    alert('done');
-  
-      // console.log(res);
-      // return false;
+//     // if(first_name!="" && last_name !=="" && email!="" && insurance_no!="" && file!="" && address!="" && password!="" ){
+//    if(first_name!="" && last_name !=="" && email!="" && address!="" && password!="" && qid_number.length == 11 && 
+//    first_name.match("^[a-zA-Z .'()-]*$") && last_name.match("^[a-zA-Z .'()-]*$") 
+//    // && insurance_no != "" && file!== undefined
+//    )
+//    {
+       
+//           var formData = {
+//             physician_id:physician_id,
+//             psnt_first_name:first_name,
+//             psnt_last_name:last_name,
+//             psnt_email:email,
+//             psnt_password:password,
+//             // psnt_insrnce_num:insurance_no,
+//             psnt_address: address,
+//             psnt_lat: psnt_lat,
+//             psnt_long:psnt_long,
+//             // file:file,
+//             // psnt_insrnce_img:file,
+//             psnt_qid_num:qid_number
+//         }
+// // console.log(formData,"data")
+// console.log(formData)
+//         // console.log(new FormData(this));
+//     $.ajax({
+//       type: "POST",
+//       url: api_url+"addPatient",
+//       data: new FormData(this),
+//       contentType:false,
+//       cache:false,
+//       processData:false,
+//     }).done(function (res) {
       
-        if(res.status == true){
-          $(':input[type="submit"]').prop('disabled', true);
+//       // console.log(res);
+//       // return false;
+      
+//         if(res.status == true){
+//           $(':input[type="submit"]').prop('disabled', true);
 
-          $('#message').html(res.message).addClass('alert alert-success');
-          window.location.href =base_path +"patient_management";
-        }else{
-           $('#message').html(res.message).addClass('alert alert-danger');
-        }
-    });
-   }else{
-    //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
-   }
+//           $('#message').html(res.message).addClass('alert alert-success');
 
-  });
+//           let url = window.location.href;
+//           let uri=url.split('/');
+//           let lan=uri[uri.length-1];
+          
+//             if(lan=="ar"){
+//               window.location.href =base_path +"patient_management/ar";
+//             }
+//             else{
+//               window.location.href =base_path +"patient_management";
+//             }
+//         }
+
+//         else if(res.orignalError.errors.psnt_hasins.stringValue == "\"Have Insurance?\"")
+//         {
+//             $('#message').html("Please choose insurance").addClass('alert alert-danger');
+//         }
+//         else
+//         {
+//            $('#message').html( res.message).addClass('alert alert-danger')
+//         }
+//     });
+//    }
+//    else{
+//     //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
+//    }
+
+   });
 
 
-</script><!-- 
-<script>
+
+
+
+// $('#pat_signup').on('submit',function (event) {
+//     // alert($('psnt_qid_num').length);
+//     // event.stopPropagation()
+//      event.preventDefault();
+    
+
+//     /*formvalidation for signup form*/
+//     var _token =document.querySelector('[name="_token"]').value;
+//     var first_name = $('#psnt_first_name').val();
+//     var last_name = $('#psnt_last_name').val();
+//     var email = $('#psnt_email').val();
+//     var qid_number = $('#psnt_qid_no').val()
+//     var insurance_no =$('#psnt_insrnce_num').val();
+//     var file =$('#file')[0].files[0];
+//     var psnt_lat=$('#psnt_lat').val();
+//     var psnt_long=$('#psnt_long').val(); 
+//     var password = $('#psnt_password').val();
+//     var confpassword =$('#psnt_confpassword').val();
+//     var user_details=localStorage.getItem('user_det');
+//     var details =JSON.parse(user_details);
+//     // console.log(details,"dskf")
+//     // var physician_id=  details._id;
+//     var physician_id=  details._id;
+//     var address=$('#psnt_address').val();
+//     $('#physician_id').val(physician_id);
+   
+//     // var address1{}=getCoordinates(address);
+
+//    //  if(qid_number.length == 11)
+//    //  {
+//    //   console.log("qid_number",qid_number.length);
+//    //    // event.preventDefault();
+//    // //  // return false;
+//    //   }
+
+   
+//  if(first_name!="" && last_name !=="" && email!="" && address!="" && password!="" confpassword!="" && qid_number.length == 11 && 
+//    first_name.match("^[a-zA-Z .'()-]*$") && last_name.match("^[a-zA-Z .'()-]*$") 
+//   )
+//    {
+       
+//           var formData = {
+//             physician_id:physician_id,
+//             psnt_first_name:first_name,
+//             psnt_last_name:last_name,
+//             psnt_email:email,
+//             psnt_password:password,
+//             psnt_confpassword:confpassword,
+//             psnt_address: address,
+//             psnt_lat: psnt_lat,
+//             psnt_long:psnt_long,
+//             psnt_qid_num:qid_number
+//         }
+
+//     $.ajax({
+//       type: "POST",
+//       url: api_url+"addPatient",
+//       data: new FormData(this),
+//       contentType:false,
+//       cache:false,
+//       processData:false,
+//     }).done(function (res) 
+//     {
+//       if(res.status == true){
+//           $(':input[type="submit"]').prop('disabled', true);
+
+//           $('#message').html(res.message).addClass('alert alert-success');
+
+//           let url = window.location.href;
+//           let uri=url.split('/');
+//           let lan=uri[uri.length-1];
+          
+//             if(lan=="ar"){
+//               window.location.href =base_path +"patient_management/ar";
+//             }
+//             else{
+//               window.location.href =base_path +"patient_management";
+//             }
+//         } 
+//         else if(res.orignalError.errors.psnt_hasins.value == "Have Insurance?")
+//         {
+//         $('#message').html('Please Choose your Insurance').addClass('alert alert-danger')
+//         }
+//         else{
+//             console.log("in else condition")
+//              $('#message').html(res.message).addClass('alert alert-danger')
+//         }
+//      });
+//    }
+
+// else if (first_name!="" && last_name !=="" && email!="" && address!="" && password!="" && confpassword!="" && qid_number.length == 11 && 
+//    first_name.match("^[a-zA-Z .'()-]*$") && last_name.match("^[a-zA-Z .'()-]*$") 
+//    && insurance_no != "" && file!== undefined)
+// {
+//  var formData = {
+//             physician_id:physician_id,
+//             psnt_first_name:first_name,
+//             psnt_last_name:last_name,
+//             psnt_email:email,
+//             psnt_password:password,
+//             psnt_confpassword:confpassword
+//             psnt_insrnce_num:insurance_no,
+//             psnt_address: address,
+//             psnt_lat: psnt_lat,
+//             psnt_long:psnt_long,
+//             // file:file,
+//             psnt_insrnce_img:file,
+//             psnt_qid_num:qid_number
+//         }
+
+//     $.ajax({
+//       type: "POST",
+//       url: api_url+"addPatient",
+//       data: new FormData(this),
+//       contentType:false,
+//       cache:false,
+//       processData:false,
+//     }).done(function (res) 
+//     {
+//       if(res.status == true){
+//           $(':input[type="submit"]').prop('disabled', true);
+
+//           $('#message').html(res.message).addClass('alert alert-success');
+
+//           let url = window.location.href;
+//           let uri=url.split('/');
+//           let lan=uri[uri.length-1];
+          
+//             if(lan=="ar"){
+//               window.location.href =base_path +"patient_management/ar";
+//             }
+//             else{
+//               window.location.href =base_path +"patient_management";
+//             }
+//         }
+// })
+// }
+
+// // else if (res.orignalError.errors.psnt_hasins.value == "Have Insurance?")
+// // {
+// //     console.log("in else if condition")
+// //     $('#message').html("Please choose insurance").addClass('alert alert-danger');  
+// // }
+
+// // else
+// // {
+// //     console.log("in else condition")
+// //     //  $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
+// //       $('#message').html(res.message).addClass('alert alert-danger')
+// //    }
+
+//    });
+
+
+
+});
+
+</script>
+<!-- <script> 
 $('#add_icon').onclick(function () {
     console.log('here')
 var map;

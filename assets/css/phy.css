@@ -1,0 +1,1178 @@
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+   *{
+        font-family: 'Poppins', sans-serif;
+        text-transform: none;
+    }
+
+   /* thead th {
+      position: sticky;
+      top: 0;
+    }*/
+
+
+/*.table-responsive #myInput{
+  position: sticky;
+  top: 170px;
+}*/
+
+
+/*table thead tr th{
+/*  position:sticky;
+  top: 0;*/
+  /* position: sticky; 
+  z-index: 1; 
+  top: 10px; 
+
+}*/
+
+/*.table-responsive{
+  position: static; 
+  z-index: 1; 
+  top: 0px; 
+  } */  
+    
+    body
+    {
+      background-color: white;
+    }
+    /******************common css***************/
+   
+     #myTable{
+        text-transform: capitalize;
+     }
+     
+     .slide .is-expanded
+     {
+     position: relative!important;
+     left: -0.5rem!important;
+     }
+
+
+
+ 
+button
+{
+    margin-right: 12px !important;
+    }
+
+     .ebtn{
+        background-color: #5e2dd8;
+        width: 88px;
+        height: 35px;
+        border-radius: 10px;
+        color: white;
+        margin-right: 10px;
+        border:none;
+      }
+    .dbtn{
+        background-color: #cf142b;
+        width: 88px;
+        height: 35px;
+        border-radius: 10px;
+        color: white;
+    }
+    label{
+    float: left;
+    }
+    .bttttn{
+        width: 120px;
+        background-color: #7ec1ec;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .agreeDiv{
+    margin-top: 60px;
+    margin-bottom: 10px;
+  }
+.error{
+  color: red;
+  
+}
+.valid{
+  color: black;
+  
+}
+  /*******************common css ends here**********************/
+    /*************** prescription managment**************/
+      .error{
+        color: #CF142B;
+      }
+    
+     
+      
+    /* .ok{
+      border: none;
+      border-radius: 10px;
+      height: 30px;
+      width: 50px;
+      padding: 2px;
+  } */
+  #notesbtn{
+    background-color: #7ec1ec!important;
+    border: none;
+    box-shadow: none;
+    border-radius: 10px;
+  }
+  
+  .otherlabel{
+    font-size: 16px;
+    float: left;
+    color: #616161;
+  }
+
+  /* add precription -----------------------------------------------------*/
+
+  #addRow{
+    background: #7EC1EC;
+    border: none;
+    display: block;
+    width: 83%;
+    height: 45px;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    }
+    .cancelbutton{
+      display: block;
+      width: 40%;
+      height: 45px;
+      float: left;
+      border-radius: 10px;
+      border: none;
+      background-color: #CF142B;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .acceptbutton{
+      display: block;
+      width: 40%;
+      height: 45px;
+      float: right;
+      border-radius: 10px;
+      border: none;
+      background-color: #008000;
+      color: white;
+      padding: 10px 28px;
+      font-size: 16px;
+      margin-right: 167px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    #patient_name{
+      height: 50px;
+      width: 85%;
+    }
+    #prs_med_name{
+      float: left;
+      width: 49%;
+      margin-bottom: 15px;
+    }
+    .prs_quantity{
+      float: right;
+      width: 27%;
+      margin-right: 165px;
+      margin-bottom: 15px;
+    }
+    .iconn{
+      position: absolute;
+      top: 7.5rem !important;
+      right: 9rem;
+    }
+    .prs_information{
+      margin-top: 20px;
+    }
+
+    /* add patient ------------------------------------------------------------------------------------------------------ */
+    .zmdi-eye{
+      position: absolute;
+   float:right;
+   /*right: 14rem;*/
+   right: 1rem;
+   top: 0.8rem; 
+   color:#7ec1ec;
+    
+   }
+   .zmdi-eye-off{
+     position: absolute;
+   float:right;
+   right: 1rem;
+   top: 0.8rem; 
+   color:#7ec1ec; 
+   }
+
+
+   .patFile{
+    width: 100% !important;
+   }
+
+   .file {
+    opacity: 0;
+    /*width: 0.1px;*/
+    width: 100%;
+    height: 0.1px;
+    position: relative;
+  }
+  .file-input label {
+     display: block; 
+     position: relative; 
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #E2E6EB;
+    background: #F1F1F9;
+    /* box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4); */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    color: #797785;
+    /* font-weight: bold; */
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform .2s ease-out;
+    /*margin-left: -377px;*/
+    margin-top: -47px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-top: 7px;
+    
+  }
+  .file-name {
+     position: absolute; 
+
+   /* bottom: -35px;*/
+    /*left: 10px;*/
+    right: 600px;
+    /*right: 400px;*/
+    font-size: 0.85rem;
+    /*color: #555;*/
+   /* margin-right: 900px;*/
+    color: green;
+  }
+  
+/*.sbmt{
+  width: 39%;
+  margin-right: 20px;
+  margin-top: 10px;
+  float: left;
+  border: none;
+  border-radius: 10px;
+}*/
+
+
+.sbmt{
+  width: 45%;
+  margin-top: 10px;
+  margin: 10px;
+  float: left;
+  border: none;
+  border-radius: 10px;
+}
+
+
+#submit{
+  background-color: #008000!important;
+}
+  
+  #file-error{
+      margin-top: 20px;    
+  }
+  #imgfile{
+      padding-left: 550px; 
+      padding-top:5px; 
+      height:25px
+  }
+
+  #psnt_first_name{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  #psnt_last_name{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  
+  #psnt_email{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  #psnt_password{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  #psnt_confpassword{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  #psnt_address{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  #psnt_insrnce_num{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  #psnt_qid{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  #psnt_qid_no{
+    /*width: 80%;*/
+     width: 100%;
+  }
+  /* end patient end ------------------------------------------------------------- */
+  .wrap-login100{
+    width: 420px;
+    border-radius:10px;
+  }
+  
+  #imgfile1{
+    padding-left: 110px; 
+    padding-top:5px; 
+    height:25px
+} 
+
+/* view profile ----------------------------------------------------------------*/
+.proimg{
+  height: 80px;
+  width: 80px;
+  margin-left: 1px;
+}
+.btninput{
+  width: 100%;
+  background-color: #F1F1F9;
+  color: #7F7F7F;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.licenseimg {
+   width: auto;
+   background-color: #F1F1F9;
+   color: #7F7F7F;
+   height: auto;
+   margin-top: 30px;
+   margin-bottom: 30px;
+}
+.editbtn{
+  box-sizing: border-box;
+  width: 130px;
+  height: 50px;
+  background: #7EC1EC;
+  /* box-shadow: 0px -2px 4px rgb(0 0 0 / 25%); */
+  border-radius: 10px;
+  color: #fff;
+  font-size: 21px;
+  text-align: center;
+  align-items: center;
+}
+.ok{
+  box-sizing: border-box;
+  width: 90px;
+  height: 45px;
+  background: #7EC1EC;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: #fff;
+  font-size: 15px;
+  margin-left: 212px;
+  margin-bottom: 20px;
+}
+.changepass{
+  box-sizing: border-box;
+  width: 200px;
+  height: 45px;
+  background: #7EC1EC;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 900px;
+
+}
+.erroww{ 
+  margin-left: 950px;
+  color: #7EC1EC;
+  font-weight: bolder;
+
+
+}
+
+#arrow{
+  color: #7EC1EC;
+  padding-left: 950px;
+  font-weight: bolder;
+  font-size: 24px;
+}
+#physician_first_name{
+  margin-top: 50px;
+  width: 100%;
+}
+#physician_last_name{
+  width: 100%;
+}
+.eemail{
+  width: 100%!important;
+}
+.pass{
+  width: 100%!important;
+}
+.lnum{
+  width: 100%!important;
+}
+.pnamelab{
+  margin-top: 100px;
+  float: left;
+  margin-left: -79px;
+}
+.profilediv{
+  width: 100%;
+}
+
+    /************ css for Physician registration form ************/
+
+#imgfile_phy_reg{
+
+    padding-left: 126px;
+    padding-top: 5px;
+    height: 25px;
+    margin-left:1.5rem;
+
+}
+.file-input1 label {
+  display: block;
+  position: relative;
+  width: 323px;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #E2E6EB;
+  background: #F1F1F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #797785;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+  margin-top: 1%;
+  margin-bottom: -25px;
+  font-size: 0.875rem;
+}
+
+  .agreeDiv input[type=checkbox]{
+        margin-top: 40px;
+  
+      }
+
+  #file-error{
+    position: relative;
+    top: 4rem;
+  }
+  .file_reg {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+
+.file-name_reg {
+  position: absolute;
+  bottom: -40px;
+  left: 10px;
+  font-size: 0.85rem;
+  color: #555;
+  color:green;
+}
+
+.error{
+  color: red;
+  
+}
+.valid{
+  color: green;
+  
+}
+  
+}
+.form-label{
+  font-size: 20px;
+}
+
+input{
+  margin-top: 20px;
+}
+.wrap-login100{
+  width: 420px;
+  border-radius:10px;
+}
+ #add_icon{
+  font-size:24px;
+  position: absolute;
+  float:left;
+ /* right:14rem;*/
+ right: 1rem;
+  top:0.9rem;
+  color:#7ec1ec;
+  cursor:pointer;
+}
+.footer{
+      /*position: fixed;*/
+    bottom: 0;
+    width: -webkit-fill-available;
+ /* margin: 0 7rem!important;*/
+}
+
+
+/*.............................*/
+
+
+
+
+
+/*.................................*/
+
+table {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+table td {
+    width: auto !important;
+}
+
+thead {
+    flex: 0 0 auto;
+      /*flex: -1 -1 auto;*/
+}
+
+
+tbody {
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 50vh;
+}
+
+tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+
+
+
+/*............................................*/
+
+
+
+
+
+/***********css for physician registration form ends here************/
+
+/************ css for Physician Login form Starts Here************/
+
+
+
+
+/************ css for Physician Login form Ends Here************/
+
+/* resposive media query  ==================================================================================================*/
+@media screen and (max-device-width: 1280px){
+  #prs_med_name{
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .prs_quantity {
+    width: 32%!important;
+    margin-right: 145px;
+  }
+  .iconn{
+    top: 7.5rem;
+    right: 8.5rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton{
+    margin-right: 149px;
+  } 
+  /* add prescription  END*/
+  #imgfile {
+    padding-left: 455px;
+  }
+  #arrow{
+    padding-left: 845px;
+  }
+
+}
+
+
+/*@media only screen and (max-width: 898px) {
+.sbmt{
+
+  width: 45%;
+  margin-top: 10px;
+  margin: 10px;
+  float: left;
+  border: none;
+  border-radius: 10px;
+}
+}*/
+
+
+@media screen and (max-device-width: 896px){
+  
+.footer .container{
+margin-left:0rem!important;
+  }
+}
+
+@media screen and (max-device-width: 1180px){
+  #prs_med_name{
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .prs_quantity {
+    width: 26%!important;
+    margin-left: -9px;
+    margin-right: 131px;
+}
+  .iconn{
+    top:7.5rem;
+    right: 7rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton{
+    margin-right: 134px;
+  } 
+
+
+    /* add prescription  END*/
+    #imgfile {
+      padding-left: 402px;
+  }
+  .zmdi-eye{
+    right: 7rem;      
+    }
+    /*#add_icon{
+       right: 7rem;  
+    }*/
+
+#add_icon{
+       right: 1rem;  
+    }
+
+
+
+   /* .zmdi-eye-off{
+     right: 11rem;      
+   }*/
+
+ .zmdi-eye-off{
+     right: 1rem;      
+   }
+
+   #arrow {
+    padding-left: 740px;
+}
+  /*.footer .container{
+    margin-left:-7rem!important;
+  }*/
+
+}
+
+
+
+@media screen and (max-device-width: 1024px){
+
+  /*registration form button css*/
+  .container-login100-form-btn{
+    margin: 0 -11px;
+    width: 90%;
+  }
+  .zmdi {
+    right: 7rem!important;
+  }
+  .headtext{
+    margin-right: 2rem;
+  }
+  .text-dark{
+  margin-right: 2rem;
+  }
+  .fail-alert{
+   margin-right: 3rem;
+  }
+ /* #terms-error{
+    margin-right:0!important;
+  }*/
+  #prs_med_name{
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .prs_quantity {
+    width: 31%!important;
+    margin-right: 106px;
+}
+  .iconn{
+    top: 7.5rem;
+    right: 5.5rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton {
+    margin-right: 106px;
+  }
+  #imgfile {
+    padding-left: 260px;
+}
+    /* add prescription  END*/
+
+    #arrow{
+      padding-left: 590px;
+    }
+}
+
+
+@media screen and (max-device-width: 915px){
+  .prs_quantity {
+    width: 31%!important;
+    margin-right: 89px;
+   }
+   .acceptbutton {
+     margin-right: 90px;
+   }
+   .login-img{
+    height: fit-content;
+    display: block;
+   }
+
+     /* add prescription  END*/
+     #imgfile {
+      padding-left: 195px;
+    }
+    .zmdi-eye{
+      right: 7.5rem;      
+      }
+      .zmdi-eye-off{
+       right: 7.5rem;      
+     }
+     #arrow{
+      padding-left: 470px;
+    }
+
+    /*login start*/
+    
+}
+
+
+
+
+@media screen and (max-device-width: 914px){
+  #prs_med_name{
+    width: 50%;
+  }
+  .prs_quantity {
+     margin-right: 91px;
+   }
+  .iconn{
+    top: 7.5rem;
+    right: 5.5rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton {
+    margin-right: 90px;
+}
+
+  /* add prescription  END*/
+  .zmdi-eye{
+    right: 8rem;      
+    }
+    .zmdi-eye-off{
+     right: 8rem;      
+   }
+   #arrow{
+    padding-left: 450px;
+  }
+}
+
+
+@media screen and (max-device-width: 912px){
+  #prs_med_name{
+    width: 50%;
+  }
+  .prs_quantity {
+     margin-right: 91px;
+   }
+  .iconn{
+    top: 7.5rem;
+    right: 5.5rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton {
+    margin-right: 90px;
+}
+  /* add prescription  END*/
+  .zmdi-eye{
+    right: 8rem;      
+    }
+    .zmdi-eye-off{
+     right: 8rem;      
+   }
+   #arrow{
+    padding-left: 450px;
+  }
+}
+
+
+
+@media screen and (max-device-width: 896px) and (max-device-width: 911px){
+  .zmdi-eye{
+    right: 7rem;      
+    }
+    .zmdi-eye-off{
+     right: 7rem;      
+   }
+   #imgfile {
+    padding-left: 191px;
+    }
+    .sbmt {
+      width: 38%;
+  }
+  #arrow {
+    padding-left: 423px;
+}
+}
+
+
+
+@media screen and (max-device-width: 844px){
+  .prs_quantity {
+    width: 31%!important;
+    margin-right: 70px;
+}
+   .acceptbutton {
+     margin-right: 68px;
+   }
+   .iconn{
+    top: 7.5rem;
+    right: 4rem;
+  }
+  .preform{
+    margin-left: 60px;
+  } 
+    /* add prescription  END*/
+    .bttttn {
+      margin-left: 86px;
+  }
+  #imgfile {
+    padding-left: 148px;
+  }
+  #arrow{
+    padding-left: 420px;
+  }
+
+}
+
+
+
+@media screen and (max-device-width: 820px){
+  #prs_med_name{
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .prs_quantity{
+    width: 27%!important;
+    margin-right: 76px;
+  }
+  .iconn{
+    top: 7.5rem;
+    right: 2rem;
+  }
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton{
+    margin-right: 75px;
+  } 
+    /* add prescription  END*/
+    #imgfile {
+      padding-left: 157px;
+  }
+  #arrow{
+    padding-left: 400px;
+  }
+   
+}
+
+
+
+@media screen and (max-device-width: 768px){
+  .iconn{
+    top: 7.5rem;
+    right: 3rem;
+  }
+  .prs_quantity {
+    width: 30%!important;
+    margin-right: 65px;
+}
+.acceptbutton {
+  margin-right: 61px;
+}
+  /* add prescription  END*/
+  #imgfile {
+    padding-left: 90px;
+}
+#arrow{
+  padding-left: 350px;
+}
+}
+
+
+
+@media screen and (max-device-width: 740px){
+  #imgfile {
+  padding-left: 110px;
+   }
+   #arrow{
+    padding-left: 350px;
+  }
+}
+@media screen and (max-device-width: 667px){
+  .zmdi-eye{
+    right: 6rem;      
+    }
+    .zmdi-eye-off{
+     right: 6rem;      
+   }
+   #imgfile {
+    padding-left: 100PX;
+   }
+   .sbmt {
+    width: 38%;
+   }
+   #arrow{
+    padding-left: 350px;
+  }
+}
+@media screen and (max-device-width: 414px){
+   .iconn{
+      top: 7.5rem;
+      right: 2rem;
+    }
+    .prs_quantity {
+      width: 29%!important;
+      margin-right: 41px;
+    }  
+  #addRow{
+    padding: 0px 28px
+  } 
+  .acceptbutton{
+    margin-right: 41px;
+  } 
+  .preform{
+    margin-left: 0px;
+    font-size:10px;
+  }  
+    /* add prescription  END*/
+    .bttttn {
+      margin-left: 85px;
+  }
+     #imgfile {
+       padding-left: 15px;
+     }
+     #imgfile1{
+       padding-left: 70px; 
+       padding-top:5px; 
+       height:25px
+   }
+   #arrow{
+     padding-left: 226px;
+   }
+  
+}
+
+
+@media screen and (max-device-width: 390px){
+  .bttttn {
+    margin-left: 60px;
+}
+#arrow{
+  padding-left: 180px;
+}
+}
+
+
+@media screen and (max-device-width: 375px){
+     #prs_med_name{
+        width: 50%;
+        margin-bottom: 15px;
+      }
+      .prs_quantity{
+        width: 27%!important;
+        margin-right: 42px;
+      }
+      .iconn{
+        top: 7.5rem;
+        right: 2rem;
+      }
+      #addRow{
+        padding: 0px 0px
+      } 
+      .acceptbutton{
+        padding: 2px;
+        margin-right: 41px;
+      } 
+      .preform{
+        margin-left: 0px;
+      }  
+      .cancelbutton{
+        padding: 7px;
+      }
+      #arrow{
+        padding-left: 170px;
+      }
+
+        /* add prescription  END*/
+        .bttttn {
+          margin-left: 46px;
+      }
+      .zmdi-eye{
+         right: 4rem;      
+       }
+       .zmdi-eye-off{
+        right: 4rem;      
+      }
+      #imgfile {
+        padding-left: 0PX;
+      }
+
+      /* view profile */
+      #arrow{
+        padding-left: 150px;
+      }
+
+    }
+
+
+@media screen and (max-device-width: 375px){
+  .login100-form.validate-form{
+    width: 100% !important;
+  }
+
+.zmdi-eye-off:{
+  right: 1rem;
+}
+  
+  /*#psnt_first_name:{
+    width: 100%;
+  }*/
+}
+
+
+    @media screen and (max-device-width: 280px){
+      #prs_med_name{
+        width: 44%;
+      }
+      #addRow{
+        font-size: 13px;
+      }
+      .prs_quantity {
+        width: 35%!important;
+        margin-right: 29px;
+      }
+      .cancelbutton {
+        font-size: 13px;
+        padding: 0;
+        padding-top: 13px;
+    }
+      .acceptbutton{
+        font-size: 13px;
+        padding: 0;
+        margin-right: 27px;
+      }
+      .preform{
+        margin-left: 10px;
+      } 
+        /* add prescription  END*/
+        .bttttn {
+          margin-left: 0px;
+      }
+     
+     .card-header, .card-header .card-title {
+         margin-left: 0px;
+         font-size: 17px;
+         margin-bottom: 0;
+     }
+     .zmdi-eye{
+         right: 3rem;      
+       }
+       .zmdi-eye-off{
+        right: 3rem;      
+      }
+      #imgfile {
+        padding-left: 0PX;
+      }
+      #arrow{
+        padding-left: 100px;
+      }
+
+    }
+
+@media screen and (min-device-width: 360px){
+
+ .avatar{
+    top: 0rem;
+ }
+ .card-title{
+    font-size:1rem;
+ }
+ .form-control{
+  /*padding: 0;*/
+padding:6px 12px;
+ }
+ 
+
+ .sample{
+  background-color: yellow;
+ }
+ /*.sbmt{
+  width: 128px;
+ }*/
+/* #add_icon{
+  right:4rem;
+ }*/
+
+}
+
+
+/*mobile responsive css for LTR View*/
+/*@media (min-width: 375px) 
+and (max-width:667px)
+ {
+
+  #profile-user{
+        left: 16rem;
+        top: 1rem;
+  }
+}*/

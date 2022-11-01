@@ -649,19 +649,47 @@ $("input[type='file']").change(function(){
    $('.profile-pic1').show();
 })
 
-
-
+// jquery validation for English and arabic
 jQuery.validator.addMethod('validUserName', function (value) 
 {
-var regex = new RegExp("^[a-zA-Z .'()-]*$");
-        var key = value;
-
-        if (!regex.test(key))
+  let data=window.location.href;
+  let valarr=data.split("/");
+  let lastval=valarr[valarr.length-1];
+  if(lastval == "ar")
+  {
+    var regex =/^(?:[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+    var key = value;
+    if (regex.test(key))
          {
-          return false;
-        }
+          // console.log("true")
         return true;
-}, 'Please Enter a Valid Name | رجاء ادخل اسما صحيحا');
+          } 
+          else{
+          
+            return false;
+          }
+        }
+        else{
+          var regex = new RegExp("^[a-zA-Z .'()-]*$");;
+          var key = value;
+          if (regex.test(key))
+               {
+                // console.log("true")
+              return true;
+                } 
+                else{
+                
+                  return false;
+                }
+        }
+},'Please Enter a Valid Name الرجاء إدخال اسم صحيح')
+
+
+
+
+
+
+
 
    const file = document.querySelector('#file');
     //file
@@ -730,9 +758,16 @@ var regex = new RegExp("^[a-zA-Z .'()-]*$");
        $('#license_image').attr('src', res.data.phy_licnse_file);
         $('#pdf_image1').attr('href',res.data.phy_licnse_file);
     }
-   
-    $('#output').attr('src',res.data.phy_img);
-    $('#physician_id1').val(phy_id);
+
+    let resarr=res.data.phy_img.split("/");
+      let image=resarr[resarr.length-1];
+
+        if(image!=""){
+          $('#output').attr('src',res.data.phy_img);  
+        }
+        else{
+          $('#output').attr('src',"http://3.220.132.29/Backend/uploads/physician_pic/doc_image.png");    
+        }
 
   // }else{
   //    $('#output').attr('src','https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png');
@@ -750,13 +785,13 @@ var regex = new RegExp("^[a-zA-Z .'()-]*$");
     rules: {
       phy_first_name: {
         required: true,
+        validUserName:true,
         // lettersonly: true,
-         validUserName:true,
         // minlength: 3
       },
       phy_last_name: {
         required: true,
-        validUserName:true
+        validUserName:true,
         // lettersonly: true,
         // minlength: 3
       },
@@ -772,22 +807,22 @@ var regex = new RegExp("^[a-zA-Z .'()-]*$");
     },
     messages: {
       phy_first_name: {
-        required: "First Name field is Required |  حقل الاسم الأول مطلوب",
-        // lettersonly: "Only Alphabetical Characters are allowed",
+        required: "First Name field is Required",
+        lettersonly: "Only Alphabetical Characters are allowed",
       },
       phy_last_name: {
-        required: 'Last Name field is Required |  حقل "الاسم الأخير" مطلوب',
-        // lettersonly: "Only Alphabetical Characters are allowed",
+        required: "Last Name field is Required",
+        lettersonly: "Only Alphabetical Characters are allowed",
 
       },
       email: {
-        required: "Email field is Required | حقل البريد الإلكتروني مطلوب",
-        email: "The email should be in the format: abc@domain.tld | يجب أن يكون البريد الإلكتروني بالتنسيق: abc@domain.tld"
+        required: "Email field is Required",
+        email: "The email should be in the format: abc@domain.tld"
       },
 
       license_number: {
-        required: "License Number field is Required | حقل رقم الترخيص مطلوب",
-        minlength: "Licence Number should be at least 8 characters | يجب ألا يقل رقم الترخيص عن 8 أحرف"
+        required: "License Number field is Required",
+        minlength: "Licence Number should be at least 8 characters"
       },
 
     }
@@ -817,8 +852,8 @@ var regex = new RegExp("^[a-zA-Z .'()-]*$");
     console.log(physician_id5);
     // alert(physician_id5)
 
-    if (first_name != "" && last_name !== "") {
-
+    if (first_name != "" && last_name !== "" && first_name.match("^[a-zA-Z .'()-]*$") && last_name.match("^[a-zA-Z .'()-]*$")) {
+    
       var formData = {
         // pham_lat: pham_lat,
         // pham_long: pham_long,

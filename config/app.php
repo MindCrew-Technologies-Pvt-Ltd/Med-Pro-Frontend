@@ -52,10 +52,7 @@ return [
     |
     */
 
-     'url' => env('APP_URL', 'http://3.220.132.29/medpro/'),
-
-    // 'url'=> env('APP_URL','http://localhost:8000/'),
-   
+    'url' => env('APP_URL', 'http://3.220.132.29/medpro/'),
     'asset_url' => env('ASSET_URL', null),
 
     /*
@@ -82,7 +79,7 @@ return [
     |
     */
 
-    'locale' =>'en',//ar
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +92,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',//ar
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------

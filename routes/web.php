@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// PharmacistLogin
 /*Routes for Physician */
 Route::any('/', function () {
     return view('physician.register');

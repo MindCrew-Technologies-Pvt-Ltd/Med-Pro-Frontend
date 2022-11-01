@@ -19,8 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-     'allowed_origins' => ['*'],
-    //'allowed_origins' => ['http://3.220.132.29',"localhost"],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 

@@ -12,15 +12,21 @@
 
     *{
        font-family: 'Poppins', sans-serif;
-       text-transform: capitalize;
+       /*text-transform: capitalize;*/
 
    }
+
+
+ 
+
        card-header:first-child {
            border-radius: 2px 2px 0 0;
            margin-top: -13px;
            width: 1050px;
            font-size: 21px;
          }
+ }
+   }
 .form-control:disabled, .form-control[readonly] {
     width: 100%;
     background-color: #F1F1F9;
@@ -57,7 +63,8 @@ hr.new1 {
     padding: 1.5rem;
     margin: 0;
     position: relative;
-    width: 1150px;
+    /*width: 1150px;*/
+    width: 1185px;
     margin-left: 14px;
 }
 .form-label{
@@ -412,7 +419,7 @@ hr.new1 {
     var base_path = "http://3.220.132.29/medpro/";
       var api_url="http://3.220.132.29:3000/api/";
          $('#approve').submit(function(e){
-            e.preventDefault();
+
         let pham_id =$('#pham_id').val();
                 $.ajax({
               url: api_url+"phamapprove",
