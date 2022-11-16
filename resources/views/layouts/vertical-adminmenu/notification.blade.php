@@ -1,3 +1,4 @@
+<?php $locale = Session::get('locale'); ?>
 
 <!-- /Notification -->
 <style>
@@ -5,7 +6,11 @@
 color: black!important;
 font-size: 17px;
 font-weight: bold;
+}
 
+button{
+	border: transparent;
+	background-color: transparent;
 }
 .drop-heading{
 	display: none!important;
@@ -15,9 +20,32 @@ color: red!important;
 }
 .dropdown-icon {
 color: #495057!important;
-
 }
+
+.btn-success, .btn-success:hover, .btn-success:active
+{
+				background-color: transparent !important;
+				border: none !important;
+				min-width: 1rem;
+               text-align: right;
+			}
+
+.btn-success:focus,.btn-success
+               {
+				box-shadow: none !important;
+			    }
+			    .dropdown-toggle:after{
+			    	display: none;
+			    }
+
 </style>
+
+<script type="text/javascript">
+ 
+
+</script> 
+
+
 <div class="d-flex  ml-auto header-right-icons header-search-icon">
 	<div class="dropdown d-sm-flex">
 		<!-- <a href="#" class="nav-link icon" data-toggle="dropdown">
@@ -130,10 +158,12 @@ color: #495057!important;
 			<a href="#" class="dropdown-item text-center">See all Messages</a>
 		</div> -->
 	</div> <!-- MESSAGE-BOX -->
-	<div class="dropdown profile-1">
+	
+<!-- --------------------------------------------------------------------- -->
+	<!-- <div class="dropdown profile-1">
 		<a href="#" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex">
 			<span>
-				<img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" alt="profile-user" id="profile-user" class="avatar  profile-user brround cover-image">
+				<img src="http://3.220.132.29/medpro/assets/images/pngs/doc_image.png" alt="profile-user" id="profile-user" class="avatar  profile-user brround cover-image">
 			</span>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -144,13 +174,16 @@ color: #495057!important;
 				</div>
 			</div>
 			<div class="dropdown-divider m-0"></div>
-			<div id="profilev">    </div>
+			<div id="profilev">    </div> -->
+			
+
 			<!-- <a class="dropdown-item">
 				<i class="dropdown-icon mdi mdi-account-outline"></i> Profile
 			</a> -->
 			 <!-- <div class="dropdown-item" id="newprofile" href="#">
 				<i class="dropdown-icon  mdi mdi-settings"></i> Settings
 			</div> -->
+
 			<!--<a class="dropdown-item" href="#">
 				<span class="float-right"></span>
 				<i class="dropdown-icon mdi  mdi-message-outline"></i> Inbox
@@ -162,23 +195,96 @@ color: #495057!important;
 			<a class="dropdown-item" href="#">
 				<i class="dropdown-icon mdi mdi-compass-outline"></i> Need help?
 			</a> -->
-			<a class="dropdown-item"  onclick="signout1()">
+			
+			<!-- <a class="dropdown-item"  onclick="signout1()">
 				<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
 			</a>
 		</div>
-	</div>
-		<div class="dropdown d-md-flex" id="flag">
+	</div> -->
+
+<!-- ---------------------------------------------------------------------------------- -->
+
+	<!-- 	<div class="dropdown d-md-flex" id="flag">
 		<div class="us1">
-              <!--  	<img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
-                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;"> -->
-              </div>
+				
+             <img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+              
+	           <img src="{{URL::asset('assets/images/flags/us.svg')}}" style="width:30px;height:30px;">
+	            
+                <img src="{{URL::asset('assets/images/flags/ar.svg')}}" style="width:30px;height:30px;">
+               
+        </div>
 		<select class="form-control" onchange="selectlang(this)">
 			<option>Language</option>
 			<option value="en"><img src="{{URL::asset('assets/images/pngs/us.png')}}">English (EN)</option>
 			<option value="ar"><img src="{{URL::asset('assets/images/pngs/ar.png')}}">Arabic (AR)</option>
 		</select>
 	</div>
-	<div class="dropdown d-md-flex header-settings">
+ -->
+
+ 
+<div class="dropdown">
+			<button class="btn btn-success
+					dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">
+				<?php if($locale =="en"){ ?>
+				<img src="http://3.220.132.29/medpro/assets/images/flags/us.svg" width="50"
+				height="20" class="mainImage">
+				<?php } else if ($locale == 'ar') { ?>
+				<img src="http://3.220.132.29/medpro/assets/images/flags/ar.svg" width="50"
+				height="20" class="ArabicData">
+				<?php }else{ ?>
+				<img src="http://3.220.132.29/medpro/assets/images/flags/us.svg" width="50"
+				height="20" class="mainImage">
+				<?php } ?>
+				 </button>
+
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+				 
+				<li class="dropdown-item" id="english" name="english" onclick="demo()">
+					<button>
+					<img src="http://3.220.132.29/medpro/assets/images/flags/us.svg" width="20"
+						height="15"> English
+                   </button>
+				</li>
+				<li class="dropdown-item"  id="arabic" name="arabic" onclick="demo1()">
+				<button>
+					<img src="http://3.220.132.29/medpro/assets/images/flags/ar.svg" 
+					width="20" height="15" 
+					> Arabic
+				</button>	
+				</li>
+			</ul>
+
+<div class="dropdown profile-1">
+		<a href="#" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex">
+			<span>
+				<img src="http://3.220.132.29/medpro/assets/images/pngs/doc_image.png" alt="profile-user"  
+				
+				id="profile-user" class="avatar  profile-user brround cover-image">
+			</span>
+		</a>
+		<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+			<div class="drop-heading">
+				<div class="text-center">
+					<h5 class="text-dark mb-0" id="admin"></h5>
+					<small class="text-muted">Administrator</small>
+				</div>
+			</div>
+			<div class="dropdown-divider m-0"></div>
+			<div id="profilev">    </div>
+	
+<a class="dropdown-item"  onclick="signout1()">
+				<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
+			</a>
+		</div>
+	</div>
+
+</div>
+      
+
+	
+<div class="dropdown d-md-flex header-settings">
 		<!-- <a href="#" class="nav-link icon " data-toggle="sidebar-right" data-target=".sidebar-right">
 			<i class="fe fe-align-right"></i>
 		</a> -->
@@ -243,6 +349,62 @@ mydiv.appendChild(aTag);
   });
 </script> -->
 <script>
+
+ function demo()
+ {
+ 	let x = document.getElementById("english").getAttribute('name');
+ 	let path = window.location.href;
+    let uri=path.split('/');
+   
+if(x == "english")
+    {
+    	if(uri[5] == "ar")
+    	{
+    		let ab = uri.pop();
+    		uri[5]='en';
+    		let newPath = uri[0]+"/"+"/"+uri[1]+uri[2]+"/"+uri[3]+"/"+uri[4]+"/"+uri[5]
+            window.location.href = newPath;
+    	}
+
+    if(uri[5] == undefined)
+    {
+        uri[5]="en";
+    	let newPath = uri[0]+"/"+"/"+uri[1]+uri[2]+"/"+uri[3]+"/"+uri[4]+"/"+uri[5];
+        window.location.href = newPath;
+    }
+  }
+}
+
+
+ function demo1()
+ {
+ 	let y = document.getElementById("arabic").getAttribute('name');
+    let path = window.location.href;
+    let uri=path.split('/');
+ 	
+    if(y == "arabic")
+    {
+    	
+    if(uri[5] == "en")
+     {
+     	let ab = uri.pop();
+    	uri[5]='ar';
+    	let newPath = uri[0]+"/"+"/"+uri[1]+uri[2]+"/"+uri[3]+"/"+uri[4]+"/"+uri[5]
+        window.location.href = newPath;
+    }
+
+    if(uri[5] == undefined)
+    {
+    	uri[5]='ar';
+    	let newPath = uri[0]+"/"+"/"+uri[1]+uri[2]+"/"+uri[3]+"/"+uri[4]+"/"+uri[5]
+        window.location.href = newPath;
+     }
+    }
+ 
+ }
+
+
+
 function selectlang($this){
     // alert('hi')
     var url = window.location.href;

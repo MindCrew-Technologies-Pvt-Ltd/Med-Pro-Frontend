@@ -75,4 +75,21 @@ class PhysicianController extends Controller
     public function add_prescription(){
         return view('physician/addprescription');
     }
+    
+    public function profileView()
+    {
+        return view('physician/physician_profile');
+    }
+    public function profileEdit()
+    {
+        return view('physician/physician_edit_profile');
+    }
+
+    public function gmapapi(){
+        return view('physician/demomap');
+    }
+
+    public function Pharmacy_management(){
+        return view('physician/Pharmacy_management');
+    }
 }

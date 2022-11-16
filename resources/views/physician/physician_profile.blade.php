@@ -37,7 +37,7 @@
 <div class="container pb-5">
 
          <div class="profilediv">
-             <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" class="proimg float-left mb-4" id="pro_img" alt="">
+             <img src="" class="proimg float-left mb-4" id="pro_img" alt="">
              <div id="editprofile" class="float-right"></div>
         </div>
 
@@ -153,6 +153,8 @@
         //  window.location.href =base_path +"physician_profile/"+phy_id;
         //     console.log("pharmCY  details",obj);
             // alert(phy_id)
+      
+
     $.ajax({
       url: api_url+"phyViewProfile",
       type: "post",
@@ -185,7 +187,14 @@
                  $('#image_link1').attr('href',res.data.phy_licnse_file);
               }
              
+              let resarr=res.data.phy_img.split("/");
+    let image=resarr[resarr.length-1];
+
+            if(res.status==true && image!=""){
               $('#pro_img').attr('src',res.data.phy_img);
+            }else{
+              $('#pro_img').attr('src',"http://3.220.132.29/medpro/assets/images/pngs/doc_image.png");     
+            }
     });
     
    

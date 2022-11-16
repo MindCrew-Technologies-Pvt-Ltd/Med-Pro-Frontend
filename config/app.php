@@ -53,7 +53,6 @@ return [
     */
 
     'url' => env('APP_URL', 'http://3.220.132.29/medpro/'),
-   
     'asset_url' => env('ASSET_URL', null),
 
     /*

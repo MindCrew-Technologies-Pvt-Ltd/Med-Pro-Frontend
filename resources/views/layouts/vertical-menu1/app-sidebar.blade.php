@@ -332,8 +332,16 @@
       // localStorage.setItem('pharm_profile_det',res);
       
       // alert(res);
-          console.log("respons",res);
-     $('#user_img').attr('src',res.data.pham_img);
+
+      let resarr=res.data.pham_img.split("/");
+      let image=resarr[resarr.length-1];
+
+            if(image!=""){
+              $('#user_img').attr('src',res.data.pham_img);  
+            }
+            else{
+              $('#user_img').attr('src',"http://3.220.132.29/medpro/assets/images/pngs/doc_image.png");    
+            }  
     });
     
    

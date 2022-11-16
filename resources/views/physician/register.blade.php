@@ -15,8 +15,13 @@
 	position: absolute;
 	float:right;
 	right: 1rem;top: 1rem;
-
 }
+
+#first_name,#last_name{
+	text-transform: capitalize;
+}
+
+
 /*@media (max-width:450px) { 
 .wrap-login100{
 		width: 350px;
@@ -99,6 +104,7 @@
    .zmdi{
    	left: 18rem;
    }
+}
 </style>
 
 @endsection
@@ -170,12 +176,14 @@
 								
 								<div class="form-group"style="position:relative">
                                  <input class="form-control" type="password" name="phy_password" id="password" placeholder="{{__('register.phy_pass')}}" autocomplete="off">
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
+                                <!--  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i> -->
+                                  <i class="zmdi eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibiltypass()" ></i>
 								</div>
 
 								<div class="form-group"style="position:relative">
                                  <input class="form-control" type="password" name="confpass" id="confpassword" placeholder="{{__('register.phy_confpass')}}" autocomplete="off" > 
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty2()" ></i>
+                                <!--  <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty2()" ></i> -->
+                                 <i class="zmdi eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty2()" ></i>
                                 <!-- <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "style="margin-left: 7.5rem ;position: absolute;bottom:0.5rem;cursor: pointer;color:'#4ec1ec'" onclick="toggleVisibilty2()" ></i> -->
 								</div>
 								<!-- <div class="form-group">
@@ -197,7 +205,7 @@
 									<div class="file-input1">
                                            <input type="file" id="file"  name="file" class="file_reg">
                                            <label for="file">
-                                             {{__('register.upload_lic')}}<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile_phy_reg" alt="">
+                                             {{__('register.upload_lic')}}<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile_phy_reg" alt="insurance_image" name="image">
                                              <p class="file-name_reg"></p>
                                            </label>
                                    </div>

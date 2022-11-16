@@ -4992,6 +4992,7 @@ select.form-control:focus::-ms-value {
   background-color: #fff;
   border: 1px solid #9ca3b1;
   border-radius: 5px;
+  
 }
 .form-control-file,
 .form-control-range {

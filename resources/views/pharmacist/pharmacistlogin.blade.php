@@ -193,7 +193,7 @@ input[type=password] {
 
 									
                                  <input class="input100 mt-5" type="password" name="pham_password" id="pham_password" placeholder="{{__('phamlogin.pham_pass')}}" autocomplete="off">
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty()"  ></i>
+                                 <i class="zmdi eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibilty()"  ></i>
 								
 
 								<!-- 	<input class="input100" type="password" name="pass" id="password" placeholder="Password">
@@ -306,11 +306,8 @@ var base_path = "http://3.220.132.29/medpro/";
 $("#pharma_login").submit(function (event) {
   	 event.preventDefault();
 
-  
- 
-  var pham_email = $('#pham_email').val();
+    var pham_email = $('#pham_email').val();
     var pham_password = $('#pham_password').val();
-
 
     var formData = {
     pham_email: $('#pham_email').val(),
@@ -326,17 +323,40 @@ $("#pharma_login").submit(function (event) {
       dataType: "json",
       encode: true,
     }).done(function (res) {
-      console.log(res.data);
       localStorage.setItem('pharm_det', JSON.stringify(res.data));
       // return false;
         if(res.status == true){
-        	$('#message').html(res.message + "تم تسجيل الدخول بنجاح").addClass('alert alert-success');
-        	window.location.href=base_path+"pharmacist_prescription";
-        	// return false;
-        }else{
-        //    $('#message').html(res.message).addClass('alert alert-danger');
-		$('#hidemm').html(res.message).removeClass('mhide');
+			$('#message').html(res.message + "تم تسجيل الدخول بنجاح").addClass('alert alert-success');
 
+			let url = window.location.href;
+            let uri=url.split('/');
+			let lan=uri[uri.length-1];
+			
+			if(lan=="ar"){
+			window.location.href=base_path+"pharmacist_prescription/ar";
+			}
+			else{
+        	window.location.href=base_path+"pharmacist_prescription";
+			}
+        	// return false;
+        }
+     //    else if(res.message == "Email or password is wrong.")
+     //    {
+     //    	console.log(res.message,"xyz")
+     //  $('#hidepp').html("Email or password is wrong").removeClass('hidep');
+     //     // $(':input').focus(function(){
+     //     // $('.text-red').hide()
+     //     //   })
+     // }
+
+        else{
+        	
+           // $('#message').html(res.message).addClass('alert alert-danger');
+		 $('#hidemm').html(res.message).removeClass('mhide');
+		   $(':input').focus(function(){
+         $('.text-red').hide()
+           })
+        
         }
 
   });
@@ -354,7 +374,6 @@ $("#pharma_login").submit(function (event) {
 </script>
      <script>
 function selectlang($this){
-    // alert('hi')
     var url = window.location.href;
      let uri=url.split('/');
    if(uri[6]|| (uri[5]=="en" || uri[5]=="ar")){

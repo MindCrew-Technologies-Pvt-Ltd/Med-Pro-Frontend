@@ -396,7 +396,7 @@
       if(quot_insurance_type){
            rows = rows + '<tr><td>' + i + '</td><td>' + e.prs_med_name + '</td><td>' + e.prs_quantity + '</td><td><select class="form-control" onchange="selectListEvent(event , \'' + e._id + '\')"  class="availibility" name="avail"><option >Yes / No</option><option value="no" >No</option><option value="yes" selected>Yes</option><option value="partial">Partial</option></select></td><td><input type="text" value="' + e.prs_quantity + '" name="med_qty" class="cost" id="med_qty" onchange="selectListEvent(event , \'' + e._id + '\')" ></td><td><select class="form-control" class="insurance_co" onchange="selectListEvent(event , \'' + e._id + '\')" name="inso" ><option>Yes / No</option><option value="yes">Yes</option><option value="no">No</option></select></td><td><input type="text" value="" name="ins_per" class="cost" id="ins_per" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" name="cost" class="cost" id="cost" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" value="" name="final_cost" class="cost" id="final_cost"onchange="selectListEvent(event , \'' + e._id + '\')" ></td></tr>'
       }else{
-        rows = rows + '<tr><td>' + i + '</td><td>' + e.prs_med_name + '</td><td>' + e.prs_quantity + '</td><td><select class="form-control" onchange="selectListEvent(event , \'' + e._id + '\')"  class="availibility" name="avail"><option >Yes / No</option><option value="yes">Yes</option><option value="no">No</option><option value="partial" selected>Partial</option></select></td><td><input type="text" value="" name="med_qty" class="cost" id="med_qty" onchange="selectListEvent(event , \'' + e._id + '\')" ></td><td><select class="form-control" class="insurance_co" onchange="selectListEvent(event , \'' + e._id + '\')" name="inso" ><option>Yes / No</option><option value="yes">Yes</option><option value="no">No</option></select></td><td><input type="text" value="" name="ins_per" class="cost" id="ins_per" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" name="cost" class="cost" id="cost" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" value="" name="final_cost" class="cost" id="final_cost"onchange="selectListEvent(event , \'' + e._id + '\')" ></td></tr>'
+        rows = rows + '<tr><td>' + i + '</td><td>' + e.prs_med_name + '</td><td>' + e.prs_quantity + '</td><td><select class="form-control" onchange="selectListEvent(event , \'' + e._id + '\')"  class="availibility" name="avail"><option >Yes / No</option><option value="yes">Yes</option><option value="no">No</option><option value="partial" selected>Partial</option></select></td><td><input type="text" value="" name="med_qty" class="cost" id="med_qty" onchange="selectListEvent(event , \'' + e._id + '\')" ></td><td><select class="form-control" class="insurance_co" onchange="selectListEvent(event , \'' + e._id + '\')" name="inso" ><option>Yes / No</option><option value="yes">Yes</option><option value="no">No</option></select></td><td><input type="text" value="" name="ins_per" class="cost" id="ins_per"  onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" name="cost" class="cost" id="cost" onchange="selectListEvent(event , \'' + e._id + '\')"></td><td><input type="text" value="" name="final_cost" class="cost" id="final_cost"onchange="selectListEvent(event , \'' + e._id + '\')" ></td></tr>'
       }
       
       
@@ -409,7 +409,8 @@
 
   
   function selectListEvent(e, id) {
-    e.preventDefault();
+    // alert(e.target.value)
+   e.preventDefault();
    var qty =0;
    var total=0;
    var med_qty;
@@ -471,20 +472,24 @@
     if (e.target.name === 'inso') {
       prs_details1[medInd].quot_med_inc_cover = e.target.value
 
-      if(e.target.value == "yes"){
+
+       if(e.target.value == "yes"){
+        document.getElementById('ins_per').disabled = false;
          // e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
-      }else if(e.target.value == "no"){
-          
-          // e.target.parentNode.parentNode.childNodes[6].childNodes[0].value=0;
-          // e.target.parentNode.parentNode.childNodes[6].childNodes[0].setAttribute("disabled", "true");
+      }else if(e.target.value == "no")
+      {
+      document.getElementById('ins_per').disabled = true;
+   // e.target.parentNode.parentNode.childNodes[6].childNodes[0].value=0;
+    // e.target.parentNode.parentNode.childNodes[6].childNodes[0].setAttribute("disabled", "true");
       }else{
- // e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
+   // e.target.parentNode.parentNode.childNodes[6].childNodes[0].removeAttribute("disabled", "true");
       }
     }
     if(e.target.name ==='ins_per'){
-       prs_details1[medInd].quot_ins_per = e.target.value;
+     var kids = event.target
+     prs_details1[medInd].quot_ins_per = e.target.value;
         addvalue(id)
-    }
+    } 
     if (e.target.name === 'cost') {
       console.log(prs_details1[medInd]);
       prs_details1[medInd].quot_med_cost = e.target.value
@@ -834,6 +839,8 @@ let phama1321 = localStorage.getItem('pharm_det');
 <script type="text/javascript">
   $('#Create').hide();
   $(document).ready(function() {
+
+    $('')
 
     $("#show").click(function() {
       $("#Create").show();

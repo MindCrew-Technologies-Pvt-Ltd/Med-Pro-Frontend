@@ -99,7 +99,8 @@
        right: 0;
     }
     .user-pic,.user-info{
-        margin-left:-114px;
+        /*margin-left:-114px;*/
+        margin-left: 15px;
     }
     
 }
@@ -113,9 +114,9 @@
     .card-title{
         font-size:1rem;
     }
-    .user-pic,.user-info{
+   /* .user-pic,.user-info{
         margin-left:-48px;
-    }
+    }*/
 }
 
 

@@ -12,15 +12,18 @@
 	
 	
 }
+
 .zmdi{
 	color: #4ec1ec;
 	
 }
-.wrap-login100{
 
+.wrap-login100
+{
 width: 456px;
- height:500px;
+height:500px;
 }
+
 .login100-form-title{
 	margin-bottom: -10px;
 	margin-top: -10px;
@@ -59,16 +62,22 @@ input[type=password] {
 .login100-form{
 	margin-left:15px;
 }
+
 .zmdi-eye-off{
 	position: absolute;
 	float:right;
 	right: -1rem;
 	top: 1.1rem;
-
 }
+
 .mhide{
 	display: none;
 }
+
+
+
+
+
 @media only screen and (max-width: 480px) {
 	.wrap-login100{
 
@@ -275,28 +284,21 @@ var base_path = "http://3.220.132.29/medpro/";
      },
     errorElement: "span",
 
-    
-
-
-    }
+   }
   });
 
 $("#admin_login").submit(function (event) {
   	 event.preventDefault();
 
-  
- 
-  var admin_email = $('#admin_email').val();
+    var admin_email = $('#admin_email').val();
     var admin_password = $('#admin_password').val();
-
 
     var formData = {
     admin_email: $('#admin_email').val(),
     admin_password: $('#admin_password').val() ,
-
     };
  
-   if(admin_email !="" &&  admin_password !=""){
+    if(admin_email !="" &&  admin_password !=""){
     $.ajax({
       type: "POST",
       url: api_url+"adminLogin",
@@ -308,11 +310,30 @@ $("#admin_login").submit(function (event) {
       localStorage.setItem('admin_det', JSON.stringify(res.data));
       // return false;
         if(res.status == true){
-        	$('#message').html(res.message).addClass('alert alert-success');
-        	window.location.href=base_path+"admindashboard";
-        }else{
+        	
+        	// $('#message').html(res.message).addClass('alert alert-success');
+        	$('#message').html('Login successfully | تسجيل الدخول بنجاح').addClass('alert alert-success');
+
+			let url = window.location.href;
+            let uri=url.split('/');
+			let lan=uri[uri.length-1];
+			
+			if(lan=="ar"){
+				window.location.href=base_path+"admindashboard/ar";
+			}
+			else{
+				window.location.href=base_path+"admindashboard";
+			}
+}
+        else{
+        	
         //    $('#message').html(res.message).addClass('alert alert-danger');
-		$('#hidemm').html(res.message).removeClass('mhide');
+         $('#hidemm').html(res.message).removeClass('mhide');
+         $(':input').focus(function(){
+         $('.text-red').hide()
+           })
+
+		   
 
         }
 

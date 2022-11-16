@@ -3,10 +3,13 @@
 <script>
 		 
 		  let user_data9 = localStorage.getItem('user_det');
+          console.log(user_data9,"data")
 		  var obj9 = JSON.parse(user_data9);
 		  if (!obj9) {
-		    var base_path = "http://3.220.132.29/medpro/"+<?php echo $locale; ?>;
-		    window.location.href = base_path + 'login'<?="/".$locale; ?>;
+		    // var base_path = "http://3.220.132.29/medpro/" + <?php echo $locale; ?>;
+             var base_path = "http://3.220.132.29/medpro/";
+            console.log(base_path,"your path")
+		    window.location.href = base_path + 'login'<?php="/".$locale; ?>;
            }
 </script>
 
@@ -27,9 +30,11 @@
                         <a aria-label="Hide Sidebar" class="app-sidebar__toggle ml-auto" data-toggle="sidebar" href="#"></a><!-- sidebar-toggle-->
                     </div>
                     <div class="app-sidebar__user">
-                        <div class="dropdown user-pro-body text-center">
+                        <div class="dropdown user-pro-body text-center" 
+                        style="display: grid;"
+                        >
                             <div class="user-pic">
-                                <img id="profile_id" src="{{URL::asset('assets/images/pngs/doc_image.png')}}" class="avatar-xl rounded-circle">
+                                <img id="profile_id" src="" class="avatar-xl rounded-circle">
                             </div>
                             <div class="user-info">
                                 <h6 class=" mb-0 text-dark"></h6>
@@ -332,8 +337,11 @@
     },
 
   }).done(function(res) {
-    console.log('response',res)
-            if(res.status==true){
+
+    let resarr=res.data.phy_img.split("/");
+    let image=resarr[resarr.length-1];
+
+            if(res.status==true && image!=""){
               $('#profile_id').attr('src',res.data.phy_img);  
             }
             else{

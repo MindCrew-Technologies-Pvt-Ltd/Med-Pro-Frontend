@@ -140,7 +140,8 @@
    .zmdi-eye-off{
      position: absolute;
    float:right;
-   right: 14rem;
+   /*right: 14rem;*/
+   right: 1rem;
    top: 0.8rem; 
    color:#7ec1ec; 
    }
@@ -207,8 +208,9 @@
   #psnt_first_name{
     width: 80%;
   }
+
   #psnt_last_name{
-    width: 80%;
+  width: 100%;
   }
   
   #psnt_email{

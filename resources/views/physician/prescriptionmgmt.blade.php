@@ -89,10 +89,12 @@
                                          <div class="text-center" id="message">
                                                
                                              </div>
-                                        <div class="table-responsive">
+                                       
                                             <div class="search" style="padding-bottom:50px;">
                                             <input class="form-control" type="text" id="myInput" style="width:100%;" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
                                             </div>
+
+                                             <div class="table-responsive">
                                             <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                                 <thead class="text-lowercase">
                                                     <tr>

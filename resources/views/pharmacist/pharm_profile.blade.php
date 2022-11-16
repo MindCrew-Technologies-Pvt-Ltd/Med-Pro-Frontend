@@ -314,8 +314,17 @@
                 $('#registration_file').attr('src',res.data.pham_registration_file);
                  $("#reg_file").attr('href',res.data.pham_registration_file)
               }
+
+              let resarr=res.data.pham_img.split("/");
+              let image=resarr[resarr.length-1];
+
+            if(image!=""){
+              $('#proimg').attr('src',res.data.pham_img);  
+            }
+            else{
+              $('#proimg').attr('src',"http://3.220.132.29/medpro/assets/images/pngs/doc_image.png");    
+            }  
               
-              $('#proimg').attr('src',res.data.pham_img);
     });
     
    

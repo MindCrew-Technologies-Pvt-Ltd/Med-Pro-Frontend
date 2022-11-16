@@ -4,6 +4,12 @@
 @endsection
 @section('page-header')
 <style>
+
+button{
+    margin-right: 10px !important;
+}
+
+
 .heading{
   font-size: 2.1rem;
   color: #7d7a7a;
@@ -78,10 +84,12 @@
 							<div class="card-body">
 
                             <!-- table start -->
-                             <div class="table-responsive">
+                           
                                 <div class="search_opt" style="margin-bottom:50px;">
                                  <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
                                 </div>
+
+                                  <div class="table-responsive">
                                 <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                         <thead>
                                             <tr>
@@ -178,8 +186,8 @@
      var formData = {
         phamaciest_id:pharmacist_id,
     };
-    console.log(pharmacist_id)
-    console.log(formData)
+    // console.log(pharmacist_id,"xyz")
+    // console.log(formData)
 
   $.ajax({
       type: "POST",
@@ -193,22 +201,22 @@
       // processData:false,
     }).done(function (res) {
         // alert(res);
-      console.log("res[p]",res)
+      // console.log("res[p]",res)
 
        var patientList=[];
         patientList.push(res.data);
-        console.log("res.data",res.data)
-       console.log(res.data.length);
+        // console.log("res.data",res.data)
+       // console.log(res.data.length);
         for(var i = 0; i < res.data.length; i++) {
 	      patientList.push(res.data);
         }
-    console.log(patientList);
+    // console.log(patientList);
     localStorage.setItem('patientList',JSON.stringify(patientList));
 
        
 
          res.data.map((e,i) => {
-           console.log("-- ID",e._id)
+           // console.log("-- ID",e._id)
             i++;
             let str1='<a id="'+e.presciption_id+'" href="{{url("show_prescription")}}/'+e.presciption_id+'<?="/".$locale; ?>" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'
             let str2='<a id="'+e.presciption_id+'" href="{{url("accept_prescription")}}/'+e.presciption_id+'<?="/".$locale; ?>" class="btn ebtn">{{__('pham_presmgmt.view')}}</a>'

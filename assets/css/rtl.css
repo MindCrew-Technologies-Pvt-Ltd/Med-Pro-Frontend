@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+ /**{
+      font-family: 'Poppins', sans-serif;
+      text-transform: none;
+  }*/
+html,body{
+	direction: rtl;
+	text-align:center!important;
+  background-color: white;
+  font-family: 'Poppins', sans-serif!important;
+  /*text-transform: none!important;*/
+  font-weight: 400!important;
+    font-style: normal!important;
+}
+  
+
+}
+.fa-eye{
+position: relative!important;
+right: 60rem!important;
+}                     /*css fixes for physician register page*/
+#logotxt{
+  position:relative;
+  right:1rem!important;
+  top: 0.3rem!important;
+}
+/*.form-group{
+	margin-left: -50px;
+}*/
+/*.file-input1 label{
+	margin-left:-50px;
+	width: 370px!important;
+}*/
+.zmdi{
+	right:19rem!important;
+}
+/*.headtext{
+	margin-left: -51px;
+}*/
+#pre_icon{
+  right: -10px!important;
+  left: 0px!important;
+  margin-left: -9px!important;
+}
+.side-menu .side-menu__icon {
+  margin-right: 0px!important;
+}
+                            /*css fixes for physician login page */
+.app-sidebar__toggle{
+
+position: absolute!important;
+left: 19px!important;
+
+}
+hr.new1{
+  border-top:none!important ;
+}
+.sidebar-mini.sidenav-toggled .app-sidebar__toggle{
+  margin: -11px auto!important;
+}
+.app-sidebar__toggle::before{
+top: -6px!important;
+  }
+/*.app-sidebar__toggle::before{
+left: 19px!important;
+position: absolute!important;
+top: -6px!important;
+padding: 2px 15px;
+color: #fff;
+background-color: #7ec1ec;
+border-radius: 30px;
+right: -307px!important;
+}*/
+.wrap-login100{
+	padding: 0 50px !important;
+}
+
+
+ .forgot{
+ 	margin-right: 115px!important;
+ }
+
+ .login100-form-title{
+ 	margin: 0 20px!important;
+ }
+.ml-1, .mx-1 {
+    margin-left: -0.75rem!important;
+}
+
+ .zmdi-lock{
+ 	display: none!important;
+ }
+
+												/*css for forgot password fixes*/  
+.logofor{
+
+  margin-top: 50px!important;
+ }
+ .login100-form-title{
+ 	padding-top:20px!important;
+ }
+
+
+												/*css for forgot password2 fixes*/ 
+	
+
+/*.login100-form-title{
+
+   margin: 0 0px!important;
+}*/
+												/*css for reset password fixes*/ 
+
+
+
+
+                      /*css for reset success*/
+
+#success_title{
+  margin: 0 0px!important;
+}
+									/*custom css for dashboard*/
+
+.page-header{
+	background:#7ec1ec!important;
+
+}
+
+.side-header{
+	background:#7ec1ec!important;
+  padding:6px 10px !important;
+}
+.app-sidebar{
+background:#7ec1ec!important;
+}
+
+           /*custom css for Prescription Management*/
+
+ h3.card-title.viewp {
+ 	right:60rem!important;
+ }
+
+         
+          /* custom css for add prescription*/
+   #prs_med_name {
+   	float: right!important;
+   }
+   .iconn {
+    font-size:15px!important;
+    right: 56.5rem!important;
+  }
+
+  .prs_quantity{
+  	  width: 34%!important;
+    margin-right:0px!important;
+  }
+  .cancelbutton{
+  	float: right!important;
+  }
+  .acceptbutton{
+  	float: none!important;
+  }
+
+  h3.card-title{
+  	position: relative;
+    left: -46rem;
+  }
+
+     /*custom css for Pharmacy Management*/
+
+    
+
+    /*custom css for Patient Management*/
+
+
+
+    /*custom css for add patient*/
+
+    h3.card-title.viewp1 {
+     right:none!important;
+   }
+
+  .zmdi1{
+    right: 49rem!important;
+  }
+
+  #add_icon{
+    right: 49rem!important;
+  }
+
+  .file-input label{
+    margin-top:0px!important;
+        margin-left: 13rem;
+  }
+
+  .sbmt{
+    float: right!important;
+    margin-right:4px!important;
+  }
+
+  /*custom css for profile page*/
+
+  .pnamelab {
+    float: right!important;
+    position: relative!important;
+    right: -120px!important;
+   }
+
+   label{
+    float: right!important;
+    padding-right:0!important;
+   }
+   .ok{
+        position: relative!important;
+    left: -13rem!important;
+   }
+
+
+   /*physician Edit Profile*/
+  .glyphicon{
+      position:relative!important;
+      right: 13rem!important; 
+    }
+
+  .emaill{
+    margin-right:0px!important;
+  }
+
+  .pass{
+    margin-right:0px!important;
+  }
+
+  .zmdi2{
+    right:42rem!important;
+  }
+
+  .dropdown-menu{
+    text-align:right!important;
+    left: 9rem!important;
+  }
+
+ #flag{
+
+  /*position: relative;*/
+    right: 0rem!important;
+    /*height: 30px;
+    width: 65px;*/
+ } 
+
+
+/*custom css for reset password pharmacist*/
+
+.eye{
+  left: 0px!important;
+}
+/*custom css for pharmacist Prescripttion Management*/
+#profile_user{
+  margin-left:0px!important;
+}
+/*custom css for pharmacist profile*/
+#phamname {
+    margin-right: -11%!important;
+    margin-top: 72px!important;
+}
+.btninput{
+  padding-right:0px!important;
+}
+
+/*custom css for edit profile*/
+
+#img_file{
+  left: -236px!important;
+}
+.gly{
+  left: 0px!important;
+}
+#p1{
+   margin-right: 0%!important;
+    margin-top: 0px!important;
+}
+.zmdi3{
+  left:-5rem!important;
+}
+.gly{
+     position: relative!important;
+   /* top: 3.5rem;*/
+    right: -5.5rem!important;
+    color: #7ec1ec;
+    z-index: 1!important;
+}
+#add_icon{
+  right: 49rem!important;//66
+}
+#flag {
+   
+    right: 0rem!important;
+   
+}
+/*.us1{
+  margin-left: -131px!important;
+}*/
+}
+
+
+.totalcharges{
+  position: relative;
+  left: 41px!important;
+}
+#shipcharge{
+  position: relative!important;
+    right: 56rem!important;
+}
+.ship_head{
+margin-left:0px!important;
+}
+.tot_charge{
+  left: -49rem!important;
+}
+.total_amount{
+  position: relative;
+  left:-170px;
+}
+
+#arrow{
+right: 62rem;
+top: 0rem;
+}
+.footer .container{
+  margin-left: 0rem!important;
+}
+
+/*mobile responsive css for RTL View*/
+@media (min-width: 375px) and (max-width:667px) {
+.forgot {
+    margin-right: 140px!important;
+}
+  .zmdi{
+  right:12rem!important;
+}
+  .app-sidebar__toggle: before{
+    padding: 2px 15px!important;
+    color: #76839a!important;
+    background-color: #7ec1ec!important;
+    border-radius: 30px!important;
+  }
+  .mobile-header .app-sidebar__toggle {
+    padding: 2px 15px;
+    color: #76839a;
+    background-color: #7ec1ec;
+    border-radius: 30px;
+}
+  .avatar{
+    position: relative!important;
+    right: 15rem!important;
+    top: 1rem!important;
+   /* width: 3rem!important;
+    height:3rem!important;*/
+  }
+  #profile-user{
+    position:relative!important;
+        left: -15rem!important;
+        top: 1rem;
+        /*width: 3rem!important;
+    height:3rem!important;*/
+  }
+  .dropdown-menu.dropdown-menu-right {
+
+    left: -5rem!important;
+}
+ 
+  #add_icon{
+    right: 16rem!important;
+  }
+  .glyphicon{
+      position:relative!important;
+      left: -13rem!important; 
+      top: 0rem!important;
+    }
+    .proimg {
+    margin-right: -9px!important;
+  }
+}
+
+/*mobile responsive css for iphone xr*/
+ @media (min-width: 414px) and (max-width:896px) {
+      .page-header {
+    width: 100%!important;
+    }
+   #profile-user{
+          margin-left: 8rem!important;
+   }
+   .proimg{
+    margin-left: 50px;
+   }
+   div.dropdown.profile-1 {
+      position: relative;
+        margin: -11rem;
+      }
+   }
+     
+  /* div.dropdown.profile-1 {
+      position: relative!important;
+        margin: 11rem!important;
+      }*/
+  #svg_img{
+    position: relative;
+    top: 2rem;
+  }

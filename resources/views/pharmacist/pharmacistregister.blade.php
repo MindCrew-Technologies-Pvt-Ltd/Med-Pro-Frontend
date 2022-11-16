@@ -182,25 +182,25 @@ function resizingMap() {
 
 <!-- till here -->
  <style>
-	
+    
 .error{
-	color: red;
+    color: red;
   /* margin-right: -57px; */
-	
+    
 }
 .valid{
-	color: green;
-	
+    color: green;
+    
 }
 
 
 .zmdi {
-	color: #4ec1ec;
-	
+    color: #4ec1ec;
+    
 }
       .wrap-login100{
       width: 456px;
-	    }
+        }
       .login100-form-title{
         /*margin-top:-40px;
         margin-bottom:-30px;
@@ -210,10 +210,18 @@ function resizingMap() {
       .login100-form{
         width: 100%;
       }
+
+     
+     #pham_name,#pham_first_name,#pham_last_name{
+        text-transform: capitalize;
+     }
+
+
       input[type=text] {
          border-radius: 6px;
          height: 50px;
          width: 371px;
+        /* text-transform: capitalize;*/
       } 
       input[type=email] {
          border-radius: 6px;
@@ -224,11 +232,12 @@ function resizingMap() {
         border-radius: 6px;
         height: 50px;
         width: 371px;
-	
+    
       }
       textarea.form-control {
           height: auto;
           width: 370px;
+          text-transform: capitalize;
       }
       .custom-file, .custom-file-input {
           position: relative;
@@ -299,12 +308,13 @@ function resizingMap() {
 #imgfile{
     padding-left: 110px; 
     padding-top:5px; 
-    height:25px
+    height:25px;
+    
 }
 
 /*.agreeDiv{
-	margin-top: -40px;
-	margin-bottom: -30px;
+    margin-top: -40px;
+    margin-bottom: -30px;
 }*/
 #terms-error{
     margin-left:10px;
@@ -345,7 +355,7 @@ label {
       }
       .wrap-login100{
           width: 330px;
-	    }
+        }
       .login100-form-title{
         margin-top:-40px;
         margin-bottom:-30px;
@@ -367,7 +377,7 @@ label {
         border-radius: 6px;
         height: 50px;
         width: 243px;
-	
+    
       }
       textarea.form-control {
           height: auto;
@@ -405,69 +415,69 @@ label {
 
 @endsection
 @section('content')
-		<!-- BACKGROUND-IMAGE -->
-		<div class="login-img">
+        <!-- BACKGROUND-IMAGE -->
+        <div class="login-img">
 
-			<!-- GLOABAL LOADER -->
-			<div id="global-loader">
-				<img src="{{URL::asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">
-			</div>
-			<!-- /GLOABAL LOADER -->
+            <!-- GLOABAL LOADER -->
+            <div id="global-loader">
+                <img src="{{URL::asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">
+            </div>
+            <!-- /GLOABAL LOADER -->
 
-			<!-- PAGE -->
-			<div class="page">
-				<div class="row">
-				    <!-- CONTAINER OPEN -->
-					<div class="col col-login mx-auto">
-						<!-- <div class="text-center" id="message">
+            <!-- PAGE -->
+            <div class="page">
+                <div class="row">
+                    <!-- CONTAINER OPEN -->
+                    <div class="col col-login mx-auto">
+                        <!-- <div class="text-center" id="message">
 
-						</div> -->
-					</div>
-					<div class="container-login100 text-center">
+                        </div> -->
+                    </div>
+                    <div class="container-login100 text-center">
 
-						<div class="wrap-login100 p-6">
-							<!-- <div class="text-center">
-							<img src="{{URL::asset('assets/images/brand/logo1.png')}}" class="header-brand-img" alt="">
-						    </div> -->
-						    <svg width="53" height="137" viewBox="0 0 83 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div class="wrap-login100 p-6">
+                            <!-- <div class="text-center">
+                            <img src="{{URL::asset('assets/images/brand/logo1.png')}}" class="header-brand-img" alt="">
+                            </div> -->
+                            <svg width="53" height="137" viewBox="0 0 83 137" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M34.1916 108.445C43.0857 96.8096 46.5093 93.3981 46.5093 86.886C46.5093 77.9879 39.323 73.882 33.5053 69.7761C27.6876 65.6702 18.1031 62.2466 21.1876 56.4329C18.7894 54.7211 18.7894 54.7211 18.7894 54.7211L11.6031 63.6192C11.6031 63.6192 6.18509 69.441 6.4677 76.2801C6.81087 84.4959 10.2668 87.1848 17.4208 92.0214C29.0562 99.8941 34.5267 102.975 31.4503 106.394C34.1916 108.445 32.4798 107.076 34.1916 108.445ZM62.3959 83.7168L77.5115 64.2369C77.5115 64.2369 82.7599 58.6373 82.7599 48.1484C82.7599 37.6556 74.3664 31.3574 69.8164 28.2084C65.2664 25.0633 48.4795 13.5168 48.4795 13.5168C48.4795 13.5168 42.5326 10.3717 42.5326 5.82174C42.5326 2.32546 43.4894 1.74814 43.4894 1.74814L41.3941 0L28.1922 17.7155C28.1922 17.7155 22.9438 23.3112 22.9438 31.7047C22.9438 40.0981 26.7913 46.7435 30.9901 49.8925C35.1888 53.0376 54.0792 65.981 54.0792 65.981C54.0792 65.981 60.2804 70.5876 61.0717 76.1267C61.6289 79.9944 61.3503 80.5677 60.3006 82.3158C62.3959 83.7168 62.3959 83.7168 62.3959 83.7168ZM55.1329 136.427H25.4832L22.3826 124.025H0L3.10062 117.824H77.5155L80.6161 124.025H58.2335L55.1329 136.427Z" fill="#6BA5CD"/>
 </svg>
 
 
-							<form class="login100-form validate-form" enctype="multipart/form-data"  id="pharma_signup" method="post">
-								@csrf
-							
-								
-								<span class="login100-form-title">
-									{{__('pham_register.pham_register')}}
-								</span>
+                            <form class="login100-form validate-form" enctype="multipart/form-data"  id="pharma_signup" method="post">
+                                @csrf
+                            
+                                
+                                <span class="login100-form-title">
+                                    {{__('pham_register.pham_register')}}
+                                </span>
                                  <div class="text-center" id="message">
                                    
                                  </div>
-								<div class="form-group">
-									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_name" id="pham_name" placeholder="{{__('pham_register.pham_name')}}" >
-									
-									
-								</div>
-								
+                                <div class="form-group">
+                                    <label class="form-label"></label>
+                                    <input type="text" class="form-control" name="pham_name" id="pham_name" placeholder="{{__('pham_register.pham_name')}}" >
+                                    
+                                    
+                                </div>
+                                
                                  <div class="form-group">
-									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_first_name" id="pham_first_name" placeholder="{{__('pham_register.pham_first_name')}}" >
-									
-								</div> 
+                                    <label class="form-label"></label>
+                                    <input type="text" class="form-control" name="pham_first_name" id="pham_first_name" placeholder="{{__('pham_register.pham_first_name')}}" >
+                                    
+                                </div> 
 
                                 <div class="form-group">
-									<label class="form-label"></label>
-									<input type="text" class="form-control" name="pham_last_name" id="pham_last_name" placeholder="{{__('pham_register.pham_last_name')}}" >
-									
-								</div> 
+                                    <label class="form-label"></label>
+                                    <input type="text" class="form-control" name="pham_last_name" id="pham_last_name" placeholder="{{__('pham_register.pham_last_name')}}" >
+                                    
+                                </div> 
 
                                 <div class="form-group">
-									<label class="form-label"></label>
-									<input type="email" class="form-control" name="pham_email" id="pham_email" placeholder="{{__('pham_register.pham_email')}}" >
-									
-								</div>
+                                    <label class="form-label"></label>
+                                    <input type="email" class="form-control" name="pham_email" id="pham_email" placeholder="{{__('pham_register.pham_email')}}" >
+                                    
+                                </div>
                                <!--  <div class="row">
 
                                 <div class="col-md-6"> -->
@@ -475,42 +485,43 @@ label {
                                <!--  </div> -->
 
                                 <!-- <div class="col-md-6"> -->
-                                	 <!-- <div class="form-group">
-											
-											<div class="custom-file">
-												<input type="file"  class="custom-file-input" name="file" id="lic_doc" placeholder="*Upload file">
-												<label class="custom-file-label">Upload file</label>
-												
-									       </div>
-								</div> -->
+                                     <!-- <div class="form-group">
+                                            
+                                            <div class="custom-file">
+                                                <input type="file"  class="custom-file-input" name="file" id="lic_doc" placeholder="*Upload file">
+                                                <label class="custom-file-label">Upload file</label>
+                                                
+                                           </div>
+                                </div> -->
                                <!--  </div>
                                 </div>
                                 -->
-								<!-- <div class="form-group">
+                                <!-- <div class="form-group">
                                             <label class="form-label"></label>
-							   		<input class="form-control" type="password" name="phy_password" id="password" placeholder="*Password" autocomplete="off">
-									<div class="symbol-input100 eye1" onclick="toggleVisibiltypass()">
-									<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye " ></i>
+                                    <input class="form-control" type="password" name="phy_password" id="password" placeholder="*Password" autocomplete="off">
+                                    <div class="symbol-input100 eye1" onclick="toggleVisibiltypass()">
+                                    <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye " ></i>
                                              </div>
                                    
-								</div> -->
-								<div class="form-group"style="position:relative">
+                                </div> -->
+                               
+                                  <div class="form-group"style="position:relative">
                                  <input class="form-control" type="password" name="pham_password" id="pham_password" placeholder="{{__('pham_register.pham_pass')}}" autocomplete="off">
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibiltypass()" ></i>
-								</div>
+                                 <i class="zmdi zmdi-eye-off eye" id="togglePassword3" title="visible" data-original-title="zmdi zmdi-eye" onclick="toggleVisibiltypass()" ></i>
+                                </div>
 
-								<div class="form-group"style="position:relative">
+                                <div class="form-group"style="position:relative">
                                  <input class="form-control" type="password" name="confpass" id="confpassword" placeholder="{{__('pham_register.pham_confpass')}}" autocomplete="off" > 
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye " onclick="toggleVisibilty2()" ></i>
+                                 <i class="zmdi eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye " onclick="toggleVisibilty2()" ></i>
                                 <!-- <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "style="margin-left: 7.5rem ;position: absolute;bottom:0.5rem;cursor: pointer;color:'#4ec1ec'" onclick="toggleVisibilty2()" ></i> -->
-								</div>
-								<!-- <div class="form-group">
-		                                    <label class="form-label"></label>
-											<input class="form-control" type="password" name="confpass" id="confpassword" placeholder="*Confirm Password" autocomplete="off" > 
-		                                      <div class="symbol-input100 eye2" onclick="toggleVisibilty2()">
-											<i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "></i>
-										    </div>
-								</div> -->
+                                </div>
+                                <!-- <div class="form-group">
+                                            <label class="form-label"></label>
+                                            <input class="form-control" type="password" name="confpass" id="confpassword" placeholder="*Confirm Password" autocomplete="off" > 
+                                              <div class="symbol-input100 eye2" onclick="toggleVisibilty2()">
+                                            <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword2" title="visible" data-original-title="zmdi zmdi-eye "></i>
+                                            </div>
+                                </div> -->
                                   <div class="form-group" style="position:relative;">
                                       <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="{{__('pham_register.add')}}" autocomplete="on"></textarea>
                                       <i  id="add_icon"  class="fa fa-map-marker" style="font-size:24px;position: absolute;float:left;right:2rem;top:0.9rem;color:#7ec1ec;cursor:pointer" data-toggle="modal" data-target="#largeModal"></i>
@@ -534,55 +545,55 @@ label {
                                      <!--  </div> -->
                                      <!--  <div class="col"> -->
                                           <div class="form-group mt-2">
-											 
+                                             
                        <!-- file -->
                        <div class="file-input mt-4">
                                            <input type="file" id="file"  name="file" class="file">
                                            <label for="file">
-                                            {{__('pham_register.upload_lic')}}<img src="{{URL::asset('assets/images/brand/more.png')}}" id="imgfile" alt="">
+                                            {{__('pham_register.upload_lic')}}<img src="{{URL::asset('assets/images/brand/more.png')}}" alt="no file">
                                             
                                            </label>
-                                            <p class="file-name"></p>
+                                            <p class="file-name_reg"></p>
                                    </div>
                        <!-- file -->
-							          <!--   </div> -->
-                                      </div>
+                                      <!--   </div> -->
+                                      <!-- </div> -->
                                  <!--  </div> -->
                                     
                                     
                                  <div class="text-center float-left agreeDiv" >
-								                   	<label class="text-dark mt-2" style="font-size:.875rem;">
-								                   		<input id="terms" name="terms" type="checkbox">&nbsp;<a href="#" class="text-primary "></a>{{__('pham_register.agree')}}
-								                   	</label>
+                                                    <label class="text-dark mt-2" style="font-size:.875rem;">
+                                                        <input id="terms" name="terms" type="checkbox">&nbsp;<a href="#" class="text-primary "></a>{{__('pham_register.agree')}}
+                                                    </label>
 
-							                	</div>
+                                                </div>
                                    
                                 <p class="text-red hidem" id="emhide">Email already registered</p>
 
 
-								<div class="container-login100-form-btn">
-									<input class="login100-form-btn btn-primary mt-5" type="submit" id="submit" value="{{__('pham_register.pham_submit')}}">
-								</div>
-								<div class="text-center pt-3 style="margin-top:20px!important;">
-									<p class="text-dark mb-0 logintext" >{{__('pham_register.already')}}<a href="{{url('/pharmacist_Login')}}" class="text-primary">{{__('pham_register.login_here')}}</a></p>
-								</div>
-								
-								<!-- <div class=" flex-c-m text-center mt-3">
-								    <p>Or</p>
-									<div class="social-icons">
-										<ul>
-											<li><a class="btn  btn-social btn-block"><i class="fa fa-google-plus text-google-plus"></i> Sign up with Google</a></li>
-											<li><a class="btn  btn-social btn-block mt-2"><i class="fa fa-facebook text-facebook"></i> Sign in with Facebook</a></li>
-										</ul>
-									</div>
-								</div> -->
-							</form>
-						</div>
-					<!-- </div> -->
-					<!-- CONTAINER CLOSED -->
-				</div>
-			</div>
-			<!-- End PAGE -->
+                                <div class="container-login100-form-btn">
+                                    <input class="login100-form-btn btn-primary mt-5" type="submit" id="submit" value="{{__('pham_register.pham_submit')}}">
+                                </div>
+                                <div class="text-center pt-3" style="margin-top:20px!important;">
+                                    <p class="text-dark mb-0 logintext" >{{__('pham_register.already')}}<a href="{{url('/pharmacist_Login')}}" class="text-primary">{{__('pham_register.login_here')}}</a></p>
+                                </div>
+                                
+                                <!-- <div class=" flex-c-m text-center mt-3">
+                                    <p>Or</p>
+                                    <div class="social-icons">
+                                        <ul>
+                                            <li><a class="btn  btn-social btn-block"><i class="fa fa-google-plus text-google-plus"></i> Sign up with Google</a></li>
+                                            <li><a class="btn  btn-social btn-block mt-2"><i class="fa fa-facebook text-facebook"></i> Sign in with Facebook</a></li>
+                                        </ul>
+                                    </div>
+                                </div> -->
+                            </form>
+                        </div>
+                    <!-- </div> -->
+                    <!-- CONTAINER CLOSED -->
+                </div>
+            </div>
+            <!-- End PAGE -->
                 <!-- LARGE MODAL -->
 <div id="largeModal" class="modal fade">
     <div class="modal-dialog modal-lg" role="document">
@@ -605,15 +616,20 @@ label {
     </div><!-- MODAL DIALOG -->
 </div>
 <!-- LARGE MODAL CLOSED -->  
-		</div>
-		<!-- BACKGROUND-IMAGE CLOSED -->
+        </div>
+        <!-- BACKGROUND-IMAGE CLOSED -->
 @endsection
 
 <!-- Toggle visibility function   -->
 
 <script>
+
+
+
+
+
 function toggleVisibiltypass(){
-	// alert('clicked1');
+    // alert('clicked1');
 let togglePassword3 = document.querySelector("#togglePassword3");
         let password = document.querySelector("#pham_password");
    
@@ -628,7 +644,7 @@ let togglePassword3 = document.querySelector("#togglePassword3");
 </script>
 <script>
 function toggleVisibilty2(){
-	// alert('clicked2');
+    // alert('clicked2');
 let togglePassword2 = document.querySelector("#togglePassword2");
 let confpassword = document.querySelector("#confpassword");
   let type = confpassword.getAttribute("type") === "password" ? "text" : "password";
@@ -644,117 +660,128 @@ let confpassword = document.querySelector("#confpassword");
 @section('js')
 
 <script>
-$(document).ready(function(){
-	var api_url="http://3.220.132.29:3000/api/";
-	var base_path = "http://3.220.132.29/medpro/";
-$("#pharma_signup").validate({
+// $(document).ready(function(){
+//  var api_url="http://3.220.132.29:3000/api/";
+//  var base_path = "http://3.220.132.29/medpro/";
+// $("#pharma_signup").validate({
  
-     errorElement: "span",
-    // $('.eye1 i').css({'display':'none'});       
-    errorClass: "error fail-alert",
-    validClass: "valid success-alert",
-    rules: {
-      pham_name: {
-        required: true,
-        lettersonly: true
+//      errorElement: "span",
+//     // $('.eye1 i').css({'display':'none'});       
+//     errorClass: "error fail-alert",
+//     validClass: "valid success-alert",
+//     rules: {
+//       pham_name: {
+//         required: true,
+//         lettersonly: true
        
-      },
-      pham_first_name: {
-        required: true,
-        lettersonly: true
+//       },
+//       pham_first_name: {
+//         required: true,
+//         lettersonly: true
       
-      },
-       pham_last_name: {
-        required: true,
-        lettersonly: true
-      },
-      pham_email: {
-         required: true,
-        email: true
-      },
-      pham_registration_num:{
-        required:true,
-        minlength:8
-      },
-      pham_address:{
-        required:true,
-      },
-     file:{
-      required:true,
-     },
-     pham_password: {
-      required:true,
-      minlength:8
-     },
-      confpass: {
-        required: true,
-        minlength: 8,
-        equalTo: "#pham_password",
-      },
-      terms:{
-           required: true
-      }
-    },
-    messages : {
+//       },
+//        pham_last_name: {
+//         required: true,
+//         lettersonly: true
+//       },
+//       pham_email: {
+//          required: true,
+//         email: true
+//       },
+//       pham_registration_num:{
+//         required:true,
+//         minlength:8
+//       },
+//       pham_address:{
+//         required:true,
+//       },
+//      file:{
+//       required:true,
+//      },
+//      pham_password: {
+//       required:true,
+//       minlength:8
+//      },
+//       confpass: {
+//         required: true,
+//         minlength: 8,
+//         equalTo: "#pham_password",
+//       },
+//       terms:{
+//            required: true
+//       }
+//     },
+//     messages : {
 
-      pham_name: {
-        required: "Pharmacy Name 62field is Required"
+//       pham_name: {
+//         required: "Pharmacy Name 62field is Required"
      
-      },
-      pham_first_name: {
-         required: "First Name field is Required",
-         lettersonly:"Only Alphabetical Characters are allowed"
+//       },
+//       pham_first_name: {
+//          required: "First Name field is Required",
+//          lettersonly:"Only Alphabetical Characters are allowed"
      
-      },
-      pham_last_name: {
-          required: "Last Name field is Required",
-           lettersonly:"Only Alphabetical Characters are allowed"
+//       },
+//       pham_last_name: {
+//           required: "Last Name field is Required",
+//            lettersonly:"Only Alphabetical Characters are allowed"
        
-      },
-      pham_email: {
-        required: "Email field is Required",
-        email: "The email should be in the format: abc@domain.tld"
-      },
-      pham_address: {
-        required: "Address field is Required"
-      },
+//       },
+//       pham_email: {
+//         required: "Email field is Required",
+//         email: "The email should be in the format: abc@domain.tld"
+//       },
+//       pham_address: {
+//         required: "Address field is Required"
+//       },
 
-     pham_registration_num:{
-        required:"License Number field is Required",
-        minlength: "Licence Number should be at least 8 characters"
-      },
-      file:{
-        required:"License doc is Required"
-     },
-      pham_password: {
-      required:"Password field is Required",
-      minlength:"Password should be of atleast 8 characters"
-     },
-     confpass: {
-        required: "Confirm Password field is Required",
-        minlength: "Password and Confirm password should be same"
-        // equalTo: "Password and Confirm password should be same"
-      },
-      terms:{
-        required:"<p>I agree to the Terms & conditions<p>"
-      }
+//      pham_registration_num:{
+//         required:"License Number field is Required",
+//         minlength: "Licence Number should be at least 8 characters"
+//       },
+//       file:{
+//         required:"License doc is Required"
+//      },
+//       pham_password: {
+//       required:"Password field is Required",
+//       minlength:"Password should be of atleast 8 characters"
+//      },
+//      confpass: {
+//         required: "Confirm Password field is Required",
+//         minlength: "Password and Confirm password should be same"
+//         // equalTo: "Password and Confirm password should be same"
+//       },
+//       terms:{
+//         required:"<p>I agree to the Terms & conditions<p>"
+//       }
 
      
-    }
+//     }
     
-  });
+//   });
 
+
+
+
+
+
+
+
+
+ var api_url="http://3.220.132.29:3000/api/";
+  var base_path = "http://3.220.132.29/medpro/";
  $('#file').on('change',function(){
-    var fakepath =$('#file').val();
-    var filename=fakepath.split("\\").pop();
-    // alert(file)
-    if(filename){
+   var fakepath =$('#file').val();
+   var filename=fakepath.split("\\").pop();
+   if(filename){
       $(".file-name").html(filename);
       $(".file-error").hide();
     }
   });
-       $('#pharma_signup').submit(function (event) {
-    event.preventDefault();
+       
+$('#pharma_signup').submit(function (event) 
+{
+event.preventDefault();
 
         $('#terms').on('change', function(){
       this.value = this.checked ? 1 : 0;
@@ -773,15 +800,21 @@ $("#pharma_signup").validate({
     var password = $('#pham_password').val();
     var confpassword =$('#confpassword').val();
     var terms =$('#terms').val();
+    var pham_img="doc_image.png"
+    
+
    
-      
+    
 
     // }
     //  formData.append('phy_licnse_file', $('input[type=file]')[0].files[0]);  
     // console.log(formData);
     // return false;
     
-    if(pham_name!="" && pham_first_name!="" && pham_last_name !=="" && email!="" && pham_regn!="" && file!="" && password!="" && terms=="1" && pham_address!="" ){
+    if(pham_name!="" && pham_first_name!="" && pham_last_name !=="" && email!="" && pham_regn!="" && file!="" && password!="" && terms=="1" && pham_address!="" && pham_name.match("^[a-zA-Z .'()-]*$") && pham_first_name.match("^[a-zA-Z .'()-]*$") 
+        && pham_last_name.match("^[a-zA-Z .'()-]*$"))
+    {
+
     $.ajax({
       type: "POST",
       url: api_url+"phamsistRegister",
@@ -792,7 +825,7 @@ $("#pharma_signup").validate({
     }).done(function (res) {
      //    alert('done');
   
-      // console.log(res);
+      
       // return false;
         if(res.status == true){
             swal({
@@ -804,10 +837,10 @@ $("#pharma_signup").validate({
                   closeOnCancel: false,
                 });
           // $('#message').html(res.message).addClass('alert alert-success');
-          window.location.href =base_path+"pharmacist_Login";
+          window.location.href = base_path+"pharmacist_Login";
         }else{
-          //  $('#message').html(res.message).addClass('alert alert-danger');
-          $('#emhide').html(res.message).removeClass('hidem');
+            $('#message').html(res.message).addClass('alert alert-danger');
+           
         }
     });
    }else{
@@ -819,7 +852,7 @@ $("#pharma_signup").validate({
 
 
 
-})
+// })
   
 </script>
 

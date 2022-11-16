@@ -10,29 +10,42 @@
 
      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap'); 
 
-    *{
+/*----------------------------------------------*/
+/*css for default*/
+
+*{
        font-family: 'Poppins', sans-serif;
-       text-transform: capitalize;
+       /*text-transform: capitalize;*/
 
    }
-       card-header:first-child {
+
+
+ card-header:first-child {
            border-radius: 2px 2px 0 0;
            margin-top: -13px;
            width: 1050px;
            font-size: 21px;
          }
+ }
+   }
+
 .form-control:disabled, .form-control[readonly] {
     width: 100%;
     background-color: #F1F1F9;
     opacity: 1;
 }
+
+
 .modal-conten{
     border-radius: 25px;
 }
+
+
 #myTable{
     text-transform: capitalize;
-
 }
+
+
 .sbmt{
     width: 203px;
     margin-right: 20px;
@@ -42,24 +55,29 @@
     border-radius: 10px;
     box-shadow: none;
 }
+
 .mdbtn{
     background-color: #008000;
-   
 }
+
+
 hr.new1 {
     border-top: 1px solid black;
     margin-top: -20px;
     width: 1150px;
     margin-left: -27px;
 }
+
 .card-body {
     flex: 1 1 auto;
     padding: 1.5rem;
     margin: 0;
     position: relative;
-    width: 1150px;
+    /*width: 1150px;*/
+    width: 1185px;
     margin-left: 14px;
 }
+
 .form-label{
     text-align:left!important;
     font-size: 18px;
@@ -71,6 +89,7 @@ hr.new1 {
     font-size: 1.1rem;
     margin-left: 10px;
 }
+
 .bttttn{
     width: 120px;
     height: 35px;
@@ -82,6 +101,7 @@ hr.new1 {
     margin-left: 1px;
 
 }
+
 .dashboard{
    /* font-size: 30px;*/
     font-weight: 400;
@@ -105,6 +125,7 @@ hr.new1 {
     color: white;
     margin-right: 10px;
 }
+
 .dbtn{
     background-color: #cf142b;
     width: 88px;
@@ -112,6 +133,7 @@ hr.new1 {
     border-radius: 10px;
     color: white;
 }
+
 .ok{
     border: none;
     border-radius: 10px;
@@ -121,10 +143,12 @@ hr.new1 {
     align-items: center;
     padding: 2px;
 }
+
 .btnbtn{
     margin-right: 45px;
     
 }
+
 #femail{
     text-transform: initial;
 }
@@ -206,15 +230,167 @@ hr.new1 {
         /*.page-header {
               width:310px;
             }*/
-
-
-
 }
+
 @media screen and (min-device-width: 360px){
  .sbmt{
   width: 128px;
  }
 }
+
+
+
+/*.......................................*/
+/*arabic*/
+
+*:lang(ar){
+       font-family: 'Poppins', sans-serif;
+       /*text-transform: capitalize;*/
+
+   }
+
+
+ card-header:first-child:lang(ar) {
+           border-radius: 2px 2px 0 0;
+           margin-top: -13px;
+           width: 1050px;
+           font-size: 21px;
+         }
+ }
+   }
+
+.form-control:disabled:lang(ar), .form-control[readonly]:lang(ar) {
+    width: 100%;
+    background-color: #F1F1F9;
+    opacity: 1;
+}
+
+
+.modal-conten:lang(ar){
+    border-radius: 25px;
+}
+
+
+#myTable:lang(ar){
+    text-transform: capitalize;
+}
+
+
+.sbmt:lang(ar){
+    width: 203px;
+    margin-right: 20px;
+    margin-top: 10px;
+    float: left;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.mdbtn:lang(ar){
+    background-color: #008000;
+}
+
+
+hr.new1:lang(ar){
+    border-top: 1px solid black;
+    margin-top: -20px;
+    width: 1150px;
+    /*margin-left: -27px;*/
+    margin-right: -27px;
+}
+
+.card-body:lang(ar){
+    flex: 1 1 auto;
+    padding: 1.5rem;
+    margin: 0;
+    position: relative;
+    /*width: 1150px;*/
+    width: 1185px;
+   /* margin-left: 14px;*/
+    margin-right: 14px;
+}
+
+.form-label:lang(ar){
+    text-align:left!important;
+    font-size: 18px;
+    color: #7d7a7a;
+}
+
+.viewp:lang(ar){
+    color: #7d7a7a;
+    font-size: 1.1rem;
+   /* margin-left: 10px;*/
+   margin-right: 10px;
+}
+
+.bttttn:lang(ar){
+    width: 120px;
+    height: 35px;
+    color: white;
+    background-color: #7ec1ec;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    /*margin-left: 1px;*/
+    margin-right: 1px;
+
+}
+
+.dashboard:lang(ar){
+   /* font-size: 30px;*/
+    font-weight: 400;
+
+
+}
+/* .card-body {
+    flex: 1 1 auto;
+    padding: 1.5rem;
+    margin: 0;
+    position: relative;
+    margin-left: 35px;
+    width: 1127px;
+} */
+
+.ebtn:lang(ar){
+    background-color: #5e2dd8;
+    width: 88px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    margin-right: 10px;
+}
+
+.dbtn:lang(ar){
+    background-color: #cf142b;
+    width: 88px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+}
+
+.ok:lang(ar){
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    align-items: center;
+    padding: 2px;
+}
+
+.btnbtn:lang(ar){
+    margin-right: 45px;
+    
+}
+
+#femail:lang(ar){
+    text-transform: initial;
+}
+
+
+
+
+
 </style>
 @endsection
 @section('page-header')
@@ -258,12 +434,13 @@ hr.new1 {
                                          <div class="text-center" id="message">
                                                
                                              </div>
-                                        <div class="table-responsive">
+                                        
                                             <div class="search" style="padding-bottom: 50px;">
-                                            <input class="form-control"  style="width:100%;"type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
+                                            <input class="form-control"  style="width:100%;" type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
                                             </div>
-
-                                            <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
+                                         
+                                          <div class="table-responsive">
+                                            <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100" data-sticky-header="true" >
                                                 <thead>
                                                     <tr>
                                                         <th class="wd-15p">{{__('patientmgmt.sno')}}</th>

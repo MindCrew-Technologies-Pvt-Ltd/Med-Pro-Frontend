@@ -1,4 +1,4 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{/* <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> */}
 
 $(document).ready(function(){
 var api_url="http://3.220.132.29:3000/api/";
@@ -22,35 +22,43 @@ $('#lic_doc').change(function() {
 });
 
 
-
-
-
-
-// jQuery.validator.addMethod('validUsername', function (value) 
-// {
-// var regex = new RegExp("^[a-zA-Z .'()-]*$");
-//         var key = value;
-
-//         if (!regex.test(key))
-//          {
-//           return false;
-//         }
-//         return true;
-// }, 'Please enter a valid name');
-
-
-
-jQuery.validator.addMethod('validUsername', function (value) 
+// jquery validation for English and arabic
+jQuery.validator.addMethod('validUserNameReg', function (value) 
 {
-var regex = new RegExp("^[a-zA-Z .'()-]*$" || "شا زا زت");
-        var key = value;
-
-        if (!regex.test(key))
+  // alert("hello fam")
+  let data=window.location.href;
+  let valarr=data.split("/");
+  let lastval=valarr[valarr.length-1];
+  if(lastval == "ar")
+  {
+    var regex =/^(?:[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+    var key = value;
+    if (regex.test(key))
          {
-          return false;
-        }
+          // console.log("true")
         return true;
-}, 'Please enter a valid name' || "رجاء ادخل اسما صحيحا");
+          } 
+          else{
+          
+            return false;
+          }
+        }
+        else{
+          var regex = new RegExp("^[a-zA-Z .'()-]*$");;
+          var key = value;
+          if (regex.test(key))
+               {
+                // console.log("true")
+              return true;
+                } 
+                else{
+                
+                  return false;
+                }
+        }
+},'Please Enter a Valid Name | الرجاء إدخال اسم صحيح')
+
+
 
 
 
@@ -64,8 +72,8 @@ $("#signupform").validate({
       phy_first_name: {
          required: true,
           // lettersonly: true,
-          validUsername: true,
-          
+          validUserNameReg: true,
+        
         // minlength: 3
       },
        phy_last_name: {
@@ -76,7 +84,7 @@ $("#signupform").validate({
       },
       phy_email: {
          required: true,
-        email: true
+         // email: true
       },
       phy_licnse:{
         required:true,
@@ -94,13 +102,14 @@ $("#signupform").validate({
         minlength: 8,
         equalTo: "#password"
       },
+    
       terms:{
            required: true
       }
     },
     messages : {
-      phy_first_name: {
-         required: "First Name field is Required",
+      phy_first_name:{ 
+               required:"First Name field is Required ",
         //  pattern:"please pass valide name",
         //  lettersonly:"Only Alphabetical Characters are allowed",
         // minlength: "First Name should be at least 3 characters"
@@ -112,7 +121,7 @@ $("#signupform").validate({
       },
       phy_email: {
         required: "Email field is Required",
-        email: "The email should be in the format: abc@domain.tld"
+        // email: "The email should be in the format: abc@domain.tld"
       },
 
      phy_licnse:{
@@ -120,7 +129,7 @@ $("#signupform").validate({
         minlength: "Licence Number should be at least 8 characters"
       },
       file:{
-        required:"License doc is Required",
+         required:"License doc is Required",
      },
       phy_password: {
       required:"Password field is Required",
@@ -133,7 +142,8 @@ $("#signupform").validate({
       },
       terms:{
         required:"<p>Please Agree The Terms & Conditions<p>"
-      }
+      },
+
 
 
     }
@@ -141,13 +151,15 @@ $("#signupform").validate({
 
 
 /*api call for registeration form submit*/
-  $('#signupform').on('submit',function (event) {
+   $('#signupform').on('submit',function (event) {
     event.preventDefault();
 
  
 
-    /*formvalidation for signup form*/
+     /*formvalidation for signup form*/
     var first_name = $('#first_name').val();
+    // let modifyFirstName = first_name..replace(/\b\w/g, x => x.toUpperCase());
+    // alert(modifyFirstName,"first name")
     var last_name = $('#last_name').val();
     var email = $('#email').val();
     var licence_no =$('#licence_no').val();
@@ -157,14 +169,14 @@ $("#signupform").validate({
     var chk;
    
     
-      
+     
 
     // }
     //  formData.append('phy_licnse_file', $('input[type=file]')[0].files[0]);  
     // console.log(formData);
     // return false;
     
-    if(first_name!="" && last_name !=="" && email!="" && licence_no!="" && file!="" && password!="" && confpassword !="" && chk!="" ){
+    if(first_name!="" && last_name !=="" && email!="" && licence_no!="" && file!="" && password!="" && confpassword !="" && chk!=""){
     $.ajax({
       type: "POST",
       url: api_url+"PhysicianRegister",
@@ -174,15 +186,16 @@ $("#signupform").validate({
       processData:false,
     }).done(function (res) {
      //    alert('done');
-  
-      // console.log(res);
-      // return false;
-	      if(res.status == true){
-	      	$('#message').html(res.message).addClass('alert alert-success');
-	      	window.location.href =base_path+"login";
-	      }else{
-	         $('#message').html(res.message).addClass('alert alert-danger');
-	      }
+     // return false;
+        if(res.status == true){
+          console.log('inside physician');
+          $('#message').html(res.message).addClass('alert alert-success');
+          window.location.href =base_path+"login";
+        }
+        else{
+          
+        $('#message').html(res.message).addClass('alert alert-danger');
+        }
     });
    }else{
      // $('#message').html('<p style="color:red;">'+'All the fields are mandatory'+'</p>');
@@ -237,13 +250,10 @@ $("#signupform").validate({
 /*api call for login form submit*/
 
   $("#loginform").submit(function (event) {
-  	 event.preventDefault();
-
-  
- 
+  event.preventDefault();
   var phy_email = $('#email').val();
-    var phy_password = $('#password').val();
-
+  var phy_password = $('#password').val();
+   console.log(phy_email,phy_password,">>>>>>>>>")
 
     var formData = {
     phy_email:$('#email').val(),
@@ -258,15 +268,27 @@ $("#signupform").validate({
       dataType: "json",
       encode: true,
     }).done(function (res) {
+      console.log(res,"ks;ko;efk")
       console.log(res.data);
       localStorage.setItem('user_det', JSON.stringify(res.data));
      
+      if(res.status == true){
+          $('#message').html(res.message + "تم تسجيل الدخول بنجاح").addClass('alert alert-success');
+          let url = window.location.href;
+          let uri=url.split('/');
 
-        if(res.status == true){
-        	$('#message').html(res.message).addClass('alert alert-success');
-        	window.location.href=base_path+"dashboard";
+          let lan=uri[uri.length-1];
+
+            // if(lan=="ar"){
+            //   window.location.href=base_path+"dashboard/ar";
+            // }
+            // else{
+            //   window.location.href=base_path+"dashboard";
+            // }
         }else{
-           $('#message').html(res.message).addClass('alert alert-danger');
+           // $('#message').html(res.message).addClass('alert alert-danger');
+           alert('hello');
+           $('#message').html('Please wait for admin approval').addClass('alert alert-danger');
         }
 
   });
@@ -362,13 +384,13 @@ $("#reset_pass").submit(function (event) {
       pham_name: {
         required: true,
         //  lettersonly: true,
-            validUsername:true,
+            validUserNameReg:true,
         // minlength: 3
       },
        pham_first_name: {
         required: true,
         //  lettersonly: true,
-         validUsername:true,
+         validUserNameReg:true,
         // minlength: 3
       },
        pham_last_name: {
@@ -406,7 +428,7 @@ $("#reset_pass").submit(function (event) {
     messages : {
 
       pham_name: {
-        required: "Pharmacy Name field is Required",
+        required: "Pharmacy Name field is Required ",
         // lettersonly: "Only Alphabetical Characters are allowed",
         // minlength: 3
       },

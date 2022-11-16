@@ -65,7 +65,16 @@
                   $("#image_show").attr('href',res.data.pham_registration_file)
               }
               // $('#registration_file').attr('src',res.data.pham_registration_file);
-              $('#output').attr('src',res.data.pham_img)
+
+              let resarr=res.data.pham_img.split("/");
+              let image=resarr[resarr.length-1];
+
+                if(image!=""){
+                  $('#output').attr('src',res.data.pham_img);  
+                }
+                else{
+                  $('#output').attr('src',"http://3.220.132.29/Backend/uploads/Phamaciest_pic/doc_image.png");    
+                }  
               // alert('load')
     });
     
@@ -76,7 +85,121 @@
   <script>
    var searchInput = 'pham_address';
 
-$(document).ready(function () {
+$(document).ready(function () 
+{
+  let data=window.location.href;
+  let valarr=data.split("/");
+  let lastval=valarr[valarr.length-1];
+
+  var validName = /^[a-zA-Z ]*$/;
+
+  if(lastval == "ar")
+  {
+    validName =/^(?:[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+  }
+
+  $('#n').on('input', function () {
+   var pharmName = $(this).val();
+   
+   if (pharmName.length == 0) {
+     $('.pharm-name-msg').addClass('invalid-msg').text("Pharmacy Name is Required | اسم الصيدلية مطلوب");
+     $(this).addClass('invalid-input').removeClass('valid-input');
+   }
+   else if (!validName.test(pharmName)) {
+     $('.pharm-name-msg').addClass('invalid-msg').text('Please Enter Valid Pharmacy Name | الرجاء إدخال اسم صيدلية صالح');
+     $(this).addClass('invalid-input').removeClass('valid-input');
+   }
+   else {
+     $('.pharm-name-msg').empty();
+     $(this).addClass('valid-input').removeClass('invalid-input');
+   }
+});
+
+  $('#pham_first_name').on('input', function () {
+   var firstName = $(this).val();
+   if (firstName.length == 0) {
+     $('.first-name-msg').addClass('invalid-msg').text("First Name field is Required | حقل الاسم الأول مطلوب");
+     $(this).addClass('invalid-input').removeClass('valid-input');
+   }
+   else if (!validName.test(firstName)) {
+     $('.first-name-msg').addClass('invalid-msg').text('Please Enter Valid First Name | الرجاء إدخال الاسم الأول صحيح');
+     $(this).addClass('invalid-input').removeClass('valid-input');
+   }
+   else {
+     $('.first-name-msg').empty();
+     $(this).addClass('valid-input').removeClass('invalid-input');
+   }
+});
+
+  $('#pham_last_name').on('input', function () {
+   var secondName = $(this).val();
+   if (secondName.length == 0) {
+     $('.last-name-msg').addClass('invalid-msg').text("Last Name field is Required");
+     $(this).addClass('invalid-input').removeClass('valid-input');
+   }
+   else if (!validName.test(secondName)) {
+     $('.last-name-msg').addClass('invalid-msg').text('Please Enter Valid Last Name | الرجاء إدخال اسم عائلة صالح');
+     $(this).addClass('invalid-input').removeClass('valid-input');
+   }
+   else {
+     $('.last-name-msg').empty();
+     $(this).addClass('valid-input').removeClass('invalid-input');
+   }
+});
+
+$('#pham_address').on('input', function () {
+   var pharmAddress = $(this).val();
+   let validname1=/^[a-zA-Z0-9]*$/;
+   if (pharmAddress.length == 0) {
+     $('.pham-address-msg').addClass('invalid-msg').text("Pharmacy Address field is Required");
+     $(this).addClass('invalid-input').removeClass('valid-input');
+   }
+   else if (!validname1.test(pharmAddress)) {
+     $('.pham-address-msg').addClass('invalid-msg').text('Please Enter Valid Address | الرجاء إدخال عنوان صالح');
+     $(this).addClass('invalid-input').removeClass('valid-input');
+   }
+   else {
+     $('.pham-address-msg').empty();
+     $(this).addClass('valid-input').removeClass('invalid-input');
+   }
+});
+
+// Name Validation for English and Arabic
+jQuery.validator.addMethod('validUserNamePhamEdit', function (value) 
+{
+  alert("uyyyyy")
+  let data=window.location.href;
+  let valarr=data.split("/");
+  let lastval=valarr[valarr.length-1];
+  if(lastval == "ar")
+  {
+    var regex =/^(?:[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){0,30}$/;
+    var key = value;
+    if (regex.test(key))
+         {
+          // console.log("true")
+        return true;
+          } 
+          else{
+          
+            return false;
+          }
+        }
+        else{
+          var regex = new RegExp("^[a-zA-Z .'()-]*$");;
+          var key = value;
+          if (regex.test(key))
+               {
+                // console.log("true")
+              return true;
+                } 
+                else{
+                
+                  return false;
+                }
+        }
+},'Please Enter a Valid Name of edit| الرجاء إدخال اسم صحيح')
+
    var map;  
     var marker; 
     var autocomplete;
@@ -178,9 +301,7 @@ function initialize() {
     infowindow.setContent(contentString);
     infowindow.open(map, marker);
     
-  }); 
-  
-  
+  });   
 };
 
 geocoder.geocode({'latLng': myCenter }, function(results, status) {
@@ -508,6 +629,7 @@ label{
             }
 
      }
+
           
 </style>
                         <!-- PAGE-HEADER -->
@@ -536,7 +658,7 @@ label{
                 <input id="img_file" type="file" accept="image/*" name="image" />
                 <span  class="glyphicon glyphicon-pencil gly"></span>
                 </label>
-                  <img src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_640.png" class="proimg" id="output"  alt="">
+                  <img src="" class="proimg" id="output"  alt="">
                   <input type="submit" class="btn-primary float-left profile-pic1 mt-3 ml-1" value="{{__('pham_profile.upload')}}" id="upload_btn" style="border-radius:10px;display:hidden" name="submit">
               </div>
 
@@ -554,20 +676,27 @@ label{
             <div class="form-group ">
                <label for="pham_name" id="phamname p1" class="phamname1">{{__('pham_profile.pname')}}:</label>
                <input type="text" class="form-control" id="n" name="pham_name">
+               <div class="pharm-name-msg" style="color:red"></div>
             </div>
             <div class="form-group ">
                <label for="pham_first_name">{{__('pham_profile.fname')}}:</label>
                <input type="text" class="form-control" id="pham_first_name" name="pham_first_name">
+               <div class="first-name-msg" style="color:red"></div>
+
             </div>
 
             <div class="form-group">
                <label for="pham_last_name">{{__('pham_profile.lname')}}:</label>
                <input type="text" class="form-control" id="pham_last_name" name="pham_last_name">
+               <div class="last-name-msg" style="color:red"></div>
+
             </div>
              <div class="form-group" style="position:relative;">
                  <label for="address">{{__('pham_profile.add')}}:</label>
               <textarea  class="form-control" name="pham_address" id="pham_address" rows="3" placeholder="Address" autocomplete="on"></textarea>
                <i  id="add_icon"  class="fa fa-map-marker"  data-toggle="modal" data-target="#largeModal"></i>
+               <div class="pham-address-msg" style="color:red"></div>
+
             </div>
             <div class="form-group">
                 <label class="form-label"></label>
@@ -723,6 +852,7 @@ label{
 
 <script>
     $( document ).ready(function() {
+
         $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
 })
@@ -750,17 +880,10 @@ var user_details15=localStorage.getItem('pharm_det');
     $('#phamaciest_id1').val(pharmacist_id15);
 
 
-// jQuery.validator.addMethod('validUsername', function (value) 
-// {
-// var regex = new RegExp("^[a-zA-Z .'()-]*$");
-//         var key = value;
 
-//         if (!regex.test(key))
-//          {
-//           return false;
-//         }
-//         return true;
-// }, 'Please enter a valid name');
+
+
+
 
 
 
@@ -777,7 +900,7 @@ var user_details15=localStorage.getItem('pharm_det');
     rules: {
       pharm_name:{
         required: true,
-        // validUsername:true
+        validUserNamePhamEdit:true
 
       },
       pharm_first: {
@@ -828,7 +951,7 @@ var user_details15=localStorage.getItem('pharm_det');
   });
  $('#phamsavechanges').on('submit',function (event) {
     event.preventDefault();
-    
+    aalert("on submit")
 // alert("API chal gayi")
 // return false;   
     /*formvalidation for signup form*/

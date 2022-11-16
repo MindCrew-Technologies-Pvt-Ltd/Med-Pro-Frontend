@@ -14,7 +14,7 @@
 
     *{
        font-family: 'Poppins', sans-serif;
-       text-transform: capitalize;
+       /*text-transform: capitalize;*/
 
    }
        card-header:first-child {
@@ -71,7 +71,7 @@ hr.new1 {
 .viewp{
     color: #7d7a7a;
     font-size: 1.1rem;
-    margin-left: 10px;
+    margin-left: 14px;
 }
 .bttttn{
     width: 120px;
@@ -283,11 +283,12 @@ hr.new1 {
                                          <div class="text-center" id="message">
                                                
                                              </div>
-                                        <div class="table-responsive">
+                                       
                                             <div class="search" style="padding-bottom: 50px;">
                                             <input class="form-control"  style="width:100%;"type="text" id="myInput" onkeyup="myFunction()" placeholder="{{__('patientmgmt.search')}}">
                                             </div>
-
+                                            
+                                             <div class="table-responsive">
                                             <table id="myTable"  class="table table-striped table-bordered text-nowrap w-100">
                                                 <thead>
                                                     <tr>
@@ -306,6 +307,7 @@ hr.new1 {
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
+
                                     <h5 class="modal-title" id="exampleModalLabel">{{__('patientmgmt.pat_profile')}}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
@@ -328,8 +330,11 @@ hr.new1 {
                                      <div class="form-group">
                                     <label  class="form-label">{{__('patientmgmt.ins_img')}}</label>
                                     <a href="" id="image_link">
-                                    <img src="" alt="insurace_image" id='ins_img' style="height:200px;width:200px;">
-                                       </a>
+                                    <img
+                                      alt="insurance_image"
+                                     id='ins_img' style="height:150px; width:150px; margin-top:50px"
+                                       >
+                                    </a> 
                                     <!-- <input type="email" class="form-control" id="femail" value=""> -->
                                     </div>
                                 
@@ -342,9 +347,6 @@ hr.new1 {
                         </div>
                     </div>
                     <!-- MODAL CLOSED -->
-                                
-                                                    
-                                                   
                                                 </tbody>
                                             </table>
                                         </div>
@@ -408,9 +410,7 @@ hr.new1 {
     console.log(patientList);
     localStorage.setItem('patientList',JSON.stringify(patientList));
 
-        
-
-         res.data.map((e,i) => {
+    res.data.map((e,i) => {
            
             i++;
               $("#myTable").append('<tr><td>'+i+'</td><td>'+e.psnt_first_name+'</td><td>'+e.psnt_last_name+'</td><td>'+e.psnt_email+'</td><td> '+e.psnt_insrnce_num+'</td><td><button  id="'+e._id+'" onclick="editdata(this)" class="btn ebtn" data-toggle="modal" data-target="#exampleModal">{{__('patientmgmt.view')}}</button><button type="button" class="btn dbtn" data-toggle="modal" data-target="#exampleModalCenter'+e._id+'">{{__('patientmgmt.delete')}}</button></td></tr>');         
@@ -457,7 +457,16 @@ hr.new1 {
         if(res.status == true){
             $('.mdbtn').prop('disabled', true);
           $('#message').html(res.message).addClass('alert alert-success');
-          window.location.href= base_path + "patient_management";
+          let url = window.location.href;
+          let uri=url.split('/');
+          let lan=uri[uri.length-1];
+          
+            if(lan=="ar"){
+                window.location.href= base_path + "patient_management/ar";
+            }
+            else{
+                window.location.href= base_path + "patient_management";
+            }
           
         }else{
            $('#message').html(res.message).addClass('alert alert-danger');
@@ -484,19 +493,28 @@ hr.new1 {
      // data: JSON.stringify(data),
     }).done(function (res) {
               let image_name=res.data.psnt_insrnce_img;
+              console.log(image_name,"image xuz")
               let ext =image_name.split(".");
               // console.log(ext[(ext.length)-1]);
               // return false;
               ext =ext[(ext.length)-1];
-          // console.log(res)
+           console.log(ext)
               $("#fullname").val(res.data.psnt_first_name+' '+res.data.psnt_last_name) ;   
             $('#femail').val(res.data.psnt_email);
             $('#ins_no').val(res.data.psnt_insrnce_num);
             if(ext == "pdf"){
                  $('#ins_img').attr('src',"https://cdn.pixabay.com/photo/2013/07/13/01/18/pdf-155498_640.png");
-                
-                  $('#image_link').attr('href',res.data.psnt_insrnce_img)
-            }else{
+                 $('#image_link').attr('href',res.data.psnt_insrnce_img)
+            }
+            else if(image_name == ""){
+                console.log("image is coming empty")
+                $('#ins_img').attr('src',"http://3.220.132.29/medpro/assets/images/pngs/doc_image.png");
+                $('#image_link').attr('href',"http://3.220.132.29/medpro/assets/images/pngs/doc_image.png")
+                 
+            }
+            else
+            {
+                 console.log("image is not coming empty")
                 $('#ins_img').attr('src',res.data.psnt_insrnce_img);
                 $('#image_link').attr('href',res.data.psnt_insrnce_img)
             }

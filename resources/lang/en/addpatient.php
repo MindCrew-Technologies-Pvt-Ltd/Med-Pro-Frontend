@@ -13,6 +13,7 @@ return[
  "upload"=>"Upload Insurance Image",
  "sub"=>"Submit",
  "can"=>"Cancel",
+ "qidno"=>"QID"
 ];
 
 

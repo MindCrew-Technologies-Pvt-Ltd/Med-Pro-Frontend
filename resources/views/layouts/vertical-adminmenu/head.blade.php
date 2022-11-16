@@ -98,7 +98,8 @@
 		          showConfirmButton: false,
 		          closeOnCancel: false,
 		        });
-		        $('#message').html(res.message).addClass('alert alert-success');
+		        // $('#message').html(res.message).addClass('alert alert-success');
+		        $('#message').html('Logout successfully | تسجيل الخروج بنجاح').addClass('alert alert-success');
 		        localStorage.clear();
 		        setTimeout(window.location.href = base_path + "admin_login", 1000);
 

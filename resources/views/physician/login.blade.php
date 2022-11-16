@@ -3,14 +3,13 @@
 <link href="{{ URL::asset('assets/plugins/single-page/css/main.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/css/medprocustom.css')}}" rel="stylesheet">
 
-
 <style>
-	
-	 
-.error{
-	color: red;
-	
+		 
+span.error{
+	color:red;
+    text-align:right;
 }
+
 .valid{
 	color: black;
 	
@@ -203,6 +202,7 @@ input[type=password] {
         
 </style>
 @endsection
+
 @section('content')
 		<!-- BACKGROUND-IMAGE -->
 		<div class="login-img">
@@ -256,7 +256,7 @@ input[type=password] {
 								</span>
 								<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 									<input class="input100" type="text" name="email" id="email" placeholder="{{__('login.phy_email')}}">
-									<span class="focus-input100"></span>
+									<span class="focus-input100"> </span>
 									<!-- <span class="symbol-input100" > -->
 										<i class="zmdi zmdi-email" aria-hidden="true" style="position: absolute;float:right;left: 1rem;top: 1.1rem;"></i>
 									<!-- </span> -->
@@ -267,7 +267,8 @@ input[type=password] {
 
 									
                                  <input class="input100" type="password" name="pass" id="password" placeholder="{{__('login.phy_pass')}}" autocomplete="off">
-                                 <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty()"></i>
+                                 <!-- <i class="zmdi zmdi-eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty()"></i> -->
+                                  <i class="zmdi eye zmdi-eye-off" id="togglePassword" title="visible" data-original-title="zmdi zmdi-eye"  onclick="toggleVisibilty()"></i>
 								
 
 								<!-- 	<input class="input100" type="password" name="pass" id="password" placeholder="Password">
@@ -321,6 +322,9 @@ input[type=password] {
 
 
 <!-- Toggle visibility function   -->
+
+<!-- <script src="{{ URL::asset('assets/js/formapi.js') }}"></script> -->
+
 <script>
  function toggleVisibilty(){
 let togglePassword = document.querySelector("#togglePassword");

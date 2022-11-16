@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
     $('.js-example-responsive').select2({
     placeholder: "Please select a Patient",
@@ -15,7 +15,7 @@ $(document).ready(function() {
   });
 });
 
-</script>
+</script> -->
 <style type="text/css">
      .input-group-append{
         margin-top:1.5rem !important;
@@ -77,8 +77,7 @@ $(document).ready(function() {
                     <div class="form-group">
                            <select class="js-example-responsive form-control col-10 classic " id="patient_name" name="patient_name">
                              <option value="">{{__('addpres.sel')}}</option> 
-                             
-                           </select>
+                    </select>
                     </div>
                       <!-- input div start -->
                       
@@ -88,7 +87,8 @@ $(document).ready(function() {
               
                         <!-- <div class="row"> -->
                             <!-- <div class="col"> -->
-                               <input type="text" name="prs_med_name[]" class="form-control m-input" id="prs_med_name" placeholder="{{__('addpres.med_name')}}" autocomplete="off" />
+                               <input type="text" name="prs_med_name[]" class="form-control m-input" id="prs_med_name" placeholder="{{__('addpres.med_name')}}" 
+                               autocomplete="off" />
                                
                             <!-- </div> -->
                             <!-- <div class="col"> -->
@@ -98,7 +98,7 @@ $(document).ready(function() {
                         <!-- <div class="row"> -->
                           
                             <!-- <div class="col"> -->
-                               <textarea class="form-control col-10 prs_information" id="prs_information" rows="3" name="prs_information[]" placeholder="{{__('addpres.info')}}"></textarea>
+                               <textarea class="form-control col-10 prs_information" id="prs_information[]" rows="3" name="prs_information[]" placeholder="{{__('addpres.info')}}"></textarea>
                             <!-- </div> -->
                                
                                 
@@ -151,12 +151,15 @@ $(document).ready(function() {
                        <input type="submit" class="acceptbutton" id="submit" name="submit" value=" {{__('addpres.sub')}}">
                     <!-- </div> -->
             </form>
-        </div>
+
+         </div> 
     </div>
     <!-- TABLE WRAPPER -->
-</div>
+ </div> 
 <!-- SECTION WRAPPER -->
-</div>
+</div> 
+<!-- </div> -->
+<!-- </div> --> 
 
 <!-- ROW-1 CLOSED -->
 
@@ -198,8 +201,8 @@ $(document).ready(function() {
      var formData = {
         physician_id:physician_id,
     };
-    console.log(physician_id)
-    console.log(formData)
+    // console.log(physician_id)
+    // console.log(formData)
   $.ajax({
       type: "POST",
       url: api_url+"patientList",
@@ -216,10 +219,10 @@ $(document).ready(function() {
 
     var pat_list=JSON.parse(localStorage.getItem('patientList'));
  
- console.log(pat_list[0].sort())
+ // console.log(pat_list[0].sort())
  pat_list[0]=pat_list[0].sort()
 $.each(pat_list[0], function(key,value){
-console.log(value.psnt_first_name + value.psnt_last_name);
+// console.log(value.psnt_first_name + value.psnt_last_name);
 $("#patient_name").append('<option value="'+value._id+'">'+ value.psnt_first_name + " "+ value.psnt_last_name +'</option>');
 });
 
@@ -248,39 +251,44 @@ $("#pat_signup").validate({
     validClass: "valid success-alert",
     rules: {
         patient_name: {
-        required: true,
+        // required: true,
         // minlength: 3
       },
-      prs_med_name: {
-        required: true,
-        // minlength: 3
+      'prs_med_name[]': {
+         // required: true,
+     // minlength: 2
       },
-      prs_quantity: {
-         required: true,
+      'prs_quantity[]': {
+         // required: true,
          number: true,
          minlength: 1
-
       },
+      'prs_information[]':{
+        // required:true,
+      }
+
       
     },
     
     messages : {
         patient_name: {
-         required: "Patient Name field is Required |حقل اسم المريض مطلوب",
+         // required: "Patient Name field is Required |حقل اسم المريض مطلوب",
         //  lettersonly:"Only Alphabetical Characters are allowed & Space Not allowed | يُسمح فقط باستخدام الأحرف الأبجدية ولا يُسمح باستخدام المسافات",
         // minlength: "First Name should be at least 3 characters"
       },
-      prs_med_name: {
-          required: "Medicine Name field is Required |حقل اسم الدواء مطلوب",
+      'prs_med_name[]': {
+          // required: "Medicine Name field is Required |حقل اسم الدواء مطلوب",
            lettersonly:"Only Alphabetical Characters are allowed & Space Not allowed | يُسمح فقط باستخدام الأحرف الأبجدية ولا يُسمح باستخدام المسافات",
         // minlength: "Last Name should be at least 3 characters"
       },
-      prs_quantity: {
-        required: "Quantity field is Required |حقل الكمية مطلوب",
+      'prs_quantity[]': {
+        // required: "Quantity Nmae field is Required |حقل الكمية مطلوب",
         minlength: "Minimum Lenght One |الحد الأدنى لطول واحد",
         number: "Enter Number Only | أدخل الرقم فقط"
-        
-      }
+        },
+        'prs_information[]':{
+        // required:"Information Name field is Required",
+        }
 
 
     }
@@ -289,20 +297,31 @@ $("#pat_signup").validate({
 /*add prescription added here*/
 
 $('#pat_signup').submit(function(event) {
-   // console.log(event.target);
+  
+  
         event.preventDefault();
-        // alert('thhhhhhhhhhhhh')
+       
         let patientid;
        
-           patientid = $('#patient_name').val();
-       
+        patientid = $('#patient_name').val();
+           
       
         let physician_det = localStorage.getItem('user_det');
+       
+
+
+         // var prs_med_name = document.getElementsByName('prs_med_name[]').value; 
+              // var quantity = document.getElementsByName('prs_quantity[]').value; 
+              // var prs_information = document.getElementsByTagName('textarea').value; 
+             // console.log(prs_med_name,quantity,prs_information);
+
+        var prs_med_name = $('#prs_med_name').val();
+        var prs_quantity = $('#prs_quantity').val();
+        var prs_information = $('textarea').val();
+        // console.log(prs_med_name,prs_quantity,prs_information,"data....")
+        
              
-              var prs_med_name = document.getElementsByName('prs_med_name[]').value; 
-              var quantity = document.getElementsByName('prs_quantity[]').value; 
-              var prs_information = document.getElementsByTagName('textarea').value; 
-            //  console.log(prs_med_name,quantity,prs_information);
+             
               
               var namevalues = [];
               var quanvalues = [];
@@ -311,27 +330,53 @@ $('#pat_signup').submit(function(event) {
                 namevalues.push($(this).val());
                  
               });
+
+
+              // $("input[name='prs_med_name']").each(function(i) {
+              //   namevalues.push($(this).val());
+              // });
+              
               $("input[name='prs_quantity[]']").each(function(i) {
                 quanvalues.push($(this).val());
                
             });
-            $("textarea[name='prs_information[]']").each(function(i) {
+
+
+            //   $("input[name='prs_quantity']").each(function(i) {
+            //     quanvalues.push($(this).val());
+               
+            // });
+           
+
+            // $("textarea[name='prs_information']").each(function(i) {
+            //   infovalues.push($(this).val());
+             
+            // });
+
+
+             $("textarea[name='prs_information[]']").each(function(i) {
               infovalues.push($(this).val());
              
             });
+           
+
+
+
             var values = [];
             // namevalues.each((i)=>{
             //   values.push({'name':namevalues[i], 'quantity':quanvalues[i], 'info':infovalues[i]})
             // })
             namevalues.forEach((element,i) => {
               values.push({'prs_med_name':namevalues[i], 'prs_quantity':quanvalues[i], 'prs_information':infovalues[i]})
-
             });
 
             // alert(values);
             // console.log(values);
                 physician=   JSON.parse(physician_det);
+               
                 var phy_id = physician._id;
+
+                // console.log(values,"valuesss")
          
 
               let formdata1={
@@ -339,6 +384,8 @@ $('#pat_signup').submit(function(event) {
                 physician_id:phy_id ,
                 prs_details: JSON.stringify(values),
             }
+
+            console.log(formdata1,"formdata")
  
               if(patientid !="" && physician_id !="" && (namevalues.length >0) &&  (quanvalues.length >0) &&(infovalues.length>0)){
                 $.ajax({
@@ -347,8 +394,7 @@ $('#pat_signup').submit(function(event) {
                   data: formdata1,
               }).done(function(res) {
                      //alert('done');
-
-                     console.log(res);
+                     // console.log(res);
                     //  return false;
   
                    if(res.status == true){
